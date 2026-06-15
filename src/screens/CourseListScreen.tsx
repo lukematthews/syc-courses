@@ -65,7 +65,7 @@ function CollapsibleCourseSection({
         </Collapsible.Trigger>
 
         <Collapsible.Content
-          className={`max-h-[58svh] overflow-y-auto overscroll-contain rounded-lg border p-2 pr-2 [-webkit-overflow-scrolling:touch] ${contentToneClasses}`}
+          className={`course-scroll-panel rounded-lg border p-2 pr-2 ${contentToneClasses}`}
         >
           <div className="space-y-3">{children}</div>
         </Collapsible.Content>

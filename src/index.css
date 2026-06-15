@@ -90,3 +90,12 @@ button {
   color: white;
   backdrop-filter: blur(10px);
 }
+
+.course-scroll-panel {
+  height: min(58svh, 620px);
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+}
