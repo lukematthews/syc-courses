@@ -9,8 +9,7 @@ export function PennantReference() {
           key={pennant.digit}
           className="surface rounded-lg p-4"
         >
-          <PennantStrip courseNumber={pennant.digit} size="lg" showLabels />
-          <div className="mt-2 text-xl font-black text-slate-950">Digit {pennant.digit}</div>
+          <PennantStrip courseNumber={pennant.digit} size="lg" />
         </div>
       ))}
     </div>
