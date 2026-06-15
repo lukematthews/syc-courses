@@ -28,7 +28,12 @@ function App() {
   }, [screen])
 
   if (screen.name === 'pennants') {
-    return <PennantReferenceScreen onBack={() => setScreen({ name: 'courses' })} />
+    return (
+      <PennantReferenceScreen
+        onBack={() => setScreen({ name: 'courses' })}
+        onOpenCourse={(courseNumber) => setScreen({ name: 'detail', courseNumber })}
+      />
+    )
   }
 
   if (screen.name === 'quick-bearing') {
