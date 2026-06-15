@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#0b1422"/>
+  <path d="M108 86h296v266L256 432 108 352z" fill="#f8fafc" stroke="#67e8f9" stroke-width="24"/>
+  <path d="M108 220h296" stroke="#0b1422" stroke-width="34"/>
+  <text x="256" y="296" text-anchor="middle" font-family="Arial, sans-serif" font-size="104" font-weight="900" fill="#0b1422">SYC</text>
+</svg>
