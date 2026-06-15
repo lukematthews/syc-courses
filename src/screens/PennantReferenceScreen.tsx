@@ -15,7 +15,7 @@ export function PennantReferenceScreen({ onBack }: PennantReferenceScreenProps) 
         >
           ← Courses
         </button>
-        <h1 className="mt-4 text-5xl font-black leading-none">Pennants</h1>
+        <h1 className="mt-4 text-5xl font-black leading-none">Flags</h1>
       </header>
 
       <div className="mx-auto w-full max-w-xl px-4 py-5">

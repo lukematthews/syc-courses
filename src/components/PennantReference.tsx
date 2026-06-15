@@ -9,7 +9,7 @@ export function PennantReference() {
           key={pennant.digit}
           className="surface rounded-lg p-4"
         >
-          <PennantStrip courseNumber={pennant.digit} size="lg" />
+          <PennantStrip courseNumber={pennant.digit} size="lg" showLabels />
         </div>
       ))}
     </div>

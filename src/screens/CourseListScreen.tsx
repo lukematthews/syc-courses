@@ -2,7 +2,6 @@ import * as Collapsible from '@radix-ui/react-collapsible'
 import { useState, type ReactNode } from 'react'
 import type { Course } from '../data/courses'
 import { CourseCard } from '../components/CourseCard'
-import { PennantStrip } from '../components/PennantStrip'
 import { QuickBearingCard } from '../components/QuickBearingCard'
 import { laidCourses } from '../data/laidCourses'
 
@@ -95,11 +94,7 @@ export function CourseListScreen({
           onClick={onOpenPennants}
           className="action-card tap-highlight rounded-lg bg-cyan-50 p-4 text-left"
         >
-          <div className="text-3xl font-black leading-none text-cyan-950">Pennant Reference</div>
-          <div className="mt-3 flex items-center justify-between gap-3">
-            <p className="text-xl font-bold text-cyan-950">Digits 0-9</p>
-            <PennantStrip courseNumber="24" size="sm" layout="stack" />
-          </div>
+          <div className="text-3xl font-black leading-none text-cyan-950">Flags</div>
         </button>
 
         <CollapsibleCourseSection
