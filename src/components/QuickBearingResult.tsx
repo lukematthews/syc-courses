@@ -17,7 +17,7 @@ type QuickBearingResultProps = {
 
 function ResultTile({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className="rounded-lg border-2 border-slate-950 bg-white p-3">
+    <div className="surface rounded-lg p-3">
       <div className="text-base font-black uppercase text-slate-700">{label}</div>
       <div className="mt-1 text-3xl font-black leading-none text-slate-950">{children}</div>
     </div>
@@ -62,7 +62,7 @@ export function QuickBearingResult({ mark, compact = false }: QuickBearingResult
     )
 
   return (
-    <section className="rounded-lg border-2 border-slate-950 bg-cyan-100 p-4">
+    <section className="surface-strong rounded-lg bg-cyan-50 p-4">
       <div className="flex items-start justify-between gap-3">
         <div>
           <h2 className="text-2xl font-black text-slate-950">{mark.name}</h2>
@@ -71,7 +71,7 @@ export function QuickBearingResult({ mark, compact = false }: QuickBearingResult
         <button
           type="button"
           onClick={requestPosition}
-          className="tap-highlight min-h-12 shrink-0 rounded-md border-2 border-slate-950 bg-white px-4 text-lg font-black text-slate-950"
+          className="tap-highlight min-h-12 shrink-0 rounded-md border border-slate-300 bg-white px-4 text-lg font-black text-slate-950"
         >
           Refresh
         </button>

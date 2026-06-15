@@ -11,9 +11,9 @@ export function CourseTable({ rows }: CourseTableProps) {
   const [expandedRowIndex, setExpandedRowIndex] = useState<number | null>(null)
 
   return (
-    <div className="overflow-hidden rounded-lg border-2 border-slate-950 bg-white">
+    <div className="surface overflow-hidden rounded-lg">
       <table className="w-full table-fixed border-collapse text-left">
-        <thead className="bg-slate-950 text-white">
+        <thead className="bg-slate-900 text-white">
           <tr>
             <th className="w-[36%] px-2 py-3 text-lg font-black">Mark</th>
             <th className="w-[20%] px-2 py-3 text-lg font-black">Side</th>
@@ -58,7 +58,7 @@ export function CourseTable({ rows }: CourseTableProps) {
                 ) : (
                   <tr
                     className={`border-t-2 ${
-                      isSummary ? 'border-slate-950 bg-slate-100' : 'border-slate-200'
+                  isSummary ? 'border-slate-900 bg-slate-100' : 'border-slate-200'
                     }`}
                   >
                     {rowContent}

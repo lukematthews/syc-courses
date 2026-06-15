@@ -12,7 +12,7 @@ export const marks: Mark[] = [
   {
     id: 'syc-1',
     name: 'SYC 1',
-    aliases: ['SYC1', 'SY1', '1'],
+    aliases: ['SYC1', 'SY1'],
     latitude: -37.963333,
     longitude: 144.9815,
     description: '37 57.80S, 144 58.89E',
@@ -21,7 +21,7 @@ export const marks: Mark[] = [
   {
     id: 'syc-2',
     name: 'SYC 2',
-    aliases: ['SYC2', 'SY2', '2'],
+    aliases: ['SYC2', 'SY2'],
     latitude: -37.943333,
     longitude: 144.966167,
     description: '37 56.60S, 144 57.97E',
@@ -30,7 +30,7 @@ export const marks: Mark[] = [
   {
     id: 'syc-3',
     name: 'SYC 3',
-    aliases: ['SYC3', 'SY3', '3'],
+    aliases: ['SYC3', 'SY3'],
     latitude: -37.937333,
     longitude: 144.9875,
     description: '37 56.24S, 144 59.25E',
@@ -39,7 +39,7 @@ export const marks: Mark[] = [
   {
     id: 'syc-4',
     name: 'SYC 4',
-    aliases: ['SYC4', 'SY4', '4'],
+    aliases: ['SYC4', 'SY4'],
     latitude: -37.946833,
     longitude: 144.99,
     description: '37 56.81S, 144 59.40E',
@@ -48,7 +48,7 @@ export const marks: Mark[] = [
   {
     id: 'syc-5',
     name: 'SYC 5',
-    aliases: ['SYC5', 'SY5', '5'],
+    aliases: ['SYC5', 'SY5'],
     latitude: -37.980167,
     longitude: 144.973,
     description: '37 58.81S, 144 58.38E',
@@ -57,7 +57,7 @@ export const marks: Mark[] = [
   {
     id: 'syc-6',
     name: 'SYC 6',
-    aliases: ['SYC6', 'SY6', '6'],
+    aliases: ['SYC6', 'SY6'],
     latitude: -37.945,
     longitude: 144.951333,
     description: '37 56.70S, 144 57.08E',
@@ -66,7 +66,7 @@ export const marks: Mark[] = [
   {
     id: 'syc-7',
     name: 'SYC 7',
-    aliases: ['SYC7', 'SY7', '7'],
+    aliases: ['SYC7', 'SY7'],
     latitude: -37.931,
     longitude: 144.983333,
     description: '37 55.86S, 144 59.00E',

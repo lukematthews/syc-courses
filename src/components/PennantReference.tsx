@@ -7,7 +7,7 @@ export function PennantReference() {
       {pennants.map((pennant) => (
         <div
           key={pennant.digit}
-          className="rounded-lg border-2 border-slate-950 bg-white p-4 shadow-[0_4px_0_#07111f]"
+          className="surface rounded-lg p-4"
         >
           <PennantStrip courseNumber={pennant.digit} size="lg" showLabels />
           <div className="mt-2 text-xl font-black text-slate-950">Digit {pennant.digit}</div>

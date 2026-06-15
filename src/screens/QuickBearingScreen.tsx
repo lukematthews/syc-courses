@@ -11,12 +11,12 @@ export function QuickBearingScreen({ onBack }: QuickBearingScreenProps) {
   const [selectedMark, setSelectedMark] = useState<Mark | null>(null)
 
   return (
-    <main className="safe-page bg-slate-100">
-      <header className="sticky top-0 z-10 border-b-2 border-slate-950 bg-slate-950 px-4 pb-4 pt-[max(14px,env(safe-area-inset-top))] text-white">
+    <main className="safe-page app-page">
+      <header className="app-header sticky top-0 z-10 border-b border-white/10 px-4 pb-4 pt-[max(14px,env(safe-area-inset-top))]">
         <button
           type="button"
           onClick={onBack}
-          className="tap-highlight min-h-12 rounded-md border-2 border-white px-4 text-xl font-black"
+          className="nav-button tap-highlight rounded-md px-4 text-xl font-black"
         >
           ← Courses
         </button>

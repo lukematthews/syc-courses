@@ -14,10 +14,10 @@ export function MarkList({ marks, selectedMarkId, onSelectMark }: MarkListProps)
           key={mark.id}
           type="button"
           onClick={() => onSelectMark(mark)}
-          className={`tap-highlight w-full rounded-lg border-2 p-4 text-left shadow-[0_4px_0_#07111f] transition active:translate-y-1 active:shadow-none ${
+          className={`action-card tap-highlight w-full rounded-lg p-4 text-left ${
             selectedMarkId === mark.id
-              ? 'border-cyan-950 bg-cyan-100'
-              : 'border-slate-950 bg-white'
+              ? 'border-cyan-700 bg-cyan-50'
+              : 'border-slate-200 bg-white'
           }`}
         >
           <div className="flex items-center justify-between gap-4">

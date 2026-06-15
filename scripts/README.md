@@ -16,3 +16,19 @@ The script writes:
 - `public/course-charts/course-01.png` through `public/course-charts/course-68.png`
 
 `src/data/courses.ts` is the app-facing TypeScript data file generated from that extracted JSON.
+
+Laid mark courses are sourced from Appendix A.4 in
+`source/Club-sailing-Instructions-2025-28_Rev-0.pdf`.
+
+To regenerate laid course JSON and crops:
+
+```bash
+python3 scripts/extract_laid_courses.py
+```
+
+The laid-course script writes:
+
+- `source/extracted-laid-courses.json`
+- `public/course-charts/course-80.png` through `public/course-charts/course-98.png`
+
+`src/data/laidCourses.ts` is the app-facing TypeScript data file generated from that extracted JSON.

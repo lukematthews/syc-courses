@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { courses } from './data/courses'
-import { useRecentlyViewed } from './hooks/useRecentlyViewed'
+import { laidCourses } from './data/laidCourses'
 import { CourseDetailScreen } from './screens/CourseDetailScreen'
 import { CourseListScreen } from './screens/CourseListScreen'
 import { PennantReferenceScreen } from './screens/PennantReferenceScreen'
@@ -14,7 +14,6 @@ type Screen =
 
 function App() {
   const [screen, setScreen] = useState<Screen>({ name: 'courses' })
-  const { recentCourseNumbers, addRecentCourse } = useRecentlyViewed()
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
@@ -25,7 +24,7 @@ function App() {
       return undefined
     }
 
-    return courses.find((course) => course.courseNumber === screen.courseNumber)
+    return [...courses, ...laidCourses].find((course) => course.courseNumber === screen.courseNumber)
   }, [screen])
 
   if (screen.name === 'pennants') {
@@ -41,7 +40,6 @@ function App() {
       <CourseDetailScreen
         course={selectedCourse}
         onBack={() => setScreen({ name: 'courses' })}
-        onViewed={addRecentCourse}
       />
     )
   }
@@ -49,7 +47,6 @@ function App() {
   return (
     <CourseListScreen
       courses={courses}
-      recentCourseNumbers={recentCourseNumbers}
       onOpenCourse={(courseNumber) => setScreen({ name: 'detail', courseNumber })}
       onOpenPennants={() => setScreen({ name: 'pennants' })}
       onOpenQuickBearing={() => setScreen({ name: 'quick-bearing' })}

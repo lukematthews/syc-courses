@@ -1,8 +1,8 @@
 @import 'tailwindcss';
 
 :root {
-  color: #07111f;
-  background: #f5f7fb;
+  color: #0f172a;
+  background: #eef3f8;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
     sans-serif;
@@ -18,13 +18,13 @@
 
 html {
   min-height: 100%;
-  background: #0b1422;
+  background: #0c1624;
 }
 
 body {
   min-height: 100%;
   margin: 0;
-  background: #f5f7fb;
+  background: #eef3f8;
 }
 
 button {
@@ -42,4 +42,51 @@ button {
 
 .tap-highlight {
   -webkit-tap-highlight-color: rgba(14, 116, 144, 0.2);
+}
+
+.app-page {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(238, 243, 248, 0) 220px),
+    #eef3f8;
+}
+
+.app-header {
+  background:
+    linear-gradient(135deg, #07111f 0%, #0d2035 58%, #123d52 100%);
+  color: white;
+}
+
+.surface {
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+}
+
+.surface-strong {
+  border: 1px solid rgba(15, 23, 42, 0.22);
+  background: white;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.11);
+}
+
+.action-card {
+  border: 1px solid rgba(15, 23, 42, 0.16);
+  background: white;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+  transition:
+    transform 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.action-card:active {
+  transform: scale(0.99);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.1);
+}
+
+.nav-button {
+  min-height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  backdrop-filter: blur(10px);
 }

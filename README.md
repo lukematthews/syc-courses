@@ -40,7 +40,8 @@ source/SYC-2025-28-Course-Booklet_Rev_0.pdf
 ```
 
 Phase 1 includes the complete app structure, verified table data for courses 1-68, and chart crops
-for courses 1-68 generated from the source PDF.
+for courses 1-68 generated from the source PDF. Laid mark courses 80-98 are sourced from Appendix
+A.4 of the club sailing instructions PDF.
 
 To regenerate extraction artifacts, follow the notes in `scripts/README.md`.
 

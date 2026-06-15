@@ -7,7 +7,7 @@ type MarkBearingInlinePanelProps = {
 
 export function MarkBearingInlinePanel({ mark }: MarkBearingInlinePanelProps) {
   return (
-    <div className="border-t-2 border-slate-950 bg-cyan-50 p-3">
+    <div className="border-t border-slate-200 bg-cyan-50 p-3">
       <QuickBearingResult mark={mark} compact />
     </div>
   )

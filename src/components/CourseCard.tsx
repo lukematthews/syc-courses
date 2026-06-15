@@ -4,19 +4,20 @@ import { PennantStrip } from './PennantStrip'
 type CourseCardProps = {
   course: Course
   onOpen: (courseNumber: number) => void
+  label?: string
 }
 
-export function CourseCard({ course, onOpen }: CourseCardProps) {
+export function CourseCard({ course, onOpen, label = 'Course' }: CourseCardProps) {
   return (
     <button
       type="button"
       onClick={() => onOpen(course.courseNumber)}
-      className="tap-highlight w-full rounded-lg border-2 border-slate-950 bg-white p-4 text-left shadow-[0_4px_0_#07111f] transition active:translate-y-1 active:shadow-none"
+      className="action-card tap-highlight w-full rounded-lg p-4 text-left"
     >
       <div className="flex items-center justify-between gap-4">
         <div className="min-w-0">
           <div className="text-3xl font-black leading-none text-slate-950">
-            Course {course.courseNumber}
+            {label} {course.courseNumber}
           </div>
           {course.totalDistance && (
             <div className="mt-2 text-xl font-bold text-slate-800">{course.totalDistance}</div>
