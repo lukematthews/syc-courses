@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 90" role="img" aria-label="Numeral pennant 7">
+  <defs>
+    <clipPath id="flag">
+      <path d="M14 16 226 30 226 60 14 74Z"/>
+    </clipPath>
+  </defs>
+  <path d="M14 16 226 30 226 60 14 74Z" fill="#ef1740"/>
+  <g clip-path="url(#flag)">
+    <path d="M14 28 226 38 226 52 14 62Z" fill="#ffe01b"/>
+  </g>
+  <path d="M14 16 226 30 226 60 14 74Z" fill="none" stroke="#ef1740" stroke-width="4"/>
+</svg>

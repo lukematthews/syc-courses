@@ -11,7 +11,22 @@ node_modules
 dist
 dev-dist
 dist-ssr
+build
 *.local
+
+# Uploaded/source scratch copies
+*-uploaded.pdf
+
+# Native iOS build products and local IDE state
+*.xcarchive
+*.xcdistributionlogs
+*.xcresult
+DerivedData
+ios/**/.build
+ios/**/.swiftpm
+ios/**/.vscode
+xcuserdata
+*.xcuserdatad
 
 # Editor directories and files
 .vscode/*

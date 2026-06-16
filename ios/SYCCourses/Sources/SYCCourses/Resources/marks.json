@@ -1,0 +1,194 @@
+[
+  {
+    "id": "syc-1",
+    "name": "SYC 1",
+    "aliases": [
+      "SYC1",
+      "SY1"
+    ],
+    "latitude": -37.963333,
+    "longitude": 144.9815,
+    "description": "37 57.80S, 144 58.89E",
+    "coordinatesStatus": "verified"
+  },
+  {
+    "id": "syc-2",
+    "name": "SYC 2",
+    "aliases": [
+      "SYC2",
+      "SY2"
+    ],
+    "latitude": -37.943333,
+    "longitude": 144.966167,
+    "description": "37 56.60S, 144 57.97E",
+    "coordinatesStatus": "verified"
+  },
+  {
+    "id": "syc-3",
+    "name": "SYC 3",
+    "aliases": [
+      "SYC3",
+      "SY3"
+    ],
+    "latitude": -37.937333,
+    "longitude": 144.9875,
+    "description": "37 56.24S, 144 59.25E",
+    "coordinatesStatus": "verified"
+  },
+  {
+    "id": "syc-4",
+    "name": "SYC 4",
+    "aliases": [
+      "SYC4",
+      "SY4"
+    ],
+    "latitude": -37.946833,
+    "longitude": 144.99,
+    "description": "37 56.81S, 144 59.40E",
+    "coordinatesStatus": "verified"
+  },
+  {
+    "id": "syc-5",
+    "name": "SYC 5",
+    "aliases": [
+      "SYC5",
+      "SY5"
+    ],
+    "latitude": -37.980167,
+    "longitude": 144.973,
+    "description": "37 58.81S, 144 58.38E",
+    "coordinatesStatus": "verified"
+  },
+  {
+    "id": "syc-6",
+    "name": "SYC 6",
+    "aliases": [
+      "SYC6",
+      "SY6"
+    ],
+    "latitude": -37.945,
+    "longitude": 144.951333,
+    "description": "37 56.70S, 144 57.08E",
+    "coordinatesStatus": "verified"
+  },
+  {
+    "id": "syc-7",
+    "name": "SYC 7",
+    "aliases": [
+      "SYC7",
+      "SY7"
+    ],
+    "latitude": -37.931,
+    "longitude": 144.983333,
+    "description": "37 55.86S, 144 59.00E",
+    "coordinatesStatus": "verified"
+  },
+  {
+    "id": "p2",
+    "name": "P2",
+    "aliases": [],
+    "latitude": -37.923833,
+    "longitude": 144.8865,
+    "description": "37 55.43S, 144 53.19E",
+    "coordinatesStatus": "verified"
+  },
+  {
+    "id": "p3",
+    "name": "P3",
+    "aliases": [],
+    "latitude": -37.889833,
+    "longitude": 144.880833,
+    "description": "37 53.39S, 144 52.85E",
+    "coordinatesStatus": "verified"
+  },
+  {
+    "id": "r2",
+    "name": "R2",
+    "aliases": [],
+    "latitude": -37.909,
+    "longitude": 144.938333,
+    "description": "37 54.54S, 144 56.30E",
+    "coordinatesStatus": "verified"
+  },
+  {
+    "id": "r3",
+    "name": "R3",
+    "aliases": [],
+    "latitude": -37.886,
+    "longitude": 144.939833,
+    "description": "37 53.16S, 144 56.39E",
+    "coordinatesStatus": "verified"
+  },
+  {
+    "id": "oa",
+    "name": "OA",
+    "aliases": [],
+    "latitude": -37.950167,
+    "longitude": 144.857167,
+    "description": "37 57.01S, 144 51.43E",
+    "coordinatesStatus": "verified"
+  },
+  {
+    "id": "rmys-g",
+    "name": "RMYS G",
+    "aliases": [
+      "RMYS"
+    ],
+    "latitude": -37.849667,
+    "longitude": 144.935833,
+    "description": "37 50.98S, 144 56.15E",
+    "coordinatesStatus": "verified"
+  },
+  {
+    "id": "carrum-no2",
+    "name": "Carrum No2",
+    "aliases": [
+      "Carrum 2",
+      "Carrum No 2"
+    ],
+    "latitude": -38.051333,
+    "longitude": 145.076,
+    "description": "38 03.08S, 145 04.56E",
+    "coordinatesStatus": "verified"
+  },
+  {
+    "id": "t1",
+    "name": "T1",
+    "aliases": [],
+    "latitude": -38,
+    "longitude": 144.928167,
+    "description": "38 00.00S, 144 55.69E",
+    "coordinatesStatus": "verified"
+  },
+  {
+    "id": "t2",
+    "name": "T2",
+    "aliases": [],
+    "latitude": -38,
+    "longitude": 144.9145,
+    "description": "38 00.00S, 144 54.87E",
+    "coordinatesStatus": "verified"
+  },
+  {
+    "id": "centre-m1",
+    "name": "Centre M1",
+    "aliases": [
+      "M1"
+    ],
+    "latitude": -38.058167,
+    "longitude": 144.870167,
+    "description": "38 03.49S, 144 52.21E",
+    "coordinatesStatus": "verified"
+  },
+  {
+    "id": "spoil-ground",
+    "name": "Spoil Ground",
+    "aliases": [
+      "SPOIL GROUND"
+    ],
+    "latitude": -37.984433,
+    "longitude": 144.883167,
+    "description": "37 59.066S, 144 52.99E",
+    "coordinatesStatus": "verified"
+  }
+]

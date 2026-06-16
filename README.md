@@ -54,3 +54,29 @@ the SYC 2025-28 course booklet and stored in `src/data/marks.ts`.
 Bearing calculations live in `src/utils/navigation.ts`. `MAGNETIC_VARIATION_DEGREES` is currently
 `null`, so bearings display as true bearings (`T`). Set that constant to show magnetic bearings
 (`M`).
+
+## Native iPhone App
+
+Version 2.0 uses a small iOS app target at `ios/SYCCoursesApp/SYCCoursesApp.xcodeproj` backed by
+the Swift package in `ios/SYCCourses`. Open the Xcode project, select the `SYCCoursesApp` scheme,
+and run it on an iPhone simulator or device.
+
+The native app is bundled for offline use. It reuses the web app data by processing these sources into
+Swift Package resources:
+
+```bash
+node scripts/build_ios_resources.mjs
+```
+
+That command copies fixed courses from `source/extracted-courses.json`, laid courses from
+`source/extracted-laid-courses.json`, mark coordinates from `src/data/marks.ts`, chart PNGs from
+`public/course-charts`, and numeral pennant SVGs from `src/assets/pennants`.
+
+To update course data or mark coordinates, update the existing web source files first, run the resource
+script, then rebuild the iOS app. To test offline use, install the app on a simulator/device, disable
+network access, and confirm Home, course browsing, charts, flags, Quick Bearing, and Start Assist still
+open from bundled resources.
+
+Start Assist is intentionally limited: it calculates gun time plus start offset, distance/bearing to
+SYC 4, SOG-based time to mark, time to start, and time to burn. It does not provide laylines, VMG,
+polars, start-line geometry, race tracking, or tactical recommendations.
