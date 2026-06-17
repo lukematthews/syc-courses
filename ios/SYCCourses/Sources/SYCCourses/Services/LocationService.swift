@@ -47,29 +47,53 @@ final class LocationService: NSObject, ObservableObject, CLLocationManagerDelega
         errorMessage = error.localizedDescription
     }
 
-    func snapshot(to mark: Mark) -> BearingSnapshot? {
+    var navigationFix: NavigationFix? {
         guard let location else { return nil }
+        let speedKnots = location.speed >= 0 ? location.speed * 1.943844 : nil
+        let course = location.course >= 0 ? location.course : nil
+        let accuracy = location.horizontalAccuracy >= 0 ? location.horizontalAccuracy : nil
+        return NavigationFix(
+            latitude: location.coordinate.latitude,
+            longitude: location.coordinate.longitude,
+            sogKnots: speedKnots,
+            cogDegrees: course,
+            headingDegrees: nil,
+            timestamp: location.timestamp,
+            source: .iPhoneGPS,
+            horizontalAccuracyMeters: accuracy,
+            hdop: nil,
+            validFix: true
+        )
+    }
+
+    func snapshot(to mark: Mark) -> BearingSnapshot? {
+        guard let fix = navigationFix else { return nil }
+        return BearingSnapshot(fix: fix, mark: mark)
+    }
+}
+
+extension BearingSnapshot {
+    init(fix: NavigationFix, mark: Mark) {
         let bearing = NavigationMath.bearingTrue(
-            fromLatitude: location.coordinate.latitude,
-            fromLongitude: location.coordinate.longitude,
+            fromLatitude: fix.latitude,
+            fromLongitude: fix.longitude,
             toLatitude: mark.latitude,
             toLongitude: mark.longitude
         )
         let distance = NavigationMath.distanceNm(
-            fromLatitude: location.coordinate.latitude,
-            fromLongitude: location.coordinate.longitude,
+            fromLatitude: fix.latitude,
+            fromLongitude: fix.longitude,
             toLatitude: mark.latitude,
             toLongitude: mark.longitude
         )
-        let speedKnots = location.speed >= 0 ? location.speed * 1.943844 : nil
-        return BearingSnapshot(
-            currentLatitude: location.coordinate.latitude,
-            currentLongitude: location.coordinate.longitude,
+        self.init(
+            currentLatitude: fix.latitude,
+            currentLongitude: fix.longitude,
             bearingTrue: bearing,
             distanceNm: distance,
-            speedOverGroundKnots: speedKnots,
-            horizontalAccuracyMeters: location.horizontalAccuracy,
-            timestamp: location.timestamp
+            speedOverGroundKnots: fix.sogKnots,
+            horizontalAccuracyMeters: fix.horizontalAccuracyMeters ?? (fix.hdop.map { $0 * 5 } ?? -1),
+            timestamp: fix.timestamp
         )
     }
 }

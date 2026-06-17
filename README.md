@@ -80,3 +80,51 @@ open from bundled resources.
 Start Assist is intentionally limited: it calculates gun time plus start offset, distance/bearing to
 SYC 4, SOG-based time to mark, time to start, and time to burn. It does not provide laylines, VMG,
 polars, start-line geometry, race tracking, or tactical recommendations.
+
+### Navigation Output v1
+
+The iPhone app includes a first Navigation Output integration for Actisense W2K-2 only. The W2K-2
+settings live in the native app under Navigation Output.
+
+Implementation notes:
+
+- Course and mark calculations stay independent of Actisense, TCP, UDP, Wi-Fi, and NMEA transport.
+- `NavigationOutputService` owns enabled/disabled state, settings, diagnostics, and message dispatch.
+- `ActisenseW2K2Adapter` owns W2K-2 connection state and sends ASCII NMEA 0183 sentences over TCP or UDP.
+- v1 sends a small NMEA 0183 subset (`BWC` and `RMB`) for active waypoint, bearing, and distance data.
+- Native NMEA 2000 PGN encoding is intentionally left for a later adapter rather than faking support.
+- Public W2K-2 material is clearer about getting NMEA 2000 data out to Wi-Fi than app-generated
+  navigation data back onto NMEA 2000. Treat this as transport-level output until confirmed on the boat.
+
+Manual test notes:
+
+1. Connect iPhone to W2K-2 Wi-Fi.
+2. Open SYC Courses.
+3. Go to Navigation Output settings.
+4. Select Actisense W2K-2.
+5. Enter the W2K-2 host/IP and data server port.
+6. Connect.
+7. Select a course.
+8. Tap Send to Boat.
+9. Confirm boat instruments show expected navigation fields if supported by the W2K-2 configuration and instruments.
+
+### Actisense Boat Data Input v1
+
+The native app can also read NMEA 0183-style boat data from an Actisense/W2K-2 network stream.
+Input settings are intentionally minimal and live beside Navigation Output:
+
+- enable Actisense input
+- host/IP
+- port
+- TCP/UDP
+- connection status and test connection
+
+Supported input sentences in v1:
+
+- `RMC` for position, SOG, COG, timestamp, and valid/invalid status
+- `GGA` for position, fix quality, and HDOP
+- `VTG` for COG/SOG updates
+- `HDT`, `HDM`, and `HDG` for heading updates
+
+Fresh valid Actisense data is preferred by Quick Bearing, Mark Detail, Course Send to Boat, and Start
+Assist. If the Actisense feed is disconnected, invalid, or stale, those screens fall back to iPhone GPS.

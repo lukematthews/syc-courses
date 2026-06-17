@@ -71,3 +71,24 @@ struct StartAssistSnapshot: Equatable {
     let timeToMark: TimeInterval?
     let timeToBurn: TimeInterval?
 }
+
+enum LineCrossingStatus: Equatable {
+    case approachingLine
+    case crossingAhead
+    case crossingOutsideSegment
+    case parallel
+    case movingAway
+    case insufficientData(LineCrossingUnavailableReason)
+}
+
+enum LineCrossingUnavailableReason: Equatable {
+    case noGPS
+    case noCOG
+    case noSOG
+}
+
+struct LineCrossingResult: Equatable {
+    let status: LineCrossingStatus
+    let distanceMeters: Double?
+    let timeToLine: TimeInterval?
+}

@@ -6,12 +6,17 @@ import UIKit
 
 struct QuickBearingView: View {
     @EnvironmentObject private var locationService: LocationService
+    @EnvironmentObject private var navigationDataService: NavigationDataService
     @AppStorage("lastSelectedMarkID") private var lastSelectedMarkID = "syc-4"
     @State private var selectedMapMark: Mark?
     private let marks = CourseDataLoader.marks()
 
     var body: some View {
         List {
+            Section {
+                NavigationSourceStatusLine(summary: navigationDataService.sourceSummary(iPhoneFix: locationService.navigationFix))
+            }
+
             Section("Approximate Mark Locations") {
                 MarkLocationMapView(marks: marks) { mark in
                     lastSelectedMarkID = mark.id
@@ -55,6 +60,10 @@ struct QuickBearingView: View {
         }
         .onAppear {
             locationService.requestLocation()
+            if navigationDataService.actisenseConfig.isConfigured,
+               navigationDataService.actisenseStatus == .disconnected {
+                Task { await navigationDataService.connectActisense() }
+            }
         }
         .navigationDestination(item: $selectedMapMark) { mark in
             MarkDetailView(mark: mark)
@@ -155,10 +164,15 @@ private struct MarkLocationButton: View {
 
 struct MarkDetailView: View {
     @EnvironmentObject private var locationService: LocationService
+    @EnvironmentObject private var navigationDataService: NavigationDataService
     let mark: Mark
 
     private var snapshot: BearingSnapshot? {
-        locationService.snapshot(to: mark)
+        navigationDataService.snapshot(to: mark, iPhoneFix: locationService.navigationFix)
+    }
+
+    private var sourceSummary: NavigationSourceSummary {
+        navigationDataService.sourceSummary(iPhoneFix: locationService.navigationFix)
     }
 
     var body: some View {
@@ -168,6 +182,8 @@ struct MarkDetailView: View {
                     Text(description)
                         .foregroundStyle(.secondary)
                 }
+
+                NavigationSourceStatusLine(summary: sourceSummary)
 
                 if let snapshot {
                     LocationSanityWarningView(snapshot: snapshot)
@@ -191,8 +207,12 @@ struct MarkDetailView: View {
 
                 Button {
                     locationService.requestLocation()
+                    if navigationDataService.actisenseConfig.isConfigured,
+                       navigationDataService.actisenseStatus == .disconnected {
+                        Task { await navigationDataService.connectActisense() }
+                    }
                 } label: {
-                    Label("Refresh", systemImage: "arrow.clockwise")
+                    Label("Refresh Position", systemImage: "arrow.clockwise")
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
@@ -203,6 +223,10 @@ struct MarkDetailView: View {
         .navigationTitle(mark.name)
         .onAppear {
             locationService.startActiveUpdates()
+            if navigationDataService.actisenseConfig.isConfigured,
+               navigationDataService.actisenseStatus == .disconnected {
+                Task { await navigationDataService.connectActisense() }
+            }
         }
         .onDisappear {
             locationService.stopActiveUpdates()

@@ -17,20 +17,13 @@ struct CourseCardView: View {
     let course: Course
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack(alignment: .top) {
-                Text("Course \(course.courseNumber)")
-                    .font(.title2.bold())
-                Spacer()
-                Text(course.totalDistance)
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(.secondary)
-            }
-            PennantStripView(number: course.courseNumber)
-            Text(course.passInstruction)
-                .font(.body)
-                .foregroundStyle(.secondary)
-                .lineLimit(2)
+        HStack(alignment: .center, spacing: 14) {
+            Text("Course \(course.courseNumber)")
+                .font(.title2.bold())
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+            Spacer()
+            PennantHoistView(number: course.courseNumber)
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -52,6 +45,28 @@ struct PennantStripView: View {
                 PennantView(digit: digit)
             }
         }
+    }
+}
+
+struct PennantHoistView: View {
+    let number: Int
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 5) {
+            Rectangle()
+                .fill(.secondary.opacity(0.35))
+                .frame(width: 2)
+                .padding(.vertical, 2)
+
+            VStack(alignment: .leading, spacing: 5) {
+                ForEach(Array(String(number).enumerated()), id: \.offset) { _, digit in
+                    PennantView(digit: digit)
+                }
+            }
+        }
+        .fixedSize()
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Course \(number) pennants")
     }
 }
 
@@ -271,6 +286,26 @@ struct LocationSanityWarningView: View {
             .background(.orange.opacity(0.14))
             .clipShape(RoundedRectangle(cornerRadius: 8))
         }
+    }
+}
+
+struct NavigationSourceStatusLine: View {
+    let summary: NavigationSourceSummary
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Image(systemName: summary.activeSource == .actisense ? "antenna.radiowaves.left.and.right" : "location")
+                .foregroundStyle(.secondary)
+            Text(summary.statusMessage)
+                .font(.footnote.weight(.semibold))
+                .foregroundStyle(.secondary)
+            if let lastUpdate = summary.lastUpdate {
+                Text(lastUpdate.formatted(date: .omitted, time: .standard))
+                    .font(.footnote.monospacedDigit())
+                    .foregroundStyle(.tertiary)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 

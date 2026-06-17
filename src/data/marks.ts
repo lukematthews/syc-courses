@@ -73,6 +73,15 @@ export const marks: Mark[] = [
     coordinatesStatus: 'verified',
   },
   {
+    id: 'syc-tower',
+    name: 'SYC Tower',
+    aliases: ['Tower'],
+    latitude: -37.94568642580152,
+    longitude: 144.99576111746006,
+    description: '37 56.74S, 144 59.75E',
+    coordinatesStatus: 'verified',
+  },
+  {
     id: 'p2',
     name: 'P2',
     aliases: [],

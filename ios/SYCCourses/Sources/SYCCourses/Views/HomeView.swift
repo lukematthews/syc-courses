@@ -30,7 +30,10 @@ struct HomeView: View {
                         }
                     }
                     NavigationLink(value: HomeRoute.startAssist) {
-                        HomeCard(title: "Start Assist", subtitle: "Gun time, offset, and run to SYC 4", systemImage: "timer")
+                        HomeCard(title: "Start Assist", subtitle: "Start and finish line crossing", systemImage: "timer")
+                    }
+                    NavigationLink(value: HomeRoute.navigationOutput) {
+                        HomeCard(title: "Navigation Output", subtitle: "Send waypoint data to Actisense W2K-2", systemImage: "antenna.radiowaves.left.and.right")
                     }
 
                     if !recentCourses.isEmpty {
@@ -55,6 +58,7 @@ struct HomeView: View {
                 case .fixed: CourseListView(kind: .fixed)
                 case .laid: CourseListView(kind: .laid)
                 case .startAssist: StartAssistView()
+                case .navigationOutput: NavigationOutputSettingsView()
                 }
             }
             .navigationDestination(for: Course.self) { course in
@@ -70,6 +74,7 @@ private enum HomeRoute: Hashable {
     case fixed
     case laid
     case startAssist
+    case navigationOutput
 }
 
 private struct HomeCard: View {

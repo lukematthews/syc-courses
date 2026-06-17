@@ -28,41 +28,172 @@ struct CourseListView: View {
 }
 
 struct CourseDetailView: View {
+    @EnvironmentObject private var locationService: LocationService
+    @EnvironmentObject private var navigationDataService: NavigationDataService
+    @EnvironmentObject private var navigationOutputService: NavigationOutputService
     @EnvironmentObject private var recentsStore: RecentCoursesStore
     private let marks = CourseDataLoader.marks()
     let course: Course
+
+    private var activeTargetMark: Mark? {
+        course.rows.lazy.compactMap { CourseDataLoader.findMark(named: $0.mark, in: marks) }.first
+    }
+
+    private var activeWaypointState: NavigationWaypointState? {
+        guard let mark = activeTargetMark,
+              let snapshot = navigationDataService.snapshot(to: mark, iPhoneFix: locationService.navigationFix)
+        else { return nil }
+        return NavigationWaypointState(
+            courseNumber: course.courseNumber,
+            originName: "SYC",
+            waypointName: mark.name,
+            waypointID: mark.name,
+            latitude: mark.latitude,
+            longitude: mark.longitude,
+            bearingTrue: snapshot.bearingTrue,
+            distanceNm: snapshot.distanceNm,
+            speedOverGroundKnots: snapshot.speedOverGroundKnots,
+            timestamp: snapshot.timestamp
+        )
+    }
 
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading, spacing: 18) {
-                    VStack(alignment: .leading, spacing: 8) {
-                        PennantStripView(number: course.courseNumber)
-                        Text(course.totalDistance)
-                            .font(.title2.bold())
-                        Text(course.passInstruction)
-                            .foregroundStyle(.secondary)
-                        if let note = course.comparableCourseNote {
-                            Text(note)
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
-                        }
-                    }
+                    courseHeader
 
                     CourseTableView(course: course, marks: marks)
 
-                    Text("Chart")
-                        .font(.title3.bold())
                     ChartImageView(chartImage: course.chartImage)
                         .frame(maxWidth: .infinity, maxHeight: geometry.size.height * 0.62)
+
+                    NavigationOutputCoursePanel(
+                        targetMark: activeTargetMark,
+                        activeWaypointState: activeWaypointState,
+                        sourceSummary: navigationDataService.sourceSummary(iPhoneFix: locationService.navigationFix)
+                    )
                 }
                 .padding()
             }
         }
-        .navigationTitle("Course \(course.courseNumber)")
+        .navigationTitle("")
         .onAppear {
             recentsStore.record(course)
+            locationService.startActiveUpdates()
+            if navigationDataService.actisenseConfig.isConfigured,
+               navigationDataService.actisenseStatus == .disconnected {
+                Task { await navigationDataService.connectActisense() }
+            }
+            if navigationOutputService.settings.autoConnect,
+               navigationOutputService.canConnect,
+               !navigationOutputService.isConnected {
+                Task { await navigationOutputService.connect() }
+            }
         }
+        .onDisappear {
+            locationService.stopActiveUpdates()
+        }
+    }
+
+    private var courseHeader: some View {
+        HStack(alignment: .top, spacing: 14) {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Course \(course.courseNumber)")
+                    .font(.largeTitle.bold())
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.75)
+                Text(course.totalDistance)
+                    .font(.title2.bold())
+                courseSummaryLine
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+            PennantHoistView(number: course.courseNumber)
+                .padding(.top, 4)
+        }
+    }
+
+    private var courseSummaryLine: some View {
+        Text(course.passInstruction + comparableCourseSuffix)
+            .font(.subheadline)
+            .foregroundStyle(.secondary)
+    }
+
+    private var comparableCourseSuffix: String {
+        guard let note = course.comparableCourseNote?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !note.isEmpty
+        else { return "" }
+        return ", \(note)"
+    }
+}
+
+private struct NavigationOutputCoursePanel: View {
+    @EnvironmentObject private var outputService: NavigationOutputService
+    let targetMark: Mark?
+    let activeWaypointState: NavigationWaypointState?
+    let sourceSummary: NavigationSourceSummary
+
+    private var statusText: String {
+        if outputService.isSending {
+            "Sending to W2K-2"
+        } else if outputService.isConnected {
+            "Navigation output connected"
+        } else if outputService.settings.target == .disabled {
+            "Navigation output disabled"
+        } else {
+            "Navigation output unavailable"
+        }
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Image(systemName: outputService.isConnected ? "antenna.radiowaves.left.and.right" : "antenna.radiowaves.left.and.right.slash")
+                    .foregroundStyle(outputService.isConnected ? .green : .secondary)
+                Text(statusText)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(outputService.isConnected ? .primary : .secondary)
+                Spacer()
+            }
+
+            if let targetMark {
+                Text("Active waypoint: \(targetMark.name)")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                NavigationSourceStatusLine(summary: sourceSummary)
+            } else {
+                Text("No fixed mark waypoint is available for this course.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+
+            if activeWaypointState == nil, targetMark != nil {
+                Text("Current GPS position is needed before output can be sent.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+
+            if let lastError = outputService.lastError {
+                Text(lastError)
+                    .font(.footnote)
+                    .foregroundStyle(.red)
+            }
+
+            Button {
+                Task { await outputService.sendActiveWaypoint(activeWaypointState) }
+            } label: {
+                Label("Send to Boat", systemImage: "paperplane")
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+            .disabled(!outputService.isConnected || activeWaypointState == nil || outputService.isSending)
+        }
+        .padding()
+        .background(.background)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .overlay(RoundedRectangle(cornerRadius: 8).stroke(.quaternary))
     }
 }
 

@@ -45,5 +45,78 @@ final class NavigationMathTests: XCTestCase {
         XCTAssertEqual(snapshot.timeToStart, 600, accuracy: 0.0001)
         XCTAssertEqual(snapshot.timeToBurn, 180 as TimeInterval?)
     }
+
+    func testLineCrossingFindsSegmentAhead() {
+        let result = NavigationMath.lineCrossing(
+            fix: navigationFix(latitude: -0.001, longitude: 0.005, sogKnots: 6, cogDegrees: 0),
+            lineStart: mark(latitude: 0, longitude: 0),
+            lineEnd: mark(latitude: 0, longitude: 0.01)
+        )
+
+        XCTAssertEqual(result.status, .approachingLine)
+        XCTAssertEqual(result.distanceMeters ?? 0, 111, accuracy: 2)
+        XCTAssertEqual(result.timeToLine ?? 0, 36, accuracy: 2)
+    }
+
+    func testLineCrossingRejectsOutsideSegment() {
+        let result = NavigationMath.lineCrossing(
+            fix: navigationFix(latitude: -0.001, longitude: 0.02, sogKnots: 6, cogDegrees: 0),
+            lineStart: mark(latitude: 0, longitude: 0),
+            lineEnd: mark(latitude: 0, longitude: 0.01)
+        )
+
+        XCTAssertEqual(result.status, .crossingOutsideSegment)
+        XCTAssertNil(result.timeToLine)
+    }
+
+    func testLineCrossingReportsMissingCourseAndSpeed() {
+        let lineStart = mark(latitude: 0, longitude: 0)
+        let lineEnd = mark(latitude: 0, longitude: 0.01)
+
+        XCTAssertEqual(
+            NavigationMath.lineCrossing(
+                fix: navigationFix(latitude: -0.001, longitude: 0.005, sogKnots: 6, cogDegrees: nil),
+                lineStart: lineStart,
+                lineEnd: lineEnd
+            ).status,
+            .insufficientData(.noCOG)
+        )
+
+        XCTAssertEqual(
+            NavigationMath.lineCrossing(
+                fix: navigationFix(latitude: -0.001, longitude: 0.005, sogKnots: 0.1, cogDegrees: 0),
+                lineStart: lineStart,
+                lineEnd: lineEnd
+            ).status,
+            .insufficientData(.noSOG)
+        )
+    }
+
+    private func mark(latitude: Double, longitude: Double) -> Mark {
+        Mark(
+            id: UUID().uuidString,
+            name: "Test",
+            aliases: [],
+            latitude: latitude,
+            longitude: longitude,
+            description: nil,
+            coordinatesStatus: "verified"
+        )
+    }
+
+    private func navigationFix(latitude: Double, longitude: Double, sogKnots: Double?, cogDegrees: Double?) -> NavigationFix {
+        NavigationFix(
+            latitude: latitude,
+            longitude: longitude,
+            sogKnots: sogKnots,
+            cogDegrees: cogDegrees,
+            headingDegrees: nil,
+            timestamp: Date(timeIntervalSinceReferenceDate: 0),
+            source: .iPhoneGPS,
+            horizontalAccuracyMeters: 3,
+            hdop: nil,
+            validFix: true
+        )
+    }
 }
 #endif
