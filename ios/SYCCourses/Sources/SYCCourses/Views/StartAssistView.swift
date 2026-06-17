@@ -3,7 +3,7 @@ import SwiftUI
 import UIKit
 #endif
 
-private enum LineMode: String, CaseIterable, Identifiable {
+enum LineMode: String, CaseIterable, Identifiable, Hashable {
     case start
     case finish
 
@@ -29,7 +29,7 @@ struct StartAssistView: View {
     @EnvironmentObject private var navigationDataService: NavigationDataService
     @AppStorage("lastStartOffsetMinutes") private var startOffsetMinutes = 10
     @AppStorage("lastRaceGunTime") private var storedGunTime = Date().timeIntervalSinceReferenceDate
-    @State private var lineMode: LineMode = .start
+    @State private var lineMode: LineMode
     @State private var gunTime = Date()
     @State private var now = Date()
     @State private var hapticsFired: Set<Int> = []
@@ -41,6 +41,10 @@ struct StartAssistView: View {
     private let lineEnd = CourseDataLoader.findMark(named: "SYC 4")!
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     private let offsetRange = -5...25
+
+    init(initialMode: LineMode = .start) {
+        _lineMode = State(initialValue: initialMode)
+    }
 
     private var startTime: Date {
         gunTime.addingTimeInterval(TimeInterval(startOffsetMinutes * 60))

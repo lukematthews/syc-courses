@@ -62,6 +62,7 @@ struct CourseDetailView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 18) {
                     courseHeader
+                    CourseLineAssistPanel()
 
                     CourseTableView(course: course, marks: marks)
 
@@ -125,6 +126,53 @@ struct CourseDetailView: View {
               !note.isEmpty
         else { return "" }
         return ", \(note)"
+    }
+}
+
+private struct CourseLineAssistPanel: View {
+    var body: some View {
+        HStack(spacing: 12) {
+            NavigationLink(value: HomeRoute.lineAssist(.start)) {
+                CourseLineAssistButton(title: "Start", subtitle: "Line Assist", systemImage: "timer")
+            }
+            .buttonStyle(.plain)
+
+            NavigationLink(value: HomeRoute.finishOptions) {
+                CourseLineAssistButton(title: "Finish", subtitle: "Options", systemImage: "flag.checkered")
+            }
+            .buttonStyle(.plain)
+        }
+    }
+}
+
+private struct CourseLineAssistButton: View {
+    let title: String
+    let subtitle: String
+    let systemImage: String
+
+    var body: some View {
+        HStack(spacing: 10) {
+            Image(systemName: systemImage)
+                .font(.headline.weight(.bold))
+                .frame(width: 30, height: 30)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.headline.weight(.bold))
+                Text(subtitle)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            Spacer()
+            Image(systemName: "chevron.right")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(.tertiary)
+        }
+        .padding(12)
+        .frame(maxWidth: .infinity, minHeight: 68, alignment: .leading)
+        .background(.background)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .overlay(RoundedRectangle(cornerRadius: 8).stroke(.quaternary))
+        .contentShape(Rectangle())
     }
 }
 

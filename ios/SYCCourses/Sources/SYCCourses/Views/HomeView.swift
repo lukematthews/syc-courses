@@ -34,7 +34,7 @@ struct HomeView: View {
                             HomeCard(title: "Laid Courses", subtitle: "\(laidCourses.count) courses", systemImage: "triangle")
                         }
                     }
-                    NavigationLink(value: HomeRoute.startAssist) {
+                    NavigationLink(value: HomeRoute.lineAssist(.start)) {
                         HomeCard(title: "Line Assist", subtitle: "Start and finish line crossing", systemImage: "timer")
                     }
                     NavigationLink(value: HomeRoute.navigationOutput) {
@@ -49,6 +49,7 @@ struct HomeView: View {
                             NavigationLink(value: course) {
                                 CourseCardView(course: course)
                             }
+                            .buttonStyle(.plain)
                         }
                     }
                 }
@@ -63,7 +64,8 @@ struct HomeView: View {
                 case .flags: PennantReferenceView()
                 case .fixed: CourseListView(kind: .fixed)
                 case .laid: CourseListView(kind: .laid)
-                case .startAssist: StartAssistView()
+                case let .lineAssist(mode): StartAssistView(initialMode: mode)
+                case .finishOptions: FinishOptionsView()
                 case .navigationOutput: NavigationOutputSettingsView()
                 }
             }
@@ -117,13 +119,63 @@ private struct AppIconImage: View {
     }
 }
 
-private enum HomeRoute: Hashable {
+enum HomeRoute: Hashable {
     case quickBearing
     case flags
     case fixed
     case laid
-    case startAssist
+    case lineAssist(LineMode)
+    case finishOptions
     case navigationOutput
+}
+
+private struct FinishOptionsView: View {
+    private let finishMark = CourseDataLoader.findMark(named: "SYC 4")!
+
+    var body: some View {
+        List {
+            NavigationLink(value: HomeRoute.lineAssist(.finish)) {
+                FinishOptionRow(
+                    title: "Line Crossing",
+                    subtitle: "Predict crossing the SYC Tower ↔ SYC 4 finish line",
+                    systemImage: "timer"
+                )
+            }
+
+            NavigationLink {
+                MarkDetailView(mark: finishMark)
+            } label: {
+                FinishOptionRow(
+                    title: "Bearing to SYC 4",
+                    subtitle: "Bearing, distance, and time to the finish mark",
+                    systemImage: "location.north.line"
+                )
+            }
+        }
+        .navigationTitle("Finish")
+    }
+}
+
+private struct FinishOptionRow: View {
+    let title: String
+    let subtitle: String
+    let systemImage: String
+
+    var body: some View {
+        Label {
+            VStack(alignment: .leading, spacing: 3) {
+                Text(title)
+                    .font(.headline)
+                Text(subtitle)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.leading)
+            }
+        } icon: {
+            Image(systemName: systemImage)
+        }
+        .padding(.vertical, 6)
+    }
 }
 
 private struct HomeCard: View {
