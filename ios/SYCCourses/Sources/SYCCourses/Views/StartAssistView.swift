@@ -37,8 +37,8 @@ struct StartAssistView: View {
     @State private var isOffsetPickerPresented = false
     @FocusState private var isOffsetFieldFocused: Bool
 
-    private let lineStart = CourseDataLoader.findMark(named: "SYC 4")!
-    private let lineEnd = CourseDataLoader.findMark(named: "SYC Tower")!
+    private let lineStart = CourseDataLoader.findMark(named: "SYC Tower")!
+    private let lineEnd = CourseDataLoader.findMark(named: "SYC 4")!
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     private let offsetRange = -5...25
 
@@ -127,12 +127,7 @@ struct StartAssistView: View {
     private var header: some View {
         HStack(alignment: .top, spacing: 12) {
             VStack(alignment: .leading, spacing: 3) {
-                Text(lineMode.title)
-                    .font(.system(size: 32, weight: .black, design: .rounded))
-                    .foregroundStyle(.white)
-                    .minimumScaleFactor(0.7)
-                    .lineLimit(1)
-                Text("SYC 4 ↔ SYC Tower")
+                Text("SYC Tower ↔ SYC 4")
                     .font(.subheadline.weight(.bold))
                     .foregroundStyle(StartAssistColors.secondaryText)
                     .lineLimit(1)
@@ -141,9 +136,9 @@ struct StartAssistView: View {
             Spacer()
             if lineMode == .start {
                 Button {
-                    syncGunNow()
+                    syncCountdownToNearestMinute()
                 } label: {
-                    Label("Sync", systemImage: "location.north.fill")
+                    Label("Sync", systemImage: "timer")
                         .font(.headline.weight(.bold))
                         .frame(height: 42)
                         .padding(.horizontal, 12)
@@ -166,7 +161,7 @@ struct StartAssistView: View {
     private var controls: some View {
         HStack(alignment: .bottom, spacing: 24) {
             VStack(alignment: .leading, spacing: 4) {
-                StartAssistLabel("Race Gun")
+                StartAssistLabel("Start Time")
                 DatePicker("", selection: $gunTime, displayedComponents: .hourAndMinute)
                     .labelsHidden()
                     .datePickerStyle(.compact)
@@ -216,9 +211,9 @@ struct StartAssistView: View {
             StartAssistLabel(lineMode.countdownLabel)
                 .frame(maxWidth: .infinity, alignment: .center)
             Text(primaryCountdownText)
-                .font(.system(size: 68, weight: .black, design: .rounded))
+                .font(.system(size: 84, weight: .black, design: .rounded))
                 .monospacedDigit()
-                .foregroundStyle(.white)
+                .foregroundStyle(StartAssistColors.lcd)
                 .minimumScaleFactor(0.45)
                 .lineLimit(1)
             if primaryCountdownText.contains(":") {
@@ -237,12 +232,12 @@ struct StartAssistView: View {
     private var metricsGrid: some View {
         VStack(spacing: 8) {
             HStack(spacing: 16) {
-                StartAssistTile(title: "Dist To Line", value: distanceToLineText, accent: .white)
-                StartAssistTile(title: "SOG", value: sogText, accent: .white)
+                StartAssistTile(title: "Dist To Line", value: distanceToLineText, accent: StartAssistColors.lcd)
+                StartAssistTile(title: "SOG", value: sogText, accent: StartAssistColors.lcd)
             }
             if lineMode == .start {
                 HStack(spacing: 16) {
-                    StartAssistTile(title: "Time To Line", value: timeToLineText, accent: StartAssistColors.blue)
+                    StartAssistTile(title: "Time To Line", value: timeToLineText, accent: StartAssistColors.lcd)
                     StartAssistTile(title: "Time To Burn", value: burnTileText(assistSnapshot.timeToBurn), accent: burnColor(assistSnapshot.timeToBurn))
                 }
             }
@@ -315,7 +310,7 @@ struct StartAssistView: View {
 
     private var statusColor: Color {
         switch crossingResult.status {
-        case .approachingLine, .crossingAhead: .white
+        case .approachingLine, .crossingAhead: StartAssistColors.lcd
         case .insufficientData: StartAssistColors.secondaryText
         case .crossingOutsideSegment, .parallel, .movingAway: .orange
         }
@@ -352,7 +347,7 @@ struct StartAssistView: View {
         if abs(interval) <= 5 {
             return .green
         }
-        return interval < 0 ? .red : StartAssistColors.blue
+        return interval < 0 ? .red : StartAssistColors.lcd
     }
 
     private func countdownText(_ interval: TimeInterval) -> String {
@@ -360,9 +355,10 @@ struct StartAssistView: View {
         return String(format: "%02d:%02d", seconds / 60, seconds % 60)
     }
 
-    private func syncGunNow() {
-        gunTime = Date()
-        now = gunTime
+    private func syncCountdownToNearestMinute() {
+        let syncedTimeToStart = (assistSnapshot.timeToStart / 60).rounded() * 60
+        let syncedStartTime = now.addingTimeInterval(syncedTimeToStart)
+        gunTime = syncedStartTime.addingTimeInterval(TimeInterval(-startOffsetMinutes * 60))
         storedGunTime = gunTime.timeIntervalSinceReferenceDate
         hapticsFired.removeAll()
     }
@@ -467,6 +463,7 @@ private enum StartAssistColors {
     static let control = Color.white.opacity(0.025)
     static let border = Color.white.opacity(0.18)
     static let secondaryText = Color.white.opacity(0.62)
+    static let lcd = Color(red: 0.68, green: 0.78, blue: 0.61)
     static let blue = Color(red: 0.22, green: 0.45, blue: 1.0)
 }
 

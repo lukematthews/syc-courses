@@ -1,4 +1,7 @@
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#endif
 
 struct HomeView: View {
     @EnvironmentObject private var recentsStore: RecentCoursesStore
@@ -15,6 +18,8 @@ struct HomeView: View {
         NavigationStack {
             ScrollView {
                 LazyVStack(spacing: 14) {
+                    HomeHeader()
+
                     NavigationLink(value: HomeRoute.quickBearing) {
                         HomeCard(title: "Quick Bearing", subtitle: "Bearing and distance to a mark", systemImage: "location.north.line")
                     }
@@ -22,18 +27,18 @@ struct HomeView: View {
                         HomeCard(title: "Flags", subtitle: "Numeral pennants 0-9", systemImage: "flag")
                     }
                     NavigationLink(value: HomeRoute.fixed) {
-                        HomeCard(title: "Fixed Mark Courses", subtitle: "\(fixedCourses.count) bundled courses", systemImage: "list.bullet.rectangle")
+                        HomeCard(title: "Fixed Mark Courses", subtitle: "\(fixedCourses.count) courses", systemImage: "list.bullet.rectangle")
                     }
                     if !laidCourses.isEmpty {
                         NavigationLink(value: HomeRoute.laid) {
-                            HomeCard(title: "Laid Courses", subtitle: "\(laidCourses.count) Appendix A courses", systemImage: "triangle")
+                            HomeCard(title: "Laid Courses", subtitle: "\(laidCourses.count) courses", systemImage: "triangle")
                         }
                     }
                     NavigationLink(value: HomeRoute.startAssist) {
-                        HomeCard(title: "Start Assist", subtitle: "Start and finish line crossing", systemImage: "timer")
+                        HomeCard(title: "Line Assist", subtitle: "Start and finish line crossing", systemImage: "timer")
                     }
                     NavigationLink(value: HomeRoute.navigationOutput) {
-                        HomeCard(title: "Navigation Output", subtitle: "Send waypoint data to Actisense W2K-2", systemImage: "antenna.radiowaves.left.and.right")
+                        HomeCard(title: "Instruments", subtitle: "Boat communication with Actisense W2K-2", systemImage: "antenna.radiowaves.left.and.right")
                     }
 
                     if !recentCourses.isEmpty {
@@ -49,8 +54,9 @@ struct HomeView: View {
                 }
                 .padding()
             }
-            .background(AppColors.groupedBackground)
-            .navigationTitle("SYC Courses")
+            .background(HomeColors.background)
+            .navigationTitle("")
+            .homeNavigationChrome()
             .navigationDestination(for: HomeRoute.self) { route in
                 switch route {
                 case .quickBearing: QuickBearingView()
@@ -65,6 +71,49 @@ struct HomeView: View {
                 CourseDetailView(course: course)
             }
         }
+    }
+}
+
+private struct HomeHeader: View {
+    var body: some View {
+        HStack(alignment: .center, spacing: 14) {
+            AppIconImage(size: 54, cornerRadius: 12)
+            Text("SYC Courses")
+                .font(.largeTitle.bold())
+                .foregroundStyle(HomeColors.navy)
+                .minimumScaleFactor(0.8)
+                .lineLimit(1)
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.bottom, 6)
+    }
+}
+
+private struct AppIconImage: View {
+    let size: CGFloat
+    let cornerRadius: CGFloat
+
+    init(size: CGFloat = 88, cornerRadius: CGFloat = 20) {
+        self.size = size
+        self.cornerRadius = cornerRadius
+    }
+
+    var body: some View {
+        #if canImport(UIKit)
+        if let url = Bundle.module.url(forResource: "app-icon", withExtension: "png"),
+           let data = try? Data(contentsOf: url),
+           let image = UIImage(data: data) {
+            Image(uiImage: image)
+                .resizable()
+                .scaledToFit()
+                .frame(width: size, height: size)
+                .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
+                .shadow(color: .black.opacity(0.10), radius: 5, y: 2)
+        }
+        #else
+        EmptyView()
+        #endif
     }
 }
 
@@ -86,6 +135,7 @@ private struct HomeCard: View {
         HStack(spacing: 16) {
             Image(systemName: systemImage)
                 .font(.title2.bold())
+                .foregroundStyle(.tint)
                 .frame(width: 48, height: 48)
                 .background(.tint.opacity(0.12))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
@@ -96,16 +146,24 @@ private struct HomeCard: View {
                 Text(subtitle)
                     .font(.body)
                     .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.leading)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
             Image(systemName: "chevron.right")
                 .foregroundStyle(.tertiary)
         }
         .padding()
         .frame(maxWidth: .infinity, minHeight: 86, alignment: .leading)
-        .background(.background)
+        .background(HomeColors.card)
         .clipShape(RoundedRectangle(cornerRadius: 8))
     }
+}
+
+private enum HomeColors {
+    static let navy = Color(red: 0.02, green: 0.12, blue: 0.28)
+    static let background = Color(red: 0.90, green: 0.93, blue: 0.96)
+    static let card = Color(red: 0.99, green: 0.995, blue: 1.0)
 }
 
 private struct RecentCoursesHeader: View {
@@ -123,5 +181,16 @@ private struct RecentCoursesHeader: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.top, 8)
+    }
+}
+
+private extension View {
+    @ViewBuilder
+    func homeNavigationChrome() -> some View {
+        #if canImport(UIKit)
+        self.navigationBarTitleDisplayMode(.inline)
+        #else
+        self
+        #endif
     }
 }
