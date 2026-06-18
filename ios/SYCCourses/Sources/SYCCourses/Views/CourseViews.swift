@@ -1,4 +1,7 @@
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#endif
 
 struct CourseListView: View {
     let kind: CourseKind
@@ -32,6 +35,9 @@ struct CourseDetailView: View {
     @EnvironmentObject private var navigationDataService: NavigationDataService
     @EnvironmentObject private var navigationOutputService: NavigationOutputService
     @EnvironmentObject private var recentsStore: RecentCoursesStore
+    @State private var isCourseActionsPresented = false
+    @State private var shareFile: CourseShareFile?
+    @State private var exportErrorMessage: String?
     private let marks = CourseDataLoader.marks()
     let course: Course
 
@@ -86,6 +92,23 @@ struct CourseDetailView: View {
             }
         }
         .navigationTitle("")
+        .sheet(isPresented: $isCourseActionsPresented) {
+            CourseActionsSheet(
+                course: course,
+                subtitle: course.totalDistance + " · " + course.passInstruction + comparableCourseSuffix,
+                onShareGPX: shareGPXRoute
+            )
+            .presentationDetents([.medium])
+            .presentationDragIndicator(.visible)
+        }
+        .sheet(item: $shareFile) { file in
+            CourseShareSheet(fileURL: file.url)
+        }
+        .alert("Route export failed", isPresented: exportErrorBinding) {
+            Button("OK", role: .cancel) { exportErrorMessage = nil }
+        } message: {
+            Text(exportErrorMessage ?? "Could not export route.")
+        }
         .onAppear {
             recentsStore.record(course)
             if !course.isLaidMarkCourse {
@@ -109,21 +132,27 @@ struct CourseDetailView: View {
     }
 
     private var courseHeader: some View {
-        HStack(alignment: .top, spacing: 14) {
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Course \(course.courseNumber)")
-                    .font(.largeTitle.bold())
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.75)
-                Text(course.totalDistance)
-                    .font(.title2.bold())
-                courseSummaryLine
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
+        Button {
+            isCourseActionsPresented = true
+        } label: {
+            HStack(alignment: .top, spacing: 14) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Course \(course.courseNumber)")
+                        .font(.largeTitle.bold())
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.75)
+                    Text(course.totalDistance)
+                        .font(.title2.bold())
+                    courseSummaryLine
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
 
-            PennantHoistView(number: course.courseNumber)
-                .padding(.top, 4)
+                PennantHoistView(number: course.courseNumber)
+                    .padding(.top, 4)
+            }
+            .contentShape(Rectangle())
         }
+        .buttonStyle(CourseHeaderButtonStyle())
     }
 
     private var courseSummaryLine: some View {
@@ -137,6 +166,127 @@ struct CourseDetailView: View {
               !note.isEmpty
         else { return "" }
         return ", \(note)"
+    }
+
+    private var exportErrorBinding: Binding<Bool> {
+        Binding {
+            exportErrorMessage != nil
+        } set: { isPresented in
+            if !isPresented {
+                exportErrorMessage = nil
+            }
+        }
+    }
+
+    private func shareGPXRoute() {
+        do {
+            let url = try GPXExporter.writeTemporaryFile(for: course, marks: marks)
+            isCourseActionsPresented = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                shareFile = CourseShareFile(url: url)
+            }
+        } catch {
+            isCourseActionsPresented = false
+            exportErrorMessage = error.localizedDescription
+        }
+    }
+}
+
+private struct CourseShareFile: Identifiable {
+    let url: URL
+
+    var id: String {
+        url.absoluteString
+    }
+}
+
+private struct CourseHeaderButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundStyle(.primary)
+            .opacity(configuration.isPressed ? 0.72 : 1)
+            .scaleEffect(configuration.isPressed ? 0.99 : 1, anchor: .center)
+    }
+}
+
+private struct CourseActionsSheet: View {
+    let course: Course
+    let subtitle: String
+    let onShareGPX: () -> Void
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    Button {
+                        onShareGPX()
+                    } label: {
+                        Label {
+                            VStack(alignment: .leading, spacing: 3) {
+                                Text("Share GPX Route")
+                                    .font(.headline)
+                                Text("Export this course as a GPX route for other navigation apps.")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                            }
+                        } icon: {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                        .padding(.vertical, 6)
+                    }
+                    .buttonStyle(.plain)
+                } header: {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Course \(course.courseNumber)")
+                            .font(.title2.bold())
+                            .foregroundStyle(.primary)
+                        Text(subtitle)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    .textCase(nil)
+                    .padding(.bottom, 6)
+                }
+            }
+            .navigationTitle("Course Actions")
+            .courseActionsNavigationTitle()
+        }
+    }
+}
+
+private struct CourseShareSheet: View {
+    let fileURL: URL
+
+    var body: some View {
+        #if canImport(UIKit)
+        ActivityViewController(items: [fileURL])
+        #else
+        Text(fileURL.path)
+            .padding()
+        #endif
+    }
+}
+
+#if canImport(UIKit)
+private struct ActivityViewController: UIViewControllerRepresentable {
+    let items: [Any]
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: items, applicationActivities: nil)
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+}
+#endif
+
+private extension View {
+    @ViewBuilder
+    func courseActionsNavigationTitle() -> some View {
+        #if canImport(UIKit)
+        self.navigationBarTitleDisplayMode(.inline)
+        #else
+        self
+        #endif
     }
 }
 
