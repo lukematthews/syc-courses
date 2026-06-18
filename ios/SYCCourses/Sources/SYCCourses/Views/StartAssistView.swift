@@ -215,7 +215,7 @@ struct StartAssistView: View {
             StartAssistLabel(lineMode.countdownLabel)
                 .frame(maxWidth: .infinity, alignment: .center)
             Text(primaryCountdownText)
-                .font(.system(size: 84, weight: .black, design: .rounded))
+                .font(.system(size: 104, weight: .black, design: .rounded))
                 .monospacedDigit()
                 .foregroundStyle(StartAssistColors.lcd)
                 .minimumScaleFactor(0.45)
@@ -252,12 +252,12 @@ struct StartAssistView: View {
         VStack(alignment: .leading, spacing: 4) {
             StartAssistLabel("Status")
             Text(statusText)
-                .font(.system(size: 28, weight: .black, design: .rounded))
+                .font(.system(size: 34, weight: .black, design: .rounded))
                 .foregroundStyle(statusColor)
                 .minimumScaleFactor(0.55)
                 .lineLimit(1)
         }
-        .frame(maxWidth: .infinity, minHeight: 52, alignment: .leading)
+        .frame(maxWidth: .infinity, minHeight: 62, alignment: .leading)
     }
 
     private var footer: some View {
@@ -295,6 +295,9 @@ struct StartAssistView: View {
     }
 
     private var timeToLineText: String {
+        if case .insufficientData(.noCOG) = crossingResult.status {
+            return "NO COG"
+        }
         guard let timeToLine = crossingResult.timeToLine else {
             return unavailableText(for: crossingResult.status)
         }
@@ -480,7 +483,7 @@ private struct StartAssistLabel: View {
 
     var body: some View {
         Text(title.uppercased())
-            .font(.caption.weight(.black))
+            .font(.system(size: 13, weight: .black))
             .tracking(0.8)
             .foregroundStyle(StartAssistColors.secondaryText)
     }
@@ -495,13 +498,13 @@ private struct StartAssistTile: View {
         VStack(alignment: .leading, spacing: 4) {
             StartAssistLabel(title)
             Text(value)
-                .font(.system(size: 30, weight: .black, design: .rounded))
+                .font(.system(size: 34, weight: .black, design: .rounded))
                 .monospacedDigit()
                 .foregroundStyle(accent)
                 .minimumScaleFactor(0.55)
                 .lineLimit(1)
         }
-        .frame(maxWidth: .infinity, minHeight: 54, alignment: .leading)
+        .frame(maxWidth: .infinity, minHeight: 62, alignment: .leading)
     }
 }
 

@@ -248,6 +248,50 @@ private struct NavigationOutputCoursePanel: View {
 struct CourseTableView: View {
     let course: Course
     let marks: [Mark]
+    private let courseBearingVariationDegrees = 12.0
+
+    private var calculatedRows: [CalculatedCourseRow] {
+        var previousMark = CourseDataLoader.findMark(named: "SYC 4", in: marks)
+        return course.rows.map { row in
+            guard !row.isCourseTotalRow else {
+                return CalculatedCourseRow(row: row, mark: nil, bearing: nil, distanceNm: nil)
+            }
+
+            let mark = resolvedMark(for: row.mark)
+            let bearing: Double?
+            let distanceNm: Double?
+            if row.isPassThroughRow {
+                bearing = nil
+                distanceNm = nil
+            } else if let previousMark, let mark {
+                let trueBearing = NavigationMath.bearingTrue(
+                    fromLatitude: previousMark.latitude,
+                    fromLongitude: previousMark.longitude,
+                    toLatitude: mark.latitude,
+                    toLongitude: mark.longitude
+                )
+                bearing = NavigationMath.magneticBearing(
+                    trueBearing: trueBearing,
+                    variationDegrees: courseBearingVariationDegrees
+                )
+                distanceNm = NavigationMath.distanceNm(
+                    fromLatitude: previousMark.latitude,
+                    fromLongitude: previousMark.longitude,
+                    toLatitude: mark.latitude,
+                    toLongitude: mark.longitude
+                )
+            } else {
+                bearing = nil
+                distanceNm = nil
+            }
+
+            if let mark, !row.isPassThroughRow {
+                previousMark = mark
+            }
+
+            return CalculatedCourseRow(row: row, mark: mark, bearing: bearing, distanceNm: distanceNm)
+        }
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -260,16 +304,16 @@ struct CourseTableView: View {
             .padding(.vertical, 10)
             .background(.secondary.opacity(0.12))
 
-            ForEach(course.rows) { row in
-                if let mark = CourseDataLoader.findMark(named: row.mark, in: marks) {
+            ForEach(calculatedRows) { calculatedRow in
+                if let mark = calculatedRow.mark, !calculatedRow.row.isStartOrFinishRow {
                     NavigationLink {
                         MarkDetailView(mark: mark)
                     } label: {
-                        CourseRowView(row: row, tappable: true)
+                        CourseRowView(calculatedRow: calculatedRow, tappable: true)
                     }
                     .buttonStyle(.plain)
                 } else {
-                    CourseRowView(row: row, tappable: false)
+                    CourseRowView(calculatedRow: calculatedRow, tappable: false)
                 }
                 Divider()
             }
@@ -278,11 +322,22 @@ struct CourseTableView: View {
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .overlay(RoundedRectangle(cornerRadius: 8).stroke(.quaternary))
     }
+
+    private func resolvedMark(for name: String) -> Mark? {
+        if name.normalizedCourseMarkName == "start" || name.normalizedCourseMarkName == "finish" {
+            return CourseDataLoader.findMark(named: "SYC 4", in: marks)
+        }
+        return CourseDataLoader.findMark(named: name, in: marks)
+    }
 }
 
 private struct CourseRowView: View {
-    let row: CourseLeg
+    let calculatedRow: CalculatedCourseRow
     let tappable: Bool
+
+    private var row: CourseLeg {
+        calculatedRow.row
+    }
 
     var body: some View {
         HStack {
@@ -291,10 +346,10 @@ private struct CourseRowView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             Text(row.side)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Text(row.bearing)
+            Text(calculatedRow.bearingText)
                 .frame(maxWidth: .infinity, alignment: .leading)
             HStack {
-                Text(row.distance)
+                Text(calculatedRow.distanceText)
                 if tappable {
                     Image(systemName: "chevron.right")
                         .font(.caption)
@@ -306,6 +361,58 @@ private struct CourseRowView: View {
         .padding(.horizontal, 10)
         .padding(.vertical, 14)
         .contentShape(Rectangle())
+    }
+}
+
+private struct CalculatedCourseRow: Identifiable {
+    let row: CourseLeg
+    let mark: Mark?
+    let bearing: Double?
+    let distanceNm: Double?
+
+    var id: UUID {
+        row.id
+    }
+
+    var bearingText: String {
+        guard let bearing else {
+            return row.isCourseTotalRow ? "" : row.bearing
+        }
+        return String(format: "%03.0f", NavigationMath.normalizeDegrees(bearing).rounded())
+    }
+
+    var distanceText: String {
+        guard let distanceNm else {
+            return row.isCourseTotalRow ? row.distance : row.distance
+        }
+        return String(format: "%.2f", distanceNm)
+    }
+}
+
+private extension CourseLeg {
+    var isCourseTotalRow: Bool {
+        let name = mark.normalizedCourseMarkName
+        return name == "total" || name == "sub-total" || name == "subtotal"
+    }
+
+    var isStartOrFinishRow: Bool {
+        let name = mark.normalizedCourseMarkName
+        return name == "start" || name == "finish"
+    }
+
+    var isPassThroughRow: Bool {
+        side.normalizedCourseMarkName == "pass"
+            || bearing.normalizedCourseMarkName == "na"
+            || distance.normalizedCourseMarkName == "na"
+    }
+}
+
+private extension String {
+    var normalizedCourseMarkName: String {
+        replacingOccurrences(of: #"\s*\([^)]*\)"#, with: "", options: .regularExpression)
+            .replacingOccurrences(of: #"\s+"#, with: " ", options: .regularExpression)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased()
     }
 }
 
