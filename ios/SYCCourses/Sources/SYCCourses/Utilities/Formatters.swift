@@ -17,7 +17,13 @@ enum AppFormatters {
     static func duration(_ interval: TimeInterval?) -> String {
         guard let interval else { return "--:--" }
         let seconds = Int(abs(interval).rounded())
-        return String(format: "%02d:%02d", seconds / 60, seconds % 60)
+        let hours = seconds / 3600
+        let minutes = (seconds / 60) % 60
+        let remainingSeconds = seconds % 60
+        if hours > 0 {
+            return String(format: "%d:%02d:%02d", hours, minutes, remainingSeconds)
+        }
+        return String(format: "%02d:%02d", minutes, remainingSeconds)
     }
 
     static func clock(_ date: Date) -> String {

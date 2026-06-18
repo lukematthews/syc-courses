@@ -46,6 +46,13 @@ final class NavigationMathTests: XCTestCase {
         XCTAssertEqual(snapshot.timeToBurn, 180 as TimeInterval?)
     }
 
+    func testDurationFormattingIncludesHoursOnlyWhenNeeded() {
+        XCTAssertEqual(AppFormatters.duration(3599), "59:59")
+        XCTAssertEqual(AppFormatters.duration(3600), "1:00:00")
+        XCTAssertEqual(AppFormatters.duration(3723), "1:02:03")
+        XCTAssertEqual(AppFormatters.duration(nil), "--:--")
+    }
+
     func testLineCrossingFindsSegmentAhead() {
         let result = NavigationMath.lineCrossing(
             fix: navigationFix(latitude: -0.001, longitude: 0.005, sogKnots: 6, cogDegrees: 0),

@@ -27,26 +27,13 @@ struct QuickBearingView: View {
 
             Section("Select Mark") {
                 ForEach(marks) { mark in
-                    NavigationLink {
-                        MarkDetailView(mark: mark)
-                    } label: {
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text(mark.name)
-                                    .font(.headline)
-                                if let description = mark.description {
-                                    Text(description)
-                                        .font(.subheadline)
-                                        .foregroundStyle(.secondary)
-                                }
-                            }
-                            Spacer()
-                        }
-                        .padding(.vertical, 8)
-                    }
-                    .simultaneousGesture(TapGesture().onEnded {
+                    Button {
                         lastSelectedMarkID = mark.id
-                    })
+                        selectedMapMark = mark
+                    } label: {
+                        MarkSelectionRow(mark: mark)
+                    }
+                    .buttonStyle(.plain)
                 }
             }
         }
@@ -68,6 +55,28 @@ struct QuickBearingView: View {
         .navigationDestination(item: $selectedMapMark) { mark in
             MarkDetailView(mark: mark)
         }
+    }
+}
+
+private struct MarkSelectionRow: View {
+    let mark: Mark
+
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(mark.name)
+                    .font(.headline)
+                if let description = mark.description {
+                    Text(description)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            Spacer(minLength: 12)
+        }
+        .frame(maxWidth: .infinity, minHeight: 56, alignment: .leading)
+        .padding(.vertical, 8)
+        .contentShape(Rectangle())
     }
 }
 
@@ -150,12 +159,17 @@ private struct MarkLocationButton: View {
     var body: some View {
         ZStack {
             Circle()
-                .fill(.cyan.opacity(0.18))
+                .fill(.clear)
                 .frame(width: 44, height: 44)
             Circle()
+                .fill(.white.opacity(0.78))
+                .frame(width: 18, height: 18)
+            Circle()
                 .stroke(.cyan, lineWidth: 3)
-                .frame(width: 20, height: 20)
-                .background(Circle().fill(.white.opacity(0.55)).frame(width: 20, height: 20))
+                .frame(width: 18, height: 18)
+            Circle()
+                .fill(.secondary.opacity(0.65))
+                .frame(width: 7, height: 7)
         }
         .contentShape(Circle())
         .accessibilityLabel("Select \(markName)")

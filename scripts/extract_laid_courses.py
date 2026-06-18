@@ -6,6 +6,7 @@ import fitz
 PDF_PATH = Path('source/Club-sailing-Instructions-2025-28_Rev-0.pdf')
 CHART_DIR = Path('public/course-charts')
 OUT_JSON = Path('source/extracted-laid-courses.json')
+CELL_INSET = 1.4
 
 def clean(text):
     return ' '.join(text.replace('–', '-').split())
@@ -34,6 +35,67 @@ def route_to_rows(route):
 doc=fitz.open(PDF_PATH)
 courses=[]
 CHART_DIR.mkdir(parents=True, exist_ok=True)
+
+def table_lines(page):
+    horizontal = []
+    vertical = []
+    for drawing in page.get_drawings():
+        rect = drawing.get('rect')
+        if not rect:
+            continue
+        if rect.width > 100 and rect.height < 2:
+            horizontal.append(rect)
+        elif rect.height > 10 and rect.width < 2:
+            vertical.append(rect)
+    return horizontal, vertical
+
+def diagram_cell(page, title_y, region_end):
+    horizontal, vertical = table_lines(page)
+    region_vertical = [
+        line for line in vertical
+        if line.y0 > title_y
+        and line.y0 < region_end
+        and line.y1 > title_y
+        and line.x0 <= 540
+    ]
+    divider_candidates = [line for line in region_vertical if 180 <= line.x0 <= 260]
+    right_candidates = [line for line in region_vertical if 500 <= line.x0 <= 540]
+    if not divider_candidates or not right_candidates:
+        return fitz.Rect(248, max(80, title_y + 17), 532, region_end - 21)
+
+    def total_height(lines):
+        return sum(max(0, min(line.y1, region_end) - max(line.y0, title_y)) for line in lines)
+
+    divider_x = max(
+        {round(line.x0, 1) for line in divider_candidates},
+        key=lambda x: total_height([line for line in divider_candidates if round(line.x0, 1) == x]),
+    )
+    right_x = max(
+        {round(line.x0, 1) for line in right_candidates},
+        key=lambda x: total_height([line for line in right_candidates if round(line.x0, 1) == x]),
+    )
+    divider = next(line for line in divider_candidates if round(line.x0, 1) == divider_x)
+    right = next(line for line in right_candidates if round(line.x0, 1) == right_x)
+
+    cell_lines = [
+        line for line in horizontal
+        if line.x0 <= divider.x0 + 2
+        and line.x1 >= right.x0 - 2
+        and line.y0 > title_y + 10
+        and line.y0 < region_end
+    ]
+    if len(cell_lines) < 2:
+        return fitz.Rect(divider.x1 + CELL_INSET, max(80, title_y + 17), right.x0 - CELL_INSET, region_end - 21)
+
+    top = min(cell_lines, key=lambda line: line.y0)
+    bottom = max(cell_lines, key=lambda line: line.y0)
+    return fitz.Rect(
+        divider.x1 + CELL_INSET,
+        top.y1 + CELL_INSET,
+        right.x0 - CELL_INSET,
+        bottom.y0 - CELL_INSET,
+    )
+
 for pno in range(19, len(doc)):
     page=doc[pno]
     blocks=[]
@@ -62,9 +124,11 @@ for pno in range(19, len(doc)):
         nominal = next((b['text'] for b in text_blocks if b['text'].lower().startswith('nominal')), '')
         pass_instruction = ' '.join(part for part in [leave, gate_note, note] if part)
         nominal = nominal.replace('Nominal leg length:', 'Nominal leg length:').replace(' - ', ' - ')
-        crop_top=max(80, title['y0']-4)
-        crop_bottom=region_end+8
-        pix=page.get_pixmap(matrix=fitz.Matrix(3,3), clip=fitz.Rect(60, crop_top, 535, crop_bottom), alpha=False)
+        pix=page.get_pixmap(
+            matrix=fitz.Matrix(3,3),
+            clip=diagram_cell(page, title['y0'], region_end),
+            alpha=False,
+        )
         chart_name=f'course-{number}.png'
         pix.save(CHART_DIR/chart_name)
         courses.append({

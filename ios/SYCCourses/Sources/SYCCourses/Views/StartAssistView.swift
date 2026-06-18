@@ -94,7 +94,8 @@ struct StartAssistView: View {
             #endif
             startOffsetMinutes = clampedOffset(startOffsetMinutes)
             offsetEntry = "\(startOffsetMinutes)"
-            gunTime = Date(timeIntervalSinceReferenceDate: storedGunTime)
+            gunTime = today(atTimeOf: Date(timeIntervalSinceReferenceDate: storedGunTime))
+            storedGunTime = gunTime.timeIntervalSinceReferenceDate
             locationService.startActiveUpdates()
             if navigationDataService.actisenseConfig.isConfigured,
                navigationDataService.actisenseStatus == .disconnected {
@@ -220,16 +221,6 @@ struct StartAssistView: View {
                 .foregroundStyle(StartAssistColors.lcd)
                 .minimumScaleFactor(0.45)
                 .lineLimit(1)
-            if primaryCountdownText.contains(":") {
-                HStack {
-                    Text("MIN")
-                        .frame(maxWidth: .infinity)
-                    Text("SEC")
-                        .frame(maxWidth: .infinity)
-                }
-                .font(.caption.weight(.bold))
-                .foregroundStyle(StartAssistColors.secondaryText)
-            }
         }
     }
 
@@ -358,8 +349,7 @@ struct StartAssistView: View {
     }
 
     private func countdownText(_ interval: TimeInterval) -> String {
-        let seconds = Int(abs(interval).rounded())
-        return String(format: "%02d:%02d", seconds / 60, seconds % 60)
+        AppFormatters.duration(interval)
     }
 
     private func syncCountdownToNearestMinute() {
@@ -387,6 +377,21 @@ struct StartAssistView: View {
 
     private func clampedOffset(_ value: Int) -> Int {
         min(max(value, offsetRange.lowerBound), offsetRange.upperBound)
+    }
+
+    private func today(atTimeOf date: Date) -> Date {
+        let calendar = Calendar.autoupdatingCurrent
+        let time = calendar.dateComponents([.hour, .minute], from: date)
+        let today = calendar.dateComponents([.year, .month, .day], from: now)
+        var components = DateComponents()
+        components.calendar = calendar
+        components.year = today.year
+        components.month = today.month
+        components.day = today.day
+        components.hour = time.hour
+        components.minute = time.minute
+        components.second = 0
+        return calendar.date(from: components) ?? date
     }
 
     private func refreshPosition() {

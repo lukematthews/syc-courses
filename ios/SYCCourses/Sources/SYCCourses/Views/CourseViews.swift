@@ -36,7 +36,8 @@ struct CourseDetailView: View {
     let course: Course
 
     private var activeTargetMark: Mark? {
-        course.rows.lazy.compactMap { CourseDataLoader.findMark(named: $0.mark, in: marks) }.first
+        guard !course.isLaidMarkCourse else { return nil }
+        return course.rows.lazy.compactMap { CourseDataLoader.findMark(named: $0.mark, in: marks) }.first
     }
 
     private var activeWaypointState: NavigationWaypointState? {
@@ -62,18 +63,24 @@ struct CourseDetailView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 18) {
                     courseHeader
-                    CourseLineAssistPanel()
 
-                    CourseTableView(course: course, marks: marks)
+                    if course.isLaidMarkCourse {
+                        LaidCourseInfoPanel(course: course)
+                        ChartImageView(chartImage: course.chartImage)
+                            .frame(maxWidth: .infinity, maxHeight: geometry.size.height * 0.62)
+                        LaidCourseRouteView(course: course)
+                    } else {
+                        CourseLineAssistPanel()
+                        CourseTableView(course: course, marks: marks)
+                        ChartImageView(chartImage: course.chartImage)
+                            .frame(maxWidth: .infinity, maxHeight: geometry.size.height * 0.62)
 
-                    ChartImageView(chartImage: course.chartImage)
-                        .frame(maxWidth: .infinity, maxHeight: geometry.size.height * 0.62)
-
-                    NavigationOutputCoursePanel(
-                        targetMark: activeTargetMark,
-                        activeWaypointState: activeWaypointState,
-                        sourceSummary: navigationDataService.sourceSummary(iPhoneFix: locationService.navigationFix)
-                    )
+                        NavigationOutputCoursePanel(
+                            targetMark: activeTargetMark,
+                            activeWaypointState: activeWaypointState,
+                            sourceSummary: navigationDataService.sourceSummary(iPhoneFix: locationService.navigationFix)
+                        )
+                    }
                 }
                 .padding()
             }
@@ -81,19 +88,23 @@ struct CourseDetailView: View {
         .navigationTitle("")
         .onAppear {
             recentsStore.record(course)
-            locationService.startActiveUpdates()
-            if navigationDataService.actisenseConfig.isConfigured,
-               navigationDataService.actisenseStatus == .disconnected {
-                Task { await navigationDataService.connectActisense() }
-            }
-            if navigationOutputService.settings.autoConnect,
-               navigationOutputService.canConnect,
-               !navigationOutputService.isConnected {
-                Task { await navigationOutputService.connect() }
+            if !course.isLaidMarkCourse {
+                locationService.startActiveUpdates()
+                if navigationDataService.actisenseConfig.isConfigured,
+                   navigationDataService.actisenseStatus == .disconnected {
+                    Task { await navigationDataService.connectActisense() }
+                }
+                if navigationOutputService.settings.autoConnect,
+                   navigationOutputService.canConnect,
+                   !navigationOutputService.isConnected {
+                    Task { await navigationOutputService.connect() }
+                }
             }
         }
         .onDisappear {
-            locationService.stopActiveUpdates()
+            if !course.isLaidMarkCourse {
+                locationService.stopActiveUpdates()
+            }
         }
     }
 
@@ -126,6 +137,98 @@ struct CourseDetailView: View {
               !note.isEmpty
         else { return "" }
         return ", \(note)"
+    }
+}
+
+private struct LaidCourseInfoPanel: View {
+    let course: Course
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Label("Race Committee Boat start and finish", systemImage: "flag.checkered")
+                .font(.headline.weight(.bold))
+            if courseHasGate {
+                Text("Pass through the gate to start the next leg.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+            if gateIsNotMark {
+                Text("Gate is not a mark of the course.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(.background)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .overlay(RoundedRectangle(cornerRadius: 8).stroke(.quaternary))
+    }
+
+    private var courseHasGate: Bool {
+        course.rows.contains { $0.mark.normalizedCourseMarkName == "gate" }
+            && !gateIsNotMark
+    }
+
+    private var gateIsNotMark: Bool {
+        course.courseNumber == 96
+    }
+}
+
+private struct LaidCourseRouteView: View {
+    let course: Course
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Course Sequence")
+                .font(.headline.weight(.bold))
+
+            VStack(spacing: 0) {
+                ForEach(Array(course.rows.enumerated()), id: \.element.id) { index, row in
+                    LaidCourseRouteRow(row: row)
+                    if index < course.rows.count - 1 {
+                        Divider()
+                    }
+                }
+            }
+            .background(.background)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .overlay(RoundedRectangle(cornerRadius: 8).stroke(.quaternary))
+        }
+    }
+}
+
+private struct LaidCourseRouteRow: View {
+    let row: CourseLeg
+
+    var body: some View {
+        HStack(spacing: 12) {
+            VStack(alignment: .leading, spacing: 3) {
+                Text(row.mark)
+                    .font(.title3.weight(.black))
+                if let actionText {
+                    Text(actionText)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            Spacer()
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 12)
+    }
+
+    private var actionText: String? {
+        switch row.mark.normalizedCourseMarkName {
+        case "start":
+            nil
+        case "finish":
+            nil
+        case "gate":
+            "Pass through to start the next leg"
+        default:
+            "Leave to \(row.side.lowercased())"
+        }
     }
 }
 
@@ -404,6 +507,12 @@ private extension CourseLeg {
         side.normalizedCourseMarkName == "pass"
             || bearing.normalizedCourseMarkName == "na"
             || distance.normalizedCourseMarkName == "na"
+    }
+}
+
+private extension Course {
+    var isLaidMarkCourse: Bool {
+        courseNumber >= 80
     }
 }
 
