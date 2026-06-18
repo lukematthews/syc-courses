@@ -29,6 +29,10 @@ struct StartAssistView: View {
     @EnvironmentObject private var navigationDataService: NavigationDataService
     @AppStorage("lastStartOffsetMinutes") private var startOffsetMinutes = 10
     @AppStorage("lastRaceGunTime") private var storedGunTime = Date().timeIntervalSinceReferenceDate
+    @AppStorage("lineAssistBowOffsetMeters") private var bowOffsetMeters = 9.4
+    @AppStorage("lineAssistGPSOffsetStarboardMeters") private var gpsOffsetStarboardMeters = 0.0
+    @AppStorage("lineAssistUseBowOffset") private var useBowOffsetForLineAssist = true
+    @AppStorage("lineAssistBowProjectionSource") private var bowProjectionSource = BoatReferenceBearingSource.cog.rawValue
     @State private var lineMode: LineMode
     @State private var gunTime = Date()
     @State private var now = Date()
@@ -55,7 +59,12 @@ struct StartAssistView: View {
     }
 
     private var crossingResult: LineCrossingResult {
-        LineCrossingCalculator.calculate(fix: activeFix, lineStart: lineStart, lineEnd: lineEnd)
+        LineCrossingCalculator.calculate(
+            fix: activeFix,
+            lineStart: lineStart,
+            lineEnd: lineEnd,
+            geometry: boatGeometrySettings
+        )
     }
 
     private var sourceSummary: NavigationSourceSummary {
@@ -64,6 +73,15 @@ struct StartAssistView: View {
 
     private var assistSnapshot: StartAssistSnapshot {
         NavigationMath.timeToBurn(startTime: startTime, now: now, timeToMark: crossingResult.timeToLine)
+    }
+
+    private var boatGeometrySettings: BoatGeometrySettings {
+        BoatGeometrySettings(
+            bowOffsetMeters: bowOffsetMeters,
+            gpsOffsetStarboardMeters: gpsOffsetStarboardMeters,
+            useBowOffsetForLineAssist: useBowOffsetForLineAssist,
+            referenceBearingSource: BoatReferenceBearingSource(rawValue: bowProjectionSource) ?? .cog
+        )
     }
 
     var body: some View {
@@ -252,13 +270,20 @@ struct StartAssistView: View {
     }
 
     private var footer: some View {
-        HStack(spacing: 10) {
-            Image(systemName: "scope")
-            Text(sourceSummary.statusMessage)
-                .fontWeight(.semibold)
-            if let lastUpdate = sourceSummary.lastUpdate {
-                Text(lastUpdate.formatted(date: .omitted, time: .standard))
-                    .monospacedDigit()
+        VStack(alignment: .leading, spacing: 5) {
+            HStack(spacing: 10) {
+                Image(systemName: "scope")
+                Text(sourceSummary.statusMessage)
+                    .fontWeight(.semibold)
+                if let lastUpdate = sourceSummary.lastUpdate {
+                    Text(lastUpdate.formatted(date: .omitted, time: .standard))
+                        .monospacedDigit()
+                }
+            }
+            HStack(spacing: 10) {
+                Image(systemName: crossingResult.referencePoint == .bow ? "sailboat" : "location")
+                Text(referencePointText)
+                    .fontWeight(.semibold)
             }
         }
         .font(.subheadline)
@@ -296,13 +321,33 @@ struct StartAssistView: View {
     }
 
     private var statusText: String {
-        switch crossingResult.status {
+        if crossingResult.isDegraded, crossingResult.degradedReason == .missingHeading {
+            return "NO HEADING"
+        }
+        return switch crossingResult.status {
         case .approachingLine: "APPROACHING"
         case .crossingAhead: "CROSSING AHEAD"
         case .crossingOutsideSegment: "OUTSIDE LINE"
         case .parallel: "PARALLEL"
         case .movingAway: "MOVING AWAY"
         case .insufficientData: "NO DATA"
+        }
+    }
+
+    private var referencePointText: String {
+        switch crossingResult.degradedReason {
+        case .missingHeading:
+            "GPS POSITION ONLY"
+        case .missingGeometry:
+            "GPS POSITION · CHECK BOW OFFSET"
+        case .disabled:
+            "GPS POSITION · BOW OFFSET OFF"
+        case nil:
+            if crossingResult.isBowOffsetApplied {
+                "USING BOW POSITION · GPS to Bow \(String(format: "%.1f", bowOffsetMeters)) m"
+            } else {
+                "GPS POSITION"
+            }
         }
     }
 

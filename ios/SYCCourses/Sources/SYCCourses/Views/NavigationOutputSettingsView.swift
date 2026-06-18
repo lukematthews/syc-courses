@@ -3,7 +3,12 @@ import SwiftUI
 struct NavigationOutputSettingsView: View {
     @EnvironmentObject private var navigationDataService: NavigationDataService
     @EnvironmentObject private var outputService: NavigationOutputService
+    @AppStorage("lineAssistBowOffsetMeters") private var bowOffsetMeters = 9.4
+    @AppStorage("lineAssistGPSOffsetStarboardMeters") private var gpsOffsetStarboardMeters = 0.0
+    @AppStorage("lineAssistUseBowOffset") private var useBowOffsetForLineAssist = true
+    @AppStorage("lineAssistBowProjectionSource") private var bowProjectionSource = BoatReferenceBearingSource.cog.rawValue
     @State private var isShowingDiagnostics = false
+    @State private var isShowingBoatGeometryAdvanced = false
 
     var body: some View {
         Form {
@@ -66,6 +71,60 @@ struct NavigationOutputSettingsView: View {
                     .foregroundStyle(.secondary)
             }
 
+            Section {
+                Text("Boat Geometry")
+                    .font(.headline)
+                Toggle("Use bow position for Line Assist", isOn: $useBowOffsetForLineAssist)
+
+                VStack(alignment: .leading, spacing: 6) {
+                    HStack {
+                        Text("GPS to bow distance")
+                        Spacer()
+                        TextField("9.4", value: $bowOffsetMeters, format: .number.precision(.fractionLength(1)))
+                            .boatGeometryDecimalKeyboard()
+                            .multilineTextAlignment(.trailing)
+                            .frame(width: 72)
+                        Text("m")
+                            .foregroundStyle(.secondary)
+                    }
+                    Text("GPS to bow distance is the distance from the GPS/compass sensor to the bow, measured forward along the boat.")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
+
+                VStack(alignment: .leading, spacing: 6) {
+                    HStack {
+                        Text("GPS sideways offset")
+                        Spacer()
+                        TextField("0", value: $gpsOffsetStarboardMeters, format: .number.precision(.fractionLength(1)))
+                            .boatGeometrySignedDecimalKeyboard()
+                            .multilineTextAlignment(.trailing)
+                            .frame(width: 72)
+                        Text("m")
+                            .foregroundStyle(.secondary)
+                    }
+                    Text("Sideways offset is optional. Use positive values if the sensor is to starboard of the centreline, negative if to port.")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
+
+                Text("Line Assist uses the bow position because the boat starts or finishes when the bow crosses the line, not when the GPS antenna crosses.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+
+                DisclosureGroup("Advanced", isExpanded: $isShowingBoatGeometryAdvanced) {
+                    Picker("Bow projection", selection: $bowProjectionSource) {
+                        Text("Course over ground").tag(BoatReferenceBearingSource.cog.rawValue)
+                        Text("Heading").tag(BoatReferenceBearingSource.heading.rawValue)
+                    }
+                    Text("Course over ground is the default v1 behaviour. Heading projection is available once filtered heading data is reliable.")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
+            } header: {
+                Text("Line Assist")
+            }
+
             Section("Status") {
                 LabeledContent("Status", value: outputService.status.label)
                 if let detail = outputService.status.detail {
@@ -98,6 +157,12 @@ struct NavigationOutputSettingsView: View {
             }
         }
         .navigationTitle("Navigation Output")
+        .onChange(of: bowOffsetMeters) { _, value in
+            bowOffsetMeters = min(max(value, 0), 30)
+        }
+        .onChange(of: gpsOffsetStarboardMeters) { _, value in
+            gpsOffsetStarboardMeters = min(max(value, -10), 10)
+        }
         .onAppear {
             if navigationDataService.actisenseConfig.isConfigured,
                navigationDataService.actisenseStatus == .disconnected {
@@ -122,5 +187,25 @@ private struct DiagnosticsRows: View {
         LabeledContent("Message count", value: "\(diagnostics.messageCount)")
         LabeledContent("Last error", value: diagnostics.lastError ?? "None")
         LabeledContent("Last reconnect", value: diagnostics.lastReconnectAttempt?.formatted(date: .omitted, time: .standard) ?? "Never")
+    }
+}
+
+private extension View {
+    @ViewBuilder
+    func boatGeometryDecimalKeyboard() -> some View {
+        #if canImport(UIKit)
+        self.keyboardType(.decimalPad)
+        #else
+        self
+        #endif
+    }
+
+    @ViewBuilder
+    func boatGeometrySignedDecimalKeyboard() -> some View {
+        #if canImport(UIKit)
+        self.keyboardType(.numbersAndPunctuation)
+        #else
+        self
+        #endif
     }
 }

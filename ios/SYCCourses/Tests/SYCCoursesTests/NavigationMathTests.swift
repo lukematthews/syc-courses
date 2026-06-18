@@ -99,6 +99,208 @@ final class NavigationMathTests: XCTestCase {
         )
     }
 
+    func testBoatReferencePointProjectsBowNorth() {
+        let result = NavigationMath.calculateBoatReferencePoint(
+            gpsPosition: LatLon(latitude: 0, longitude: 0),
+            cogDegrees: 0,
+            headingDegrees: nil,
+            geometry: BoatGeometrySettings(bowOffsetMeters: 10, gpsOffsetStarboardMeters: 0, useBowOffsetForLineAssist: true)
+        )
+
+        XCTAssertEqual(result.referencePoint, .bow)
+        XCTAssertTrue(result.isBowOffsetApplied)
+        XCTAssertGreaterThan(result.position.latitude, 0)
+        XCTAssertEqual(result.position.longitude, 0, accuracy: 0.000001)
+    }
+
+    func testBoatReferencePointProjectsBowEast() {
+        let result = NavigationMath.calculateBoatReferencePoint(
+            gpsPosition: LatLon(latitude: 0, longitude: 0),
+            cogDegrees: 90,
+            headingDegrees: nil,
+            geometry: BoatGeometrySettings(bowOffsetMeters: 10, gpsOffsetStarboardMeters: 0, useBowOffsetForLineAssist: true)
+        )
+
+        XCTAssertEqual(result.referencePoint, .bow)
+        XCTAssertGreaterThan(result.position.longitude, 0)
+        XCTAssertEqual(result.position.latitude, 0, accuracy: 0.000001)
+    }
+
+    func testBoatReferencePointDisabledUsesGPS() {
+        let position = LatLon(latitude: -37.9, longitude: 145)
+        let result = NavigationMath.calculateBoatReferencePoint(
+            gpsPosition: position,
+            cogDegrees: 0,
+            headingDegrees: 0,
+            geometry: BoatGeometrySettings(bowOffsetMeters: 10, gpsOffsetStarboardMeters: 0, useBowOffsetForLineAssist: false)
+        )
+
+        XCTAssertEqual(result.position, position)
+        XCTAssertEqual(result.referencePoint, .gps)
+        XCTAssertFalse(result.isBowOffsetApplied)
+        XCTAssertFalse(result.isDegraded)
+        XCTAssertEqual(result.degradedReason, .disabled)
+    }
+
+    func testBoatReferencePointDefaultCOGDoesNotRequireHeading() {
+        let result = NavigationMath.calculateBoatReferencePoint(
+            gpsPosition: LatLon(latitude: 0, longitude: 0),
+            cogDegrees: 0,
+            headingDegrees: nil,
+            geometry: BoatGeometrySettings(bowOffsetMeters: 10, gpsOffsetStarboardMeters: 0, useBowOffsetForLineAssist: true)
+        )
+
+        XCTAssertEqual(result.referencePoint, .bow)
+        XCTAssertTrue(result.isBowOffsetApplied)
+        XCTAssertFalse(result.isDegraded)
+        XCTAssertGreaterThan(result.position.latitude, 0)
+    }
+
+    func testBoatReferencePointAdvancedHeadingModeFallsBackWhenHeadingIsMissing() {
+        let position = LatLon(latitude: -37.9, longitude: 145)
+        let result = NavigationMath.calculateBoatReferencePoint(
+            gpsPosition: position,
+            cogDegrees: 0,
+            headingDegrees: nil,
+            geometry: BoatGeometrySettings(
+                bowOffsetMeters: 10,
+                gpsOffsetStarboardMeters: 0,
+                useBowOffsetForLineAssist: true,
+                referenceBearingSource: .heading
+            )
+        )
+
+        XCTAssertEqual(result.position, position)
+        XCTAssertEqual(result.referencePoint, .gps)
+        XCTAssertFalse(result.isBowOffsetApplied)
+        XCTAssertTrue(result.isDegraded)
+        XCTAssertEqual(result.degradedReason, .missingHeading)
+    }
+
+    func testBoatReferencePointZeroBowOffsetFallsBackToGPS() {
+        let position = LatLon(latitude: -37.9, longitude: 145)
+        let result = NavigationMath.calculateBoatReferencePoint(
+            gpsPosition: position,
+            cogDegrees: 0,
+            headingDegrees: 0,
+            geometry: BoatGeometrySettings(bowOffsetMeters: 0, gpsOffsetStarboardMeters: 0, useBowOffsetForLineAssist: true)
+        )
+
+        XCTAssertEqual(result.position, position)
+        XCTAssertEqual(result.referencePoint, .gps)
+        XCTAssertTrue(result.isDegraded)
+        XCTAssertEqual(result.degradedReason, .missingGeometry)
+    }
+
+    func testBoatReferencePointCorrectsStarboardSidewaysOffsetToPort() {
+        let result = NavigationMath.calculateBoatReferencePoint(
+            gpsPosition: LatLon(latitude: 0, longitude: 0),
+            cogDegrees: 0,
+            headingDegrees: nil,
+            geometry: BoatGeometrySettings(bowOffsetMeters: 10, gpsOffsetStarboardMeters: 2, useBowOffsetForLineAssist: true)
+        )
+
+        XCTAssertGreaterThan(result.position.latitude, 0)
+        XCTAssertLessThan(result.position.longitude, 0)
+    }
+
+    func testBoatReferencePointCorrectsPortSidewaysOffsetToStarboard() {
+        let result = NavigationMath.calculateBoatReferencePoint(
+            gpsPosition: LatLon(latitude: 0, longitude: 0),
+            cogDegrees: 0,
+            headingDegrees: nil,
+            geometry: BoatGeometrySettings(bowOffsetMeters: 10, gpsOffsetStarboardMeters: -2, useBowOffsetForLineAssist: true)
+        )
+
+        XCTAssertGreaterThan(result.position.latitude, 0)
+        XCTAssertGreaterThan(result.position.longitude, 0)
+    }
+
+    func testBowCorrectionReducesPerpendicularTimeToLine() {
+        let lineStart = mark(latitude: 0, longitude: -0.001)
+        let lineEnd = mark(latitude: 0, longitude: 0.001)
+        let gps = navigationFix(latitude: -100 / 111_320, longitude: 0, sogKnots: 5, cogDegrees: 0, headingDegrees: 0)
+        let gpsResult = NavigationMath.lineCrossing(fix: gps, lineStart: lineStart, lineEnd: lineEnd)
+        let bowResult = NavigationMath.lineCrossing(
+            fix: gps,
+            lineStart: lineStart,
+            lineEnd: lineEnd,
+            geometry: BoatGeometrySettings(bowOffsetMeters: 10, gpsOffsetStarboardMeters: 0, useBowOffsetForLineAssist: true)
+        )
+
+        XCTAssertEqual(bowResult.referencePoint, .bow)
+        XCTAssertTrue(bowResult.isBowOffsetApplied)
+        XCTAssertEqual((gpsResult.timeToLine ?? 0) - (bowResult.timeToLine ?? 0), 10 / knotsToMetersPerSecond(5), accuracy: 0.4)
+        XCTAssertEqual(bowResult.bowGainToLineMeters ?? 0, 10, accuracy: 0.4)
+    }
+
+    func testBowCorrectionDoesNotReduceParallelDistance() {
+        let lineStart = mark(latitude: 0, longitude: -0.001)
+        let lineEnd = mark(latitude: 0, longitude: 0.001)
+        let gps = navigationFix(latitude: -100 / 111_320, longitude: 0, sogKnots: 5, cogDegrees: 90, headingDegrees: 90)
+        let bowResult = NavigationMath.lineCrossing(
+            fix: gps,
+            lineStart: lineStart,
+            lineEnd: lineEnd,
+            geometry: BoatGeometrySettings(bowOffsetMeters: 10, gpsOffsetStarboardMeters: 0, useBowOffsetForLineAssist: true)
+        )
+
+        XCTAssertEqual(bowResult.status, .parallel)
+        XCTAssertEqual(bowResult.gpsDistanceToLineMeters ?? 0, bowResult.bowDistanceToLineMeters ?? -1, accuracy: 0.2)
+        XCTAssertEqual(bowResult.bowGainToLineMeters ?? 0, 0, accuracy: 0.2)
+    }
+
+    func testBowCorrectionPartiallyReducesDistanceAtFortyFiveDegrees() {
+        let lineStart = mark(latitude: 0, longitude: -0.001)
+        let lineEnd = mark(latitude: 0, longitude: 0.001)
+        let gps = navigationFix(latitude: -100 / 111_320, longitude: 0, sogKnots: 5, cogDegrees: 45, headingDegrees: nil)
+        let bowResult = NavigationMath.lineCrossing(
+            fix: gps,
+            lineStart: lineStart,
+            lineEnd: lineEnd,
+            geometry: BoatGeometrySettings(bowOffsetMeters: 10, gpsOffsetStarboardMeters: 0, useBowOffsetForLineAssist: true)
+        )
+
+        XCTAssertEqual(bowResult.bowGainToLineMeters ?? 0, 10 * cos(.pi / 4), accuracy: 0.4)
+    }
+
+    func testDefaultBowPositionUsesCOGWhenHeadingDiffers() {
+        let lineStart = mark(latitude: 0, longitude: -0.001)
+        let lineEnd = mark(latitude: 0, longitude: 0.001)
+        let gps = navigationFix(latitude: -100 / 111_320, longitude: 0, sogKnots: 5, cogDegrees: 90, headingDegrees: 0)
+        let bowResult = NavigationMath.lineCrossing(
+            fix: gps,
+            lineStart: lineStart,
+            lineEnd: lineEnd,
+            geometry: BoatGeometrySettings(bowOffsetMeters: 10, gpsOffsetStarboardMeters: 0, useBowOffsetForLineAssist: true)
+        )
+
+        XCTAssertEqual(bowResult.status, .parallel)
+        XCTAssertNil(bowResult.timeToLine)
+        XCTAssertEqual(bowResult.bowGainToLineMeters ?? 0, 0, accuracy: 0.4)
+    }
+
+    func testAdvancedHeadingBowPositionUsesHeadingButTTLUsesCOG() {
+        let lineStart = mark(latitude: 0, longitude: -0.001)
+        let lineEnd = mark(latitude: 0, longitude: 0.001)
+        let gps = navigationFix(latitude: -100 / 111_320, longitude: 0, sogKnots: 5, cogDegrees: 90, headingDegrees: 0)
+        let bowResult = NavigationMath.lineCrossing(
+            fix: gps,
+            lineStart: lineStart,
+            lineEnd: lineEnd,
+            geometry: BoatGeometrySettings(
+                bowOffsetMeters: 10,
+                gpsOffsetStarboardMeters: 0,
+                useBowOffsetForLineAssist: true,
+                referenceBearingSource: .heading
+            )
+        )
+
+        XCTAssertEqual(bowResult.status, .parallel)
+        XCTAssertNil(bowResult.timeToLine)
+        XCTAssertEqual(bowResult.bowGainToLineMeters ?? 0, 10, accuracy: 0.4)
+    }
+
     private func mark(latitude: Double, longitude: Double) -> Mark {
         Mark(
             id: UUID().uuidString,
@@ -111,19 +313,29 @@ final class NavigationMathTests: XCTestCase {
         )
     }
 
-    private func navigationFix(latitude: Double, longitude: Double, sogKnots: Double?, cogDegrees: Double?) -> NavigationFix {
+    private func navigationFix(
+        latitude: Double,
+        longitude: Double,
+        sogKnots: Double?,
+        cogDegrees: Double?,
+        headingDegrees: Double? = nil
+    ) -> NavigationFix {
         NavigationFix(
             latitude: latitude,
             longitude: longitude,
             sogKnots: sogKnots,
             cogDegrees: cogDegrees,
-            headingDegrees: nil,
+            headingDegrees: headingDegrees,
             timestamp: Date(timeIntervalSinceReferenceDate: 0),
             source: .iPhoneGPS,
             horizontalAccuracyMeters: 3,
             hdop: nil,
             validFix: true
         )
+    }
+
+    private func knotsToMetersPerSecond(_ knots: Double) -> Double {
+        knots * 1852 / 3600
     }
 }
 #endif
