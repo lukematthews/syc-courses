@@ -14,6 +14,11 @@ final class LocationService: NSObject, ObservableObject, CLLocationManagerDelega
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.activityType = .otherNavigation
+        manager.pausesLocationUpdatesAutomatically = false
+        #if os(iOS)
+        manager.allowsBackgroundLocationUpdates = true
+        manager.showsBackgroundLocationIndicator = true
+        #endif
     }
 
     func requestLocation() {

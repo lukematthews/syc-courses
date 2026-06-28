@@ -21,7 +21,7 @@ export const courses: Course[] = [
   {
     courseNumber: 1,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Course: 2",
+    comparableCourseNote: "Southerly start. Comparable Course: 2",
     totalDistance: "4.12 nm",
     chartImage: "/course-charts/course-01.png",
     chartAlt: "Course 1 chart cropped from SYC 2025-28 course booklet page 4.",
@@ -63,7 +63,7 @@ export const courses: Course[] = [
   {
     courseNumber: 2,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Course: 1",
+    comparableCourseNote: "Northerly start. Comparable Course: 1",
     totalDistance: "4.12 nm",
     chartImage: "/course-charts/course-02.png",
     chartAlt: "Course 2 chart cropped from SYC 2025-28 course booklet page 4.",
@@ -105,7 +105,7 @@ export const courses: Course[] = [
   {
     courseNumber: 3,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Course: 4",
+    comparableCourseNote: "Southerly start. Comparable Course: 4",
     totalDistance: "6.05 nm",
     chartImage: "/course-charts/course-03.png",
     chartAlt: "Course 3 chart cropped from SYC 2025-28 course booklet page 5.",
@@ -147,7 +147,7 @@ export const courses: Course[] = [
   {
     courseNumber: 4,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Course: 2",
+    comparableCourseNote: "Northerly start. Comparable Course: 2",
     totalDistance: "6.05 nm",
     chartImage: "/course-charts/course-04.png",
     chartAlt: "Course 4 chart cropped from SYC 2025-28 course booklet page 5.",
@@ -189,7 +189,7 @@ export const courses: Course[] = [
   {
     courseNumber: 5,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Course: 8",
+    comparableCourseNote: "Southerly start. Comparable Course: 8",
     totalDistance: "4.57 nm",
     chartImage: "/course-charts/course-05.png",
     chartAlt: "Course 5 chart cropped from SYC 2025-28 course booklet page 6.",
@@ -231,7 +231,7 @@ export const courses: Course[] = [
   {
     courseNumber: 6,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Course: 9",
+    comparableCourseNote: "Southerly start. Comparable Course: 9",
     totalDistance: "6.16 nm",
     chartImage: "/course-charts/course-06.png",
     chartAlt: "Course 6 chart cropped from SYC 2025-28 course booklet page 6.",
@@ -273,6 +273,7 @@ export const courses: Course[] = [
   {
     courseNumber: 7,
     passInstruction: "All marks to Port",
+    comparableCourseNote: "Northerly start.",
     totalDistance: "6.50 nm",
     chartImage: "/course-charts/course-07.png",
     chartAlt: "Course 7 chart cropped from SYC 2025-28 course booklet page 7.",
@@ -314,7 +315,7 @@ export const courses: Course[] = [
   {
     courseNumber: 8,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Course: 5",
+    comparableCourseNote: "Northerly start. Comparable Course: 5",
     totalDistance: "4.57 nm",
     chartImage: "/course-charts/course-08.png",
     chartAlt: "Course 8 chart cropped from SYC 2025-28 course booklet page 7.",
@@ -356,7 +357,7 @@ export const courses: Course[] = [
   {
     courseNumber: 9,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Course: 6",
+    comparableCourseNote: "Northerly start. Comparable Course: 6",
     totalDistance: "6.16 nm",
     chartImage: "/course-charts/course-09.png",
     chartAlt: "Course 9 chart cropped from SYC 2025-28 course booklet page 8.",
@@ -398,6 +399,7 @@ export const courses: Course[] = [
   {
     courseNumber: 10,
     passInstruction: "All marks to Stbd",
+    comparableCourseNote: "Southerly start.",
     totalDistance: "7.36 nm",
     chartImage: "/course-charts/course-10.png",
     chartAlt: "Course 10 chart cropped from SYC 2025-28 course booklet page 8.",
@@ -469,6 +471,7 @@ export const courses: Course[] = [
   {
     courseNumber: 11,
     passInstruction: "All marks to Stbd",
+    comparableCourseNote: "Southerly start.",
     totalDistance: "8.03 nm",
     chartImage: "/course-charts/course-11.png",
     chartAlt: "Course 11 chart cropped from SYC 2025-28 course booklet page 9.",
@@ -534,7 +537,7 @@ export const courses: Course[] = [
   {
     courseNumber: 12,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Course: 24",
+    comparableCourseNote: "Southerly start. Comparable Course: 24",
     totalDistance: "9.29 nm",
     chartImage: "/course-charts/course-12.png",
     chartAlt: "Course 12 chart cropped from SYC 2025-28 course booklet page 9.",
@@ -606,7 +609,7 @@ export const courses: Course[] = [
   {
     courseNumber: 13,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Course: 25",
+    comparableCourseNote: "Southerly start. Comparable Course: 25",
     totalDistance: "9.40 nm",
     chartImage: "/course-charts/course-13.png",
     chartAlt: "Course 13 chart cropped from SYC 2025-28 course booklet page 10.",
@@ -678,7 +681,7 @@ export const courses: Course[] = [
   {
     courseNumber: 14,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Course: 19",
+    comparableCourseNote: "Southerly start. Comparable Course: 19",
     totalDistance: "7.81 nm",
     chartImage: "/course-charts/course-14.png",
     chartAlt: "Course 14 chart cropped from SYC 2025-28 course booklet page 10.",
@@ -750,6 +753,7 @@ export const courses: Course[] = [
   {
     courseNumber: 15,
     passInstruction: "All marks to Stbd",
+    comparableCourseNote: "Southerly start.",
     totalDistance: "12.23 nm",
     chartImage: "/course-charts/course-15.png",
     chartAlt: "Course 15 chart cropped from SYC 2025-28 course booklet page 11.",
@@ -839,7 +843,7 @@ export const courses: Course[] = [
   {
     courseNumber: 16,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Course: 21",
+    comparableCourseNote: "Southerly start. Comparable Course: 21",
     totalDistance: "11.60 nm",
     chartImage: "/course-charts/course-16.png",
     chartAlt: "Course 16 chart cropped from SYC 2025-28 course booklet page 11.",
@@ -911,7 +915,7 @@ export const courses: Course[] = [
   {
     courseNumber: 17,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Course: 32 (shortened)",
+    comparableCourseNote: "Northerly start. Comparable Course: 32 (shortened)",
     totalDistance: "7.25 nm",
     chartImage: "/course-charts/course-17.png",
     chartAlt: "Course 17 chart cropped from SYC 2025-28 course booklet page 12.",
@@ -983,6 +987,7 @@ export const courses: Course[] = [
   {
     courseNumber: 18,
     passInstruction: "All marks to Stbd",
+    comparableCourseNote: "Southerly start.",
     totalDistance: "12.66 nm",
     chartImage: "/course-charts/course-18.png",
     chartAlt: "Course 18 chart cropped from SYC 2025-28 course booklet page 12.",
@@ -1054,7 +1059,7 @@ export const courses: Course[] = [
   {
     courseNumber: 19,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Courses: 14",
+    comparableCourseNote: "Northerly start. Comparable Courses: 14",
     totalDistance: "7.81 nm",
     chartImage: "/course-charts/course-19.png",
     chartAlt: "Course 19 chart cropped from SYC 2025-28 course booklet page 13.",
@@ -1126,6 +1131,7 @@ export const courses: Course[] = [
   {
     courseNumber: 20,
     passInstruction: "All marks to Stbd unless otherwise stated",
+    comparableCourseNote: "Northerly start.",
     totalDistance: "12.11 nm",
     chartImage: "/course-charts/course-20.png",
     chartAlt: "Course 20 chart cropped from SYC 2025-28 course booklet page 13.",
@@ -1215,7 +1221,7 @@ export const courses: Course[] = [
   {
     courseNumber: 21,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Course: 16",
+    comparableCourseNote: "Northerly start. Comparable Course: 16",
     totalDistance: "11.48 nm",
     chartImage: "/course-charts/course-21.png",
     chartAlt: "Course 21 chart cropped from SYC 2025-28 course booklet page 14.",
@@ -1281,6 +1287,7 @@ export const courses: Course[] = [
   {
     courseNumber: 22,
     passInstruction: "All marks to Port",
+    comparableCourseNote: "Northerly start.",
     totalDistance: "16.56 nm",
     chartImage: "/course-charts/course-22.png",
     chartAlt: "Course 22 chart cropped from SYC 2025-28 course booklet page 14.",
@@ -1346,7 +1353,7 @@ export const courses: Course[] = [
   {
     courseNumber: 23,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Course: 36",
+    comparableCourseNote: "Northerly start. Comparable Course: 36",
     totalDistance: "16.52 nm",
     chartImage: "/course-charts/course-23.png",
     chartAlt: "Course 23 chart cropped from SYC 2025-28 course booklet page 15.",
@@ -1406,7 +1413,7 @@ export const courses: Course[] = [
   {
     courseNumber: 24,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Course: 12",
+    comparableCourseNote: "Northerly start. Comparable Course: 12",
     totalDistance: "9.29 nm",
     chartImage: "/course-charts/course-24.png",
     chartAlt: "Course 24 chart cropped from SYC 2025-28 course booklet page 15.",
@@ -1478,7 +1485,7 @@ export const courses: Course[] = [
   {
     courseNumber: 25,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable course: 13",
+    comparableCourseNote: "Northerly start. Comparable course: 13",
     totalDistance: "9.40 nm",
     chartImage: "/course-charts/course-25.png",
     chartAlt: "Course 25 chart cropped from SYC 2025-28 course booklet page 16.",
@@ -1550,6 +1557,7 @@ export const courses: Course[] = [
   {
     courseNumber: 26,
     passInstruction: "All marks to Stbd unless otherwise stated",
+    comparableCourseNote: "Northerly start.",
     totalDistance: "7.93 nm",
     chartImage: "/course-charts/course-26.png",
     chartAlt: "Course 26 chart cropped from SYC 2025-28 course booklet page 16.",
@@ -1615,6 +1623,7 @@ export const courses: Course[] = [
   {
     courseNumber: 27,
     passInstruction: "All marks to Port",
+    comparableCourseNote: "Northerly start.",
     totalDistance: "9.35 nm",
     chartImage: "/course-charts/course-27.png",
     chartAlt: "Course 27 chart cropped from SYC 2025-28 course booklet page 17.",
@@ -1686,6 +1695,7 @@ export const courses: Course[] = [
   {
     courseNumber: 28,
     passInstruction: "All marks to Stbd unless otherwise stated",
+    comparableCourseNote: "Northerly start.",
     totalDistance: "11.64 nm",
     chartImage: "/course-charts/course-28.png",
     chartAlt: "Course 28 chart cropped from SYC 2025-28 course booklet page 17.",
@@ -1751,6 +1761,7 @@ export const courses: Course[] = [
   {
     courseNumber: 29,
     passInstruction: "All marks to Stbd",
+    comparableCourseNote: "Southerly start.",
     totalDistance: "9.43 nm",
     chartImage: "/course-charts/course-29.png",
     chartAlt: "Course 29 chart cropped from SYC 2025-28 course booklet page 18.",
@@ -1816,7 +1827,7 @@ export const courses: Course[] = [
   {
     courseNumber: 30,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Courses: 39",
+    comparableCourseNote: "Southerly start. Comparable Courses: 39",
     totalDistance: "10.53 nm",
     chartImage: "/course-charts/course-30.png",
     chartAlt: "Course 30 chart cropped from SYC 2025-28 course booklet page 18.",
@@ -1888,7 +1899,7 @@ export const courses: Course[] = [
   {
     courseNumber: 31,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Course: 51",
+    comparableCourseNote: "Northerly start. Comparable Course: 51",
     totalDistance: "9.97 nm",
     chartImage: "/course-charts/course-31.png",
     chartAlt: "Course 31 chart cropped from SYC 2025-28 course booklet page 19.",
@@ -1960,7 +1971,7 @@ export const courses: Course[] = [
   {
     courseNumber: 32,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Course: 41",
+    comparableCourseNote: "Southerly start. Comparable Course: 41",
     totalDistance: "11.32 nm",
     chartImage: "/course-charts/course-32.png",
     chartAlt: "Course 32 chart cropped from SYC 2025-28 course booklet page 19.",
@@ -2062,7 +2073,7 @@ export const courses: Course[] = [
   {
     courseNumber: 33,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Course: 43",
+    comparableCourseNote: "Southerly start. Comparable Course: 43",
     totalDistance: "12.32 nm",
     chartImage: "/course-charts/course-33.png",
     chartAlt: "Course 33 chart cropped from SYC 2025-28 course booklet page 20.",
@@ -2134,7 +2145,7 @@ export const courses: Course[] = [
   {
     courseNumber: 34,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Courses: 44",
+    comparableCourseNote: "Southerly start. Comparable Courses: 44",
     totalDistance: "13.42 nm",
     chartImage: "/course-charts/course-34.png",
     chartAlt: "Course 34 chart cropped from SYC 2025-28 course booklet page 20.",
@@ -2206,6 +2217,7 @@ export const courses: Course[] = [
   {
     courseNumber: 35,
     passInstruction: "All marks to Stbd",
+    comparableCourseNote: "Southerly start.",
     totalDistance: "13.63 nm",
     chartImage: "/course-charts/course-35.png",
     chartAlt: "Course 35 chart cropped from SYC 2025-28 course booklet page 21.",
@@ -2295,7 +2307,7 @@ export const courses: Course[] = [
   {
     courseNumber: 36,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Course: 23",
+    comparableCourseNote: "Southerly start. Comparable Course: 23",
     totalDistance: "15.12 nm",
     chartImage: "/course-charts/course-36.png",
     chartAlt: "Course 36 chart cropped from SYC 2025-28 course booklet page 21.",
@@ -2361,7 +2373,7 @@ export const courses: Course[] = [
   {
     courseNumber: 37,
     passInstruction: "All marks to Stbd unless otherwise stated",
-    comparableCourseNote: "Comparable Course: 42",
+    comparableCourseNote: "Southerly start. Comparable Course: 42",
     totalDistance: "18.47 nm",
     chartImage: "/course-charts/course-37.png",
     chartAlt: "Course 37 chart cropped from SYC 2025-28 course booklet page 22.",
@@ -2409,6 +2421,7 @@ export const courses: Course[] = [
   {
     courseNumber: 38,
     passInstruction: "All marks to Stbd unless otherwise stated",
+    comparableCourseNote: "Northerly start.",
     totalDistance: "15.10 nm",
     chartImage: "/course-charts/course-38.png",
     chartAlt: "Course 38 chart cropped from SYC 2025-28 course booklet page 22.",
@@ -2486,7 +2499,7 @@ export const courses: Course[] = [
   {
     courseNumber: 39,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Courses: 30",
+    comparableCourseNote: "Northerly start. Comparable Courses: 30",
     totalDistance: "10.53 nm",
     chartImage: "/course-charts/course-39.png",
     chartAlt: "Course 39 chart cropped from SYC 2025-28 course booklet page 23.",
@@ -2558,6 +2571,7 @@ export const courses: Course[] = [
   {
     courseNumber: 40,
     passInstruction: "All marks to Stbd",
+    comparableCourseNote: "Southerly start.",
     totalDistance: "18.72 nm",
     chartImage: "/course-charts/course-40.png",
     chartAlt: "Course 40 chart cropped from SYC 2025-28 course booklet page 23.",
@@ -2617,7 +2631,7 @@ export const courses: Course[] = [
   {
     courseNumber: 41,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Course: 32",
+    comparableCourseNote: "Northerly start. Comparable Course: 32",
     totalDistance: "11.30 nm",
     chartImage: "/course-charts/course-41.png",
     chartAlt: "Course 41 chart cropped from SYC 2025-28 course booklet page 24.",
@@ -2719,7 +2733,7 @@ export const courses: Course[] = [
   {
     courseNumber: 42,
     passInstruction: "All marks to Stbd unless otherwise stated",
-    comparableCourseNote: "Comparable Course: 37",
+    comparableCourseNote: "Southerly start. Comparable Course: 37",
     totalDistance: "25.25 nm",
     chartImage: "/course-charts/course-42.png",
     chartAlt: "Course 42 chart cropped from SYC 2025-28 course booklet page 24.",
@@ -2797,7 +2811,7 @@ export const courses: Course[] = [
   {
     courseNumber: 43,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Course: 33",
+    comparableCourseNote: "Northerly start. Comparable Course: 33",
     totalDistance: "12.32 nm",
     chartImage: "/course-charts/course-43.png",
     chartAlt: "Course 43 chart cropped from SYC 2025-28 course booklet page 25.",
@@ -2869,7 +2883,7 @@ export const courses: Course[] = [
   {
     courseNumber: 44,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Courses: 34",
+    comparableCourseNote: "Northerly start. Comparable Courses: 34",
     totalDistance: "13.42 nm",
     chartImage: "/course-charts/course-44.png",
     chartAlt: "Course 44 chart cropped from SYC 2025-28 course booklet page 25.",
@@ -2941,6 +2955,7 @@ export const courses: Course[] = [
   {
     courseNumber: 45,
     passInstruction: "All marks to Port",
+    comparableCourseNote: "Northerly start.",
     totalDistance: "11.03 nm",
     chartImage: "/course-charts/course-45.png",
     chartAlt: "Course 45 chart cropped from SYC 2025-28 course booklet page 26.",
@@ -2988,6 +3003,7 @@ export const courses: Course[] = [
   {
     courseNumber: 46,
     passInstruction: "All marks to Stbd",
+    comparableCourseNote: "Southerly start.",
     totalDistance: "11.80 nm",
     chartImage: "/course-charts/course-46.png",
     chartAlt: "Course 46 chart cropped from SYC 2025-28 course booklet page 26.",
@@ -3041,6 +3057,7 @@ export const courses: Course[] = [
   {
     courseNumber: 47,
     passInstruction: "All marks to Stbd unless otherwise stated",
+    comparableCourseNote: "Northerly start.",
     totalDistance: "9.26 nm",
     chartImage: "/course-charts/course-47.png",
     chartAlt: "Course 47 chart cropped from SYC 2025-28 course booklet page 27.",
@@ -3106,6 +3123,7 @@ export const courses: Course[] = [
   {
     courseNumber: 48,
     passInstruction: "All marks to Stbd",
+    comparableCourseNote: "Southerly start.",
     totalDistance: "16.72 nm",
     chartImage: "/course-charts/course-48.png",
     chartAlt: "Course 48 chart cropped from SYC 2025-28 course booklet page 27.",
@@ -3177,7 +3195,7 @@ export const courses: Course[] = [
   {
     courseNumber: 49,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Courses: 55",
+    comparableCourseNote: "Southerly start. Comparable Courses: 55",
     totalDistance: "17.84 nm",
     chartImage: "/course-charts/course-49.png",
     chartAlt: "Course 49 chart cropped from SYC 2025-28 course booklet page 28.",
@@ -3243,7 +3261,7 @@ export const courses: Course[] = [
   {
     courseNumber: 50,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Course: 56",
+    comparableCourseNote: "Southerly start. Comparable Course: 56",
     totalDistance: "19.56 nm",
     chartImage: "/course-charts/course-50.png",
     chartAlt: "Course 50 chart cropped from SYC 2025-28 course booklet page 28.",
@@ -3345,7 +3363,7 @@ export const courses: Course[] = [
   {
     courseNumber: 51,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Course: 31",
+    comparableCourseNote: "Southerly start. Comparable Course: 31",
     totalDistance: "9.97 nm",
     chartImage: "/course-charts/course-51.png",
     chartAlt: "Course 51 chart cropped from SYC 2025-28 course booklet page 29.",
@@ -3417,7 +3435,7 @@ export const courses: Course[] = [
   {
     courseNumber: 52,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Courses: 57",
+    comparableCourseNote: "Southerly start. Comparable Courses: 57",
     totalDistance: "20.76 nm",
     chartImage: "/course-charts/course-52.png",
     chartAlt: "Course 52 chart cropped from SYC 2025-28 course booklet page 29.",
@@ -3483,7 +3501,7 @@ export const courses: Course[] = [
   {
     courseNumber: 53,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Course: 54",
+    comparableCourseNote: "Northerly start. Comparable Course: 54",
     totalDistance: "18.53 nm",
     chartImage: "/course-charts/course-53.png",
     chartAlt: "Course 53 chart cropped from SYC 2025-28 course booklet page 30.",
@@ -3549,7 +3567,7 @@ export const courses: Course[] = [
   {
     courseNumber: 54,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Course: 53",
+    comparableCourseNote: "Southerly start. Comparable Course: 53",
     totalDistance: "18.44 nm",
     chartImage: "/course-charts/course-54.png",
     chartAlt: "Course 54 chart cropped from SYC 2025-28 course booklet page 30.",
@@ -3615,7 +3633,7 @@ export const courses: Course[] = [
   {
     courseNumber: 55,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Courses: 49",
+    comparableCourseNote: "Northerly start. Comparable Courses: 49",
     totalDistance: "17.84 nm",
     chartImage: "/course-charts/course-55.png",
     chartAlt: "Course 55 chart cropped from SYC 2025-28 course booklet page 31.",
@@ -3681,7 +3699,7 @@ export const courses: Course[] = [
   {
     courseNumber: 56,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Course: 50",
+    comparableCourseNote: "Northerly start. Comparable Course: 50",
     totalDistance: "19.56 nm",
     chartImage: "/course-charts/course-56.png",
     chartAlt: "Course 56 chart cropped from SYC 2025-28 course booklet page 31.",
@@ -3783,7 +3801,7 @@ export const courses: Course[] = [
   {
     courseNumber: 57,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Course: 52",
+    comparableCourseNote: "Northerly start. Comparable Course: 52",
     totalDistance: "22.72 nm",
     chartImage: "/course-charts/course-57.png",
     chartAlt: "Course 57 chart cropped from SYC 2025-28 course booklet page 32.",
@@ -3849,7 +3867,7 @@ export const courses: Course[] = [
   {
     courseNumber: 58,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Course: 59",
+    comparableCourseNote: "Southerly start. Comparable Course: 59",
     totalDistance: "22.11 nm",
     chartImage: "/course-charts/course-58.png",
     chartAlt: "Course 58 chart cropped from SYC 2025-28 course booklet page 32.",
@@ -3945,7 +3963,7 @@ export const courses: Course[] = [
   {
     courseNumber: 59,
     passInstruction: "All marks to Port",
-    comparableCourseNote: "Comparable Course: 58",
+    comparableCourseNote: "Northerly start. Comparable Course: 58",
     totalDistance: "22.88 nm",
     chartImage: "/course-charts/course-59.png",
     chartAlt: "Course 59 chart cropped from SYC 2025-28 course booklet page 33.",
@@ -4041,6 +4059,7 @@ export const courses: Course[] = [
   {
     courseNumber: 60,
     passInstruction: "All marks to Stbd unless otherwise stated",
+    comparableCourseNote: "Southerly start.",
     totalDistance: "20.54 nm",
     chartImage: "/course-charts/course-60.png",
     chartAlt: "Course 60 chart cropped from SYC 2025-28 course booklet page 33.",
@@ -4130,7 +4149,7 @@ export const courses: Course[] = [
   {
     courseNumber: 61,
     passInstruction: "All marks to Stbd unless otherwise stated",
-    comparableCourseNote: "Comparable Course: 62",
+    comparableCourseNote: "Northerly start. Comparable Course: 62",
     totalDistance: "22.06 nm",
     chartImage: "/course-charts/course-61.png",
     chartAlt: "Course 61 chart cropped from SYC 2025-28 course booklet page 34.",
@@ -4172,7 +4191,7 @@ export const courses: Course[] = [
   {
     courseNumber: 62,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Course: 61",
+    comparableCourseNote: "Southerly start. Comparable Course: 61",
     totalDistance: "21.74 nm",
     chartImage: "/course-charts/course-62.png",
     chartAlt: "Course 62 chart cropped from SYC 2025-28 course booklet page 34.",
@@ -4214,7 +4233,7 @@ export const courses: Course[] = [
   {
     courseNumber: 63,
     passInstruction: "All marks to Stbd",
-    comparableCourseNote: "Comparable Course: 64",
+    comparableCourseNote: "Southerly start. Comparable Course: 64",
     totalDistance: "17.35 nm",
     chartImage: "/course-charts/course-63.png",
     chartAlt: "Course 63 chart cropped from SYC 2025-28 course booklet page 35.",
@@ -4262,7 +4281,7 @@ export const courses: Course[] = [
   {
     courseNumber: 64,
     passInstruction: "All marks to Port unless otherwise stated",
-    comparableCourseNote: "Comparable Course: 63",
+    comparableCourseNote: "Northerly start. Comparable Course: 63",
     totalDistance: "18.50 nm",
     chartImage: "/course-charts/course-64.png",
     chartAlt: "Course 64 chart cropped from SYC 2025-28 course booklet page 35.",
@@ -4316,7 +4335,7 @@ export const courses: Course[] = [
   {
     courseNumber: 65,
     passInstruction: "All marks to Port unless otherwise stated",
-    comparableCourseNote: "Comparable Course: 66",
+    comparableCourseNote: "Northerly start. Comparable Course: 66",
     totalDistance: "23.10 nm",
     chartImage: "/course-charts/course-65.png",
     chartAlt: "Course 65 chart cropped from SYC 2025-28 course booklet page 36.",
@@ -4376,7 +4395,7 @@ export const courses: Course[] = [
   {
     courseNumber: 66,
     passInstruction: "All marks to Stbd unless otherwise stated",
-    comparableCourseNote: "Comparable Course: 65",
+    comparableCourseNote: "Southerly start. Comparable Course: 65",
     totalDistance: "23.39 nm",
     chartImage: "/course-charts/course-66.png",
     chartAlt: "Course 66 chart cropped from SYC 2025-28 course booklet page 36.",
@@ -4436,6 +4455,7 @@ export const courses: Course[] = [
   {
     courseNumber: 67,
     passInstruction: "All marks to Stbd",
+    comparableCourseNote: "Southerly start.",
     totalDistance: "11.56 nm",
     chartImage: "/course-charts/course-67.png",
     chartAlt: "Course 67 chart cropped from SYC 2025-28 course booklet page 37.",
@@ -4489,6 +4509,7 @@ export const courses: Course[] = [
   {
     courseNumber: 68,
     passInstruction: "All marks to Stbd unless otherwise stated",
+    comparableCourseNote: "Northerly start.",
     totalDistance: "10.69 nm",
     chartImage: "/course-charts/course-68.png",
     chartAlt: "Course 68 chart cropped from SYC 2025-28 course booklet page 37.",

@@ -17,20 +17,19 @@ struct PennantReferenceView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 86), spacing: 12)], spacing: 12) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 104), spacing: 10)], spacing: 10) {
                     ForEach(0...9, id: \.self) { digit in
                         Button {
                             if digits.count < 2 {
                                 digits.append(String(digit))
                             }
                         } label: {
-                            VStack(spacing: 8) {
-                                PennantView(digit: Character(String(digit)))
-                                    .frame(width: 86, height: 32)
+                            VStack(spacing: 4) {
+                                PennantView(digit: Character(String(digit)), width: 110, height: 42)
                                 Text("\(digit)")
                                     .font(.headline)
                             }
-                            .frame(maxWidth: .infinity, minHeight: 96)
+                            .frame(maxWidth: .infinity, minHeight: 76)
                             .background(.background)
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                         }

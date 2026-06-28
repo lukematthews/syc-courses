@@ -72,10 +72,12 @@ struct PennantHoistView: View {
 
 struct PennantView: View {
     let digit: Character
+    var width: CGFloat = 76
+    var height: CGFloat = 29
 
     var body: some View {
         PennantArtwork(digit: digit)
-            .frame(width: 76, height: 29)
+            .frame(width: width, height: height)
             .accessibilityLabel("Numeral pennant \(String(digit))")
     }
 }
@@ -134,8 +136,8 @@ private struct PennantArtwork: View {
                         .fill(Color.pennantBlack)
                         .clipShape(PennantFlagShape())
                 case "7":
-                    flag(fill: .pennantRed, stroke: .pennantRed, scale: scale)
-                    polygon([(14, 28), (226, 38), (226, 52), (14, 62)])
+                    flag(fill: .pennantRed, stroke: .pennantGrey, scale: scale)
+                    polygon([(14, 16), (226, 30), (226, 45), (14, 45)])
                         .fill(Color.pennantYellow)
                         .clipShape(PennantFlagShape())
                 case "8":

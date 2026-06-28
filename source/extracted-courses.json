@@ -39,7 +39,7 @@
     "chartAlt": "Course 1 chart cropped from SYC 2025-28 course booklet page 4.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 4,
-    "comparableCourseNote": "Comparable Course: 2"
+    "comparableCourseNote": "Southerly start. Comparable Course: 2"
   },
   {
     "courseNumber": 2,
@@ -81,7 +81,7 @@
     "chartAlt": "Course 2 chart cropped from SYC 2025-28 course booklet page 4.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 4,
-    "comparableCourseNote": "Comparable Course: 1"
+    "comparableCourseNote": "Northerly start. Comparable Course: 1"
   },
   {
     "courseNumber": 3,
@@ -123,7 +123,7 @@
     "chartAlt": "Course 3 chart cropped from SYC 2025-28 course booklet page 5.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 5,
-    "comparableCourseNote": "Comparable Course: 4"
+    "comparableCourseNote": "Southerly start. Comparable Course: 4"
   },
   {
     "courseNumber": 4,
@@ -165,7 +165,7 @@
     "chartAlt": "Course 4 chart cropped from SYC 2025-28 course booklet page 5.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 5,
-    "comparableCourseNote": "Comparable Course: 2"
+    "comparableCourseNote": "Northerly start. Comparable Course: 2"
   },
   {
     "courseNumber": 5,
@@ -207,7 +207,7 @@
     "chartAlt": "Course 5 chart cropped from SYC 2025-28 course booklet page 6.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 6,
-    "comparableCourseNote": "Comparable Course: 8"
+    "comparableCourseNote": "Southerly start. Comparable Course: 8"
   },
   {
     "courseNumber": 6,
@@ -249,7 +249,7 @@
     "chartAlt": "Course 6 chart cropped from SYC 2025-28 course booklet page 6.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 6,
-    "comparableCourseNote": "Comparable Course: 9"
+    "comparableCourseNote": "Southerly start. Comparable Course: 9"
   },
   {
     "courseNumber": 7,
@@ -291,7 +291,7 @@
     "chartAlt": "Course 7 chart cropped from SYC 2025-28 course booklet page 7.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 7,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Northerly start."
   },
   {
     "courseNumber": 8,
@@ -333,7 +333,7 @@
     "chartAlt": "Course 8 chart cropped from SYC 2025-28 course booklet page 7.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 7,
-    "comparableCourseNote": "Comparable Course: 5"
+    "comparableCourseNote": "Northerly start. Comparable Course: 5"
   },
   {
     "courseNumber": 9,
@@ -375,7 +375,7 @@
     "chartAlt": "Course 9 chart cropped from SYC 2025-28 course booklet page 8.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 8,
-    "comparableCourseNote": "Comparable Course: 6"
+    "comparableCourseNote": "Northerly start. Comparable Course: 6"
   },
   {
     "courseNumber": 10,
@@ -447,7 +447,7 @@
     "chartAlt": "Course 10 chart cropped from SYC 2025-28 course booklet page 8.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 8,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Southerly start."
   },
   {
     "courseNumber": 11,
@@ -513,7 +513,7 @@
     "chartAlt": "Course 11 chart cropped from SYC 2025-28 course booklet page 9.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 9,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Southerly start."
   },
   {
     "courseNumber": 12,
@@ -585,7 +585,7 @@
     "chartAlt": "Course 12 chart cropped from SYC 2025-28 course booklet page 9.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 9,
-    "comparableCourseNote": "Comparable Course: 24"
+    "comparableCourseNote": "Southerly start. Comparable Course: 24"
   },
   {
     "courseNumber": 13,
@@ -657,7 +657,7 @@
     "chartAlt": "Course 13 chart cropped from SYC 2025-28 course booklet page 10.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 10,
-    "comparableCourseNote": "Comparable Course: 25"
+    "comparableCourseNote": "Southerly start. Comparable Course: 25"
   },
   {
     "courseNumber": 14,
@@ -729,7 +729,7 @@
     "chartAlt": "Course 14 chart cropped from SYC 2025-28 course booklet page 10.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 10,
-    "comparableCourseNote": "Comparable Course: 19"
+    "comparableCourseNote": "Southerly start. Comparable Course: 19"
   },
   {
     "courseNumber": 15,
@@ -819,7 +819,7 @@
     "chartAlt": "Course 15 chart cropped from SYC 2025-28 course booklet page 11.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 11,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Southerly start."
   },
   {
     "courseNumber": 16,
@@ -891,7 +891,7 @@
     "chartAlt": "Course 16 chart cropped from SYC 2025-28 course booklet page 11.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 11,
-    "comparableCourseNote": "Comparable Course: 21"
+    "comparableCourseNote": "Southerly start. Comparable Course: 21"
   },
   {
     "courseNumber": 17,
@@ -963,7 +963,7 @@
     "chartAlt": "Course 17 chart cropped from SYC 2025-28 course booklet page 12.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 12,
-    "comparableCourseNote": "Comparable Course: 32 (shortened)"
+    "comparableCourseNote": "Northerly start. Comparable Course: 32 (shortened)"
   },
   {
     "courseNumber": 18,
@@ -1035,7 +1035,7 @@
     "chartAlt": "Course 18 chart cropped from SYC 2025-28 course booklet page 12.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 12,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Southerly start."
   },
   {
     "courseNumber": 19,
@@ -1107,7 +1107,7 @@
     "chartAlt": "Course 19 chart cropped from SYC 2025-28 course booklet page 13.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 13,
-    "comparableCourseNote": "Comparable Courses: 14"
+    "comparableCourseNote": "Northerly start. Comparable Courses: 14"
   },
   {
     "courseNumber": 20,
@@ -1197,7 +1197,7 @@
     "chartAlt": "Course 20 chart cropped from SYC 2025-28 course booklet page 13.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 13,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Northerly start."
   },
   {
     "courseNumber": 21,
@@ -1263,7 +1263,7 @@
     "chartAlt": "Course 21 chart cropped from SYC 2025-28 course booklet page 14.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 14,
-    "comparableCourseNote": "Comparable Course: 16"
+    "comparableCourseNote": "Northerly start. Comparable Course: 16"
   },
   {
     "courseNumber": 22,
@@ -1329,7 +1329,7 @@
     "chartAlt": "Course 22 chart cropped from SYC 2025-28 course booklet page 14.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 14,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Northerly start."
   },
   {
     "courseNumber": 23,
@@ -1389,7 +1389,7 @@
     "chartAlt": "Course 23 chart cropped from SYC 2025-28 course booklet page 15.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 15,
-    "comparableCourseNote": "Comparable Course: 36"
+    "comparableCourseNote": "Northerly start. Comparable Course: 36"
   },
   {
     "courseNumber": 24,
@@ -1461,7 +1461,7 @@
     "chartAlt": "Course 24 chart cropped from SYC 2025-28 course booklet page 15.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 15,
-    "comparableCourseNote": "Comparable Course: 12"
+    "comparableCourseNote": "Northerly start. Comparable Course: 12"
   },
   {
     "courseNumber": 25,
@@ -1533,7 +1533,7 @@
     "chartAlt": "Course 25 chart cropped from SYC 2025-28 course booklet page 16.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 16,
-    "comparableCourseNote": "Comparable course: 13"
+    "comparableCourseNote": "Northerly start. Comparable course: 13"
   },
   {
     "courseNumber": 26,
@@ -1599,7 +1599,7 @@
     "chartAlt": "Course 26 chart cropped from SYC 2025-28 course booklet page 16.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 16,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Northerly start."
   },
   {
     "courseNumber": 27,
@@ -1671,7 +1671,7 @@
     "chartAlt": "Course 27 chart cropped from SYC 2025-28 course booklet page 17.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 17,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Northerly start."
   },
   {
     "courseNumber": 28,
@@ -1737,7 +1737,7 @@
     "chartAlt": "Course 28 chart cropped from SYC 2025-28 course booklet page 17.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 17,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Northerly start."
   },
   {
     "courseNumber": 29,
@@ -1803,7 +1803,7 @@
     "chartAlt": "Course 29 chart cropped from SYC 2025-28 course booklet page 18.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 18,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Southerly start."
   },
   {
     "courseNumber": 30,
@@ -1875,7 +1875,7 @@
     "chartAlt": "Course 30 chart cropped from SYC 2025-28 course booklet page 18.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 18,
-    "comparableCourseNote": "Comparable Courses: 39"
+    "comparableCourseNote": "Southerly start. Comparable Courses: 39"
   },
   {
     "courseNumber": 31,
@@ -1947,7 +1947,7 @@
     "chartAlt": "Course 31 chart cropped from SYC 2025-28 course booklet page 19.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 19,
-    "comparableCourseNote": "Comparable Course: 51"
+    "comparableCourseNote": "Northerly start. Comparable Course: 51"
   },
   {
     "courseNumber": 32,
@@ -2049,7 +2049,7 @@
     "chartAlt": "Course 32 chart cropped from SYC 2025-28 course booklet page 19.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 19,
-    "comparableCourseNote": "Comparable Course: 41"
+    "comparableCourseNote": "Southerly start. Comparable Course: 41"
   },
   {
     "courseNumber": 33,
@@ -2121,7 +2121,7 @@
     "chartAlt": "Course 33 chart cropped from SYC 2025-28 course booklet page 20.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 20,
-    "comparableCourseNote": "Comparable Course: 43"
+    "comparableCourseNote": "Southerly start. Comparable Course: 43"
   },
   {
     "courseNumber": 34,
@@ -2193,7 +2193,7 @@
     "chartAlt": "Course 34 chart cropped from SYC 2025-28 course booklet page 20.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 20,
-    "comparableCourseNote": "Comparable Courses: 44"
+    "comparableCourseNote": "Southerly start. Comparable Courses: 44"
   },
   {
     "courseNumber": 35,
@@ -2283,7 +2283,7 @@
     "chartAlt": "Course 35 chart cropped from SYC 2025-28 course booklet page 21.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 21,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Southerly start."
   },
   {
     "courseNumber": 36,
@@ -2349,7 +2349,7 @@
     "chartAlt": "Course 36 chart cropped from SYC 2025-28 course booklet page 21.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 21,
-    "comparableCourseNote": "Comparable Course: 23"
+    "comparableCourseNote": "Southerly start. Comparable Course: 23"
   },
   {
     "courseNumber": 37,
@@ -2397,7 +2397,7 @@
     "chartAlt": "Course 37 chart cropped from SYC 2025-28 course booklet page 22.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 22,
-    "comparableCourseNote": "Comparable Course: 42"
+    "comparableCourseNote": "Southerly start. Comparable Course: 42"
   },
   {
     "courseNumber": 38,
@@ -2475,7 +2475,7 @@
     "chartAlt": "Course 38 chart cropped from SYC 2025-28 course booklet page 22.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 22,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Northerly start."
   },
   {
     "courseNumber": 39,
@@ -2547,7 +2547,7 @@
     "chartAlt": "Course 39 chart cropped from SYC 2025-28 course booklet page 23.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 23,
-    "comparableCourseNote": "Comparable Courses: 30"
+    "comparableCourseNote": "Northerly start. Comparable Courses: 30"
   },
   {
     "courseNumber": 40,
@@ -2607,7 +2607,7 @@
     "chartAlt": "Course 40 chart cropped from SYC 2025-28 course booklet page 23.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 23,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Southerly start."
   },
   {
     "courseNumber": 41,
@@ -2709,7 +2709,7 @@
     "chartAlt": "Course 41 chart cropped from SYC 2025-28 course booklet page 24.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 24,
-    "comparableCourseNote": "Comparable Course: 32"
+    "comparableCourseNote": "Northerly start. Comparable Course: 32"
   },
   {
     "courseNumber": 42,
@@ -2787,7 +2787,7 @@
     "chartAlt": "Course 42 chart cropped from SYC 2025-28 course booklet page 24.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 24,
-    "comparableCourseNote": "Comparable Course: 37"
+    "comparableCourseNote": "Southerly start. Comparable Course: 37"
   },
   {
     "courseNumber": 43,
@@ -2859,7 +2859,7 @@
     "chartAlt": "Course 43 chart cropped from SYC 2025-28 course booklet page 25.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 25,
-    "comparableCourseNote": "Comparable Course: 33"
+    "comparableCourseNote": "Northerly start. Comparable Course: 33"
   },
   {
     "courseNumber": 44,
@@ -2931,7 +2931,7 @@
     "chartAlt": "Course 44 chart cropped from SYC 2025-28 course booklet page 25.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 25,
-    "comparableCourseNote": "Comparable Courses: 34"
+    "comparableCourseNote": "Northerly start. Comparable Courses: 34"
   },
   {
     "courseNumber": 45,
@@ -2979,7 +2979,7 @@
     "chartAlt": "Course 45 chart cropped from SYC 2025-28 course booklet page 26.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 26,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Northerly start."
   },
   {
     "courseNumber": 46,
@@ -3033,7 +3033,7 @@
     "chartAlt": "Course 46 chart cropped from SYC 2025-28 course booklet page 26.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 26,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Southerly start."
   },
   {
     "courseNumber": 47,
@@ -3099,7 +3099,7 @@
     "chartAlt": "Course 47 chart cropped from SYC 2025-28 course booklet page 27.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 27,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Northerly start."
   },
   {
     "courseNumber": 48,
@@ -3171,7 +3171,7 @@
     "chartAlt": "Course 48 chart cropped from SYC 2025-28 course booklet page 27.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 27,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Southerly start."
   },
   {
     "courseNumber": 49,
@@ -3237,7 +3237,7 @@
     "chartAlt": "Course 49 chart cropped from SYC 2025-28 course booklet page 28.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 28,
-    "comparableCourseNote": "Comparable Courses: 55"
+    "comparableCourseNote": "Southerly start. Comparable Courses: 55"
   },
   {
     "courseNumber": 50,
@@ -3339,7 +3339,7 @@
     "chartAlt": "Course 50 chart cropped from SYC 2025-28 course booklet page 28.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 28,
-    "comparableCourseNote": "Comparable Course: 56"
+    "comparableCourseNote": "Southerly start. Comparable Course: 56"
   },
   {
     "courseNumber": 51,
@@ -3411,7 +3411,7 @@
     "chartAlt": "Course 51 chart cropped from SYC 2025-28 course booklet page 29.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 29,
-    "comparableCourseNote": "Comparable Course: 31"
+    "comparableCourseNote": "Southerly start. Comparable Course: 31"
   },
   {
     "courseNumber": 52,
@@ -3477,7 +3477,7 @@
     "chartAlt": "Course 52 chart cropped from SYC 2025-28 course booklet page 29.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 29,
-    "comparableCourseNote": "Comparable Courses: 57"
+    "comparableCourseNote": "Southerly start. Comparable Courses: 57"
   },
   {
     "courseNumber": 53,
@@ -3543,7 +3543,7 @@
     "chartAlt": "Course 53 chart cropped from SYC 2025-28 course booklet page 30.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 30,
-    "comparableCourseNote": "Comparable Course: 54"
+    "comparableCourseNote": "Northerly start. Comparable Course: 54"
   },
   {
     "courseNumber": 54,
@@ -3609,7 +3609,7 @@
     "chartAlt": "Course 54 chart cropped from SYC 2025-28 course booklet page 30.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 30,
-    "comparableCourseNote": "Comparable Course: 53"
+    "comparableCourseNote": "Southerly start. Comparable Course: 53"
   },
   {
     "courseNumber": 55,
@@ -3675,7 +3675,7 @@
     "chartAlt": "Course 55 chart cropped from SYC 2025-28 course booklet page 31.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 31,
-    "comparableCourseNote": "Comparable Courses: 49"
+    "comparableCourseNote": "Northerly start. Comparable Courses: 49"
   },
   {
     "courseNumber": 56,
@@ -3777,7 +3777,7 @@
     "chartAlt": "Course 56 chart cropped from SYC 2025-28 course booklet page 31.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 31,
-    "comparableCourseNote": "Comparable Course: 50"
+    "comparableCourseNote": "Northerly start. Comparable Course: 50"
   },
   {
     "courseNumber": 57,
@@ -3843,7 +3843,7 @@
     "chartAlt": "Course 57 chart cropped from SYC 2025-28 course booklet page 32.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 32,
-    "comparableCourseNote": "Comparable Course: 52"
+    "comparableCourseNote": "Northerly start. Comparable Course: 52"
   },
   {
     "courseNumber": 58,
@@ -3939,7 +3939,7 @@
     "chartAlt": "Course 58 chart cropped from SYC 2025-28 course booklet page 32.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 32,
-    "comparableCourseNote": "Comparable Course: 59"
+    "comparableCourseNote": "Southerly start. Comparable Course: 59"
   },
   {
     "courseNumber": 59,
@@ -4035,7 +4035,7 @@
     "chartAlt": "Course 59 chart cropped from SYC 2025-28 course booklet page 33.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 33,
-    "comparableCourseNote": "Comparable Course: 58"
+    "comparableCourseNote": "Northerly start. Comparable Course: 58"
   },
   {
     "courseNumber": 60,
@@ -4125,7 +4125,7 @@
     "chartAlt": "Course 60 chart cropped from SYC 2025-28 course booklet page 33.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 33,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Southerly start."
   },
   {
     "courseNumber": 61,
@@ -4167,7 +4167,7 @@
     "chartAlt": "Course 61 chart cropped from SYC 2025-28 course booklet page 34.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 34,
-    "comparableCourseNote": "Comparable Course: 62"
+    "comparableCourseNote": "Northerly start. Comparable Course: 62"
   },
   {
     "courseNumber": 62,
@@ -4209,7 +4209,7 @@
     "chartAlt": "Course 62 chart cropped from SYC 2025-28 course booklet page 34.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 34,
-    "comparableCourseNote": "Comparable Course: 61"
+    "comparableCourseNote": "Southerly start. Comparable Course: 61"
   },
   {
     "courseNumber": 63,
@@ -4257,7 +4257,7 @@
     "chartAlt": "Course 63 chart cropped from SYC 2025-28 course booklet page 35.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 35,
-    "comparableCourseNote": "Comparable Course: 64"
+    "comparableCourseNote": "Southerly start. Comparable Course: 64"
   },
   {
     "courseNumber": 64,
@@ -4311,7 +4311,7 @@
     "chartAlt": "Course 64 chart cropped from SYC 2025-28 course booklet page 35.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 35,
-    "comparableCourseNote": "Comparable Course: 63"
+    "comparableCourseNote": "Northerly start. Comparable Course: 63"
   },
   {
     "courseNumber": 65,
@@ -4371,7 +4371,7 @@
     "chartAlt": "Course 65 chart cropped from SYC 2025-28 course booklet page 36.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 36,
-    "comparableCourseNote": "Comparable Course: 66"
+    "comparableCourseNote": "Northerly start. Comparable Course: 66"
   },
   {
     "courseNumber": 66,
@@ -4431,7 +4431,7 @@
     "chartAlt": "Course 66 chart cropped from SYC 2025-28 course booklet page 36.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 36,
-    "comparableCourseNote": "Comparable Course: 65"
+    "comparableCourseNote": "Southerly start. Comparable Course: 65"
   },
   {
     "courseNumber": 67,
@@ -4485,7 +4485,7 @@
     "chartAlt": "Course 67 chart cropped from SYC 2025-28 course booklet page 37.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 37,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Southerly start."
   },
   {
     "courseNumber": 68,
@@ -4545,6 +4545,6 @@
     "chartAlt": "Course 68 chart cropped from SYC 2025-28 course booklet page 37.",
     "dataStatus": "verified-from-pdf",
     "sourcePage": 37,
-    "comparableCourseNote": ""
+    "comparableCourseNote": "Northerly start."
   }
 ]

@@ -21,7 +21,7 @@
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>SYC Courses uses your current location to calculate bearing and distance to selected race marks.</string>
+    <string>SYC Courses uses your current location to calculate bearing, distance, and race tracks on the water.</string>
     <key>NSLocalNetworkUsageDescription</key>
     <string>SYC Courses connects to an Actisense W2K-2 on your boat Wi-Fi network to send course and waypoint information.</string>
     <key>UIApplicationSceneManifest</key>
@@ -29,6 +29,10 @@
         <key>UIApplicationSupportsMultipleScenes</key>
         <false/>
     </dict>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>location</string>
+    </array>
     <key>UILaunchScreen</key>
     <dict/>
     <key>UISupportedInterfaceOrientations</key>

@@ -5,6 +5,10 @@ import UIKit
 
 struct HomeView: View {
     @EnvironmentObject private var recentsStore: RecentCoursesStore
+    @EnvironmentObject private var raceTrackStore: RaceTrackStore
+    @State private var navigationPath = NavigationPath()
+    @State private var editingTrackID: UUID?
+    @State private var editingTrackName = ""
     private let fixedCourses = CourseDataLoader.fixedCourses()
     private let laidCourses = CourseDataLoader.laidCourses()
 
@@ -15,7 +19,7 @@ struct HomeView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigationPath) {
             ScrollView {
                 LazyVStack(spacing: 14) {
                     HomeHeader()
@@ -37,6 +41,9 @@ struct HomeView: View {
                     NavigationLink(value: HomeRoute.lineAssist(.start)) {
                         HomeCard(title: "Line Assist", subtitle: "Start and finish line crossing", systemImage: "timer")
                     }
+                    NavigationLink(value: HomeRoute.raceTracker) {
+                        HomeCard(title: "Race Tracker", subtitle: "Record and scrub your course on a map", systemImage: "map")
+                    }
                     NavigationLink(value: HomeRoute.navigationOutput) {
                         HomeCard(title: "Instruments", subtitle: "Boat communication with Actisense W2K-2", systemImage: "antenna.radiowaves.left.and.right")
                     }
@@ -52,6 +59,60 @@ struct HomeView: View {
                             .buttonStyle(.plain)
                         }
                     }
+
+                    if !raceTrackStore.recentTracks.isEmpty {
+                        RecentTracksHeader {
+                            raceTrackStore.clearRecentTracks()
+                        }
+                        List {
+                            ForEach(raceTrackStore.recentTracks) { track in
+                                if editingTrackID == track.id {
+                                    RecentTrackHomeCard(
+                                        track: track,
+                                        editingName: $editingTrackName,
+                                        onCommitRename: { commitTrackRename(track) },
+                                        onCancelRename: cancelTrackRename
+                                    )
+                                    .recentTrackListRow()
+                                    .swipeActions(edge: .trailing) {
+                                        Button {
+                                            commitTrackRename(track)
+                                        } label: {
+                                            Label("Done", systemImage: "checkmark")
+                                        }
+                                        .tint(.green)
+                                    }
+                                } else {
+                                    Button {
+                                        raceTrackStore.load(track)
+                                        navigationPath.append(HomeRoute.raceTracker)
+                                    } label: {
+                                        RecentTrackHomeCard(track: track)
+                                    }
+                                    .buttonStyle(.plain)
+                                    .recentTrackListRow()
+                                    .swipeActions(edge: .trailing) {
+                                        Button {
+                                            beginTrackRename(track)
+                                        } label: {
+                                            Label("Rename", systemImage: "pencil")
+                                        }
+                                        .tint(.blue)
+
+                                        Button(role: .destructive) {
+                                            deleteTrack(track)
+                                        } label: {
+                                            Label("Delete", systemImage: "trash")
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .listStyle(.plain)
+                        .scrollDisabled(true)
+                        .frame(height: CGFloat(raceTrackStore.recentTracks.count) * 92)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
                 }
                 .padding()
             }
@@ -66,6 +127,7 @@ struct HomeView: View {
                 case .laid: CourseListView(kind: .laid)
                 case let .lineAssist(mode): StartAssistView(initialMode: mode)
                 case .finishOptions: FinishOptionsView()
+                case .raceTracker: RaceTrackerView()
                 case .navigationOutput: NavigationOutputSettingsView()
                 }
             }
@@ -73,6 +135,28 @@ struct HomeView: View {
                 CourseDetailView(course: course)
             }
         }
+    }
+
+    private func beginTrackRename(_ track: SavedRaceTrack) {
+        editingTrackID = track.id
+        editingTrackName = track.displayName
+    }
+
+    private func commitTrackRename(_ track: SavedRaceTrack) {
+        raceTrackStore.rename(track, to: editingTrackName)
+        cancelTrackRename()
+    }
+
+    private func cancelTrackRename() {
+        editingTrackID = nil
+        editingTrackName = ""
+    }
+
+    private func deleteTrack(_ track: SavedRaceTrack) {
+        if editingTrackID == track.id {
+            cancelTrackRename()
+        }
+        raceTrackStore.delete(track)
     }
 }
 
@@ -126,6 +210,7 @@ enum HomeRoute: Hashable {
     case laid
     case lineAssist(LineMode)
     case finishOptions
+    case raceTracker
     case navigationOutput
 }
 
@@ -236,6 +321,85 @@ private struct RecentCoursesHeader: View {
     }
 }
 
+private struct RecentTracksHeader: View {
+    let onClear: () -> Void
+
+    var body: some View {
+        HStack {
+            Text("Recent Tracks")
+                .font(.headline)
+            Spacer()
+            Button("Clear...") {
+                onClear()
+            }
+            .font(.subheadline.weight(.semibold))
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.top, 8)
+    }
+}
+
+private struct RecentTrackHomeCard: View {
+    let track: SavedRaceTrack
+    var editingName: Binding<String>?
+    var onCommitRename: (() -> Void)?
+    var onCancelRename: (() -> Void)?
+
+    var body: some View {
+        HStack(spacing: 16) {
+            Image(systemName: "map")
+                .font(.title2.bold())
+                .foregroundStyle(.tint)
+                .frame(width: 48, height: 48)
+                .background(.tint.opacity(0.12))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+            VStack(alignment: .leading, spacing: 3) {
+                if let editingName {
+                    TextField("Track name", text: editingName)
+                        .textFieldStyle(.roundedBorder)
+                        .submitLabel(.done)
+                        .onSubmit {
+                            onCommitRename?()
+                        }
+                } else {
+                    Text(track.displayName)
+                        .font(.headline)
+                        .foregroundStyle(.primary)
+                }
+                Text(AppFormatters.duration(track.duration))
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            if editingName != nil {
+                HStack(spacing: 8) {
+                    Button {
+                        onCancelRename?()
+                    } label: {
+                        Image(systemName: "xmark")
+                    }
+                    .buttonStyle(.borderless)
+
+                    Button {
+                        onCommitRename?()
+                    } label: {
+                        Image(systemName: "checkmark")
+                    }
+                    .buttonStyle(.borderless)
+                }
+                .foregroundStyle(.tint)
+            } else {
+                Image(systemName: "chevron.right")
+                    .foregroundStyle(.tertiary)
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity, minHeight: 76, alignment: .leading)
+        .background(HomeColors.card)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+}
+
 private extension View {
     @ViewBuilder
     func homeNavigationChrome() -> some View {
@@ -244,5 +408,12 @@ private extension View {
         #else
         self
         #endif
+    }
+
+    func recentTrackListRow() -> some View {
+        self
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+            .listRowSeparator(.hidden)
+            .listRowBackground(Color.clear)
     }
 }
