@@ -4,7 +4,9 @@ import SwiftUI
 
 struct RaceTrackerView: View {
     @EnvironmentObject private var locationService: LocationService
+    @EnvironmentObject private var navigationDataService: NavigationDataService
     @EnvironmentObject private var raceTrackStore: RaceTrackStore
+    @EnvironmentObject private var activeRaceStore: ActiveRaceStore
     @State private var cameraPosition: MapCameraPosition = .automatic
     @State private var scrubOffset: TimeInterval = 0
     @State private var hasScrubbed = false
@@ -32,9 +34,46 @@ struct RaceTrackerView: View {
     var body: some View {
         VStack(spacing: 0) {
             Map(position: $cameraPosition) {
+                if activeRaceStore.courseCoordinates.count > 1 {
+                    MapPolyline(coordinates: activeRaceStore.courseCoordinates)
+                        .stroke(.cyan.opacity(0.55), style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round, dash: [8, 6]))
+                }
+
                 if trackCoordinates.count > 1 {
                     MapPolyline(coordinates: trackCoordinates)
                         .stroke(.blue, lineWidth: 4)
+                }
+
+                ForEach(activeRaceStore.courseMarks.filter { $0.id != activeRaceStore.activeMarkID }) { mark in
+                    Annotation(mark.name, coordinate: mark.coordinate) {
+                        ZStack {
+                            Circle()
+                                .fill(.white.opacity(0.9))
+                                .frame(width: 22, height: 22)
+                            Circle()
+                                .stroke(.cyan, lineWidth: 3)
+                                .frame(width: 22, height: 22)
+                            Circle()
+                                .fill(.cyan)
+                                .frame(width: 7, height: 7)
+                        }
+                    }
+                }
+
+                if let activeMark = activeRaceStore.activeMark {
+                    Annotation(activeMark.name, coordinate: activeMark.coordinate) {
+                        ZStack {
+                            Circle()
+                                .fill(.white)
+                                .frame(width: 28, height: 28)
+                            Circle()
+                                .stroke(.orange, lineWidth: 4)
+                                .frame(width: 28, height: 28)
+                            Image(systemName: "scope")
+                                .font(.caption.weight(.bold))
+                                .foregroundStyle(.orange)
+                        }
+                    }
                 }
 
                 if let avatarCoordinate {
@@ -52,7 +91,7 @@ struct RaceTrackerView: View {
                 MapUserLocationButton()
             }
             .overlay {
-                if trackPoints.isEmpty {
+                if trackPoints.isEmpty && !activeRaceStore.isCourseActive {
                     ContentUnavailableView("No track recorded", systemImage: "map", description: Text("Start recording to draw the race path."))
                         .padding()
                         .background(.regularMaterial)
@@ -63,6 +102,8 @@ struct RaceTrackerView: View {
             Divider()
 
             VStack(spacing: 14) {
+                RaceTrackerActiveCoursePanel()
+
                 HStack(spacing: 10) {
                     Button {
                         raceTrackStore.startRecording()
@@ -151,9 +192,12 @@ struct RaceTrackerView: View {
     }
 
     private func syncViewToCurrentTrack() {
-        guard let track = raceTrackStore.currentTrack else { return }
-        scrubOffset = track.duration
-        if let coordinate = track.points.first?.coordinate {
+        if let track = raceTrackStore.currentTrack {
+            scrubOffset = track.duration
+            if let coordinate = track.points.first?.coordinate {
+                moveCamera(to: coordinate)
+            }
+        } else if let coordinate = activeRaceStore.courseCoordinates.first {
             moveCamera(to: coordinate)
         }
     }
@@ -165,6 +209,84 @@ struct RaceTrackerView: View {
                 span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
             )
         )
+    }
+}
+
+private struct RaceTrackerActiveCoursePanel: View {
+    @EnvironmentObject private var locationService: LocationService
+    @EnvironmentObject private var navigationDataService: NavigationDataService
+    @EnvironmentObject private var activeRaceStore: ActiveRaceStore
+
+    private var snapshot: BearingSnapshot? {
+        guard let activeMark = activeRaceStore.activeMark else { return nil }
+        return navigationDataService.snapshot(to: activeMark, iPhoneFix: locationService.navigationFix)
+    }
+
+    var body: some View {
+        if let course = activeRaceStore.activeCourse {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack(alignment: .top, spacing: 12) {
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text("Active Course")
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(.secondary)
+                        Text("Course \(course.courseNumber)")
+                            .font(.headline.weight(.bold))
+                        Text(activeRaceStore.activeMark.map { "Active mark: \($0.name)" } ?? "No active mark")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+
+                    Spacer(minLength: 8)
+
+                    HStack(spacing: 8) {
+                        RaceTrackerMetricPill(title: "BTW", value: snapshot.map { AppFormatters.bearing($0.bearingTrue) } ?? "--")
+                        RaceTrackerMetricPill(title: "DTW", value: snapshot.map { AppFormatters.distanceNm($0.distanceNm) } ?? "--")
+                    }
+                }
+
+                HStack(spacing: 8) {
+                    Button {
+                        activeRaceStore.retreatMark()
+                    } label: {
+                        Label("Previous Mark", systemImage: "chevron.left")
+                    }
+                    .labelStyle(.iconOnly)
+                    .buttonStyle(.bordered)
+                    .disabled(activeRaceStore.activeMarkIndex == nil || activeRaceStore.activeMarkIndex == 0)
+
+                    Button {
+                        activeRaceStore.advanceMark()
+                    } label: {
+                        Label("Next Mark", systemImage: "chevron.right")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(activeRaceStore.activeMarkIndex == nil || activeRaceStore.activeMarkIndex == activeRaceStore.courseMarks.count - 1)
+                }
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(.background)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+        }
+    }
+}
+
+private struct RaceTrackerMetricPill: View {
+    let title: String
+    let value: String
+
+    var body: some View {
+        VStack(alignment: .trailing, spacing: 2) {
+            Text(title)
+                .font(.caption2.weight(.bold))
+                .foregroundStyle(.secondary)
+            Text(value)
+                .font(.headline.monospacedDigit().weight(.bold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.72)
+        }
+        .frame(minWidth: 76, alignment: .trailing)
     }
 }
 

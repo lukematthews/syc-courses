@@ -6,6 +6,7 @@ public struct SYCCoursesRootView: View {
     @StateObject private var navigationOutputService = NavigationOutputService()
     @StateObject private var recentsStore = RecentCoursesStore()
     @StateObject private var raceTrackStore = RaceTrackStore()
+    @StateObject private var activeRaceStore = ActiveRaceStore()
 
     public init() {}
 
@@ -16,6 +17,7 @@ public struct SYCCoursesRootView: View {
             .environmentObject(navigationOutputService)
             .environmentObject(recentsStore)
             .environmentObject(raceTrackStore)
+            .environmentObject(activeRaceStore)
             .onAppear {
                 raceTrackStore.configure(locationService: locationService)
             }

@@ -6,6 +6,7 @@ import UIKit
 struct HomeView: View {
     @EnvironmentObject private var recentsStore: RecentCoursesStore
     @EnvironmentObject private var raceTrackStore: RaceTrackStore
+    @EnvironmentObject private var activeRaceStore: ActiveRaceStore
     @State private var navigationPath = NavigationPath()
     @State private var editingTrackID: UUID?
     @State private var editingTrackName = ""
@@ -23,6 +24,17 @@ struct HomeView: View {
             ScrollView {
                 LazyVStack(spacing: 14) {
                     HomeHeader()
+
+                    ActiveRacePanel(
+                        onOpenCourse: {
+                            if let course = activeRaceStore.activeCourse {
+                                navigationPath.append(course)
+                            }
+                        },
+                        onOpenTracker: {
+                            navigationPath.append(HomeRoute.raceTracker)
+                        }
+                    )
 
                     NavigationLink(value: HomeRoute.quickBearing) {
                         HomeCard(title: "Quick Bearing", subtitle: "Bearing and distance to a mark", systemImage: "location.north.line")

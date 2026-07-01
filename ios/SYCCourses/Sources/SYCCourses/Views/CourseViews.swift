@@ -35,6 +35,7 @@ struct CourseDetailView: View {
     @EnvironmentObject private var navigationDataService: NavigationDataService
     @EnvironmentObject private var navigationOutputService: NavigationOutputService
     @EnvironmentObject private var recentsStore: RecentCoursesStore
+    @EnvironmentObject private var activeRaceStore: ActiveRaceStore
     @State private var isCourseActionsPresented = false
     @State private var shareFile: CourseShareFile?
     @State private var exportErrorMessage: String?
@@ -42,6 +43,10 @@ struct CourseDetailView: View {
     let course: Course
 
     private var activeTargetMark: Mark? {
+        if activeRaceStore.activeCourseNumber == course.courseNumber,
+           let activeMark = activeRaceStore.activeMark {
+            return activeMark
+        }
         guard !course.isLaidMarkCourse else { return nil }
         return course.rows.lazy.compactMap { CourseDataLoader.findMark(named: $0.mark, in: marks) }.first
     }
@@ -76,8 +81,9 @@ struct CourseDetailView: View {
                             .frame(maxWidth: .infinity, maxHeight: geometry.size.height * 0.62)
                         LaidCourseRouteView(course: course)
                     } else {
+                        ActiveCourseControlPanel(course: course)
                         CourseLineAssistPanel()
-                        CourseTableView(course: course, marks: marks)
+                        CourseTableView(course: course, marks: marks, activeMarkID: activeRaceStore.activeCourseNumber == course.courseNumber ? activeRaceStore.activeMarkID : nil)
                         ChartImageView(chartImage: course.chartImage)
                             .frame(maxWidth: .infinity, maxHeight: geometry.size.height * 0.62)
 
@@ -501,6 +507,7 @@ private struct NavigationOutputCoursePanel: View {
 struct CourseTableView: View {
     let course: Course
     let marks: [Mark]
+    var activeMarkID: String?
     private let courseBearingVariationDegrees = 12.0
 
     private var calculatedRows: [CalculatedCourseRow] {
@@ -562,11 +569,11 @@ struct CourseTableView: View {
                     NavigationLink {
                         MarkDetailView(mark: mark)
                     } label: {
-                        CourseRowView(calculatedRow: calculatedRow, tappable: true)
+                        CourseRowView(calculatedRow: calculatedRow, tappable: true, isActive: mark.id == activeMarkID)
                     }
                     .buttonStyle(.plain)
                 } else {
-                    CourseRowView(calculatedRow: calculatedRow, tappable: false)
+                    CourseRowView(calculatedRow: calculatedRow, tappable: false, isActive: calculatedRow.mark?.id == activeMarkID)
                 }
                 Divider()
             }
@@ -587,6 +594,7 @@ struct CourseTableView: View {
 private struct CourseRowView: View {
     let calculatedRow: CalculatedCourseRow
     let tappable: Bool
+    let isActive: Bool
 
     private var row: CourseLeg {
         calculatedRow.row
@@ -613,6 +621,7 @@ private struct CourseRowView: View {
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 14)
+        .background(isActive ? Color.accentColor.opacity(0.14) : Color.clear)
         .contentShape(Rectangle())
     }
 }
@@ -639,39 +648,6 @@ private struct CalculatedCourseRow: Identifiable {
             return row.isCourseTotalRow ? row.distance : row.distance
         }
         return String(format: "%.2f", distanceNm)
-    }
-}
-
-private extension CourseLeg {
-    var isCourseTotalRow: Bool {
-        let name = mark.normalizedCourseMarkName
-        return name == "total" || name == "sub-total" || name == "subtotal"
-    }
-
-    var isStartOrFinishRow: Bool {
-        let name = mark.normalizedCourseMarkName
-        return name == "start" || name == "finish"
-    }
-
-    var isPassThroughRow: Bool {
-        side.normalizedCourseMarkName == "pass"
-            || bearing.normalizedCourseMarkName == "na"
-            || distance.normalizedCourseMarkName == "na"
-    }
-}
-
-private extension Course {
-    var isLaidMarkCourse: Bool {
-        courseNumber >= 80
-    }
-}
-
-private extension String {
-    var normalizedCourseMarkName: String {
-        replacingOccurrences(of: #"\s*\([^)]*\)"#, with: "", options: .regularExpression)
-            .replacingOccurrences(of: #"\s+"#, with: " ", options: .regularExpression)
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-            .lowercased()
     }
 }
 

@@ -7,6 +7,7 @@ import UIKit
 struct QuickBearingView: View {
     @EnvironmentObject private var locationService: LocationService
     @EnvironmentObject private var navigationDataService: NavigationDataService
+    @EnvironmentObject private var activeRaceStore: ActiveRaceStore
     @AppStorage("lastSelectedMarkID") private var lastSelectedMarkID = "syc-4"
     @State private var selectedMapMark: Mark?
     private let marks = CourseDataLoader.marks()
@@ -18,11 +19,28 @@ struct QuickBearingView: View {
             }
 
             Section("Approximate Mark Locations") {
-                MarkLocationMapView(marks: marks) { mark in
+                MarkLocationMapView(
+                    marks: marks,
+                    activeCourseMarkIDs: Set(activeRaceStore.courseMarks.map(\.id)),
+                    activeCourseLineMarkIDs: activeRaceStore.courseLineMarkIDs,
+                    activeMarkID: activeRaceStore.activeMarkID
+                ) { mark in
                     lastSelectedMarkID = mark.id
                     selectedMapMark = mark
                 }
                     .listRowInsets(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12))
+            }
+
+            if let activeMark = activeRaceStore.activeMark {
+                Section("Active Mark") {
+                    Button {
+                        lastSelectedMarkID = activeMark.id
+                        selectedMapMark = activeMark
+                    } label: {
+                        MarkSelectionRow(mark: activeMark, isInActiveCourse: true, isActiveMark: true)
+                    }
+                    .buttonStyle(.plain)
+                }
             }
 
             Section("Select Mark") {
@@ -31,7 +49,11 @@ struct QuickBearingView: View {
                         lastSelectedMarkID = mark.id
                         selectedMapMark = mark
                     } label: {
-                        MarkSelectionRow(mark: mark)
+                        MarkSelectionRow(
+                            mark: mark,
+                            isInActiveCourse: activeRaceStore.courseMarks.contains { $0.id == mark.id },
+                            isActiveMark: activeRaceStore.activeMarkID == mark.id
+                        )
                     }
                     .buttonStyle(.plain)
                 }
@@ -60,6 +82,8 @@ struct QuickBearingView: View {
 
 private struct MarkSelectionRow: View {
     let mark: Mark
+    var isInActiveCourse = false
+    var isActiveMark = false
 
     var body: some View {
         HStack {
@@ -71,17 +95,36 @@ private struct MarkSelectionRow: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
+                if isActiveMark {
+                    Text("Active mark")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.tint)
+                } else if isInActiveCourse {
+                    Text("In active course")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.secondary)
+                }
             }
             Spacer(minLength: 12)
+            if isActiveMark {
+                Image(systemName: "scope")
+                    .foregroundStyle(.tint)
+            }
         }
         .frame(maxWidth: .infinity, minHeight: 56, alignment: .leading)
         .padding(.vertical, 8)
+        .padding(.horizontal, isInActiveCourse ? 8 : 0)
+        .background(isActiveMark ? Color.accentColor.opacity(0.14) : (isInActiveCourse ? Color.secondary.opacity(0.08) : Color.clear))
+        .clipShape(RoundedRectangle(cornerRadius: 8))
         .contentShape(Rectangle())
     }
 }
 
 private struct MarkLocationMapView: View {
     let marks: [Mark]
+    let activeCourseMarkIDs: Set<String>
+    let activeCourseLineMarkIDs: [String]
+    let activeMarkID: String?
     let onSelect: (Mark) -> Void
 
     private let hotspots: [MarkLocationHotspot] = [
@@ -110,12 +153,21 @@ private struct MarkLocationMapView: View {
                     .resizable()
                     .scaledToFit()
                     .overlay {
+                        ActiveCourseHotspotLine(
+                            hotspots: hotspots,
+                            activeCourseLineMarkIDs: activeCourseLineMarkIDs
+                        )
+
                         ForEach(hotspots) { hotspot in
                             if let mark = marks.first(where: { $0.id == hotspot.markID }) {
                                 Button {
                                     onSelect(mark)
                                 } label: {
-                                    MarkLocationButton(markName: mark.name)
+                                    MarkLocationButton(
+                                        markName: mark.name,
+                                        isInActiveCourse: activeCourseMarkIDs.contains(mark.id),
+                                        isActiveMark: activeMarkID == mark.id
+                                    )
                                 }
                                 .buttonStyle(.plain)
                                 .position(
@@ -145,6 +197,30 @@ private struct MarkLocationMapView: View {
     #endif
 }
 
+private struct ActiveCourseHotspotLine: View {
+    let hotspots: [MarkLocationHotspot]
+    let activeCourseLineMarkIDs: [String]
+
+    var body: some View {
+        GeometryReader { proxy in
+            Path { path in
+                var didMove = false
+                for markID in activeCourseLineMarkIDs {
+                    guard let hotspot = hotspots.first(where: { $0.markID == markID }) else { continue }
+                    let point = CGPoint(x: hotspot.x * proxy.size.width, y: hotspot.y * proxy.size.height)
+                    if didMove {
+                        path.addLine(to: point)
+                    } else {
+                        path.move(to: point)
+                        didMove = true
+                    }
+                }
+            }
+            .stroke(.cyan.opacity(0.45), style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round, dash: [7, 6]))
+        }
+    }
+}
+
 private struct MarkLocationHotspot: Identifiable {
     let markID: String
     let x: CGFloat
@@ -155,6 +231,8 @@ private struct MarkLocationHotspot: Identifiable {
 
 private struct MarkLocationButton: View {
     let markName: String
+    var isInActiveCourse = false
+    var isActiveMark = false
 
     var body: some View {
         ZStack {
@@ -162,11 +240,11 @@ private struct MarkLocationButton: View {
                 .fill(.clear)
                 .frame(width: 44, height: 44)
             Circle()
-                .fill(.white.opacity(0.78))
-                .frame(width: 18, height: 18)
+                .fill(.white.opacity(isActiveMark ? 0.95 : 0.78))
+                .frame(width: isActiveMark ? 24 : 18, height: isActiveMark ? 24 : 18)
             Circle()
-                .stroke(.cyan, lineWidth: 3)
-                .frame(width: 18, height: 18)
+                .stroke(isActiveMark ? .orange : (isInActiveCourse ? .cyan : .cyan.opacity(0.65)), lineWidth: isActiveMark ? 4 : 3)
+                .frame(width: isActiveMark ? 24 : 18, height: isActiveMark ? 24 : 18)
             Circle()
                 .fill(.secondary.opacity(0.65))
                 .frame(width: 7, height: 7)
@@ -179,6 +257,7 @@ private struct MarkLocationButton: View {
 struct MarkDetailView: View {
     @EnvironmentObject private var locationService: LocationService
     @EnvironmentObject private var navigationDataService: NavigationDataService
+    @EnvironmentObject private var activeRaceStore: ActiveRaceStore
     let mark: Mark
 
     private var snapshot: BearingSnapshot? {
@@ -187,6 +266,14 @@ struct MarkDetailView: View {
 
     private var sourceSummary: NavigationSourceSummary {
         navigationDataService.sourceSummary(iPhoneFix: locationService.navigationFix)
+    }
+
+    private var isOnActiveCourse: Bool {
+        activeRaceStore.courseMarks.contains { $0.id == mark.id }
+    }
+
+    private var isActiveMark: Bool {
+        activeRaceStore.activeMarkID == mark.id
     }
 
     var body: some View {
@@ -217,6 +304,18 @@ struct MarkDetailView: View {
                         status: statusText(locationService.authorizationStatus),
                         error: locationService.errorMessage
                     )
+                }
+
+                if isOnActiveCourse {
+                    Button {
+                        activeRaceStore.setActiveMark(mark)
+                    } label: {
+                        Label(isActiveMark ? "Going To" : "Go To", systemImage: "scope")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .disabled(isActiveMark)
                 }
 
                 Button {
