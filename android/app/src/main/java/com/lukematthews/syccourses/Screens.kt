@@ -182,6 +182,14 @@ private fun CourseDetailScreen(app: AppViewModel, nav: NavHostController, course
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     course.route?.let { Text(it, fontSize = 24.sp, fontWeight = FontWeight.Bold, color = Navy) }
                     Text(course.totalDistance, color = Color.Gray)
+                    Text(
+                        buildString {
+                            append(course.passInstruction)
+                            course.comparableCourseNote?.takeIf { it.isNotBlank() }?.let { append(", "); append(it) }
+                        },
+                        color = Color.Gray,
+                        fontSize = 14.sp,
+                    )
                 }
             }
             item { Row(Modifier.fillMaxWidth().background(Navy, RoundedCornerShape(10.dp)).padding(10.dp)) { listOf("Mark", "Side", "Bearing", "NM").forEachIndexed { i, text -> Text(text, Modifier.weight(if (i == 0) 1.6f else 1f), color = Color.White, fontWeight = FontWeight.Bold) } } }
