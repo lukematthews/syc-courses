@@ -11,6 +11,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -55,7 +58,7 @@ fun SYCCoursesApp(app: AppViewModel) {
         composable("courses/{kind}") { CourseListScreen(app, nav, it.arguments?.getString("kind") == "laid") }
         composable("course/{number}") { app.repository.course(it.arguments?.getString("number")?.toIntOrNull() ?: -1)?.let { course -> CourseDetailScreen(app, nav, course) } }
         composable("quick") { QuickBearingScreen(app, nav) }
-        composable("flags") { FlagsScreen(nav) }
+        composable("flags") { FlagsScreen(app, nav) }
         composable("line/{mode}") { LineAssistScreen(app, nav, if (it.arguments?.getString("mode") == "finish") LineMode.FINISH else LineMode.START) }
         composable("tracker") { RaceTrackerScreen(app, nav) }
         composable("instruments") { InstrumentsScreen(app, nav) }
@@ -168,23 +171,57 @@ private fun QuickBearingScreen(app: AppViewModel, nav: NavHostController) {
 }
 
 @Composable
-private fun FlagsScreen(nav: NavHostController) {
-    val names = listOf("Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine")
+private fun FlagsScreen(app: AppViewModel, nav: NavHostController) {
+    var digits by remember { mutableStateOf("") }
+    val matchedCourse = digits.toIntOrNull()?.let(app.repository::course)
     ScreenScaffold("Numeral Pennants", { nav.popBackStack() }) { padding ->
-        LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            items((0..9).toList()) { number ->
-                Card(Modifier.fillMaxWidth()) {
-                    Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
+        Column(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(3),
+                modifier = Modifier.fillMaxWidth().weight(1f),
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                items((0..9).toList()) { number ->
+                    Card(
+                        modifier = Modifier.fillMaxWidth().clickable {
+                            if (digits.length < 2) digits += number.toString()
+                        },
+                    ) {
+                        Column(
+                            modifier = Modifier.fillMaxWidth().padding(8.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.spacedBy(4.dp),
+                        ) {
                         AssetImage(
                             path = "pennants/numeral-$number.png",
-                            modifier = Modifier.width(200.dp).height(75.dp),
+                                modifier = Modifier.fillMaxWidth().height(48.dp),
                             description = "Numeral pennant $number",
                         )
-                        Spacer(Modifier.width(14.dp))
-                        Column {
-                            Text(number.toString(), fontSize = 28.sp, fontWeight = FontWeight.Bold)
-                            Text(names[number], color = Color.Gray)
+                            Text(number.toString(), fontSize = 18.sp, fontWeight = FontWeight.Bold)
                         }
+                    }
+                }
+            }
+
+            Card(Modifier.fillMaxWidth()) {
+                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("Course Lookup", Modifier.weight(1f), fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                        TextButton(onClick = { digits = "" }, enabled = digits.isNotEmpty()) { Text("Clear") }
+                    }
+                    Text(
+                        text = if (digits.isEmpty()) "Tap pennants to enter a course number." else digits,
+                        fontSize = if (digits.isEmpty()) 22.sp else 44.sp,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    if (matchedCourse != null) {
+                        CourseRow(matchedCourse) {
+                            app.recordRecent(matchedCourse.courseNumber)
+                            nav.navigate("course/${matchedCourse.courseNumber}")
+                        }
+                    } else if (digits.isNotEmpty()) {
+                        Text("No course $digits.", color = Color.Gray)
                     }
                 }
             }
