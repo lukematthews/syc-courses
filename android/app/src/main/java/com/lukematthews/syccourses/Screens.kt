@@ -20,6 +20,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -27,14 +28,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.FileProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -60,8 +66,10 @@ fun SYCCoursesApp(app: AppViewModel) {
         composable("courses/{kind}") { CourseListScreen(app, nav, it.arguments?.getString("kind") == "laid") }
         composable("course/{number}") { app.repository.course(it.arguments?.getString("number")?.toIntOrNull() ?: -1)?.let { course -> CourseDetailScreen(app, nav, course) } }
         composable("quick") { QuickBearingScreen(app, nav) }
+        composable("mark/{id}") { entry -> app.repository.markById(entry.arguments?.getString("id").orEmpty())?.let { MarkDetailScreen(app, nav, it) } }
         composable("flags") { FlagsScreen(app, nav) }
         composable("line/{mode}") { LineAssistScreen(app, nav, if (it.arguments?.getString("mode") == "finish") LineMode.FINISH else LineMode.START) }
+        composable("finish") { FinishOptionsScreen(app, nav) }
         composable("tracker") { RaceTrackerScreen(app, nav) }
         composable("instruments") { InstrumentsScreen(app, nav) }
     }
@@ -72,15 +80,17 @@ private fun HomeScreen(app: AppViewModel, nav: NavHostController) {
     val recentNumbers by app.recents.collectAsStateWithLifecycle()
     val tracks by app.recentTracks.collectAsStateWithLifecycle()
     val activeNumber by app.activeCourse.collectAsStateWithLifecycle()
+    var renameTrack by remember { mutableStateOf<SavedRaceTrack?>(null) }
+    var renameText by remember { mutableStateOf("") }
     ScreenScaffold("SYC Courses") { padding ->
         LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             item {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(Icons.Default.Sailing, null, tint = Teal, modifier = Modifier.size(52.dp))
+                    Image(painterResource(R.drawable.app_icon), "SYC Courses", modifier = Modifier.size(54.dp), contentScale = ContentScale.Fit)
                     Spacer(Modifier.width(12.dp)); Text("SYC Courses", fontSize = 32.sp, fontWeight = FontWeight.Bold, color = Navy)
                 }
             }
-            activeNumber?.let { number -> item { HighlightCard("Active race · Course $number", "Resume course or race tracking", Icons.Default.DirectionsBoat) { nav.navigate("course/$number") } } }
+            activeNumber?.let { item { ActiveRaceHomePanel(app, nav) } }
             item { HomeCard("Quick Bearing", "Bearing and distance to a mark", Icons.Default.NearMe) { nav.navigate("quick") } }
             item { HomeCard("Flags", "Numeral pennants 0–9", Icons.Default.Flag) { nav.navigate("flags") } }
             item { HomeCard("Fixed Mark Courses", "${app.repository.fixedCourses.size} courses", Icons.Default.FormatListNumbered) { nav.navigate("courses/fixed") } }
@@ -89,16 +99,17 @@ private fun HomeScreen(app: AppViewModel, nav: NavHostController) {
             item { HomeCard("Race Tracker", "Record and review your course", Icons.Default.Map) { nav.navigate("tracker") } }
             item { HomeCard("Instruments", "Boat communication with Actisense W2K-2", Icons.Default.SettingsInputAntenna) { nav.navigate("instruments") } }
             if (recentNumbers.isNotEmpty()) {
-                item { SectionHeader("Recently viewed", "Clear", app::clearRecents) }
+                item { SectionHeader("Recently Viewed", "Clear…", app::clearRecents) }
                 items(recentNumbers.mapNotNull(app.repository::course)) { CourseRow(it) { nav.navigate("course/${it.courseNumber}") } }
             }
             if (tracks.isNotEmpty()) {
-                item { SectionHeader("Recent tracks", "Clear", app::clearTracks) }
+                item { SectionHeader("Recent Tracks", "Clear…", app::clearTracks) }
                 items(tracks, key = { it.id }) { track ->
                     Card(Modifier.fillMaxWidth().clickable { app.loadTrack(track); nav.navigate("tracker") }) {
                         Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-                            Icon(Icons.Default.Route, null, tint = Teal); Spacer(Modifier.width(12.dp))
-                            Column(Modifier.weight(1f)) { Text(track.displayName, fontWeight = FontWeight.Bold); Text("${track.points.size} recorded points", color = Color.Gray) }
+                            Icon(Icons.Default.Map, null, tint = Teal); Spacer(Modifier.width(12.dp))
+                            Column(Modifier.weight(1f)) { Text(track.displayName, fontWeight = FontWeight.Bold); Text(formatDuration(trackDuration(track.points)), color = Color.Gray) }
+                            IconButton({ renameTrack = track; renameText = track.name.orEmpty() }) { Icon(Icons.Default.Edit, "Rename track") }
                             IconButton({ app.deleteTrack(track.id) }) { Icon(Icons.Default.Delete, "Delete track") }
                         }
                     }
@@ -106,10 +117,24 @@ private fun HomeScreen(app: AppViewModel, nav: NavHostController) {
             }
         }
     }
+    renameTrack?.let { track -> AlertDialog(onDismissRequest = { renameTrack = null }, title = { Text("Rename Track") }, text = { OutlinedTextField(renameText, { renameText = it }, label = { Text("Track name") }) }, confirmButton = { TextButton({ app.renameTrack(track.id, renameText); renameTrack = null }) { Text("Done") } }, dismissButton = { TextButton({ renameTrack = null }) { Text("Cancel") } }) }
 }
 
-@Composable private fun HomeCard(title: String, subtitle: String, icon: ImageVector, action: () -> Unit) = Card(Modifier.fillMaxWidth().clickable(onClick = action)) { Row(Modifier.padding(18.dp), verticalAlignment = Alignment.CenterVertically) { Icon(icon, null, tint = Teal, modifier = Modifier.size(30.dp)); Spacer(Modifier.width(16.dp)); Column(Modifier.weight(1f)) { Text(title, fontWeight = FontWeight.Bold, fontSize = 18.sp); Text(subtitle, color = Color.Gray) }; Icon(Icons.Default.ChevronRight, null) } }
-@Composable private fun HighlightCard(title: String, subtitle: String, icon: ImageVector, action: () -> Unit) = Card(colors = CardDefaults.cardColors(containerColor = Navy), modifier = Modifier.fillMaxWidth().clickable(onClick = action)) { Row(Modifier.padding(18.dp), verticalAlignment = Alignment.CenterVertically) { Icon(icon, null, tint = Color(0xFFFFC65C)); Spacer(Modifier.width(14.dp)); Column { Text(title, color = Color.White, fontWeight = FontWeight.Bold); Text(subtitle, color = Color(0xFFBFD3DD)) } } }
+@Composable
+private fun ActiveRaceHomePanel(app: AppViewModel, nav: NavHostController) {
+    val number by app.activeCourse.collectAsStateWithLifecycle(); val activeName by app.activeMark.collectAsStateWithLifecycle()
+    val marks = app.activeCourseMarks(); val index = marks.indexOfFirst { it.name == activeName || it.id == activeName }
+    number ?: return
+    OutlinedCard(Modifier.fillMaxWidth()) {
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Row { Column(Modifier.weight(1f)) { Text("Course $number", fontWeight = FontWeight.Bold, fontSize = 18.sp); Text("Going to: ${marks.getOrNull(index)?.name ?: "--"}", color = Color.Gray) }; CoursePennantHoist(number!!, 58, 22) }
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) { OutlinedButton(app::retreatActiveMark, enabled = index > 0) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Previous mark") }; Button(app::advanceActiveMark, enabled = index >= 0 && index < marks.lastIndex) { Text("Next Mark"); Icon(Icons.Default.ChevronRight, null) }; Spacer(Modifier.weight(1f)); IconButton({ nav.navigate("tracker") }) { Icon(Icons.Default.Map, "Race Tracker") }; IconButton({ nav.navigate("course/$number") }) { Icon(Icons.Default.FormatListNumbered, "Course") } }
+        }
+    }
+}
+
+@Composable private fun HomeCard(title: String, subtitle: String, icon: ImageVector, action: () -> Unit) = HomeCard(title, subtitle, icon, Modifier.fillMaxWidth(), action)
+@Composable private fun HomeCard(title: String, subtitle: String, icon: ImageVector, modifier: Modifier, action: () -> Unit) = Card(modifier.clickable(onClick = action)) { Row(Modifier.padding(18.dp), verticalAlignment = Alignment.CenterVertically) { Icon(icon, null, tint = Teal, modifier = Modifier.size(30.dp)); Spacer(Modifier.width(16.dp)); Column(Modifier.weight(1f)) { Text(title, fontWeight = FontWeight.Bold, fontSize = 18.sp); Text(subtitle, color = Color.Gray) }; Icon(Icons.Default.ChevronRight, null) } }
 @Composable private fun SectionHeader(title: String, actionName: String, action: () -> Unit) = Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) { Text(title, Modifier.weight(1f), fontWeight = FontWeight.Bold, color = Navy); TextButton(action) { Text(actionName) } }
 
 @Composable
@@ -176,6 +201,7 @@ private fun CoursePennantHoist(number: Int, flagWidth: Int = 76, flagHeight: Int
 @Composable
 private fun CourseDetailScreen(app: AppViewModel, nav: NavHostController, course: Course) {
     val scope = rememberCoroutineScope(); val context = LocalContext.current
+    var showActions by remember { mutableStateOf(false) }
     Scaffold(
         containerColor = Page,
         topBar = {
@@ -199,6 +225,7 @@ private fun CourseDetailScreen(app: AppViewModel, nav: NavHostController, course
                         CoursePennantHoist(course.courseNumber, flagWidth = 58, flagHeight = 22)
                     }
                 },
+                actions = { IconButton({ showActions = true }) { Icon(Icons.Default.MoreVert, "Course actions") } },
             )
         },
     ) { padding ->
@@ -221,20 +248,95 @@ private fun CourseDetailScreen(app: AppViewModel, nav: NavHostController, course
                 item { LaidCourseInfo(course) }
                 if (course.chartImage.isNotBlank()) item { AssetImage(course.chartImage.removePrefix("/")) }
                 item { LaidCourseSequence(course) }
-                item { OutlinedButton({ shareGpx(context, app, course) }, Modifier.fillMaxWidth()) { Icon(Icons.Default.Share, null); Text(" Share GPX") } }
             } else {
-                item { Row(Modifier.fillMaxWidth().background(Navy, RoundedCornerShape(10.dp)).padding(10.dp)) { listOf("Mark", "Side", "Bearing", "NM").forEachIndexed { i, text -> Text(text, Modifier.weight(if (i == 0) 1.6f else 1f), color = Color.White, fontWeight = FontWeight.Bold) } } }
-                items(course.rows) { leg ->
-                    Row(Modifier.fillMaxWidth().clickable { if (app.repository.mark(leg.mark) != null) nav.navigate("quick") }.padding(vertical = 8.dp)) {
-                        Text(leg.mark, Modifier.weight(1.6f), fontWeight = FontWeight.SemiBold); Text(leg.side, Modifier.weight(1f)); Text(leg.bearing, Modifier.weight(1f)); Text(leg.distance, Modifier.weight(1f))
-                    }; HorizontalDivider()
-                }
+                item { ActiveCourseControls(app, course) }
+                item { Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) { HomeCard("Start", "Line Assist", Icons.Default.Timer, Modifier.weight(1f)) { nav.navigate("line/start") }; HomeCard("Finish", "Options", Icons.Default.Flag, Modifier.weight(1f)) { nav.navigate("finish") } } }
+                item { FixedCourseTable(app, nav, course) }
                 if (course.chartImage.isNotBlank()) item { AssetImage(course.chartImage.removePrefix("/")) }
-                item { Button({ app.activateCourse(course) }, Modifier.fillMaxWidth()) { Icon(Icons.Default.PlayArrow, null); Text(" Start Course") } }
-                item { OutlinedButton({ shareGpx(context, app, course) }, Modifier.fillMaxWidth()) { Icon(Icons.Default.Share, null); Text(" Share GPX") } }
-                item { OutlinedButton({ nav.navigate("line/finish") }, Modifier.fillMaxWidth()) { Text("Finish options") } }
-                item { Button({ val mark = course.rows.mapNotNull { app.repository.mark(it.mark) }.firstOrNull(); if (mark != null) scope.launch { app.sendWaypoint(mark) } }, Modifier.fillMaxWidth()) { Text("Send to Boat") } }
+                item { NavigationOutputPanel(app, course) }
             }
+        }
+    }
+    if (showActions) {
+        ModalBottomSheet(onDismissRequest = { showActions = false }) {
+            Column(Modifier.padding(20.dp).padding(bottom = 28.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                Text("Course Actions", fontSize = 22.sp, fontWeight = FontWeight.Bold)
+                Text("Course ${course.courseNumber}", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                Text(listOf(course.totalDistance, course.passInstruction, course.comparableCourseNote).filterNotNull().filter { it.isNotBlank() }.joinToString(" · "), color = Color.Gray)
+                Button({ showActions = false; shareGpx(context, app, course) }, Modifier.fillMaxWidth()) { Icon(Icons.Default.Share, null); Text(" Share GPX Route") }
+                Text("Export this course as a GPX route for other navigation apps.", color = Color.Gray)
+            }
+        }
+    }
+}
+
+@Composable
+private fun ActiveCourseControls(app: AppViewModel, course: Course) {
+    val activeNumber by app.activeCourse.collectAsStateWithLifecycle(); val activeName by app.activeMark.collectAsStateWithLifecycle()
+    val isActive = activeNumber == course.courseNumber
+    val marks = if (isActive) app.activeCourseMarks() else emptyList()
+    val index = marks.indexOfFirst { it.name == activeName || it.id == activeName }
+    OutlinedCard(Modifier.fillMaxWidth(), shape = RoundedCornerShape(8.dp)) {
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) { Icon(if (isActive) Icons.Default.CheckCircle else Icons.Default.GpsFixed, null, tint = if (isActive) Color(0xFF2E7D32) else Teal); Spacer(Modifier.width(8.dp)); Text(if (isActive) "Active course" else "Set active course", Modifier.weight(1f), fontWeight = FontWeight.Bold); if (isActive) TextButton(app::clearActiveCourse) { Text("Clear") } }
+            if (!isActive) Button({ app.activateCourse(course) }, Modifier.fillMaxWidth()) { Text("Set Active Course") }
+            else {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) { OutlinedButton(app::retreatActiveMark, enabled = index > 0) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Previous") }; Button(app::advanceActiveMark, Modifier.weight(1f), enabled = index >= 0 && index < marks.lastIndex) { Text("Next Mark"); Icon(Icons.Default.ChevronRight, null) } }
+                Text("Current: ${marks.getOrNull(index)?.name ?: "--"}", color = Color.Gray)
+            }
+        }
+    }
+}
+
+private data class DisplayLeg(val leg: CourseLeg, val mark: Mark?, val bearing: String, val distance: String)
+
+private fun calculatedLegs(app: AppViewModel, course: Course): List<DisplayLeg> {
+    var previous = app.repository.mark("SYC 4")
+    return course.rows.map { leg ->
+        if (leg.mark.normalizedMarkName() in setOf("total", "sub-total", "subtotal")) DisplayLeg(leg, null, "", leg.distance)
+        else {
+            val mark = app.repository.mark(leg.mark)
+            val pass = leg.side.equals("Pass", true) || leg.bearing.equals("NA", true)
+            val bearing = if (!pass && previous != null && mark != null) "%03.0f".format((NavigationMath.bearing(previous!!.latitude, previous!!.longitude, mark.latitude, mark.longitude) - 12 + 360) % 360) else leg.bearing
+            val distance = if (!pass && previous != null && mark != null) "%.2f".format(NavigationMath.distanceNm(previous!!.latitude, previous!!.longitude, mark.latitude, mark.longitude)) else leg.distance
+            if (!pass && mark != null) previous = mark
+            DisplayLeg(leg, mark, bearing, distance)
+        }
+    }
+}
+
+@Composable
+private fun FixedCourseTable(app: AppViewModel, nav: NavHostController, course: Course) {
+    val activeNumber by app.activeCourse.collectAsStateWithLifecycle(); val activeName by app.activeMark.collectAsStateWithLifecycle()
+    val rows = remember(course) { calculatedLegs(app, course) }
+    OutlinedCard(Modifier.fillMaxWidth(), shape = RoundedCornerShape(8.dp)) {
+        Column {
+            Row(Modifier.background(Color.Gray.copy(alpha = .12f)).padding(vertical = 10.dp)) { listOf("Mark", "Side", "Bearing", "Dist").forEach { Text(it, Modifier.weight(1f).padding(horizontal = 10.dp), color = Color.Gray, fontSize = 12.sp, fontWeight = FontWeight.Bold) } }
+            rows.forEach { row ->
+                val tappable = row.mark != null && row.leg.mark.normalizedMarkName() !in setOf("start", "finish")
+                Row(Modifier.fillMaxWidth().background(if (activeNumber == course.courseNumber && (activeName == row.mark?.name || activeName == row.mark?.id)) Teal.copy(alpha = .14f) else Color.Transparent).clickable(enabled = tappable) { row.mark?.let { nav.navigate("mark/${it.id}") } }.padding(horizontal = 10.dp, vertical = 14.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Text(row.leg.mark, Modifier.weight(1f), fontWeight = FontWeight.Bold); Text(row.leg.side, Modifier.weight(1f)); Text(row.bearing, Modifier.weight(1f)); Row(Modifier.weight(1f)) { Text(row.distance); if (tappable) Icon(Icons.Default.ChevronRight, null, Modifier.size(16.dp), tint = Color.Gray) }
+                }
+                HorizontalDivider()
+            }
+        }
+    }
+}
+
+@Composable
+private fun NavigationOutputPanel(app: AppViewModel, course: Course) {
+    val status by app.networkStatus.collectAsStateWithLifecycle(); val settings by app.settings.collectAsStateWithLifecycle()
+    val activeNumber by app.activeCourse.collectAsStateWithLifecycle(); val activeName by app.activeMark.collectAsStateWithLifecycle()
+    val target = if (activeNumber == course.courseNumber) activeName?.let(app.repository::mark) else course.rows.mapNotNull { app.repository.mark(it.mark) }.firstOrNull()
+    val fix = app.activeFix; val scope = rememberCoroutineScope(); var message by remember { mutableStateOf<String?>(null) }
+    val connected = status in setOf("Connected", "Receiving")
+    OutlinedCard(Modifier.fillMaxWidth(), shape = RoundedCornerShape(8.dp)) {
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Row { Icon(if (connected) Icons.Default.SettingsInputAntenna else Icons.Default.PortableWifiOff, null, tint = if (connected) Color(0xFF2E7D32) else Color.Gray); Spacer(Modifier.width(8.dp)); Text(if (connected) "Navigation output connected" else if (!settings.outputEnabled) "Navigation output disabled" else "Navigation output unavailable", fontWeight = FontWeight.SemiBold) }
+            Text(target?.let { "Active waypoint: ${it.name}" } ?: "No fixed mark waypoint is available for this course.", color = Color.Gray)
+            if (target != null) Text(if (fix == null) "Current GPS position is needed before output can be sent." else if (fix.source == NavigationSource.ACTISENSE) "Source: NMEA2000" else "Source: Android GPS", color = Color.Gray)
+            message?.let { Text(it, color = if (it.startsWith("Sent")) Teal else Color.Red) }
+            Button({ target?.let { mark -> scope.launch { val result = app.sendWaypoint(mark); message = if (result.isSuccess) "Sent to W2K-2" else result.exceptionOrNull()?.localizedMessage } } }, Modifier.fillMaxWidth(), enabled = connected && target != null && fix != null) { Icon(Icons.AutoMirrored.Filled.Send, null); Text(" Send to Boat") }
         }
     }
 }
@@ -290,21 +392,87 @@ private fun AssetImage(path: String, modifier: Modifier = Modifier.fillMaxWidth(
 @Composable
 private fun QuickBearingScreen(app: AppViewModel, nav: NavHostController) {
     val phone by app.phoneFix.collectAsStateWithLifecycle(); val boat by app.actisenseFix.collectAsStateWithLifecycle()
-    var selected by remember { mutableStateOf<Mark?>(null) }; val fix = app.activeFix
-    ScreenScaffold("Quick Bearing", { nav.popBackStack() }) { padding ->
+    val activeCourse by app.activeCourse.collectAsStateWithLifecycle()
+    val activeMarkName by app.activeMark.collectAsStateWithLifecycle()
+    val fix = app.activeFix
+    val activeMarks = remember(activeCourse, activeMarkName) { app.activeCourseMarks() }
+    val activeMark = activeMarks.firstOrNull { it.name == activeMarkName || it.id == activeMarkName }
+    ScreenScaffold("Quick Bearing", { nav.popBackStack() }, actions = { IconButton(app::startLocation) { Icon(Icons.Default.Refresh, "Refresh position") } }) { padding ->
         LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            item { Text(if (fix?.source == NavigationSource.ACTISENSE) "Source: NMEA2000" else if (fix != null) "Source: iPhone GPS" else "No valid position", color = if (fix == null) Color.Red else Teal) }
+            item { Text(if (fix?.source == NavigationSource.ACTISENSE) "Source: NMEA2000" else if (fix != null) "Source: Android GPS" else "No valid position", color = if (fix == null) Color.Red else Teal) }
             item {
                 Text("Approximate Mark Locations", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Navy)
                 Spacer(Modifier.height(8.dp))
-                MarkLocationChart(app = app, onSelect = { selected = it })
+                MarkLocationChart(app = app, onSelect = { nav.navigate("mark/${it.id}") })
+            }
+            if (activeMark != null) {
+                item { Text("Active Mark", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Navy) }
+                item { MarkSelectionCard(activeMark, true, true) { nav.navigate("mark/${activeMark.id}") } }
             }
             item { Text("Select Mark", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Navy) }
-            items(app.repository.marks) { mark -> Card(Modifier.fillMaxWidth().clickable { selected = mark }) { Row(Modifier.padding(15.dp)) { Text(mark.name, Modifier.weight(1f), fontWeight = FontWeight.SemiBold); Icon(Icons.Default.NearMe, null) } } }
+            items(app.repository.marks) { mark ->
+                MarkSelectionCard(mark, mark in activeMarks, mark == activeMark) { nav.navigate("mark/${mark.id}") }
+            }
         }
-        selected?.let { mark -> val snapshot = fix?.let { NavigationMath.snapshot(it, mark) }; AlertDialog(onDismissRequest = { selected = null }, confirmButton = { TextButton({ selected = null }) { Text("Done") } }, title = { Text(mark.name) }, text = { Column(verticalArrangement = Arrangement.spacedBy(8.dp)) { if (snapshot == null) Text("Waiting for a valid position.") else { Text("%03.0f° T".format(snapshot.bearingTrue), fontSize = 38.sp, fontWeight = FontWeight.Bold); Text("%.2f nm".format(snapshot.distanceNm)); snapshot.timeToMarkSeconds?.let { Text("Time to mark ${formatDuration(it)}") } } } }) }
     }
     LaunchedEffect(Unit) { app.startLocation() }
+}
+
+@Composable
+private fun MarkSelectionCard(mark: Mark, inActiveCourse: Boolean, isActive: Boolean, action: () -> Unit) {
+    Card(
+        modifier = Modifier.fillMaxWidth().clickable(onClick = action),
+        colors = CardDefaults.cardColors(containerColor = if (isActive) Teal.copy(alpha = .14f) else if (inActiveCourse) Color.Gray.copy(alpha = .08f) else Color.White),
+    ) {
+        Row(Modifier.fillMaxWidth().padding(15.dp), verticalAlignment = Alignment.CenterVertically) {
+            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
+                Text(mark.name, fontWeight = FontWeight.SemiBold)
+                mark.description?.let { Text(it, color = Color.Gray, fontSize = 14.sp) }
+                if (isActive) Text("Active mark", color = Teal, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                else if (inActiveCourse) Text("In active course", color = Color.Gray, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+            }
+            if (isActive) Icon(Icons.Default.GpsFixed, "Active mark", tint = Teal)
+        }
+    }
+}
+
+@Composable
+private fun MarkDetailScreen(app: AppViewModel, nav: NavHostController, mark: Mark) {
+    val phone by app.phoneFix.collectAsStateWithLifecycle(); val boat by app.actisenseFix.collectAsStateWithLifecycle()
+    val activeCourse by app.activeCourse.collectAsStateWithLifecycle(); val activeMarkName by app.activeMark.collectAsStateWithLifecycle()
+    val fix = app.activeFix
+    val snapshot = fix?.let { NavigationMath.snapshot(it, mark) }
+    val inCourse = remember(activeCourse) { mark in app.activeCourseMarks() }
+    val isActive = activeMarkName == mark.name || activeMarkName == mark.id
+    ScreenScaffold(mark.name, { nav.popBackStack() }) { padding ->
+        LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
+            mark.description?.let { item { Text(it, color = Color.Gray) } }
+            item { Text(if (fix?.source == NavigationSource.ACTISENSE) "Source: NMEA2000" else if (fix != null) "Source: Android GPS" else "No valid position", color = if (fix == null) Color.Red else Teal, fontWeight = FontWeight.SemiBold) }
+            if (snapshot != null) {
+                if (snapshot.distanceNm > 100) item { Card(colors = CardDefaults.cardColors(containerColor = Color(0xFFFFE0B2))) { Column(Modifier.padding(16.dp)) { Text("Location looks far from SYC", fontWeight = FontWeight.Bold); Text("Current location: %.5f, %.5f".format(fix.latitude, fix.longitude)); Text("Set the emulator or device location near Sandringham for race-day distances.", color = Color.Gray) } } }
+                item { MetricCard("Bearing", "%03.0f° T".format(snapshot.bearingTrue)) }
+                item { MetricCard("Distance", "%.2f nm".format(snapshot.distanceNm)) }
+                item { Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) { MetricCard("SOG", snapshot.speedKnots?.let { "%.1f kt".format(it) } ?: "--", Modifier.weight(1f)); MetricCard("Time", snapshot.timeToMarkSeconds?.let(::formatDuration) ?: "--", Modifier.weight(1f)) } }
+                item { Text("GPS accuracy: ${snapshot.accuracyMeters?.let { "${it.toInt()} m" } ?: "--"}\nUpdated: ${formatClock(fix.timestampMillis)}", color = Color.Gray) }
+            } else item { Card { Column(Modifier.padding(16.dp)) { Text("Waiting for GPS", fontWeight = FontWeight.Bold); Text("Allow location access and move into open sky if positioning is slow.", color = Color.Gray) } } }
+            if (inCourse) item { Button({ app.setActiveMark(mark.name) }, Modifier.fillMaxWidth(), enabled = !isActive) { Icon(Icons.Default.GpsFixed, null); Text(if (isActive) " Going To" else " Go To") } }
+            item { Button(app::startLocation, Modifier.fillMaxWidth()) { Icon(Icons.Default.Refresh, null); Text(" Refresh Position") } }
+        }
+    }
+    LaunchedEffect(Unit) { app.startLocation() }
+}
+
+@Composable private fun MetricCard(title: String, value: String, modifier: Modifier = Modifier) = OutlinedCard(modifier, shape = RoundedCornerShape(8.dp)) { Column(Modifier.fillMaxWidth().padding(16.dp)) { Text(title.uppercase(), color = Color.Gray, fontSize = 12.sp, fontWeight = FontWeight.Bold); Text(value, fontSize = 32.sp, fontWeight = FontWeight.Bold) } }
+
+@Composable
+private fun FinishOptionsScreen(app: AppViewModel, nav: NavHostController) {
+    val finish = app.repository.mark("SYC 4")!!
+    ScreenScaffold("Finish", { nav.popBackStack() }) { padding ->
+        Column(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            HomeCard("Line Crossing", "Predict crossing the SYC Tower ↔ SYC 4 finish line", Icons.Default.Timer) { nav.navigate("line/finish") }
+            HomeCard("Bearing to SYC 4", "Bearing, distance, and time to the finish mark", Icons.Default.NearMe) { nav.navigate("mark/${finish.id}") }
+        }
+    }
 }
 
 private data class MarkHotspot(val markId: String, val x: Float, val y: Float)
@@ -340,6 +508,7 @@ private fun MarkLocationChart(app: AppViewModel, onSelect: (Mark) -> Unit) {
             ?.mapNotNull { app.repository.mark(it.mark)?.id }
             ?.toSet().orEmpty()
     }
+    val activeLineIds = remember(activeCourseNumber) { app.activeCourseLineMarks().map { it.id } }
     val activeMarkId = remember(activeMarkName) { activeMarkName?.let { app.repository.mark(it)?.id } }
 
     if (image == null) {
@@ -360,6 +529,18 @@ private fun MarkLocationChart(app: AppViewModel, onSelect: (Mark) -> Unit) {
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds,
         )
+        Canvas(Modifier.fillMaxSize()) {
+            val linePoints = activeLineIds.mapNotNull { id -> markHotspots.firstOrNull { it.markId == id } }
+            linePoints.zipWithNext().forEach { (a, b) ->
+                drawLine(
+                    color = Color.Cyan.copy(alpha = .45f),
+                    start = Offset(a.x * size.width, a.y * size.height),
+                    end = Offset(b.x * size.width, b.y * size.height),
+                    strokeWidth = 4.dp.toPx(),
+                    pathEffect = PathEffect.dashPathEffect(floatArrayOf(7.dp.toPx(), 6.dp.toPx())),
+                )
+            }
+        }
         markHotspots.forEach { hotspot ->
             val mark = app.repository.marks.firstOrNull { it.id == hotspot.markId } ?: return@forEach
             val isActive = mark.id == activeMarkId
@@ -393,7 +574,7 @@ private fun MarkLocationChart(app: AppViewModel, onSelect: (Mark) -> Unit) {
 private fun FlagsScreen(app: AppViewModel, nav: NavHostController) {
     var digits by remember { mutableStateOf("") }
     val matchedCourse = digits.toIntOrNull()?.let(app.repository::course)
-    ScreenScaffold("Numeral Pennants", { nav.popBackStack() }) { padding ->
+    ScreenScaffold("Flags", { nav.popBackStack() }) { padding ->
         Column(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
             LazyVerticalGrid(
                 columns = GridCells.Fixed(3),
@@ -454,11 +635,14 @@ private fun LineAssistScreen(app: AppViewModel, nav: NavHostController, initialM
     val prefs = remember { context.getSharedPreferences("syc_courses", android.content.Context.MODE_PRIVATE) }
     var mode by remember { mutableStateOf(initialMode) }
     var offsetMinutes by remember { mutableIntStateOf(prefs.getInt("line_offset", 10).coerceIn(-5, 25)) }
+    var offsetText by remember { mutableStateOf(offsetMinutes.toString()) }
     var gunTimeMillis by remember {
         mutableLongStateOf(prefs.getLong("line_gun_time", nextWholeMinute(System.currentTimeMillis())))
     }
     var now by remember { mutableLongStateOf(System.currentTimeMillis()) }
     var showOffsetMenu by remember { mutableStateOf(false) }
+    val haptics = LocalHapticFeedback.current
+    val firedHaptics = remember { mutableSetOf<Int>() }
     val phoneFix by app.phoneFix.collectAsStateWithLifecycle()
     val actisenseFix by app.actisenseFix.collectAsStateWithLifecycle()
     val fix = app.activeFix
@@ -513,7 +697,17 @@ private fun LineAssistScreen(app: AppViewModel, nav: NavHostController, initialM
     LaunchedEffect(Unit) {
         app.startLocation()
         if (settings.inputEnabled) app.connectActisense()
-        while (true) { now = System.currentTimeMillis(); delay(1000) }
+        while (true) {
+            now = System.currentTimeMillis()
+            val seconds = kotlin.math.round((startTime - now) / 1000.0).toInt()
+            if (seconds in setOf(60, 30, 10, 0) && firedHaptics.add(seconds)) haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+            delay(1000)
+        }
+    }
+    DisposableEffect(Unit) {
+        val activity = context as? android.app.Activity
+        activity?.window?.addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        onDispose { activity?.window?.clearFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON) }
     }
 
     Scaffold(
@@ -537,6 +731,7 @@ private fun LineAssistScreen(app: AppViewModel, nav: NavHostController, initialM
                         val rounded = kotlin.math.round(timeToStart / 60.0) * 60.0
                         gunTimeMillis = now + rounded.toLong() * 1000 - offsetMinutes * 60_000L
                         prefs.edit().putLong("line_gun_time", gunTimeMillis).apply()
+                        firedHaptics.clear()
                     }) { Icon(Icons.Default.Timer, null); Text(" Sync", fontWeight = FontWeight.Bold) }
                 }
             }
@@ -565,10 +760,24 @@ private fun LineAssistScreen(app: AppViewModel, nav: NavHostController, initialM
                     Column(Modifier.weight(1f)) {
                         LineLabel("Offset", secondary)
                         Box {
-                            TextButton({ showOffsetMenu = true }) { Text("$offsetMinutes min  ▾", color = Color.White, fontSize = 25.sp, fontWeight = FontWeight.Bold) }
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                OutlinedTextField(
+                                    value = offsetText,
+                                    onValueChange = { value ->
+                                        offsetText = value
+                                        value.toIntOrNull()?.coerceIn(-5, 25)?.let { parsed -> offsetMinutes = parsed; prefs.edit().putInt("line_offset", parsed).apply() }
+                                    },
+                                    modifier = Modifier.width(92.dp),
+                                    suffix = { Text("min") },
+                                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                                    singleLine = true,
+                                    textStyle = LocalTextStyle.current.copy(color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold),
+                                )
+                                IconButton({ showOffsetMenu = true }) { Icon(Icons.Default.ExpandMore, "Choose offset", tint = Color.White) }
+                            }
                             DropdownMenu(showOffsetMenu, { showOffsetMenu = false }) {
                                 (-5..25).forEach { value -> DropdownMenuItem({ Text("$value min") }, {
-                                    offsetMinutes = value; showOffsetMenu = false
+                                    offsetMinutes = value; offsetText = value.toString(); showOffsetMenu = false
                                     prefs.edit().putInt("line_offset", value).apply()
                                 }) }
                             }
@@ -624,30 +833,72 @@ private fun nextWholeMinute(now: Long): Long = ((now / 60_000L) + 1) * 60_000L
 @Composable
 private fun RaceTrackerScreen(app: AppViewModel, nav: NavHostController) {
     val track by app.currentTrack.collectAsStateWithLifecycle(); val recording by app.recording.collectAsStateWithLifecycle()
-    ScreenScaffold("Race Tracker", { nav.popBackStack() }) { padding -> Column(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        TrackCanvas(track?.points.orEmpty(), Modifier.fillMaxWidth().weight(1f).background(Color(0xFFDCEAF0), RoundedCornerShape(16.dp)))
-        Text("${track?.points?.size ?: 0} points", fontWeight = FontWeight.Bold)
-        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) { Button(if (recording) app::stopRecording else app::startRecording, Modifier.weight(1f)) { Icon(if (recording) Icons.Default.Stop else Icons.Default.FiberManualRecord, null); Text(if (recording) " Stop" else " Record") }; OutlinedButton(app::resetTrack, Modifier.weight(1f)) { Text("Reset") } }
-    } }
+    val activeNumber by app.activeCourse.collectAsStateWithLifecycle(); val activeName by app.activeMark.collectAsStateWithLifecycle()
+    val phone by app.phoneFix.collectAsStateWithLifecycle(); val boat by app.actisenseFix.collectAsStateWithLifecycle()
+    val points = track?.points.orEmpty(); val duration = trackDuration(points)
+    var scrubSeconds by remember(track?.id) { mutableFloatStateOf(duration.toFloat()) }
+    var hasScrubbed by remember { mutableStateOf(false) }
+    LaunchedEffect(points.size, recording) { if (!hasScrubbed || !recording) scrubSeconds = duration.toFloat() }
+    val avatar = interpolateTrack(points, scrubSeconds.toDouble())
+    val courseMarks = remember(activeNumber, activeName) { app.activeCourseMarks() }
+    val lineMarks = remember(activeNumber) { app.activeCourseLineMarks() }
+    val activeMark = courseMarks.firstOrNull { it.name == activeName || it.id == activeName }
+    val snapshot = activeMark?.let { mark -> app.activeFix?.let { NavigationMath.snapshot(it, mark) } }
+    ScreenScaffold("Race Tracker", { nav.popBackStack() }) { padding ->
+        Column(Modifier.padding(padding)) {
+            RaceMap(points, lineMarks, courseMarks, activeMark, avatar, app.activeFix, Modifier.fillMaxWidth().weight(1f))
+            HorizontalDivider()
+            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                if (activeNumber != null) OutlinedCard(Modifier.fillMaxWidth()) {
+                    Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Row { Column(Modifier.weight(1f)) { Text("ACTIVE COURSE", color = Color.Gray, fontSize = 11.sp, fontWeight = FontWeight.Bold); Text("Course $activeNumber", fontWeight = FontWeight.Bold); Text(activeMark?.let { "Active mark: ${it.name}" } ?: "No active mark", color = Color.Gray) }; Column(horizontalAlignment = Alignment.End) { Text("BTW", color = Color.Gray, fontSize = 11.sp); Text(snapshot?.let { "%03.0f° T".format(it.bearingTrue) } ?: "--", fontWeight = FontWeight.Bold); Text("DTW", color = Color.Gray, fontSize = 11.sp); Text(snapshot?.let { "%.2f nm".format(it.distanceNm) } ?: "--", fontWeight = FontWeight.Bold) } }
+                        val index = courseMarks.indexOf(activeMark)
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) { OutlinedButton(app::retreatActiveMark, enabled = index > 0) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Previous mark") }; Button(app::advanceActiveMark, enabled = index >= 0 && index < courseMarks.lastIndex) { Text("Next Mark"); Icon(Icons.Default.ChevronRight, null) } }
+                    }
+                }
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Button({ app.startRecording(); hasScrubbed = false }, enabled = !recording) { Icon(Icons.Default.PlayArrow, null); Text("Start") }
+                    OutlinedButton(app::stopRecording, enabled = recording) { Icon(Icons.Default.Stop, null); Text("Stop") }
+                    OutlinedButton({ app.resetTrack(); scrubSeconds = 0f; hasScrubbed = false }, enabled = points.isNotEmpty() || recording) { Icon(Icons.Default.Refresh, null); Text("Reset") }
+                }
+                Slider(scrubSeconds, { scrubSeconds = it; hasScrubbed = true }, valueRange = 0f..duration.coerceAtLeast(1.0).toFloat(), enabled = duration > 0)
+                Row { Text(formatDuration(scrubSeconds.toDouble()), color = Color.Gray, fontSize = 12.sp); Spacer(Modifier.weight(1f)); Text(formatDuration(duration), color = Color.Gray, fontSize = 12.sp) }
+                Row { Icon(if (recording) Icons.Default.FiberManualRecord else Icons.Default.PauseCircle, null, tint = if (recording) Color.Red else Color.Gray); Spacer(Modifier.width(6.dp)); Text(if (recording) "Recording" else if (points.isEmpty()) "Ready" else "Stopped", color = Color.Gray, fontSize = 12.sp) }
+            }
+        }
+    }
+    LaunchedEffect(Unit) { app.startLocation() }
+}
+
+private fun trackDuration(points: List<TrackPoint>): Double = if (points.size < 2) 0.0 else (points.last().timestampMillis - points.first().timestampMillis) / 1000.0
+private fun interpolateTrack(points: List<TrackPoint>, seconds: Double): TrackPoint? {
+    if (points.isEmpty()) return null
+    val target = points.first().timestampMillis + (seconds * 1000).toLong()
+    val after = points.indexOfFirst { it.timestampMillis >= target }
+    if (after <= 0) return points.first()
+    if (after < 0) return points.last()
+    val a = points[after - 1]; val b = points[after]; val ratio = (target - a.timestampMillis).toDouble() / (b.timestampMillis - a.timestampMillis).coerceAtLeast(1)
+    return TrackPoint(a.latitude + (b.latitude - a.latitude) * ratio, a.longitude + (b.longitude - a.longitude) * ratio, target)
 }
 
 @Composable
-private fun TrackCanvas(points: List<TrackPoint>, modifier: Modifier) {
-    Canvas(modifier.padding(18.dp)) {
-        if (points.size < 2) return@Canvas
-        val minLat = points.minOf { it.latitude }
-        val maxLat = points.maxOf { it.latitude }
-        val minLon = points.minOf { it.longitude }
-        val maxLon = points.maxOf { it.longitude }
-        val pointOffset: (TrackPoint) -> Offset = { point ->
-            Offset(
-                (((point.longitude - minLon) / (maxLon - minLon).coerceAtLeast(1e-8)) * size.width).toFloat(),
-                (size.height - ((point.latitude - minLat) / (maxLat - minLat).coerceAtLeast(1e-8)) * size.height).toFloat(),
-            )
-        }
-        points.zipWithNext().forEach { pair -> drawLine(Teal, pointOffset(pair.first), pointOffset(pair.second), 6f) }
-        drawCircle(Color.Red, 9f, pointOffset(points.last()))
-    }
+private fun RaceMap(points: List<TrackPoint>, courseLine: List<Mark>, courseMarks: List<Mark>, activeMark: Mark?, avatar: TrackPoint?, fix: NavigationFix?, modifier: Modifier) {
+    val html = remember(points.size, courseLine, activeMark?.id, avatar?.timestampMillis, fix?.timestampMillis) { raceMapHtml(points, courseLine, courseMarks, activeMark, avatar, fix) }
+    AndroidView(
+        modifier = modifier,
+        factory = { context -> android.webkit.WebView(context).apply { settings.javaScriptEnabled = true; settings.domStorageEnabled = true } },
+        update = { it.loadDataWithBaseURL("https://localhost/", html, "text/html", "UTF-8", null) },
+    )
+}
+
+private fun raceMapHtml(points: List<TrackPoint>, courseLine: List<Mark>, courseMarks: List<Mark>, activeMark: Mark?, avatar: TrackPoint?, fix: NavigationFix?): String {
+    fun coords(values: List<Pair<Double, Double>>) = values.joinToString(prefix = "[", postfix = "]") { "[${it.first},${it.second}]" }
+    val track = coords(points.map { it.latitude to it.longitude }); val line = coords(courseLine.map { it.latitude to it.longitude })
+    val all = (points.map { it.latitude to it.longitude } + courseLine.map { it.latitude to it.longitude } + listOfNotNull(fix?.let { it.latitude to it.longitude })).ifEmpty { listOf(-37.95 to 145.0) }
+    val markers = courseMarks.joinToString("\n") { mark -> "L.circleMarker([${mark.latitude},${mark.longitude}],{radius:${if (mark.id == activeMark?.id) 12 else 9},color:'${if (mark.id == activeMark?.id) "#ff9800" else "#00a7b5"}',weight:${if (mark.id == activeMark?.id) 4 else 3},fillColor:'white',fillOpacity:.9}).addTo(map).bindTooltip('${mark.name.replace("'", "\\'")}');" }
+    val avatarJs = avatar?.let { "L.circleMarker([${it.latitude},${it.longitude}],{radius:9,color:'white',weight:3,fillColor:'#ff9800',fillOpacity:1}).addTo(map);" }.orEmpty()
+    val fixJs = fix?.let { "L.circleMarker([${it.latitude},${it.longitude}],{radius:8,color:'#1976d2',weight:3,fillColor:'white',fillOpacity:1}).addTo(map).bindTooltip('Current position');" }.orEmpty()
+    return """<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""><style>html,body,#map{height:100%;margin:0}</style></head><body><div id="map"></div><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9coqIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><script>const map=L.map('map');L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'}).addTo(map);const track=$track,line=$line,all=${coords(all)};if(line.length>1)L.polyline(line,{color:'#00a7b5',weight:4,dashArray:'8 6',opacity:.6}).addTo(map);if(track.length>1)L.polyline(track,{color:'#1976d2',weight:4}).addTo(map);$markers$avatarJs$fixJs if(all.length>1)map.fitBounds(all,{padding:[30,30]});else map.setView(all[0],14);</script></body></html>"""
 }
 
 @Composable
@@ -655,25 +906,39 @@ private fun InstrumentsScreen(app: AppViewModel, nav: NavHostController) {
     val context = LocalContext.current
     val prefs = remember { context.getSharedPreferences("syc_courses", android.content.Context.MODE_PRIVATE) }
     var settings by remember { mutableStateOf(app.settings.value) }; val status by app.networkStatus.collectAsStateWithLifecycle()
+    val lastMessage by app.lastOutputMessage.collectAsStateWithLifecycle(); val outputCount by app.outputCount.collectAsStateWithLifecycle(); val outputError by app.outputError.collectAsStateWithLifecycle(); val lastReconnect by app.lastReconnectMillis.collectAsStateWithLifecycle()
+    var discoveryMessage by remember { mutableStateOf<String?>(null) }; var discovering by remember { mutableStateOf(false) }; var showGeometry by remember { mutableStateOf(false) }; var showDiagnostics by remember { mutableStateOf(false) }
+    val scope = rememberCoroutineScope()
     var useBow by remember { mutableStateOf(prefs.getBoolean("line_use_bow", true)) }
     var bowOffset by remember { mutableStateOf(prefs.getFloat("line_bow_offset", 9.4f).toString()) }
     var sidewaysOffset by remember { mutableStateOf(prefs.getFloat("line_gps_sideways", 0f).toString()) }
     var bearingSource by remember { mutableStateOf(runCatching { BearingSource.valueOf(prefs.getString("line_bearing_source", "COG")!!) }.getOrDefault(BearingSource.COG)) }
+    fun persist(value: ActisenseSettings) { settings = value; app.updateSettings(value) }
     ScreenScaffold("Instruments", { nav.popBackStack() }) { padding -> LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
         item { Text("Configure one Actisense W2K-2, then choose input, output, or both.", color = Color.Gray) }
-        item { OutlinedTextField(settings.host, { settings = settings.copy(host = it) }, Modifier.fillMaxWidth(), label = { Text("IP address") }) }
-        item { OutlinedTextField(settings.port.toString(), { it.toIntOrNull()?.let { port -> settings = settings.copy(port = port) } }, Modifier.fillMaxWidth(), label = { Text("Data server port") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)) }
-        item { Row { FilterChip(settings.protocol == NetworkProtocol.TCP, { settings = settings.copy(protocol = NetworkProtocol.TCP) }, { Text("TCP") }); Spacer(Modifier.width(8.dp)); FilterChip(settings.protocol == NetworkProtocol.UDP, { settings = settings.copy(protocol = NetworkProtocol.UDP) }, { Text("UDP") }) } }
-        item { SettingSwitch("Use for boat data input", settings.inputEnabled) { settings = settings.copy(inputEnabled = it) } }
-        item { SettingSwitch("Send output to instruments", settings.outputEnabled) { settings = settings.copy(outputEnabled = it) } }
-        item { Text("Status: $status", fontWeight = FontWeight.Bold, color = if (status.startsWith("Error")) Color.Red else Teal) }
-        item { Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) { Button({ app.updateSettings(settings); app.connectActisense() }, Modifier.weight(1f)) { Text("Connect") }; OutlinedButton(app::disconnectActisense, Modifier.weight(1f)) { Text("Disconnect") } } }
-        item { Text("The app exchanges NMEA 0183 data directly with the W2K-2 over your boat Wi-Fi. Common setups use port 60001.", color = Color.Gray) }
-        item { HorizontalDivider(); Text("Line Assist · Boat Geometry", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Navy) }
-        item { SettingSwitch("Use bow position for Line Assist", useBow) { useBow = it; prefs.edit().putBoolean("line_use_bow", it).apply() } }
-        item { OutlinedTextField(bowOffset, { value -> bowOffset = value; value.toFloatOrNull()?.let { prefs.edit().putFloat("line_bow_offset", it.coerceIn(0f, 30f)).apply() } }, Modifier.fillMaxWidth(), label = { Text("GPS to bow distance (m)") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)) }
-        item { OutlinedTextField(sidewaysOffset, { value -> sidewaysOffset = value; value.toFloatOrNull()?.let { prefs.edit().putFloat("line_gps_sideways", it.coerceIn(-10f, 10f)).apply() } }, Modifier.fillMaxWidth(), label = { Text("GPS sideways offset (m)") }, supportingText = { Text("Positive is starboard; negative is port.") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)) }
-        item {
+        item { Text("Instrument display depends on W2K-2 configuration and downstream support.", color = Color.Gray, fontSize = 12.sp) }
+        item { Text("Actisense W2K-2", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Navy) }
+        item { OutlinedTextField(settings.host, { persist(settings.copy(host = it)) }, Modifier.fillMaxWidth(), label = { Text("IP address") }) }
+        item { OutlinedTextField(settings.port.toString(), { it.toIntOrNull()?.let { port -> persist(settings.copy(port = port)) } }, Modifier.fillMaxWidth(), label = { Text("Data server port") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)) }
+        item { Row { FilterChip(settings.protocol == NetworkProtocol.TCP, { persist(settings.copy(protocol = NetworkProtocol.TCP)) }, { Text("TCP") }); Spacer(Modifier.width(8.dp)); FilterChip(settings.protocol == NetworkProtocol.UDP, { persist(settings.copy(protocol = NetworkProtocol.UDP)) }, { Text("UDP") }) } }
+        item { OutlinedButton({ scope.launch { discovering = true; discoveryMessage = "Scanning likely W2K-2 addresses and ports…"; val found = discoverActisense(settings.host, settings.port); discovering = false; if (found != null) { persist(settings.copy(host = found.first, port = found.second)); discoveryMessage = "Found Actisense at ${found.first}:${found.second}." } else discoveryMessage = "No Actisense data server found. Check Wi-Fi, IP address, and port." } }, enabled = !discovering) { Icon(Icons.Default.Search, null); Text(if (discovering) " Finding Actisense" else " Find Actisense") } }
+        discoveryMessage?.let { item { Text(it, color = if (it.startsWith("No")) Color.Red else Color.Gray, fontSize = 12.sp) } }
+        item { SettingSwitch("Use for boat data input", settings.inputEnabled) { persist(settings.copy(inputEnabled = it)) } }
+        item { SettingSwitch("Send output to instruments", settings.outputEnabled) { persist(settings.copy(outputEnabled = it)) } }
+        if (settings.outputEnabled) item { SettingSwitch("Auto-connect output", settings.autoConnectOutput) { persist(settings.copy(autoConnectOutput = it)) } }
+        item { Text("The data server port is the TCP/UDP port configured for NMEA 0183 streaming. Common setups use 60001.", color = Color.Gray, fontSize = 12.sp) }
+        item { Text("Quick Bearing and Line Assist prefer fresh Actisense position/SOG and fall back to Android GPS when it is stale.", color = Color.Gray, fontSize = 12.sp) }
+        item { HorizontalDivider(); Text("Actisense Status", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Navy) }
+        item { Row { Text("Input", Modifier.weight(1f)); Text(if (settings.inputEnabled) status else "Disabled", fontWeight = FontWeight.SemiBold) } }
+        item { Row { Text("Output", Modifier.weight(1f)); Text(if (settings.outputEnabled) status else "Disabled", fontWeight = FontWeight.SemiBold) } }
+        if (status.startsWith("Error")) item { Text(status, color = Color.Red, fontSize = 12.sp) }
+        item { Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) { Button({ app.connectActisense() }, Modifier.weight(1f), enabled = settings.host.isNotBlank() && settings.port in 1..65535) { Text("Test Connection") }; OutlinedButton(app::disconnectActisense, Modifier.weight(1f), enabled = status != "Disconnected") { Text("Disconnect") } } }
+        item { OutlinedButton({ app.repository.mark("SYC 4")?.let { mark -> scope.launch { app.sendWaypoint(mark) } } }, enabled = settings.outputEnabled && status in setOf("Connected", "Receiving") && app.activeFix != null) { Text("Test Output") } }
+        item { HorizontalDivider(); TextButton({ showGeometry = !showGeometry }) { Text("Line Assist · Boat Geometry"); Icon(if (showGeometry) Icons.Default.ExpandLess else Icons.Default.ExpandMore, null) } }
+        if (showGeometry) item { SettingSwitch("Use bow position for Line Assist", useBow) { useBow = it; prefs.edit().putBoolean("line_use_bow", it).apply() } }
+        if (showGeometry) item { OutlinedTextField(bowOffset, { value -> bowOffset = value; value.toFloatOrNull()?.let { prefs.edit().putFloat("line_bow_offset", it.coerceIn(0f, 30f)).apply() } }, Modifier.fillMaxWidth(), label = { Text("GPS to bow distance (m)") }, supportingText = { Text("Measured forward from the GPS/compass sensor to the bow.") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)) }
+        if (showGeometry) item { OutlinedTextField(sidewaysOffset, { value -> sidewaysOffset = value; value.toFloatOrNull()?.let { prefs.edit().putFloat("line_gps_sideways", it.coerceIn(-10f, 10f)).apply() } }, Modifier.fillMaxWidth(), label = { Text("GPS sideways offset (m)") }, supportingText = { Text("Positive is starboard; negative is port.") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)) }
+        if (showGeometry) item {
             Text("Bow projection", fontWeight = FontWeight.SemiBold)
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 BearingSource.entries.forEach { source ->
@@ -684,13 +949,32 @@ private fun InstrumentsScreen(app: AppViewModel, nav: NavHostController) {
                 }
             }
         }
-        item { Text("Line Assist uses the projected bow position because the boat starts or finishes when the bow crosses the line.", color = Color.Gray) }
+        if (showGeometry) item { Text("Course over ground is the default. Heading projection is available when filtered heading data is reliable. Line Assist uses the bow because the boat starts or finishes when the bow crosses the line.", color = Color.Gray, fontSize = 12.sp) }
+        item { HorizontalDivider(); TextButton({ showDiagnostics = !showDiagnostics }) { Text("Diagnostics / Advanced"); Icon(if (showDiagnostics) Icons.Default.ExpandLess else Icons.Default.ExpandMore, null) } }
+        if (showDiagnostics) {
+            item { DiagnosticRow("Device / host", if (settings.host.isBlank()) "Not configured" else "${settings.host}:${settings.port}") }
+            item { DiagnosticRow("Connection", status) }
+            item { DiagnosticRow("Last message sent", lastMessage ?: "None") }
+            item { DiagnosticRow("Message count", outputCount.toString()) }
+            item { DiagnosticRow("Last error", outputError ?: "None") }
+            item { DiagnosticRow("Last reconnect", lastReconnect?.let(::formatClock) ?: "Never") }
+        }
     } }
+    LaunchedEffect(Unit) { if ((settings.inputEnabled || settings.autoConnectOutput) && status == "Disconnected") app.connectActisense() }
+}
+
+@Composable private fun DiagnosticRow(label: String, value: String) = Row(Modifier.fillMaxWidth()) { Text(label, Modifier.weight(1f)); Text(value, color = Color.Gray) }
+
+private suspend fun discoverActisense(currentHost: String, currentPort: Int): Pair<String, Int>? = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+    val hosts = listOf(currentHost, "192.168.4.1", "192.168.1.1", "192.168.0.1", "10.0.0.1").filter { it.isNotBlank() }.distinct()
+    val ports = listOf(currentPort, 60001, 60002, 60003).filter { it in 1..65535 }.distinct()
+    for (host in hosts) for (port in ports) runCatching { java.net.Socket().use { it.connect(java.net.InetSocketAddress(host, port), 750) } }.onSuccess { return@withContext host to port }
+    null
 }
 
 @Composable private fun SettingSwitch(label: String, checked: Boolean, change: (Boolean) -> Unit) = Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) { Text(label, Modifier.weight(1f)); Switch(checked, change) }
 
-@Composable private fun ScreenScaffold(title: String, back: (() -> Unit)? = null, content: @Composable (PaddingValues) -> Unit) { Scaffold(containerColor = Page, topBar = { if (back != null) TopAppBar(title = { Text(title, fontWeight = FontWeight.Bold) }, navigationIcon = { IconButton(back) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back") } }) }, content = content) }
+@Composable private fun ScreenScaffold(title: String, back: (() -> Unit)? = null, actions: @Composable RowScope.() -> Unit = {}, content: @Composable (PaddingValues) -> Unit) { Scaffold(containerColor = Page, topBar = { if (back != null) TopAppBar(title = { Text(title, fontWeight = FontWeight.Bold) }, navigationIcon = { IconButton(back) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back") } }, actions = actions) }, content = content) }
 
 private fun formatDuration(seconds: Double): String { val value = seconds.coerceAtLeast(0.0).toInt(); return "%d:%02d".format(value / 60, value % 60) }
 

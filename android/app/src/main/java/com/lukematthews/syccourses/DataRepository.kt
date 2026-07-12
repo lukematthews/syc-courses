@@ -16,6 +16,7 @@ class DataRepository(context: Context) {
         json.decodeFromString(assets.open(file).bufferedReader().use { it.readText() })
 
     fun course(number: Int) = allCourses.firstOrNull { it.courseNumber == number }
+    fun markById(id: String) = marks.firstOrNull { it.id == id }
 
     fun mark(named: String): Mark? {
         val key = named.normalizedMarkName()
