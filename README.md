@@ -128,3 +128,28 @@ Supported input sentences in v1:
 
 Fresh valid Actisense data is preferred by Quick Bearing, Mark Detail, Course Send to Boat, and Start
 Assist. If the Actisense feed is disconnected, invalid, or stale, those screens fall back to iPhone GPS.
+
+## Native Android App
+
+The native Android app lives in `android` and is implemented with Kotlin and Jetpack Compose. It
+shares the same bundled course data, mark coordinates, course charts, and visual identity as the
+iPhone app. Its application ID is `com.lukematthews.syccourses`, with Android 8.0 (API 26) as the
+minimum supported version.
+
+Open the `android` directory in Android Studio, allow Gradle sync to finish, then run the `app`
+configuration on an emulator or physical Android device. Location permission is required for
+bearing, line-assist, and race-tracking features. The app connects directly to an Actisense W2K-2
+using the configured TCP or UDP host and port on the boat Wi-Fi network.
+
+Build and test from a terminal with a Java 17 runtime and Android SDK installed:
+
+```bash
+cd android
+./gradlew testDebugUnitTest assembleDebug
+```
+
+After changing the canonical iOS course resources, refresh Android's bundled copies with:
+
+```bash
+./scripts/sync_android_resources.sh
+```
