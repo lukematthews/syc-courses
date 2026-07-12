@@ -115,18 +115,63 @@ private fun HomeScreen(app: AppViewModel, nav: NavHostController) {
 @Composable
 private fun CourseListScreen(app: AppViewModel, nav: NavHostController, laid: Boolean) {
     val courses = if (laid) app.repository.laidCourses else app.repository.fixedCourses
-    var query by remember { mutableStateOf("") }
-    val filtered = courses.filter { query.isBlank() || it.courseNumber.toString().contains(query) || it.route?.contains(query, true) == true }
     ScreenScaffold(if (laid) "Laid Courses" else "Fixed Mark Courses", { nav.popBackStack() }) { padding ->
-        LazyColumn(Modifier.padding(padding).padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            item { OutlinedTextField(query, { query = it }, Modifier.fillMaxWidth(), label = { Text("Find a course") }, leadingIcon = { Icon(Icons.Default.Search, null) }, singleLine = true) }
-            items(filtered) { CourseRow(it) { app.recordRecent(it.courseNumber); nav.navigate("course/${it.courseNumber}") } }
+        LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            items(courses) { CourseRow(it) { app.recordRecent(it.courseNumber); nav.navigate("course/${it.courseNumber}") } }
             item { Spacer(Modifier.height(16.dp)) }
         }
     }
 }
 
-@Composable private fun CourseRow(course: Course, action: () -> Unit) = Card(Modifier.fillMaxWidth().clickable(onClick = action)) { Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) { Surface(shape = RoundedCornerShape(10.dp), color = Navy) { Text(course.courseNumber.toString(), Modifier.padding(horizontal = 15.dp, vertical = 12.dp), color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold) }; Spacer(Modifier.width(14.dp)); Column(Modifier.weight(1f)) { Text(course.route ?: "Course ${course.courseNumber}", fontWeight = FontWeight.SemiBold); Text("${course.totalDistance} nm", color = Color.Gray) }; Icon(Icons.Default.ChevronRight, null) } }
+@Composable
+private fun CourseRow(course: Course, action: () -> Unit) {
+    OutlinedCard(
+        modifier = Modifier.fillMaxWidth().clickable(onClick = action),
+        shape = RoundedCornerShape(8.dp),
+        colors = CardDefaults.outlinedCardColors(containerColor = Color.White),
+        border = CardDefaults.outlinedCardBorder().copy(width = 1.dp),
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(14.dp),
+        ) {
+            Text(
+                "Course ${course.courseNumber}",
+                modifier = Modifier.weight(1f),
+                fontSize = 22.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF1C1B1F),
+                maxLines = 1,
+            )
+            CoursePennantHoist(course.courseNumber)
+        }
+    }
+}
+
+@Composable
+private fun CoursePennantHoist(number: Int) {
+    Row(
+        verticalAlignment = Alignment.Top,
+        horizontalArrangement = Arrangement.spacedBy(5.dp),
+    ) {
+        Box(
+            Modifier
+                .width(2.dp)
+                .height((number.toString().length * 34).dp)
+                .background(Color.Gray.copy(alpha = .35f)),
+        )
+        Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
+            number.toString().forEach { digit ->
+                AssetImage(
+                    path = "pennants/numeral-$digit.png",
+                    modifier = Modifier.width(76.dp).height(29.dp),
+                    description = "Numeral pennant $digit",
+                )
+            }
+        }
+    }
+}
 
 @Composable
 private fun CourseDetailScreen(app: AppViewModel, nav: NavHostController, course: Course) {
