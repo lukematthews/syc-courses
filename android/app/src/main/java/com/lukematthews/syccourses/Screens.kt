@@ -135,7 +135,7 @@ private fun CourseDetailScreen(app: AppViewModel, nav: NavHostController, course
                     Text(leg.mark, Modifier.weight(1.6f), fontWeight = FontWeight.SemiBold); Text(leg.side, Modifier.weight(1f)); Text(leg.bearing, Modifier.weight(1f)); Text(leg.distance, Modifier.weight(1f))
                 }; HorizontalDivider()
             }
-            if (course.chartImage.isNotBlank()) item { AssetImage("course-charts/${course.chartImage}") }
+            if (course.chartImage.isNotBlank()) item { AssetImage(course.chartImage.removePrefix("/")) }
             item { Button({ app.activateCourse(course) }, Modifier.fillMaxWidth()) { Icon(Icons.Default.PlayArrow, null); Text(" Start Course") } }
             item { OutlinedButton({ shareGpx(context, app, course) }, Modifier.fillMaxWidth()) { Icon(Icons.Default.Share, null); Text(" Share GPX") } }
             item { OutlinedButton({ nav.navigate("line/finish") }, Modifier.fillMaxWidth()) { Text("Finish options") } }
@@ -144,7 +144,14 @@ private fun CourseDetailScreen(app: AppViewModel, nav: NavHostController, course
     }
 }
 
-@Composable private fun AssetImage(path: String) { val context = LocalContext.current; val bitmap = remember(path) { runCatching { context.assets.open(path).use(BitmapFactory::decodeStream) }.getOrNull() }; bitmap?.let { Image(it.asImageBitmap(), null, Modifier.fillMaxWidth(), contentScale = ContentScale.FillWidth) } }
+@Composable
+private fun AssetImage(path: String, modifier: Modifier = Modifier.fillMaxWidth(), description: String? = null) {
+    val context = LocalContext.current
+    val bitmap = remember(path) {
+        runCatching { context.assets.open(path).use(BitmapFactory::decodeStream) }.getOrNull()
+    }
+    bitmap?.let { Image(it.asImageBitmap(), description, modifier, contentScale = ContentScale.Fit) }
+}
 
 @Composable
 private fun QuickBearingScreen(app: AppViewModel, nav: NavHostController) {
@@ -160,7 +167,30 @@ private fun QuickBearingScreen(app: AppViewModel, nav: NavHostController) {
     LaunchedEffect(Unit) { app.startLocation() }
 }
 
-@Composable private fun FlagsScreen(nav: NavHostController) { ScreenScaffold("Numeral Pennants", { nav.popBackStack() }) { padding -> LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) { items((0..9).toList()) { number -> Card(Modifier.fillMaxWidth()) { Row(Modifier.padding(20.dp), verticalAlignment = Alignment.CenterVertically) { Icon(Icons.Default.Flag, null, tint = if (number % 2 == 0) Color.Red else Teal, modifier = Modifier.size(48.dp)); Spacer(Modifier.width(20.dp)); Text(number.toString(), fontSize = 34.sp, fontWeight = FontWeight.Bold) } } } } } }
+@Composable
+private fun FlagsScreen(nav: NavHostController) {
+    val names = listOf("Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine")
+    ScreenScaffold("Numeral Pennants", { nav.popBackStack() }) { padding ->
+        LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            items((0..9).toList()) { number ->
+                Card(Modifier.fillMaxWidth()) {
+                    Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
+                        AssetImage(
+                            path = "pennants/numeral-$number.png",
+                            modifier = Modifier.width(200.dp).height(75.dp),
+                            description = "Numeral pennant $number",
+                        )
+                        Spacer(Modifier.width(14.dp))
+                        Column {
+                            Text(number.toString(), fontSize = 28.sp, fontWeight = FontWeight.Bold)
+                            Text(names[number], color = Color.Gray)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 @Composable
 private fun LineAssistScreen(app: AppViewModel, nav: NavHostController, initialMode: LineMode) {
