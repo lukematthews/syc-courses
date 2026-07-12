@@ -35,4 +35,29 @@ class NavigationMathTest {
             assertEquals(expected.toString(16).uppercase().padStart(2, '0'), sentence.substringAfter('*'))
         }
     }
+
+    @Test
+    fun lineAssistReportsMissingGpsPrecisely() {
+        val a = Mark("a", "A", latitude = -37.9, longitude = 145.0)
+        val b = Mark("b", "B", latitude = -37.9, longitude = 145.01)
+        assertEquals(LineCrossingStatus.NO_GPS, NavigationMath.lineCrossing(null, a, b).status)
+    }
+
+    @Test
+    fun lineAssistProjectsTheBowAndFindsCrossingAhead() {
+        val lineA = Mark("a", "A", latitude = 0.0, longitude = -0.001)
+        val lineB = Mark("b", "B", latitude = 0.0, longitude = 0.001)
+        val fix = NavigationFix(
+            latitude = -0.001,
+            longitude = 0.0,
+            sogKnots = 5.0,
+            cogDegrees = 0.0,
+            source = NavigationSource.PHONE_GPS,
+        )
+        val result = NavigationMath.lineCrossing(fix, lineA, lineB)
+        assertEquals(LineCrossingStatus.APPROACHING, result.status)
+        assertEquals(ReferencePoint.BOW, result.referencePoint)
+        assertEquals(true, result.bowOffsetApplied)
+        assertNotNull(result.secondsToLine)
+    }
 }

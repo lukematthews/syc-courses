@@ -321,16 +321,176 @@ private fun FlagsScreen(app: AppViewModel, nav: NavHostController) {
 
 @Composable
 private fun LineAssistScreen(app: AppViewModel, nav: NavHostController, initialMode: LineMode) {
-    var mode by remember { mutableStateOf(initialMode) }; var gunOffset by remember { mutableIntStateOf(5) }; var now by remember { mutableLongStateOf(System.currentTimeMillis()) }
-    LaunchedEffect(Unit) { app.startLocation(); while (true) { now = System.currentTimeMillis(); delay(1000) } }
-    val fix = app.activeFix; val tower = app.repository.mark("SYC Tower"); val mark4 = app.repository.mark("SYC 4"); val result = if (fix != null && tower != null && mark4 != null) NavigationMath.lineCrossing(fix, tower, mark4) else LineCrossingResult("Waiting for position")
-    ScreenScaffold("Line Assist", { nav.popBackStack() }) { padding -> Column(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
-        SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) { LineMode.entries.forEachIndexed { index, value -> SegmentedButton(mode == value, { mode = value }, SegmentedButtonDefaults.itemShape(index, 2)) { Text(value.name.lowercase().replaceFirstChar(Char::uppercase)) } } }
-        Card(colors = CardDefaults.cardColors(containerColor = Navy), modifier = Modifier.fillMaxWidth()) { Column(Modifier.padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally) { Text(result.status, color = Color.White); Text(result.secondsToLine?.let(::formatDuration) ?: "—", color = Color(0xFFFFC65C), fontSize = 48.sp, fontWeight = FontWeight.Bold); Text(result.distanceMeters?.let { "%.0f m to line".format(it) } ?: "Course, speed and position required", color = Color.White) } }
-        Text("Start offset", fontWeight = FontWeight.Bold); Slider(gunOffset.toFloat(), { gunOffset = it.toInt() }, valueRange = 0f..15f, steps = 14); Text("Gun time +$gunOffset minutes")
-        Text("Uses the SYC Tower ↔ SYC 4 ${mode.name.lowercase()} line and your current COG/SOG.", color = Color.Gray)
-    } }
+    val context = LocalContext.current
+    val prefs = remember { context.getSharedPreferences("syc_courses", android.content.Context.MODE_PRIVATE) }
+    var mode by remember { mutableStateOf(initialMode) }
+    var offsetMinutes by remember { mutableIntStateOf(prefs.getInt("line_offset", 10).coerceIn(-5, 25)) }
+    var gunTimeMillis by remember {
+        mutableLongStateOf(prefs.getLong("line_gun_time", nextWholeMinute(System.currentTimeMillis())))
+    }
+    var now by remember { mutableLongStateOf(System.currentTimeMillis()) }
+    var showOffsetMenu by remember { mutableStateOf(false) }
+    val phoneFix by app.phoneFix.collectAsStateWithLifecycle()
+    val actisenseFix by app.actisenseFix.collectAsStateWithLifecycle()
+    val fix = app.activeFix
+    val settings = app.settings.collectAsStateWithLifecycle().value
+    val geometry = remember(prefs) {
+        BoatGeometrySettings(
+            bowOffsetMeters = prefs.getFloat("line_bow_offset", 9.4f).toDouble(),
+            gpsOffsetStarboardMeters = prefs.getFloat("line_gps_sideways", 0f).toDouble(),
+            useBowOffset = prefs.getBoolean("line_use_bow", true),
+            bearingSource = runCatching { BearingSource.valueOf(prefs.getString("line_bearing_source", "COG")!!) }.getOrDefault(BearingSource.COG),
+        )
+    }
+    val tower = app.repository.mark("SYC Tower")!!
+    val mark4 = app.repository.mark("SYC 4")!!
+    val result = NavigationMath.lineCrossing(fix, tower, mark4, geometry)
+    val startTime = gunTimeMillis + offsetMinutes * 60_000L
+    val timeToStart = (startTime - now) / 1000.0
+    val timeToBurn = result.secondsToLine?.let { timeToStart - it }
+    val sourceText = when {
+        fix?.source == NavigationSource.ACTISENSE -> "Source: NMEA2000"
+        fix != null -> "Source: Android GPS"
+        settings.inputEnabled && actisenseFix != null -> "Actisense stale — no valid position"
+        else -> "No valid position"
+    }
+    val lcd = Color(0xFFADCA9B)
+    val secondary = Color.White.copy(alpha = .62f)
+    val statusText = when {
+        result.degradedReason == DegradedReason.MISSING_HEADING -> "NO HEADING"
+        result.status == LineCrossingStatus.APPROACHING -> "APPROACHING"
+        result.status == LineCrossingStatus.CROSSING_AHEAD -> "CROSSING AHEAD"
+        result.status == LineCrossingStatus.OUTSIDE_SEGMENT -> "OUTSIDE LINE"
+        result.status == LineCrossingStatus.PARALLEL -> "PARALLEL"
+        result.status == LineCrossingStatus.MOVING_AWAY -> "MOVING AWAY"
+        else -> "NO DATA"
+    }
+    val timeToLineText = when (result.status) {
+        LineCrossingStatus.NO_GPS -> "NO GPS"
+        LineCrossingStatus.NO_COG -> "NO COG"
+        LineCrossingStatus.NO_SOG -> "NO SOG"
+        LineCrossingStatus.OUTSIDE_SEGMENT -> "OUTSIDE LINE"
+        LineCrossingStatus.PARALLEL -> "PARALLEL"
+        LineCrossingStatus.MOVING_AWAY -> "MOVING AWAY"
+        else -> result.secondsToLine?.let(::signedDuration) ?: "--:--"
+    }
+    val referenceText = when (result.degradedReason) {
+        DegradedReason.MISSING_HEADING -> "GPS POSITION ONLY"
+        DegradedReason.MISSING_GEOMETRY -> "GPS POSITION · CHECK BOW OFFSET"
+        DegradedReason.DISABLED -> "GPS POSITION · BOW OFFSET OFF"
+        null -> if (result.bowOffsetApplied) "USING BOW POSITION · GPS to Bow %.1f m".format(geometry.bowOffsetMeters) else "GPS POSITION"
+    }
+
+    LaunchedEffect(Unit) {
+        app.startLocation()
+        if (settings.inputEnabled) app.connectActisense()
+        while (true) { now = System.currentTimeMillis(); delay(1000) }
+    }
+
+    Scaffold(
+        containerColor = Color.Black,
+        topBar = {
+            TopAppBar(
+                title = {},
+                navigationIcon = { IconButton({ nav.popBackStack() }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = Color.White) } },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black),
+            )
+        },
+    ) { padding ->
+        LazyColumn(
+            Modifier.padding(padding).padding(horizontal = 18.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+        ) {
+            item {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text("SYC Tower ↔ SYC 4", Modifier.weight(1f), color = secondary, fontWeight = FontWeight.Bold)
+                    if (mode == LineMode.START) TextButton({
+                        val rounded = kotlin.math.round(timeToStart / 60.0) * 60.0
+                        gunTimeMillis = now + rounded.toLong() * 1000 - offsetMinutes * 60_000L
+                        prefs.edit().putLong("line_gun_time", gunTimeMillis).apply()
+                    }) { Icon(Icons.Default.Timer, null); Text(" Sync", fontWeight = FontWeight.Bold) }
+                }
+            }
+            item {
+                SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
+                    LineMode.entries.forEachIndexed { index, value ->
+                        SegmentedButton(mode == value, { mode = value }, SegmentedButtonDefaults.itemShape(index, 2)) {
+                            Text(value.name.lowercase().replaceFirstChar(Char::uppercase))
+                        }
+                    }
+                }
+            }
+            if (mode == LineMode.START) item {
+                Row(horizontalArrangement = Arrangement.spacedBy(24.dp)) {
+                    Column(Modifier.weight(1f)) {
+                        LineLabel("Start Time", secondary)
+                        TextButton({
+                            val zoned = java.time.Instant.ofEpochMilli(gunTimeMillis).atZone(java.time.ZoneId.systemDefault())
+                            android.app.TimePickerDialog(context, { _, hour, minute ->
+                                val selected = java.time.ZonedDateTime.now().withHour(hour).withMinute(minute).withSecond(0).withNano(0)
+                                gunTimeMillis = selected.toInstant().toEpochMilli()
+                                prefs.edit().putLong("line_gun_time", gunTimeMillis).apply()
+                            }, zoned.hour, zoned.minute, false).show()
+                        }) { Text(formatClock(gunTimeMillis), color = Color.White, fontSize = 25.sp, fontWeight = FontWeight.Bold) }
+                    }
+                    Column(Modifier.weight(1f)) {
+                        LineLabel("Offset", secondary)
+                        Box {
+                            TextButton({ showOffsetMenu = true }) { Text("$offsetMinutes min  ▾", color = Color.White, fontSize = 25.sp, fontWeight = FontWeight.Bold) }
+                            DropdownMenu(showOffsetMenu, { showOffsetMenu = false }) {
+                                (-5..25).forEach { value -> DropdownMenuItem({ Text("$value min") }, {
+                                    offsetMinutes = value; showOffsetMenu = false
+                                    prefs.edit().putInt("line_offset", value).apply()
+                                }) }
+                            }
+                        }
+                    }
+                }
+            }
+            item {
+                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                    LineLabel(if (mode == LineMode.START) "Time To Start" else "Time To Finish", secondary)
+                    Text(
+                        if (mode == LineMode.START) signedDuration(timeToStart) else timeToLineText,
+                        color = lcd, fontSize = 82.sp, fontWeight = FontWeight.Black, maxLines = 1,
+                    )
+                }
+            }
+            item {
+                Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                    LineTile("Dist To Line", result.distanceMeters?.let { if (it < 1000) "%.0f m".format(it) else "%.2f km".format(it / 1000) } ?: "NO GPS", lcd, Modifier.weight(1f))
+                    LineTile("SOG", fix?.sogKnots?.let { "%.1f kt".format(it.coerceAtLeast(0.0)) } ?: if (fix == null) "NO GPS" else "NO SOG", lcd, Modifier.weight(1f))
+                }
+            }
+            if (mode == LineMode.START) item {
+                Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                    LineTile("Time To Line", timeToLineText, lcd, Modifier.weight(1f))
+                    val burnText = when { timeToBurn == null -> "--:--"; kotlin.math.abs(timeToBurn) <= 5 -> "ON TIME"; timeToBurn < 0 -> "EARLY ${signedDuration(timeToBurn)}"; else -> signedDuration(timeToBurn) }
+                    val burnColor = when { timeToBurn == null -> secondary; kotlin.math.abs(timeToBurn) <= 5 -> Color.Green; timeToBurn < 0 -> Color.Red; else -> lcd }
+                    LineTile("Time To Burn", burnText, burnColor, Modifier.weight(1f))
+                }
+            }
+            item {
+                LineLabel("Status", secondary)
+                Text(statusText, color = if (result.status in setOf(LineCrossingStatus.APPROACHING, LineCrossingStatus.CROSSING_AHEAD)) lcd else if (result.status in setOf(LineCrossingStatus.NO_GPS, LineCrossingStatus.NO_COG, LineCrossingStatus.NO_SOG)) secondary else Color(0xFFFF9800), fontSize = 34.sp, fontWeight = FontWeight.Black, maxLines = 1)
+            }
+            item {
+                Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
+                    Row { Icon(Icons.Default.GpsFixed, null, tint = secondary); Spacer(Modifier.width(10.dp)); Text(sourceText, color = secondary, fontWeight = FontWeight.SemiBold); fix?.let { Text("  ${formatClock(it.timestampMillis)}", color = secondary) } }
+                    Row { Icon(if (result.referencePoint == ReferencePoint.BOW) Icons.Default.Sailing else Icons.Default.LocationOn, null, tint = secondary); Spacer(Modifier.width(10.dp)); Text(referenceText, color = secondary, fontWeight = FontWeight.SemiBold) }
+                    result.bowGainToLineMeters?.let { Text("Bow gain to line: %.1f m".format(it), color = secondary) }
+                }
+                Spacer(Modifier.height(16.dp))
+            }
+        }
+    }
 }
+
+@Composable private fun LineLabel(text: String, color: Color) = Text(text.uppercase(), color = color, fontSize = 13.sp, fontWeight = FontWeight.Black, letterSpacing = 1.sp)
+@Composable private fun LineTile(title: String, value: String, color: Color, modifier: Modifier = Modifier) = Column(modifier.heightIn(min = 62.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) { LineLabel(title, Color.White.copy(alpha = .62f)); Text(value, color = color, fontSize = 30.sp, fontWeight = FontWeight.Black, maxLines = 1) }
+private fun signedDuration(seconds: Double): String { val sign = if (seconds < 0) "−" else ""; val value = kotlin.math.abs(seconds).toInt(); return "$sign${value / 60}:${(value % 60).toString().padStart(2, '0')}" }
+private fun formatClock(millis: Long): String = java.time.Instant.ofEpochMilli(millis).atZone(java.time.ZoneId.systemDefault()).format(java.time.format.DateTimeFormatter.ofPattern("h:mm a"))
+private fun nextWholeMinute(now: Long): Long = ((now / 60_000L) + 1) * 60_000L
 
 @Composable
 private fun RaceTrackerScreen(app: AppViewModel, nav: NavHostController) {
@@ -363,7 +523,13 @@ private fun TrackCanvas(points: List<TrackPoint>, modifier: Modifier) {
 
 @Composable
 private fun InstrumentsScreen(app: AppViewModel, nav: NavHostController) {
+    val context = LocalContext.current
+    val prefs = remember { context.getSharedPreferences("syc_courses", android.content.Context.MODE_PRIVATE) }
     var settings by remember { mutableStateOf(app.settings.value) }; val status by app.networkStatus.collectAsStateWithLifecycle()
+    var useBow by remember { mutableStateOf(prefs.getBoolean("line_use_bow", true)) }
+    var bowOffset by remember { mutableStateOf(prefs.getFloat("line_bow_offset", 9.4f).toString()) }
+    var sidewaysOffset by remember { mutableStateOf(prefs.getFloat("line_gps_sideways", 0f).toString()) }
+    var bearingSource by remember { mutableStateOf(runCatching { BearingSource.valueOf(prefs.getString("line_bearing_source", "COG")!!) }.getOrDefault(BearingSource.COG)) }
     ScreenScaffold("Instruments", { nav.popBackStack() }) { padding -> LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
         item { Text("Configure one Actisense W2K-2, then choose input, output, or both.", color = Color.Gray) }
         item { OutlinedTextField(settings.host, { settings = settings.copy(host = it) }, Modifier.fillMaxWidth(), label = { Text("IP address") }) }
@@ -374,6 +540,22 @@ private fun InstrumentsScreen(app: AppViewModel, nav: NavHostController) {
         item { Text("Status: $status", fontWeight = FontWeight.Bold, color = if (status.startsWith("Error")) Color.Red else Teal) }
         item { Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) { Button({ app.updateSettings(settings); app.connectActisense() }, Modifier.weight(1f)) { Text("Connect") }; OutlinedButton(app::disconnectActisense, Modifier.weight(1f)) { Text("Disconnect") } } }
         item { Text("The app exchanges NMEA 0183 data directly with the W2K-2 over your boat Wi-Fi. Common setups use port 60001.", color = Color.Gray) }
+        item { HorizontalDivider(); Text("Line Assist · Boat Geometry", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Navy) }
+        item { SettingSwitch("Use bow position for Line Assist", useBow) { useBow = it; prefs.edit().putBoolean("line_use_bow", it).apply() } }
+        item { OutlinedTextField(bowOffset, { value -> bowOffset = value; value.toFloatOrNull()?.let { prefs.edit().putFloat("line_bow_offset", it.coerceIn(0f, 30f)).apply() } }, Modifier.fillMaxWidth(), label = { Text("GPS to bow distance (m)") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)) }
+        item { OutlinedTextField(sidewaysOffset, { value -> sidewaysOffset = value; value.toFloatOrNull()?.let { prefs.edit().putFloat("line_gps_sideways", it.coerceIn(-10f, 10f)).apply() } }, Modifier.fillMaxWidth(), label = { Text("GPS sideways offset (m)") }, supportingText = { Text("Positive is starboard; negative is port.") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)) }
+        item {
+            Text("Bow projection", fontWeight = FontWeight.SemiBold)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                BearingSource.entries.forEach { source ->
+                    FilterChip(bearingSource == source, {
+                        bearingSource = source
+                        prefs.edit().putString("line_bearing_source", source.name).apply()
+                    }, { Text(if (source == BearingSource.COG) "Course over ground" else "Heading") })
+                }
+            }
+        }
+        item { Text("Line Assist uses the projected bow position because the boat starts or finishes when the bow crosses the line.", color = Color.Gray) }
     } }
 }
 

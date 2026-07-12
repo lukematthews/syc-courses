@@ -85,8 +85,31 @@ data class BearingSnapshot(
 
 enum class LineMode { START, FINISH }
 
+@Serializable
+enum class BearingSource { COG, HEADING }
+
+@Serializable
+data class BoatGeometrySettings(
+    val bowOffsetMeters: Double = 9.4,
+    val gpsOffsetStarboardMeters: Double = 0.0,
+    val useBowOffset: Boolean = true,
+    val bearingSource: BearingSource = BearingSource.COG,
+)
+
+enum class LineCrossingStatus {
+    APPROACHING, CROSSING_AHEAD, OUTSIDE_SEGMENT, PARALLEL, MOVING_AWAY,
+    NO_GPS, NO_COG, NO_SOG,
+}
+
+enum class ReferencePoint { GPS, BOW }
+enum class DegradedReason { MISSING_HEADING, MISSING_GEOMETRY, DISABLED }
+
 data class LineCrossingResult(
-    val status: String,
+    val status: LineCrossingStatus,
     val distanceMeters: Double? = null,
     val secondsToLine: Double? = null,
+    val referencePoint: ReferencePoint = ReferencePoint.GPS,
+    val bowOffsetApplied: Boolean = false,
+    val degradedReason: DegradedReason? = null,
+    val bowGainToLineMeters: Double? = null,
 )

@@ -34,21 +34,68 @@ object NavigationMath {
         accuracyMeters = fix.horizontalAccuracyMeters ?: fix.hdop?.times(5),
     )
 
-    fun lineCrossing(fix: NavigationFix, a: Mark, b: Mark): LineCrossingResult {
-        val cog = fix.cogDegrees ?: return LineCrossingResult("Course over ground unavailable")
-        val speed = fix.sogKnots?.takeIf { it > .2 } ?: return LineCrossingResult("Speed unavailable")
+    fun lineCrossing(
+        fix: NavigationFix?,
+        a: Mark,
+        b: Mark,
+        geometry: BoatGeometrySettings = BoatGeometrySettings(),
+    ): LineCrossingResult {
+        if (fix == null || !fix.usable) return LineCrossingResult(LineCrossingStatus.NO_GPS)
+        val reference = boatReferencePoint(fix, geometry)
+        val referenceFix = fix.copy(latitude = reference.latitude, longitude = reference.longitude)
+        val distanceToSegment = distanceToSegment(referenceFix, a, b)
+        val gpsDistance = distanceToSegment(fix, a, b)
+        val bowGain = if (reference.point == ReferencePoint.BOW) gpsDistance - distanceToSegment(referenceFix, a, b) else null
+        val cog = fix.cogDegrees ?: return LineCrossingResult(LineCrossingStatus.NO_COG, distanceToSegment, referencePoint = reference.point, bowOffsetApplied = reference.applied, degradedReason = reference.degraded, bowGainToLineMeters = bowGain)
+        val speed = fix.sogKnots?.takeIf { it > .2 } ?: return LineCrossingResult(LineCrossingStatus.NO_SOG, distanceToSegment, referencePoint = reference.point, bowOffsetApplied = reference.applied, degradedReason = reference.degraded, bowGainToLineMeters = bowGain)
         val latScale = 111_320.0
-        val lonScale = latScale * cos(Math.toRadians(fix.latitude))
-        fun xy(mark: Mark) = Pair((mark.longitude - fix.longitude) * lonScale, (mark.latitude - fix.latitude) * latScale)
+        val lonScale = latScale * cos(Math.toRadians(referenceFix.latitude))
+        fun xy(mark: Mark) = Pair((mark.longitude - referenceFix.longitude) * lonScale, (mark.latitude - referenceFix.latitude) * latScale)
         val p1 = xy(a); val p2 = xy(b)
         val directionX = sin(Math.toRadians(cog)); val directionY = cos(Math.toRadians(cog))
         val lineX = p2.first - p1.first; val lineY = p2.second - p1.second
         val denominator = directionX * lineY - directionY * lineX
-        if (abs(denominator) < 1e-8) return LineCrossingResult("Moving parallel to line")
+        fun result(status: LineCrossingStatus, distance: Double? = distanceToSegment, seconds: Double? = null) = LineCrossingResult(status, distance, seconds, reference.point, reference.applied, reference.degraded, bowGain)
+        if (abs(denominator) < 1e-8) return result(LineCrossingStatus.PARALLEL)
         val t = (p1.first * lineY - p1.second * lineX) / denominator
         val u = (p1.first * directionY - p1.second * directionX) / denominator
-        if (t < 0) return LineCrossingResult("Moving away from line")
+        if (t < 0) return result(LineCrossingStatus.MOVING_AWAY)
+        if (u !in 0.0..1.0) return result(LineCrossingStatus.OUTSIDE_SEGMENT)
         val seconds = t / (speed * .514444)
-        return LineCrossingResult(if (u in 0.0..1.0) "Crossing ahead" else "Crossing outside line", t, seconds)
+        return result(if (t <= 25 || seconds <= 10) LineCrossingStatus.CROSSING_AHEAD else LineCrossingStatus.APPROACHING, t, seconds)
+    }
+
+    private data class BoatReference(val latitude: Double, val longitude: Double, val point: ReferencePoint, val applied: Boolean, val degraded: DegradedReason?)
+
+    private fun boatReferencePoint(fix: NavigationFix, geometry: BoatGeometrySettings): BoatReference {
+        if (!geometry.useBowOffset) return BoatReference(fix.latitude, fix.longitude, ReferencePoint.GPS, false, DegradedReason.DISABLED)
+        if (!geometry.bowOffsetMeters.isFinite() || geometry.bowOffsetMeters <= 0) return BoatReference(fix.latitude, fix.longitude, ReferencePoint.GPS, false, DegradedReason.MISSING_GEOMETRY)
+        val bearing = when (geometry.bearingSource) { BearingSource.COG -> fix.cogDegrees; BearingSource.HEADING -> fix.headingDegrees }
+            ?: return BoatReference(fix.latitude, fix.longitude, ReferencePoint.GPS, false, if (geometry.bearingSource == BearingSource.HEADING) DegradedReason.MISSING_HEADING else null)
+        var projected = project(fix.latitude, fix.longitude, geometry.bowOffsetMeters, bearing)
+        if (geometry.gpsOffsetStarboardMeters != 0.0) {
+            val sidewaysBearing = if (geometry.gpsOffsetStarboardMeters > 0) bearing - 90 else bearing + 90
+            projected = project(projected.first, projected.second, abs(geometry.gpsOffsetStarboardMeters), sidewaysBearing)
+        }
+        return BoatReference(projected.first, projected.second, ReferencePoint.BOW, true, null)
+    }
+
+    private fun project(latitude: Double, longitude: Double, distanceMeters: Double, bearingDegrees: Double): Pair<Double, Double> {
+        val angular = distanceMeters / EARTH_RADIUS_METERS
+        val bearing = Math.toRadians((bearingDegrees % 360 + 360) % 360)
+        val lat = Math.toRadians(latitude); val lon = Math.toRadians(longitude)
+        val newLat = asin(sin(lat) * cos(angular) + cos(lat) * sin(angular) * cos(bearing))
+        val newLon = lon + atan2(sin(bearing) * sin(angular) * cos(lat), cos(angular) - sin(lat) * sin(newLat))
+        return Math.toDegrees(newLat) to Math.toDegrees(newLon)
+    }
+
+    private fun distanceToSegment(fix: NavigationFix, a: Mark, b: Mark): Double {
+        val latScale = 111_320.0; val lonScale = latScale * cos(Math.toRadians(fix.latitude))
+        val ax = (a.longitude - fix.longitude) * lonScale; val ay = (a.latitude - fix.latitude) * latScale
+        val bx = (b.longitude - fix.longitude) * lonScale; val by = (b.latitude - fix.latitude) * latScale
+        val dx = bx - ax; val dy = by - ay; val lengthSquared = dx * dx + dy * dy
+        if (lengthSquared <= 0) return hypot(ax, ay)
+        val projection = (-(ax * dx + ay * dy) / lengthSquared).coerceIn(0.0, 1.0)
+        return hypot(ax + projection * dx, ay + projection * dy)
     }
 }
