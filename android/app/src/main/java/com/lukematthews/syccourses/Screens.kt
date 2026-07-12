@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,6 +16,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -163,11 +165,99 @@ private fun QuickBearingScreen(app: AppViewModel, nav: NavHostController) {
     ScreenScaffold("Quick Bearing", { nav.popBackStack() }) { padding ->
         LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             item { Text(if (fix?.source == NavigationSource.ACTISENSE) "Source: NMEA2000" else if (fix != null) "Source: iPhone GPS" else "No valid position", color = if (fix == null) Color.Red else Teal) }
+            item {
+                Text("Approximate Mark Locations", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Navy)
+                Spacer(Modifier.height(8.dp))
+                MarkLocationChart(app = app, onSelect = { selected = it })
+            }
+            item { Text("Select Mark", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Navy) }
             items(app.repository.marks) { mark -> Card(Modifier.fillMaxWidth().clickable { selected = mark }) { Row(Modifier.padding(15.dp)) { Text(mark.name, Modifier.weight(1f), fontWeight = FontWeight.SemiBold); Icon(Icons.Default.NearMe, null) } } }
         }
         selected?.let { mark -> val snapshot = fix?.let { NavigationMath.snapshot(it, mark) }; AlertDialog(onDismissRequest = { selected = null }, confirmButton = { TextButton({ selected = null }) { Text("Done") } }, title = { Text(mark.name) }, text = { Column(verticalArrangement = Arrangement.spacedBy(8.dp)) { if (snapshot == null) Text("Waiting for a valid position.") else { Text("%03.0f° T".format(snapshot.bearingTrue), fontSize = 38.sp, fontWeight = FontWeight.Bold); Text("%.2f nm".format(snapshot.distanceNm)); snapshot.timeToMarkSeconds?.let { Text("Time to mark ${formatDuration(it)}") } } } }) }
     }
     LaunchedEffect(Unit) { app.startLocation() }
+}
+
+private data class MarkHotspot(val markId: String, val x: Float, val y: Float)
+
+private val markHotspots = listOf(
+    MarkHotspot("rmys-g", .596f, .135f),
+    MarkHotspot("r3", .592f, .308f),
+    MarkHotspot("r2", .575f, .432f),
+    MarkHotspot("syc-7", .817f, .535f),
+    MarkHotspot("syc-3", .840f, .567f),
+    MarkHotspot("syc-6", .642f, .604f),
+    MarkHotspot("syc-2", .721f, .604f),
+    MarkHotspot("syc-4", .831f, .617f),
+    MarkHotspot("syc-1", .802f, .703f),
+    MarkHotspot("syc-5", .751f, .789f),
+    MarkHotspot("spoil-ground", .286f, .833f),
+    MarkHotspot("t2", .485f, .867f),
+    MarkHotspot("t1", .509f, .867f),
+    MarkHotspot("centre-m1", .265f, .940f),
+    MarkHotspot("carrum-no2", .922f, .935f),
+)
+
+@Composable
+private fun MarkLocationChart(app: AppViewModel, onSelect: (Mark) -> Unit) {
+    val context = LocalContext.current
+    val image = remember {
+        runCatching { context.assets.open("mark-locations.png").use(BitmapFactory::decodeStream) }.getOrNull()
+    }
+    val activeCourseNumber by app.activeCourse.collectAsStateWithLifecycle()
+    val activeMarkName by app.activeMark.collectAsStateWithLifecycle()
+    val activeCourseMarkIds = remember(activeCourseNumber) {
+        app.repository.course(activeCourseNumber ?: -1)?.rows
+            ?.mapNotNull { app.repository.mark(it.mark)?.id }
+            ?.toSet().orEmpty()
+    }
+    val activeMarkId = remember(activeMarkName) { activeMarkName?.let { app.repository.mark(it)?.id } }
+
+    if (image == null) {
+        Text("Mark map unavailable", color = Color.Gray)
+        return
+    }
+
+    BoxWithConstraints(
+        modifier = Modifier
+            .fillMaxWidth()
+            .aspectRatio(1215f / 1680f)
+            .background(Color.White, RoundedCornerShape(8.dp))
+            .border(1.dp, Color(0xFFD7DEE3), RoundedCornerShape(8.dp)),
+    ) {
+        Image(
+            bitmap = image.asImageBitmap(),
+            contentDescription = "Approximate SYC mark locations",
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.FillBounds,
+        )
+        markHotspots.forEach { hotspot ->
+            val mark = app.repository.marks.firstOrNull { it.id == hotspot.markId } ?: return@forEach
+            val isActive = mark.id == activeMarkId
+            val isInCourse = mark.id in activeCourseMarkIds
+            Box(
+                modifier = Modifier
+                    .offset(x = maxWidth * hotspot.x - 22.dp, y = maxHeight * hotspot.y - 22.dp)
+                    .size(44.dp)
+                    .clickable { onSelect(mark) },
+                contentAlignment = Alignment.Center,
+            ) {
+                Box(
+                    Modifier
+                        .size(if (isActive) 24.dp else 18.dp)
+                        .background(Color.White.copy(alpha = if (isActive) .95f else .8f), CircleShape)
+                        .border(
+                            width = if (isActive) 4.dp else 3.dp,
+                            color = if (isActive) Color(0xFFFF9800) else Teal.copy(alpha = if (isInCourse) 1f else .7f),
+                            shape = CircleShape,
+                        ),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Box(Modifier.size(7.dp).background(Color.Gray, CircleShape))
+                }
+            }
+        }
+    }
 }
 
 @Composable

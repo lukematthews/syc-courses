@@ -9,6 +9,7 @@ mkdir -p "$android_main/assets/course-charts" "$android_main/assets/pennants" "$
 cp "$ios_resources/fixed-courses.json" "$android_main/assets/fixed-courses.json"
 cp "$ios_resources/laid-courses.json" "$android_main/assets/laid-courses.json"
 cp "$ios_resources/marks.json" "$android_main/assets/marks.json"
+cp "$ios_resources/mark-locations.png" "$android_main/assets/mark-locations.png"
 cp "$ios_resources"/course-charts/*.png "$android_main/assets/course-charts/"
 cp "$ios_resources/app-icon.png" "$android_main/res/drawable/app_icon.png"
 
