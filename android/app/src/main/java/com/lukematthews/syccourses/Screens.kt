@@ -176,9 +176,14 @@ private fun CoursePennantHoist(number: Int) {
 @Composable
 private fun CourseDetailScreen(app: AppViewModel, nav: NavHostController, course: Course) {
     val scope = rememberCoroutineScope(); val context = LocalContext.current
-    ScreenScaffold("", { nav.popBackStack() }) { padding ->
+    ScreenScaffold("Course ${course.courseNumber}", { nav.popBackStack() }) { padding ->
         LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            item { Text(course.route ?: "Course ${course.courseNumber}", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = Navy); Text("Total distance ${course.totalDistance} nm", color = Color.Gray) }
+            item {
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    course.route?.let { Text(it, fontSize = 24.sp, fontWeight = FontWeight.Bold, color = Navy) }
+                    Text(course.totalDistance, color = Color.Gray)
+                }
+            }
             item { Row(Modifier.fillMaxWidth().background(Navy, RoundedCornerShape(10.dp)).padding(10.dp)) { listOf("Mark", "Side", "Bearing", "NM").forEachIndexed { i, text -> Text(text, Modifier.weight(if (i == 0) 1.6f else 1f), color = Color.White, fontWeight = FontWeight.Bold) } } }
             items(course.rows) { leg ->
                 Row(Modifier.fillMaxWidth().clickable { if (app.repository.mark(leg.mark) != null) nav.navigate("quick") }.padding(vertical = 8.dp)) {
