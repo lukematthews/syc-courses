@@ -217,17 +217,63 @@ private fun CourseDetailScreen(app: AppViewModel, nav: NavHostController, course
                     )
                 }
             }
-            item { Row(Modifier.fillMaxWidth().background(Navy, RoundedCornerShape(10.dp)).padding(10.dp)) { listOf("Mark", "Side", "Bearing", "NM").forEachIndexed { i, text -> Text(text, Modifier.weight(if (i == 0) 1.6f else 1f), color = Color.White, fontWeight = FontWeight.Bold) } } }
-            items(course.rows) { leg ->
-                Row(Modifier.fillMaxWidth().clickable { if (app.repository.mark(leg.mark) != null) nav.navigate("quick") }.padding(vertical = 8.dp)) {
-                    Text(leg.mark, Modifier.weight(1.6f), fontWeight = FontWeight.SemiBold); Text(leg.side, Modifier.weight(1f)); Text(leg.bearing, Modifier.weight(1f)); Text(leg.distance, Modifier.weight(1f))
-                }; HorizontalDivider()
+            if (course.courseNumber >= 80) {
+                item { LaidCourseInfo(course) }
+                if (course.chartImage.isNotBlank()) item { AssetImage(course.chartImage.removePrefix("/")) }
+                item { LaidCourseSequence(course) }
+                item { OutlinedButton({ shareGpx(context, app, course) }, Modifier.fillMaxWidth()) { Icon(Icons.Default.Share, null); Text(" Share GPX") } }
+            } else {
+                item { Row(Modifier.fillMaxWidth().background(Navy, RoundedCornerShape(10.dp)).padding(10.dp)) { listOf("Mark", "Side", "Bearing", "NM").forEachIndexed { i, text -> Text(text, Modifier.weight(if (i == 0) 1.6f else 1f), color = Color.White, fontWeight = FontWeight.Bold) } } }
+                items(course.rows) { leg ->
+                    Row(Modifier.fillMaxWidth().clickable { if (app.repository.mark(leg.mark) != null) nav.navigate("quick") }.padding(vertical = 8.dp)) {
+                        Text(leg.mark, Modifier.weight(1.6f), fontWeight = FontWeight.SemiBold); Text(leg.side, Modifier.weight(1f)); Text(leg.bearing, Modifier.weight(1f)); Text(leg.distance, Modifier.weight(1f))
+                    }; HorizontalDivider()
+                }
+                if (course.chartImage.isNotBlank()) item { AssetImage(course.chartImage.removePrefix("/")) }
+                item { Button({ app.activateCourse(course) }, Modifier.fillMaxWidth()) { Icon(Icons.Default.PlayArrow, null); Text(" Start Course") } }
+                item { OutlinedButton({ shareGpx(context, app, course) }, Modifier.fillMaxWidth()) { Icon(Icons.Default.Share, null); Text(" Share GPX") } }
+                item { OutlinedButton({ nav.navigate("line/finish") }, Modifier.fillMaxWidth()) { Text("Finish options") } }
+                item { Button({ val mark = course.rows.mapNotNull { app.repository.mark(it.mark) }.firstOrNull(); if (mark != null) scope.launch { app.sendWaypoint(mark) } }, Modifier.fillMaxWidth()) { Text("Send to Boat") } }
             }
-            if (course.chartImage.isNotBlank()) item { AssetImage(course.chartImage.removePrefix("/")) }
-            item { Button({ app.activateCourse(course) }, Modifier.fillMaxWidth()) { Icon(Icons.Default.PlayArrow, null); Text(" Start Course") } }
-            item { OutlinedButton({ shareGpx(context, app, course) }, Modifier.fillMaxWidth()) { Icon(Icons.Default.Share, null); Text(" Share GPX") } }
-            item { OutlinedButton({ nav.navigate("line/finish") }, Modifier.fillMaxWidth()) { Text("Finish options") } }
-            item { Button({ val mark = course.rows.mapNotNull { app.repository.mark(it.mark) }.firstOrNull(); if (mark != null) scope.launch { app.sendWaypoint(mark) } }, Modifier.fillMaxWidth()) { Text("Send to Boat") } }
+        }
+    }
+}
+
+@Composable
+private fun LaidCourseInfo(course: Course) {
+    val hasGate = course.rows.any { it.mark.normalizedMarkName() == "gate" }
+    OutlinedCard(Modifier.fillMaxWidth(), shape = RoundedCornerShape(8.dp)) {
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Default.Flag, null, tint = Teal)
+                Spacer(Modifier.width(10.dp))
+                Text("Race Committee Boat start and finish", fontWeight = FontWeight.Bold)
+            }
+            if (hasGate && course.courseNumber != 96) Text("Pass through the gate to start the next leg.", color = Color.Gray)
+            if (course.courseNumber == 96) Text("Gate is not a mark of the course.", color = Color.Gray)
+        }
+    }
+}
+
+@Composable
+private fun LaidCourseSequence(course: Course) {
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        Text("Course Sequence", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Navy)
+        OutlinedCard(Modifier.fillMaxWidth(), shape = RoundedCornerShape(8.dp)) {
+            Column {
+                course.rows.forEachIndexed { index, row ->
+                    Column(Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 12.dp)) {
+                        Text(row.mark, fontWeight = FontWeight.Black, fontSize = 20.sp)
+                        val action = when (row.mark.normalizedMarkName()) {
+                            "start", "finish" -> null
+                            "gate" -> "Pass through to start the next leg"
+                            else -> "Leave to ${row.side.lowercase()}"
+                        }
+                        action?.let { Text(it, color = Color.Gray, fontSize = 14.sp) }
+                    }
+                    if (index < course.rows.lastIndex) HorizontalDivider()
+                }
+            }
         }
     }
 }
