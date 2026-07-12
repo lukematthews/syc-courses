@@ -150,7 +150,7 @@ private fun CourseRow(course: Course, action: () -> Unit) {
 }
 
 @Composable
-private fun CoursePennantHoist(number: Int) {
+private fun CoursePennantHoist(number: Int, flagWidth: Int = 76, flagHeight: Int = 29) {
     Row(
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(5.dp),
@@ -158,14 +158,14 @@ private fun CoursePennantHoist(number: Int) {
         Box(
             Modifier
                 .width(2.dp)
-                .height((number.toString().length * 34).dp)
+                .height((number.toString().length * (flagHeight + 5) - 5).dp)
                 .background(Color.Gray.copy(alpha = .35f)),
         )
         Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
             number.toString().forEach { digit ->
                 AssetImage(
                     path = "pennants/numeral-$digit.png",
-                    modifier = Modifier.width(76.dp).height(29.dp),
+                    modifier = Modifier.width(flagWidth.dp).height(flagHeight.dp),
                     description = "Numeral pennant $digit",
                 )
             }
@@ -176,7 +176,32 @@ private fun CoursePennantHoist(number: Int) {
 @Composable
 private fun CourseDetailScreen(app: AppViewModel, nav: NavHostController, course: Course) {
     val scope = rememberCoroutineScope(); val context = LocalContext.current
-    ScreenScaffold("Course ${course.courseNumber}", { nav.popBackStack() }) { padding ->
+    Scaffold(
+        containerColor = Page,
+        topBar = {
+            TopAppBar(
+                navigationIcon = {
+                    IconButton({ nav.popBackStack() }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back")
+                    }
+                },
+                title = {
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(end = 12.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text(
+                            "Course ${course.courseNumber}",
+                            modifier = Modifier.weight(1f),
+                            fontSize = 22.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        CoursePennantHoist(course.courseNumber, flagWidth = 58, flagHeight = 22)
+                    }
+                },
+            )
+        },
+    ) { padding ->
         LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             item {
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
