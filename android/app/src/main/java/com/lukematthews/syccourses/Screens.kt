@@ -40,7 +40,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.FileProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -846,7 +845,7 @@ private fun RaceTrackerScreen(app: AppViewModel, nav: NavHostController) {
     val snapshot = activeMark?.let { mark -> app.activeFix?.let { NavigationMath.snapshot(it, mark) } }
     ScreenScaffold("Race Tracker", { nav.popBackStack() }) { padding ->
         Column(Modifier.padding(padding)) {
-            RaceMap(points, lineMarks, courseMarks, activeMark, avatar, app.activeFix, Modifier.fillMaxWidth().weight(1f))
+            RaceMap(points, lineMarks, courseMarks, app.repository.marks, activeMark, avatar, app.activeFix, Modifier.fillMaxWidth().weight(1f))
             HorizontalDivider()
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 if (activeNumber != null) OutlinedCard(Modifier.fillMaxWidth()) {
@@ -882,23 +881,49 @@ private fun interpolateTrack(points: List<TrackPoint>, seconds: Double): TrackPo
 }
 
 @Composable
-private fun RaceMap(points: List<TrackPoint>, courseLine: List<Mark>, courseMarks: List<Mark>, activeMark: Mark?, avatar: TrackPoint?, fix: NavigationFix?, modifier: Modifier) {
-    val html = remember(points.size, courseLine, activeMark?.id, avatar?.timestampMillis, fix?.timestampMillis) { raceMapHtml(points, courseLine, courseMarks, activeMark, avatar, fix) }
-    AndroidView(
-        modifier = modifier,
-        factory = { context -> android.webkit.WebView(context).apply { settings.javaScriptEnabled = true; settings.domStorageEnabled = true } },
-        update = { it.loadDataWithBaseURL("https://localhost/", html, "text/html", "UTF-8", null) },
-    )
+private fun RaceMap(points: List<TrackPoint>, courseLine: List<Mark>, courseMarks: List<Mark>, referenceMarks: List<Mark>, activeMark: Mark?, avatar: TrackPoint?, fix: NavigationFix?, modifier: Modifier) {
+    val context = LocalContext.current
+    val image = remember {
+        runCatching { context.assets.open("mark-locations.png").use(BitmapFactory::decodeStream) }.getOrNull()
+    }
+    val projection = remember(referenceMarks) { chartProjection(referenceMarks) }
+    if (image == null || projection == null) {
+        Box(modifier.background(Color(0xFFE8EEF1)), contentAlignment = Alignment.Center) { Text("Mark map unavailable", color = Color.Gray) }
+        return
+    }
+    Box(modifier.background(Color.White)) {
+        Image(image.asImageBitmap(), "Race track map", Modifier.fillMaxSize(), contentScale = ContentScale.FillBounds)
+        Canvas(Modifier.fillMaxSize()) {
+            fun position(latitude: Double, longitude: Double) = Offset(
+                projection.longitude(longitude) * size.width,
+                projection.latitude(latitude) * size.height,
+            )
+            courseLine.zipWithNext().forEach { (a, b) ->
+                drawLine(Color(0xFF00A7B5).copy(alpha = .65f), position(a.latitude, a.longitude), position(b.latitude, b.longitude), 5.dp.toPx(), pathEffect = PathEffect.dashPathEffect(floatArrayOf(12.dp.toPx(), 8.dp.toPx())))
+            }
+            points.zipWithNext().forEach { (a, b) -> drawLine(Color(0xFF1976D2), position(a.latitude, a.longitude), position(b.latitude, b.longitude), 6.dp.toPx()) }
+            courseMarks.forEach { mark ->
+                val center = position(mark.latitude, mark.longitude)
+                drawCircle(Color.White, if (mark.id == activeMark?.id) 10.dp.toPx() else 7.dp.toPx(), center)
+                drawCircle(if (mark.id == activeMark?.id) Color(0xFFFF9800) else Color(0xFF00A7B5), if (mark.id == activeMark?.id) 6.dp.toPx() else 4.dp.toPx(), center)
+            }
+            avatar?.let { drawCircle(Color(0xFFFF9800), 8.dp.toPx(), position(it.latitude, it.longitude)) }
+            fix?.let { drawCircle(Color(0xFF1976D2), 7.dp.toPx(), position(it.latitude, it.longitude)) }
+        }
+    }
 }
 
-private fun raceMapHtml(points: List<TrackPoint>, courseLine: List<Mark>, courseMarks: List<Mark>, activeMark: Mark?, avatar: TrackPoint?, fix: NavigationFix?): String {
-    fun coords(values: List<Pair<Double, Double>>) = values.joinToString(prefix = "[", postfix = "]") { "[${it.first},${it.second}]" }
-    val track = coords(points.map { it.latitude to it.longitude }); val line = coords(courseLine.map { it.latitude to it.longitude })
-    val all = (points.map { it.latitude to it.longitude } + courseLine.map { it.latitude to it.longitude } + listOfNotNull(fix?.let { it.latitude to it.longitude })).ifEmpty { listOf(-37.95 to 145.0) }
-    val markers = courseMarks.joinToString("\n") { mark -> "L.circleMarker([${mark.latitude},${mark.longitude}],{radius:${if (mark.id == activeMark?.id) 12 else 9},color:'${if (mark.id == activeMark?.id) "#ff9800" else "#00a7b5"}',weight:${if (mark.id == activeMark?.id) 4 else 3},fillColor:'white',fillOpacity:.9}).addTo(map).bindTooltip('${mark.name.replace("'", "\\'")}');" }
-    val avatarJs = avatar?.let { "L.circleMarker([${it.latitude},${it.longitude}],{radius:9,color:'white',weight:3,fillColor:'#ff9800',fillOpacity:1}).addTo(map);" }.orEmpty()
-    val fixJs = fix?.let { "L.circleMarker([${it.latitude},${it.longitude}],{radius:8,color:'#1976d2',weight:3,fillColor:'white',fillOpacity:1}).addTo(map).bindTooltip('Current position');" }.orEmpty()
-    return """<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""><style>html,body,#map{height:100%;margin:0}</style></head><body><div id="map"></div><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9coqIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><script>const map=L.map('map');L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'}).addTo(map);const track=$track,line=$line,all=${coords(all)};if(line.length>1)L.polyline(line,{color:'#00a7b5',weight:4,dashArray:'8 6',opacity:.6}).addTo(map);if(track.length>1)L.polyline(track,{color:'#1976d2',weight:4}).addTo(map);$markers$avatarJs$fixJs if(all.length>1)map.fitBounds(all,{padding:[30,30]});else map.setView(all[0],14);</script></body></html>"""
+private data class ChartProjection(val longitude: (Double) -> Float, val latitude: (Double) -> Float)
+
+private fun chartProjection(marks: List<Mark>): ChartProjection? {
+    val samples = markHotspots.mapNotNull { hotspot -> marks.firstOrNull { it.id == hotspot.markId }?.let { Triple(it, hotspot.x, hotspot.y) } }
+    if (samples.size < 2) return null
+    fun regression(values: List<Pair<Double, Float>>): (Double) -> Float {
+        val meanInput = values.map { it.first }.average(); val meanOutput = values.map { it.second.toDouble() }.average()
+        val slope = values.sumOf { (it.first - meanInput) * (it.second - meanOutput) } / values.sumOf { (it.first - meanInput) * (it.first - meanInput) }
+        return { input -> (meanOutput + slope * (input - meanInput)).toFloat() }
+    }
+    return ChartProjection(regression(samples.map { it.first.longitude to it.second }), regression(samples.map { it.first.latitude to it.third }))
 }
 
 @Composable
