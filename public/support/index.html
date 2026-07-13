@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b1928" />
+    <meta
+      name="description"
+      content="Help, troubleshooting, and contact information for the SYC Courses app."
+    />
+    <title>Support — SYC Courses</title>
+    <style>
+      :root {
+        color: #172033;
+        background: #edf2f6;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        background:
+          linear-gradient(180deg, #0b1928 0, #12364a 310px, #edf2f6 310px),
+          #edf2f6;
+      }
+
+      a {
+        color: #08778e;
+        font-weight: 650;
+        text-underline-offset: 3px;
+      }
+
+      a:hover {
+        color: #075f72;
+      }
+
+      a:focus-visible {
+        border-radius: 3px;
+        outline: 3px solid rgba(18, 161, 174, 0.35);
+        outline-offset: 3px;
+      }
+
+      .shell {
+        width: min(100% - 32px, 820px);
+        margin: 0 auto;
+        padding: 56px 0 64px;
+      }
+
+      header {
+        color: #fff;
+        padding: 0 8px 34px;
+      }
+
+      .eyebrow {
+        margin: 0 0 12px;
+        color: #8ad2dc;
+        font-size: 0.78rem;
+        font-weight: 750;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.3rem, 8vw, 4.4rem);
+        line-height: 0.98;
+        letter-spacing: -0.045em;
+      }
+
+      .intro {
+        max-width: 640px;
+        margin: 18px 0 0;
+        color: #d7e5ea;
+        font-size: 1.05rem;
+        line-height: 1.6;
+      }
+
+      main {
+        padding: clamp(24px, 6vw, 54px);
+        border: 1px solid rgba(18, 54, 74, 0.14);
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 20px 60px rgba(11, 25, 40, 0.14);
+      }
+
+      .contact-card {
+        margin: 0 0 38px;
+        padding: 22px;
+        border-left: 4px solid #12a1ae;
+        border-radius: 4px 12px 12px 4px;
+        background: #eff9f9;
+        color: #163d49;
+      }
+
+      .contact-card h2 {
+        margin-bottom: 8px;
+      }
+
+      section + section {
+        margin-top: 34px;
+        padding-top: 34px;
+        border-top: 1px solid #dbe4e9;
+      }
+
+      h2 {
+        margin: 0 0 12px;
+        color: #102d3d;
+        font-size: 1.28rem;
+        letter-spacing: -0.015em;
+      }
+
+      h3 {
+        margin: 24px 0 8px;
+        color: #173f52;
+        font-size: 1rem;
+      }
+
+      p,
+      li {
+        line-height: 1.72;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      p + p {
+        margin-top: 14px;
+      }
+
+      ul,
+      ol {
+        margin: 12px 0 0;
+        padding-left: 22px;
+      }
+
+      li + li {
+        margin-top: 10px;
+      }
+
+      .safety {
+        color: #5a3b13;
+        background: #fff8e9;
+        border: 1px solid #efd8a7;
+        border-radius: 12px;
+        padding: 18px 20px;
+      }
+
+      footer {
+        padding: 25px 8px 0;
+        color: #5a6a75;
+        font-size: 0.86rem;
+        text-align: center;
+      }
+
+      footer a {
+        font-weight: 600;
+      }
+
+      @media (max-width: 520px) {
+        .shell {
+          width: min(100% - 20px, 820px);
+          padding-top: 36px;
+        }
+
+        main {
+          border-radius: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header>
+        <p class="eyebrow">SYC Courses</p>
+        <h1>Support</h1>
+        <p class="intro">
+          Help with course information, on-water tools, location access, and Actisense
+          connectivity.
+        </p>
+      </header>
+
+      <main>
+        <section class="contact-card">
+          <h2>Contact support</h2>
+          <p>
+            Email <a href="mailto:matthews.luke.c@gmail.com">matthews.luke.c@gmail.com</a>.
+            Please include your device model, operating system version, app version, and a brief
+            description of what happened.
+          </p>
+        </section>
+
+        <section>
+          <h2>Quick troubleshooting</h2>
+
+          <h3>Location or bearing information is unavailable</h3>
+          <ol>
+            <li>Check that Location Services are enabled for SYC Courses in device settings.</li>
+            <li>Move outside or to a position with a clear view of the sky.</li>
+            <li>Close and reopen the app, then select the course or mark again.</li>
+          </ol>
+
+          <h3>Actisense is not connecting</h3>
+          <ol>
+            <li>Confirm the device is connected to the boat's Actisense Wi-Fi network.</li>
+            <li>Check the host address, port, and TCP or UDP selection in the app.</li>
+            <li>Allow local-network access when your device asks for permission.</li>
+            <li>Use the app's connection test before starting an on-water session.</li>
+          </ol>
+
+          <h3>A course or mark appears incorrect</h3>
+          <p>
+            Stop relying on the displayed information and refer to the current official course
+            booklet, sailing instructions, and race-day notices. When reporting the issue, include
+            the course number or mark name and a screenshot if possible.
+          </p>
+        </section>
+
+        <section>
+          <h2>Before contacting support</h2>
+          <ul>
+            <li>Install the latest available version of SYC Courses.</li>
+            <li>Restart the app and your device.</li>
+            <li>Note the steps that reproduce the problem.</li>
+            <li>Do not email passwords, precise location history, or other sensitive information.</li>
+          </ul>
+          <p>
+            Reinstalling the app can remove locally saved settings, recent courses, and race-track
+            data. Export anything you need to keep before reinstalling.
+          </p>
+        </section>
+
+        <section class="safety">
+          <h2>Safety</h2>
+          <p>
+            SYC Courses is an information and assistance tool. It is not a substitute for proper
+            seamanship, official charts and notices, weather information, racing instructions, or
+            the independent judgment of the skipper and crew.
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        © 2026 SYC Courses · <a href="/privacy/">Privacy Policy</a>
+      </footer>
+    </div>
+  </body>
+</html>
