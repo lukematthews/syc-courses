@@ -23,6 +23,7 @@ enum NMEASentenceParser {
         switch type {
         case "RMC": return parseRMC(fields, now: now)
         case "GGA": return parseGGA(fields, now: now)
+        case "GLL": return parseGLL(fields, now: now)
         case "VTG": return parseVTG(fields)
         case "HDT", "HDM": return parseHeading(fields, valueIndex: 1)
         case "HDG": return parseHeading(fields, valueIndex: 1)
@@ -79,6 +80,29 @@ enum NMEASentenceParser {
             validFix: valid
         )
         return ParsedNMEAUpdate(fix: fix, validFix: valid, hdop: hdop)
+    }
+
+    private static func parseGLL(_ fields: [String], now: Date) -> ParsedNMEAUpdate? {
+        guard fields.count > 6 else { return nil }
+        let valid = fields[6] == "A"
+        guard let latitude = parseCoordinate(value: fields[1], hemisphere: fields[2]),
+              let longitude = parseCoordinate(value: fields[3], hemisphere: fields[4])
+        else {
+            return ParsedNMEAUpdate(validFix: false)
+        }
+        let fix = NavigationFix(
+            latitude: latitude,
+            longitude: longitude,
+            sogKnots: nil,
+            cogDegrees: nil,
+            headingDegrees: nil,
+            timestamp: parseTimeToday(fields[5], now: now) ?? now,
+            source: .actisense,
+            horizontalAccuracyMeters: nil,
+            hdop: nil,
+            validFix: valid
+        )
+        return ParsedNMEAUpdate(fix: fix, validFix: valid)
     }
 
     private static func parseVTG(_ fields: [String]) -> ParsedNMEAUpdate? {
@@ -141,4 +165,3 @@ enum NMEASentenceParser {
         )
     }
 }
-

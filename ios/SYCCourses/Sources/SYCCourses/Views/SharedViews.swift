@@ -295,19 +295,21 @@ struct NavigationSourceStatusLine: View {
     let summary: NavigationSourceSummary
 
     var body: some View {
-        HStack(spacing: 8) {
-            Image(systemName: summary.activeSource == .actisense ? "antenna.radiowaves.left.and.right" : "location")
-                .foregroundStyle(.secondary)
-            Text(summary.statusMessage)
-                .font(.footnote.weight(.semibold))
-                .foregroundStyle(.secondary)
-            if let lastUpdate = summary.lastUpdate {
-                Text(lastUpdate.formatted(date: .omitted, time: .standard))
-                    .font(.footnote.monospacedDigit())
-                    .foregroundStyle(.tertiary)
+        if let message = summary.statusMessage {
+            HStack(spacing: 8) {
+                Image(systemName: summary.activeSource == .actisense ? "antenna.radiowaves.left.and.right" : "location")
+                    .foregroundStyle(.secondary)
+                Text(message)
+                    .font(.footnote.weight(.semibold))
+                    .foregroundStyle(.secondary)
+                if let lastUpdate = summary.lastUpdate {
+                    Text(lastUpdate.formatted(date: .omitted, time: .standard))
+                        .font(.footnote.monospacedDigit())
+                        .foregroundStyle(.tertiary)
+                }
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 

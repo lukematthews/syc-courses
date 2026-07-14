@@ -1,0 +1,173 @@
+[
+  {
+    "markId": "syc-1",
+    "x": 0.548474,
+    "y": 0.525493,
+    "labelLeft": 0.505861,
+    "labelTop": 0.536207,
+    "labelRight": 0.591088,
+    "labelBottom": 0.559422
+  },
+  {
+    "markId": "syc-2",
+    "x": 0.493313,
+    "y": 0.462888,
+    "labelLeft": 0.4507,
+    "labelTop": 0.428959,
+    "labelRight": 0.535927,
+    "labelBottom": 0.452174
+  },
+  {
+    "markId": "syc-3",
+    "x": 0.566846,
+    "y": 0.442691,
+    "labelLeft": 0.58166,
+    "labelTop": 0.431084,
+    "labelRight": 0.666887,
+    "labelBottom": 0.454298
+  },
+  {
+    "markId": "syc-4",
+    "x": 0.576429,
+    "y": 0.472691,
+    "labelLeft": 0.619228,
+    "labelTop": 0.461084,
+    "labelRight": 0.704454,
+    "labelBottom": 0.484298
+  },
+  {
+    "markId": "syc-5",
+    "x": 0.520565,
+    "y": 0.579357,
+    "labelLeft": 0.477952,
+    "labelTop": 0.590071,
+    "labelRight": 0.563179,
+    "labelBottom": 0.613286
+  },
+  {
+    "markId": "syc-6",
+    "x": 0.441948,
+    "y": 0.468993,
+    "labelLeft": 0.399335,
+    "labelTop": 0.479707,
+    "labelRight": 0.484561,
+    "labelBottom": 0.502921
+  },
+  {
+    "markId": "syc-7",
+    "x": 0.551769,
+    "y": 0.422828,
+    "labelLeft": 0.509156,
+    "labelTop": 0.3889,
+    "labelRight": 0.594382,
+    "labelBottom": 0.412114
+  },
+  {
+    "markId": "syc-tower",
+    "x": 0.596331,
+    "y": 0.468742,
+    "labelLeft": 0.525554,
+    "labelTop": 0.48898,
+    "labelRight": 0.667109,
+    "labelBottom": 0.512194
+  },
+  {
+    "markId": "p2",
+    "x": 0.214645,
+    "y": 0.405486,
+    "labelLeft": 0.193155,
+    "labelTop": 0.371557,
+    "labelRight": 0.236135,
+    "labelBottom": 0.394772
+  },
+  {
+    "markId": "p3",
+    "x": 0.191565,
+    "y": 0.297955,
+    "labelLeft": 0.170075,
+    "labelTop": 0.264027,
+    "labelRight": 0.213054,
+    "labelBottom": 0.287241
+  },
+  {
+    "markId": "r2",
+    "x": 0.393299,
+    "y": 0.355515,
+    "labelLeft": 0.371809,
+    "labelTop": 0.321587,
+    "labelRight": 0.414788,
+    "labelBottom": 0.344801
+  },
+  {
+    "markId": "r3",
+    "x": 0.396282,
+    "y": 0.282473,
+    "labelLeft": 0.374793,
+    "labelTop": 0.248544,
+    "labelRight": 0.417772,
+    "labelBottom": 0.271758
+  },
+  {
+    "markId": "oa",
+    "x": 0.115385,
+    "y": 0.490706,
+    "labelLeft": 0.093895,
+    "labelTop": 0.456778,
+    "labelRight": 0.136874,
+    "labelBottom": 0.479992
+  },
+  {
+    "markId": "rmys-g",
+    "x": 0.378852,
+    "y": 0.167442,
+    "labelLeft": 0.329197,
+    "labelTop": 0.133513,
+    "labelRight": 0.428506,
+    "labelBottom": 0.156727
+  },
+  {
+    "markId": "carrum-no2",
+    "x": 0.884615,
+    "y": 0.799616,
+    "labelLeft": 0.806796,
+    "labelTop": 0.765688,
+    "labelRight": 0.962434,
+    "labelBottom": 0.788902
+  },
+  {
+    "markId": "t1",
+    "x": 0.366851,
+    "y": 0.64475,
+    "labelLeft": 0.345361,
+    "labelTop": 0.610822,
+    "labelRight": 0.388341,
+    "labelBottom": 0.634036
+  },
+  {
+    "markId": "t2",
+    "x": 0.319414,
+    "y": 0.645517,
+    "labelLeft": 0.297925,
+    "labelTop": 0.611588,
+    "labelRight": 0.340904,
+    "labelBottom": 0.634803
+  },
+  {
+    "markId": "centre-m1",
+    "x": 0.171385,
+    "y": 0.832558,
+    "labelLeft": 0.100607,
+    "labelTop": 0.79863,
+    "labelRight": 0.242162,
+    "labelBottom": 0.821844
+  },
+  {
+    "markId": "spoil-ground",
+    "x": 0.209107,
+    "y": 0.597912,
+    "labelLeft": 0.117206,
+    "labelTop": 0.563983,
+    "labelRight": 0.301009,
+    "labelBottom": 0.587197
+  }
+]

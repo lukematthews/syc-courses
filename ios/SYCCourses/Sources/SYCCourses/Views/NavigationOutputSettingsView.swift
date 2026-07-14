@@ -11,7 +11,35 @@ struct NavigationOutputSettingsView: View {
     @AppStorage("lineAssistBowProjectionSource") private var bowProjectionSource = BoatReferenceBearingSource.cog.rawValue
     @State private var isShowingDiagnostics = false
     @State private var isShowingBoatGeometryAdvanced = false
-    @State private var discoveryStatus: ActisenseDiscoveryStatus = .idle
+    @State private var discoveryStatus: GatewayDiscoveryStatus = .idle
+
+    private var selectedGateway: NMEAWiFiGateway {
+        navigationDataService.actisenseConfig.gateway
+    }
+
+    private var gateway: Binding<NMEAWiFiGateway> {
+        Binding {
+            selectedGateway
+        } set: { value in
+            guard value != selectedGateway else { return }
+            var input = navigationDataService.actisenseConfig
+            input.gateway = value
+            input.host = value.defaultHost
+            input.port = value.defaultPort
+            input.networkProtocol = value.defaultProtocol
+            navigationDataService.actisenseConfig = input
+
+            var output = outputService.settings
+            if output.target != .disabled {
+                output.target = NavigationOutputTarget(gateway: value)
+            }
+            output.host = value.defaultHost
+            output.port = value.defaultPort
+            output.networkProtocol = value.defaultProtocol
+            outputService.settings = output
+            discoveryStatus = .idle
+        }
+    }
 
     private var actisenseHost: Binding<String> {
         Binding {
@@ -67,10 +95,10 @@ struct NavigationOutputSettingsView: View {
 
     private var actisenseOutputEnabled: Binding<Bool> {
         Binding {
-            outputService.settings.target == .actisenseW2K2
+            outputService.settings.target != .disabled
         } set: { value in
             var output = outputService.settings
-            output.target = value ? .actisenseW2K2 : .disabled
+            output.target = value ? NavigationOutputTarget(gateway: selectedGateway) : .disabled
             output.host = sharedActisenseHost
             output.port = sharedActisensePort
             output.networkProtocol = sharedActisenseProtocol
@@ -79,7 +107,7 @@ struct NavigationOutputSettingsView: View {
     }
 
     private var sharedActisenseHost: String {
-        if outputService.settings.target == .actisenseW2K2,
+        if outputService.settings.target != .disabled,
            !navigationDataService.actisenseConfig.isEnabled,
            !outputService.settings.host.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             return outputService.settings.host
@@ -91,14 +119,14 @@ struct NavigationOutputSettingsView: View {
     }
 
     private var sharedActisensePort: Int {
-        if outputService.settings.target == .actisenseW2K2, !navigationDataService.actisenseConfig.isEnabled {
+        if outputService.settings.target != .disabled, !navigationDataService.actisenseConfig.isEnabled {
             return outputService.settings.port
         }
         return navigationDataService.actisenseConfig.port
     }
 
     private var sharedActisenseProtocol: NavigationOutputProtocol {
-        if outputService.settings.target == .actisenseW2K2, !navigationDataService.actisenseConfig.isEnabled {
+        if outputService.settings.target != .disabled, !navigationDataService.actisenseConfig.isEnabled {
             return outputService.settings.networkProtocol
         }
         return navigationDataService.actisenseConfig.networkProtocol
@@ -115,14 +143,19 @@ struct NavigationOutputSettingsView: View {
     var body: some View {
         Form {
             Section {
-                Text("Configure one Actisense W2K-2, then choose whether the app reads boat data from it, sends navigation output to it, or both.")
+                Text("Configure an NMEA 2000 Wi-Fi gateway, then choose whether the app reads boat data from it, sends navigation output to it, or both.")
                     .foregroundStyle(.secondary)
-                Text("Instrument display depends on W2K-2 configuration and downstream support.")
+                Text("Instrument display depends on the gateway configuration and downstream support.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
 
-            Section("Actisense W2K-2") {
+            Section(selectedGateway.label) {
+                Picker("Gateway", selection: gateway) {
+                    ForEach(NMEAWiFiGateway.allCases) { device in
+                        Text(device.label).tag(device)
+                    }
+                }
                 LabeledContent("IP address") {
                     TextField("192.168.4.1", text: actisenseHost)
                         .autocorrectionDisabled()
@@ -141,9 +174,9 @@ struct NavigationOutputSettingsView: View {
                     Task { await findActisense() }
                 } label: {
                     if discoveryStatus.isScanning {
-                        Label("Finding Actisense", systemImage: "magnifyingglass")
+                        Label("Finding Gateway", systemImage: "magnifyingglass")
                     } else {
-                        Label("Find Actisense", systemImage: "magnifyingglass")
+                        Label("Find Gateway", systemImage: "magnifyingglass")
                     }
                 }
                 .disabled(discoveryStatus.isScanning)
@@ -154,18 +187,23 @@ struct NavigationOutputSettingsView: View {
                 }
                 Toggle("Use for boat data input", isOn: actisenseInputEnabled)
                 Toggle("Send output to instruments", isOn: actisenseOutputEnabled)
-                if outputService.settings.target == .actisenseW2K2 {
+                if outputService.settings.target != .disabled {
                     Toggle("Auto-connect output", isOn: $outputService.settings.autoConnect)
                 }
-                Text("The data server port is the TCP/UDP port configured on the W2K-2 for NMEA 0183 streaming. Common W2K setups use 60001.")
+                Text(gatewayHelpText)
                     .font(.footnote)
                     .foregroundStyle(.secondary)
-                Text("Quick Bearing and Line Assist can use fresh valid position/SOG from Actisense. If it goes stale, the app falls back to iPhone GPS.")
+                if selectedGateway == .yachtDevicesYDWG02, outputService.settings.target != .disabled {
+                    Text("For output, configure the selected YDWG NMEA Server direction to allow data from the app (Both or Receive Only).")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
+                Text("Quick Bearing and Line Assist can use fresh valid position/SOG from the gateway. If it goes stale, the app falls back to iPhone GPS.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
 
-            Section("Actisense Status") {
+            Section("Gateway Status") {
                 LabeledContent("Input", value: navigationDataService.actisenseStatus.label)
                 if let detail = navigationDataService.actisenseStatus.detail {
                     Text(detail)
@@ -286,6 +324,9 @@ struct NavigationOutputSettingsView: View {
 
     private func syncOutputDeviceConfig() {
         var output = outputService.settings
+        if output.target != .disabled {
+            output.target = NavigationOutputTarget(gateway: selectedGateway)
+        }
         output.host = sharedActisenseHost
         output.port = sharedActisensePort
         output.networkProtocol = sharedActisenseProtocol
@@ -300,10 +341,23 @@ struct NavigationOutputSettingsView: View {
         return formatter
     }()
 
+    private var gatewayHelpText: String {
+        switch selectedGateway {
+        case .actisenseW2K2:
+            "Use the TCP/UDP port configured on the W2K-2 for NMEA 0183 streaming. Common W2K setups use port 60001."
+        case .yachtDevicesYDWG02:
+            "The YDWG-02 factory NMEA Server #1 profile uses TCP port 1456 and NMEA 0183."
+        }
+    }
+
     private func findActisense() async {
         discoveryStatus = .scanning
-        let candidates = ActisenseDiscovery.candidates(currentHost: sharedActisenseHost, currentPort: sharedActisensePort)
-        if let result = await ActisenseDiscovery.find(candidates: candidates) {
+        let candidates = GatewayDiscovery.candidates(
+            gateway: selectedGateway,
+            currentHost: sharedActisenseHost,
+            currentPort: sharedActisensePort
+        )
+        if let result = await GatewayDiscovery.find(candidates: candidates) {
             actisenseHost.wrappedValue = result.host
             actisensePort.wrappedValue = result.port
             discoveryStatus = .found(result)
@@ -313,10 +367,10 @@ struct NavigationOutputSettingsView: View {
     }
 }
 
-private enum ActisenseDiscoveryStatus: Equatable {
+private enum GatewayDiscoveryStatus: Equatable {
     case idle
     case scanning
-    case found(ActisenseDiscoveryResult)
+    case found(GatewayDiscoveryResult)
     case notFound
 
     var isScanning: Bool {
@@ -332,22 +386,26 @@ private enum ActisenseDiscoveryStatus: Equatable {
         case .idle:
             nil
         case .scanning:
-            "Scanning likely W2K-2 addresses and data server ports..."
+            "Scanning likely gateway addresses and NMEA data ports..."
         case let .found(result):
-            "Found Actisense at \(result.host):\(result.port)."
+            "Found a gateway at \(result.host):\(result.port)."
         case .notFound:
-            "No Actisense data server found. Check Wi-Fi, IP address, and data server port."
+            "No NMEA data server found. Check Wi-Fi, IP address, and data server port."
         }
     }
 }
 
-private struct ActisenseDiscoveryResult: Equatable {
+private struct GatewayDiscoveryResult: Equatable {
     let host: String
     let port: Int
 }
 
-private enum ActisenseDiscovery {
-    static func candidates(currentHost: String, currentPort: Int) -> [ActisenseDiscoveryResult] {
+private enum GatewayDiscovery {
+    static func candidates(
+        gateway: NMEAWiFiGateway,
+        currentHost: String,
+        currentPort: Int
+    ) -> [GatewayDiscoveryResult] {
         let hosts = unique([
             currentHost.trimmingCharacters(in: .whitespacesAndNewlines),
             "192.168.4.1",
@@ -355,13 +413,20 @@ private enum ActisenseDiscovery {
             "192.168.0.1",
             "10.0.0.1",
         ].filter { !$0.isEmpty })
-        let ports = unique([currentPort, 60001, 60002, 60003].filter { (1...65_535).contains($0) })
+        let devicePorts: [Int]
+        switch gateway {
+        case .actisenseW2K2:
+            devicePorts = [60001, 60002, 60003]
+        case .yachtDevicesYDWG02:
+            devicePorts = [1456, 1457, 1458]
+        }
+        let ports = unique(([currentPort] + devicePorts).filter { (1...65_535).contains($0) })
         return hosts.flatMap { host in
-            ports.map { port in ActisenseDiscoveryResult(host: host, port: port) }
+            ports.map { port in GatewayDiscoveryResult(host: host, port: port) }
         }
     }
 
-    static func find(candidates: [ActisenseDiscoveryResult]) async -> ActisenseDiscoveryResult? {
+    static func find(candidates: [GatewayDiscoveryResult]) async -> GatewayDiscoveryResult? {
         for candidate in candidates {
             if await canConnect(to: candidate.host, port: candidate.port) {
                 return candidate

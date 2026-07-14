@@ -39,6 +39,18 @@ final class NavigationOutputTests: XCTestCase {
         XCTAssertTrue(adapter.sentMessages[1].sentence.hasPrefix("$GPRMB"))
     }
 
+    func testServiceSupportsYDWGOutput() async {
+        let adapter = FakeNavigationOutputAdapter()
+        let service = makeService(adapter: adapter, target: .yachtDevicesYDWG02, port: 1456)
+
+        await service.connect()
+        await service.sendActiveWaypoint(sampleWaypoint())
+
+        XCTAssertEqual(service.status, .connected)
+        XCTAssertEqual(adapter.sentMessages.count, 2)
+        XCTAssertTrue(service.canConnect)
+    }
+
     func testAdapterStateTransitionsSurfaceThroughService() async {
         let adapter = FakeNavigationOutputAdapter()
         let service = makeService(adapter: adapter, target: .actisenseW2K2)
@@ -77,14 +89,15 @@ final class NavigationOutputTests: XCTestCase {
 
     private func makeService(
         adapter: FakeNavigationOutputAdapter,
-        target: NavigationOutputTarget = .disabled
+        target: NavigationOutputTarget = .disabled,
+        port: Int = 60001
     ) -> NavigationOutputService {
         let defaults = UserDefaults(suiteName: "NavigationOutputTests-\(UUID().uuidString)")!
         let service = NavigationOutputService(defaults: defaults) { _ in adapter }
         service.settings = NavigationOutputSettings(
             target: target,
             host: "192.168.4.1",
-            port: 60001,
+            port: port,
             networkProtocol: .tcp,
             autoConnect: false
         )

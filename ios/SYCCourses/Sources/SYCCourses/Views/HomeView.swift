@@ -57,7 +57,7 @@ struct HomeView: View {
                         HomeCard(title: "Race Tracker", subtitle: "Record and scrub your course on a map", systemImage: "map")
                     }
                     NavigationLink(value: HomeRoute.navigationOutput) {
-                        HomeCard(title: "Instruments", subtitle: "Boat communication with Actisense W2K-2", systemImage: "antenna.radiowaves.left.and.right")
+                        HomeCard(title: "Instruments", subtitle: "Boat communication over an NMEA Wi-Fi gateway", systemImage: "antenna.radiowaves.left.and.right")
                     }
 
                     if !recentCourses.isEmpty {

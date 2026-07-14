@@ -12,10 +12,16 @@ struct QuickBearingView: View {
     @State private var selectedMapMark: Mark?
     private let marks = CourseDataLoader.marks()
 
+    private var sourceSummary: NavigationSourceSummary {
+        navigationDataService.sourceSummary(iPhoneFix: locationService.navigationFix)
+    }
+
     var body: some View {
         List {
-            Section {
-                NavigationSourceStatusLine(summary: navigationDataService.sourceSummary(iPhoneFix: locationService.navigationFix))
+            if sourceSummary.statusMessage != nil {
+                Section {
+                    NavigationSourceStatusLine(summary: sourceSummary)
+                }
             }
 
             Section("Approximate Mark Locations") {
@@ -284,7 +290,9 @@ struct MarkDetailView: View {
                         .foregroundStyle(.secondary)
                 }
 
-                NavigationSourceStatusLine(summary: sourceSummary)
+                if sourceSummary.statusMessage != nil {
+                    NavigationSourceStatusLine(summary: sourceSummary)
+                }
 
                 if let snapshot {
                     LocationSanityWarningView(snapshot: snapshot)
