@@ -1,6 +1,7 @@
 import SwiftUI
 
 public struct SYCCoursesRootView: View {
+    @StateObject private var trialAccessStore = TrialAccessStore()
     @StateObject private var locationService = LocationService()
     @StateObject private var navigationDataService = NavigationDataService()
     @StateObject private var navigationOutputService = NavigationOutputService()
@@ -11,15 +12,21 @@ public struct SYCCoursesRootView: View {
     public init() {}
 
     public var body: some View {
-        HomeView()
-            .environmentObject(locationService)
-            .environmentObject(navigationDataService)
-            .environmentObject(navigationOutputService)
-            .environmentObject(recentsStore)
-            .environmentObject(raceTrackStore)
-            .environmentObject(activeRaceStore)
-            .onAppear {
-                raceTrackStore.configure(locationService: locationService)
+        Group {
+            if trialAccessStore.isUnlocked {
+                HomeView()
+                    .environmentObject(locationService)
+                    .environmentObject(navigationDataService)
+                    .environmentObject(navigationOutputService)
+                    .environmentObject(recentsStore)
+                    .environmentObject(raceTrackStore)
+                    .environmentObject(activeRaceStore)
+                    .onAppear {
+                        raceTrackStore.configure(locationService: locationService)
+                    }
+            } else {
+                TrialAccessView(accessStore: trialAccessStore)
             }
+        }
     }
 }

@@ -188,7 +188,7 @@ private struct HomeHeader: View {
     }
 }
 
-private struct AppIconImage: View {
+struct AppIconImage: View {
     let size: CGFloat
     let cornerRadius: CGFloat
 
@@ -309,7 +309,7 @@ private struct HomeCard: View {
     }
 }
 
-private enum HomeColors {
+enum HomeColors {
     static let navy = Color(red: 0.02, green: 0.12, blue: 0.28)
     static let background = Color(red: 0.90, green: 0.93, blue: 0.96)
     static let card = Color(red: 0.99, green: 0.995, blue: 1.0)
