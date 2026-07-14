@@ -10,6 +10,7 @@ class DataRepository(context: Context) {
     val fixedCourses: List<Course> by lazy { decode("fixed-courses.json") }
     val laidCourses: List<Course> by lazy { decode("laid-courses.json") }
     val marks: List<Mark> by lazy { decode("marks.json") }
+    val portPhillipCoastline: CoastlineData by lazy { decode("port-phillip-coastline.json") }
     val allCourses: List<Course> get() = fixedCourses + laidCourses
 
     private inline fun <reified T> decode(file: String): T =

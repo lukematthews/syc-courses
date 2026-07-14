@@ -33,6 +33,13 @@ data class Mark(
 )
 
 @Serializable
+data class CoastlineData(
+    val attribution: String,
+    val paths: List<List<List<Double>>>,
+    val landPolygons: List<List<List<List<Double>>>> = emptyList(),
+)
+
+@Serializable
 data class TrackPoint(val latitude: Double, val longitude: Double, val timestampMillis: Long)
 
 @Serializable

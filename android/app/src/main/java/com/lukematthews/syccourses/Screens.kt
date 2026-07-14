@@ -9,6 +9,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -27,17 +28,24 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.PathFillType
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.FileProvider
@@ -845,7 +853,7 @@ private fun RaceTrackerScreen(app: AppViewModel, nav: NavHostController) {
     val snapshot = activeMark?.let { mark -> app.activeFix?.let { NavigationMath.snapshot(it, mark) } }
     ScreenScaffold("Race Tracker", { nav.popBackStack() }) { padding ->
         Column(Modifier.padding(padding)) {
-            RaceMap(points, lineMarks, courseMarks, app.repository.marks, activeMark, avatar, app.activeFix, Modifier.fillMaxWidth().weight(1f))
+            RaceMap(points, lineMarks, courseMarks, app.repository.marks, app.repository.portPhillipCoastline, activeMark, avatar, app.activeFix, Modifier.fillMaxWidth().weight(1f))
             HorizontalDivider()
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 if (activeNumber != null) OutlinedCard(Modifier.fillMaxWidth()) {
@@ -881,27 +889,170 @@ private fun interpolateTrack(points: List<TrackPoint>, seconds: Double): TrackPo
 }
 
 @Composable
-private fun RaceMap(points: List<TrackPoint>, courseLine: List<Mark>, courseMarks: List<Mark>, referenceMarks: List<Mark>, activeMark: Mark?, avatar: TrackPoint?, fix: NavigationFix?, modifier: Modifier) {
-    val context = LocalContext.current
-    val image = remember {
-        runCatching { context.assets.open("mark-locations.png").use(BitmapFactory::decodeStream) }.getOrNull()
+private fun RaceMap(points: List<TrackPoint>, courseLine: List<Mark>, courseMarks: List<Mark>, referenceMarks: List<Mark>, coastline: CoastlineData, activeMark: Mark?, avatar: TrackPoint?, fix: NavigationFix?, modifier: Modifier) {
+    var zoom by remember { mutableFloatStateOf(1f) }
+    var pan by remember { mutableStateOf(Offset.Zero) }
+    val textMeasurer = rememberTextMeasurer()
+    val projectedCoastline = remember(coastline) {
+        coastline.paths.mapNotNull { path ->
+            path.mapNotNull { coordinate ->
+                if (coordinate.size < 2) null else PortPhillipProjection.project(coordinate[1], coordinate[0])
+            }.takeIf { it.size >= 2 }?.let(::ProjectedMapPath)
+        }
     }
-    val projection = remember(referenceMarks) { chartProjection(referenceMarks) }
-    if (image == null || projection == null) {
-        Box(modifier.background(Color(0xFFE8EEF1)), contentAlignment = Alignment.Center) { Text("Mark map unavailable", color = Color.Gray) }
-        return
+    val projectedLand = remember(coastline) {
+        coastline.landPolygons.map { polygon ->
+            polygon.map { ring ->
+                ring.mapNotNull { coordinate ->
+                    if (coordinate.size < 2) null else PortPhillipProjection.project(coordinate[1], coordinate[0])
+                }
+            }.filter { it.size >= 3 }
+        }.filter { it.isNotEmpty() }
     }
-    Box(modifier.background(Color.White)) {
-        Image(image.asImageBitmap(), "Race track map", Modifier.fillMaxSize(), contentScale = ContentScale.FillBounds)
-        Canvas(Modifier.fillMaxSize()) {
-            fun position(latitude: Double, longitude: Double) = Offset(
-                projection.longitude(longitude) * size.width,
-                projection.latitude(latitude) * size.height,
-            )
+    Box(modifier.background(Color(0xFFEAF5F8))) {
+        Canvas(
+            Modifier
+                .fillMaxSize()
+                .pointerInput(Unit) {
+                    detectTransformGestures { centroid, panChange, zoomChange, _ ->
+                        val previousZoom = zoom
+                        val nextZoom = (previousZoom * zoomChange).coerceIn(.125f, 12f)
+                        val ratio = nextZoom / previousZoom
+                        val centre = Offset(size.width / 2f, size.height / 2f)
+                        pan = Offset(
+                            centroid.x - centre.x - (centroid.x - centre.x - pan.x) * ratio + panChange.x,
+                            centroid.y - centre.y - (centroid.y - centre.y - pan.y) * ratio + panChange.y,
+                        )
+                        zoom = nextZoom
+                    }
+                },
+        ) {
+            val focus = buildList {
+                courseMarks.forEach { add(PortPhillipProjection.project(it.latitude, it.longitude)) }
+                courseLine.forEach { add(PortPhillipProjection.project(it.latitude, it.longitude)) }
+                points.forEach { add(PortPhillipProjection.project(it.latitude, it.longitude)) }
+                avatar?.let { add(PortPhillipProjection.project(it.latitude, it.longitude)) }
+                fix?.let { add(PortPhillipProjection.project(it.latitude, it.longitude)) }
+            }
+            val viewport = mapViewport(focus, size.width.toDouble() / size.height.toDouble())
+            fun transform(position: Offset): Offset {
+                val centreX = size.width / 2f
+                val centreY = size.height / 2f
+                return Offset(
+                    centreX + (position.x - centreX) * zoom + pan.x,
+                    centreY + (position.y - centreY) * zoom + pan.y,
+                )
+            }
+            fun position(latitude: Double, longitude: Double): Offset {
+                val projected = PortPhillipProjection.project(latitude, longitude)
+                return transform(viewport.position(projected, size.width, size.height))
+            }
+            projectedLand.forEach { polygon ->
+                val land = Path().apply {
+                    fillType = PathFillType.EvenOdd
+                    polygon.forEach { ring ->
+                        val first = transform(viewport.position(ring.first(), size.width, size.height))
+                        moveTo(first.x, first.y)
+                        ring.drop(1).forEach { point ->
+                            val transformed = transform(viewport.position(point, size.width, size.height))
+                            lineTo(transformed.x, transformed.y)
+                        }
+                        close()
+                    }
+                }
+                drawPath(land, Color(0xFFF3E4A6))
+            }
+            projectedCoastline.forEach { path ->
+                path.points.zipWithNext().forEach { (a, b) ->
+                    drawLine(
+                        Color(0xFF58717D),
+                        transform(viewport.position(a, size.width, size.height)),
+                        transform(viewport.position(b, size.width, size.height)),
+                        1.5.dp.toPx(),
+                    )
+                }
+            }
             courseLine.zipWithNext().forEach { (a, b) ->
                 drawLine(Color(0xFF00A7B5).copy(alpha = .65f), position(a.latitude, a.longitude), position(b.latitude, b.longitude), 5.dp.toPx(), pathEffect = PathEffect.dashPathEffect(floatArrayOf(12.dp.toPx(), 8.dp.toPx())))
             }
             points.zipWithNext().forEach { (a, b) -> drawLine(Color(0xFF1976D2), position(a.latitude, a.longitude), position(b.latitude, b.longitude), 6.dp.toPx()) }
+            referenceMarks.forEach { mark ->
+                val center = position(mark.latitude, mark.longitude)
+                drawCircle(Color.White, 5.dp.toPx(), center)
+                drawCircle(Color(0xFF314A57), 2.8.dp.toPx(), center)
+            }
+            val courseIds = courseMarks.mapTo(mutableSetOf()) { it.id }
+            val occupied = mutableListOf(
+                Rect(0f, 0f, 170.dp.toPx(), 65.dp.toPx()),
+                Rect(size.width - 55.dp.toPx(), 0f, size.width, 55.dp.toPx()),
+                Rect(0f, size.height - 22.dp.toPx(), 225.dp.toPx(), size.height),
+            )
+            referenceMarks.forEach { mark ->
+                val center = position(mark.latitude, mark.longitude)
+                if (center.x in 0f..size.width && center.y in 0f..size.height) {
+                    val radius = when { mark.id == activeMark?.id -> 12.dp.toPx(); mark.id in courseIds -> 9.dp.toPx(); else -> 6.dp.toPx() }
+                    occupied += Rect(center.x - radius, center.y - radius, center.x + radius, center.y + radius)
+                }
+            }
+            referenceMarks.sortedBy { mark -> when { mark.id == activeMark?.id -> 0; mark.id in courseIds -> 1; else -> 2 } }.forEach { mark ->
+                val center = position(mark.latitude, mark.longitude)
+                if (center.x !in 0f..size.width || center.y !in 0f..size.height) return@forEach
+                val isActive = mark.id == activeMark?.id
+                val isInCourse = mark.id in courseIds
+                val style = TextStyle(
+                    color = when { isActive -> Color(0xFFB45309); isInCourse -> Color(0xFF006A73); else -> Navy },
+                    fontSize = (8.5f + zoom.coerceIn(.125f, 1f) * 1.5f).sp,
+                    fontWeight = if (isActive || isInCourse) FontWeight.Bold else FontWeight.SemiBold,
+                )
+                val layout = textMeasurer.measure(mark.name, style = style)
+                val labelWidth = layout.size.width.toFloat()
+                val labelHeight = layout.size.height.toFloat()
+                val minimumGap = if (isActive) 12.dp.toPx() else 7.dp.toPx()
+                val candidates = listOf(0f, 15.dp.toPx(), 30.dp.toPx(), 45.dp.toPx()).flatMap { extra ->
+                    val gap = minimumGap + extra
+                    listOf(
+                        Offset(center.x + gap, center.y - labelHeight / 2f),
+                        Offset(center.x - labelWidth - gap, center.y - labelHeight / 2f),
+                        Offset(center.x - labelWidth / 2f, center.y - labelHeight - gap),
+                        Offset(center.x - labelWidth / 2f, center.y + gap),
+                        Offset(center.x + gap, center.y - labelHeight - gap),
+                        Offset(center.x - labelWidth - gap, center.y - labelHeight - gap),
+                        Offset(center.x + gap, center.y + gap),
+                        Offset(center.x - labelWidth - gap, center.y + gap),
+                    )
+                }
+                fun labelRect(topLeft: Offset) = Rect(
+                    topLeft.x - 2.dp.toPx(), topLeft.y - 1.dp.toPx(),
+                    topLeft.x + labelWidth + 2.dp.toPx(), topLeft.y + labelHeight + 1.dp.toPx(),
+                )
+                fun overlapArea(a: Rect, b: Rect): Float {
+                    val width = (minOf(a.right, b.right) - maxOf(a.left, b.left)).coerceAtLeast(0f)
+                    val height = (minOf(a.bottom, b.bottom) - maxOf(a.top, b.top)).coerceAtLeast(0f)
+                    return width * height
+                }
+                val topLeft = candidates.minBy { candidate ->
+                    val rect = labelRect(candidate)
+                    occupied.sumOf { overlapArea(rect, it).toDouble() } +
+                        (if (rect.left < 0f || rect.top < 0f || rect.right > size.width || rect.bottom > size.height) 1_000_000.0 else 0.0) +
+                        kotlin.math.hypot((rect.left + rect.right) / 2f - center.x, (rect.top + rect.bottom) / 2f - center.y) * .01
+                }
+                val rect = labelRect(topLeft)
+                occupied += rect
+                val leaderEnd = Offset(
+                    center.x.coerceIn(rect.left, rect.right),
+                    center.y.coerceIn(rect.top, rect.bottom),
+                )
+                if (kotlin.math.hypot(leaderEnd.x - center.x, leaderEnd.y - center.y) > minimumGap * 1.5f) {
+                    drawLine(Color(0xFF526B76).copy(alpha = .55f), center, leaderEnd, 1.dp.toPx())
+                }
+                drawRoundRect(
+                    Color.White.copy(alpha = .86f),
+                    Offset(rect.left, rect.top),
+                    androidx.compose.ui.geometry.Size(rect.width, rect.height),
+                    cornerRadius = androidx.compose.ui.geometry.CornerRadius(2.dp.toPx()),
+                )
+                drawText(textMeasurer, mark.name, topLeft = topLeft, style = style)
+            }
             courseMarks.forEach { mark ->
                 val center = position(mark.latitude, mark.longitude)
                 drawCircle(Color.White, if (mark.id == activeMark?.id) 10.dp.toPx() else 7.dp.toPx(), center)
@@ -910,20 +1061,54 @@ private fun RaceMap(points: List<TrackPoint>, courseLine: List<Mark>, courseMark
             avatar?.let { drawCircle(Color(0xFFFF9800), 8.dp.toPx(), position(it.latitude, it.longitude)) }
             fix?.let { drawCircle(Color(0xFF1976D2), 7.dp.toPx(), position(it.latitude, it.longitude)) }
         }
+        Text("N ↑", Modifier.align(Alignment.TopEnd).padding(10.dp), color = Navy, fontWeight = FontWeight.Black)
+        Surface(
+            Modifier.align(Alignment.TopStart).padding(10.dp),
+            shape = RoundedCornerShape(24.dp),
+            color = Color.White.copy(alpha = .92f),
+            tonalElevation = 3.dp,
+        ) {
+            Row {
+                IconButton({ zoom = (zoom / 1.5f).coerceAtLeast(.125f) }, enabled = zoom > .125f) { Icon(Icons.Default.ZoomOut, "Zoom out") }
+                IconButton({ zoom = (zoom * 1.5f).coerceAtMost(12f) }, enabled = zoom < 12f) { Icon(Icons.Default.ZoomIn, "Zoom in") }
+                IconButton({ zoom = 1f; pan = Offset.Zero }, enabled = zoom != 1f || pan != Offset.Zero) { Icon(Icons.Default.CenterFocusStrong, "Re-centre map") }
+            }
+        }
+        Text(
+            "${coastline.attribution} · Not for navigation",
+            Modifier.align(Alignment.BottomStart).background(Color.White.copy(alpha = .82f)).padding(horizontal = 6.dp, vertical = 3.dp),
+            color = Color(0xFF455A64),
+            fontSize = 9.sp,
+        )
     }
 }
 
-private data class ChartProjection(val longitude: (Double) -> Float, val latitude: (Double) -> Float)
+private data class ProjectedMapPath(val points: List<ProjectedPoint>) {
+}
 
-private fun chartProjection(marks: List<Mark>): ChartProjection? {
-    val samples = markHotspots.mapNotNull { hotspot -> marks.firstOrNull { it.id == hotspot.markId }?.let { Triple(it, hotspot.x, hotspot.y) } }
-    if (samples.size < 2) return null
-    fun regression(values: List<Pair<Double, Float>>): (Double) -> Float {
-        val meanInput = values.map { it.first }.average(); val meanOutput = values.map { it.second.toDouble() }.average()
-        val slope = values.sumOf { (it.first - meanInput) * (it.second - meanOutput) } / values.sumOf { (it.first - meanInput) * (it.first - meanInput) }
-        return { input -> (meanOutput + slope * (input - meanInput)).toFloat() }
-    }
-    return ChartProjection(regression(samples.map { it.first.longitude to it.second }), regression(samples.map { it.first.latitude to it.third }))
+private data class MapViewport(val left: Double, val right: Double, val bottom: Double, val top: Double) {
+    fun position(point: ProjectedPoint, width: Float, height: Float) = Offset(
+        ((point.easting - left) / (right - left) * width).toFloat(),
+        ((top - point.northing) / (top - bottom) * height).toFloat(),
+    )
+}
+
+private fun mapViewport(focus: List<ProjectedPoint>, canvasAspect: Double): MapViewport {
+    val relevant = focus.takeIf { it.isNotEmpty() } ?: listOf(
+        PortPhillipProjection.project(-38.45, 144.4),
+        PortPhillipProjection.project(-37.75, 145.15),
+    )
+    val centreEasting = (relevant.minOf { it.easting } + relevant.maxOf { it.easting }) / 2.0
+    val centreNorthing = (relevant.minOf { it.northing } + relevant.maxOf { it.northing }) / 2.0
+    var width = (relevant.maxOf { it.easting } - relevant.minOf { it.easting }).coerceAtLeast(8_000.0) * 1.3
+    var height = (relevant.maxOf { it.northing } - relevant.minOf { it.northing }).coerceAtLeast(8_000.0) * 1.3
+    if (width / height < canvasAspect) width = height * canvasAspect else height = width / canvasAspect
+    return MapViewport(
+        centreEasting - width / 2.0,
+        centreEasting + width / 2.0,
+        centreNorthing - height / 2.0,
+        centreNorthing + height / 2.0,
+    )
 }
 
 @Composable
