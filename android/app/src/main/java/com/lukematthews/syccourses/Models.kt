@@ -6,6 +6,9 @@ import java.util.UUID
 
 @Serializable
 data class Course(
+    val id: String,
+    val packId: String,
+    val kind: CourseKind,
     val courseNumber: Int,
     val route: String? = null,
     val passInstruction: String = "",
@@ -16,6 +19,46 @@ data class Course(
     val dataStatus: String = "",
     val sourcePage: Int = 0,
     val comparableCourseNote: String? = null,
+)
+
+@Serializable
+enum class CourseKind { fixed, laid }
+
+@Serializable
+data class CoursePack(
+    val schemaVersion: Int,
+    val packId: String,
+    val assetNamespace: String,
+    val name: String,
+    val shortName: String,
+    val organiser: String,
+    val version: String,
+    val source: CoursePackSource,
+    val courseKinds: List<CourseKind>,
+    val navigation: CoursePackNavigation,
+    val resources: CoursePackResources,
+)
+
+@Serializable
+data class CoursePackSource(
+    val type: String,
+    val title: String,
+    val url: String? = null,
+)
+
+@Serializable
+data class CoursePackNavigation(
+    val startLineMarkIds: List<String>,
+    val finishLineMarkIds: List<String>,
+    val startFinishMarkId: String,
+)
+
+@Serializable
+data class CoursePackResources(
+    val fixedCourses: String,
+    val laidCourses: String,
+    val marks: String,
+    val courseCharts: String,
 )
 
 @Serializable

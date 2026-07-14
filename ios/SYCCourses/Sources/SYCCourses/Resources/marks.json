@@ -1,205 +1,314 @@
 [
   {
-    "id": "syc-1",
-    "name": "SYC 1",
+    "id": "alcoa-inner",
+    "name": "Alcoa Inner",
     "aliases": [
-      "SYC1",
-      "SY1"
+      "Point Henry Inner Lead Beacon",
+      "Al In"
     ],
-    "latitude": -37.963333,
-    "longitude": 144.9815,
-    "description": "37 57.80S, 144 58.89E",
-    "coordinatesStatus": "verified"
+    "latitude": -38.1168333,
+    "longitude": 144.4568333,
+    "description": "S 38° 07.01', E 144° 27.41'",
+    "coordinatesStatus": "published-approximate"
   },
   {
-    "id": "syc-2",
-    "name": "SYC 2",
+    "id": "alcoa-outer",
+    "name": "Alcoa Outer",
     "aliases": [
-      "SYC2",
-      "SY2"
+      "Point Henry Outer Lead Beacon",
+      "Outer Lead Beacon",
+      "Al Out"
     ],
-    "latitude": -37.943333,
-    "longitude": 144.966167,
-    "description": "37 56.60S, 144 57.97E",
-    "coordinatesStatus": "verified"
+    "latitude": -38.1138333,
+    "longitude": 144.462,
+    "description": "S 38° 06.83', E 144° 27.72' — Rounding side varies by course.",
+    "coordinatesStatus": "published-approximate"
   },
   {
-    "id": "syc-3",
-    "name": "SYC 3",
+    "id": "cat-6-laid",
+    "name": "Cat 6 Laid Mark",
     "aliases": [
-      "SYC3",
-      "SY3"
+      "CAT 6 LAID MARK"
     ],
-    "latitude": -37.937333,
-    "longitude": 144.9875,
-    "description": "37 56.24S, 144 59.25E",
-    "coordinatesStatus": "verified"
+    "latitude": -37.9980667,
+    "longitude": 144.7147667,
+    "description": "S 37° 59.884', E 144° 42.886' — Orange cylinder; a conditional passage-race mark for J24/Category 6 only.",
+    "coordinatesStatus": "published-approximate"
   },
   {
-    "id": "syc-4",
-    "name": "SYC 4",
+    "id": "cb-1",
+    "name": "CB 1",
     "aliases": [
-      "SYC4",
-      "SY4"
+      "CB1"
     ],
-    "latitude": -37.946833,
-    "longitude": 144.99,
-    "description": "37 56.81S, 144 59.40E",
-    "coordinatesStatus": "verified"
+    "latitude": -38.0925,
+    "longitude": 144.4033333,
+    "description": "S 38° 05.55', E 144° 24.20' — Yellow cone mark.",
+    "coordinatesStatus": "published-approximate"
   },
   {
-    "id": "syc-5",
-    "name": "SYC 5",
+    "id": "cb-2",
+    "name": "CB 2",
     "aliases": [
-      "SYC5",
-      "SY5"
+      "CB2"
     ],
-    "latitude": -37.980167,
-    "longitude": 144.973,
-    "description": "37 58.81S, 144 58.38E",
-    "coordinatesStatus": "verified"
+    "latitude": -38.1268333,
+    "longitude": 144.403,
+    "description": "S 38° 07.61', E 144° 24.18' — Yellow cone mark.",
+    "coordinatesStatus": "published-approximate"
   },
   {
-    "id": "syc-6",
-    "name": "SYC 6",
+    "id": "cb-3",
+    "name": "CB 3",
     "aliases": [
-      "SYC6",
-      "SY6"
+      "CB3"
     ],
-    "latitude": -37.945,
-    "longitude": 144.951333,
-    "description": "37 56.70S, 144 57.08E",
-    "coordinatesStatus": "verified"
+    "latitude": -38.1266667,
+    "longitude": 144.3925,
+    "description": "S 38° 07.60', E 144° 23.55' — Yellow cone mark.",
+    "coordinatesStatus": "published-approximate"
   },
   {
-    "id": "syc-7",
-    "name": "SYC 7",
+    "id": "cb-4",
+    "name": "CB 4",
     "aliases": [
-      "SYC7",
-      "SY7"
+      "CB4"
     ],
-    "latitude": -37.931,
-    "longitude": 144.983333,
-    "description": "37 55.86S, 144 59.00E",
-    "coordinatesStatus": "verified"
+    "latitude": -38.129,
+    "longitude": 144.3691667,
+    "description": "S 38° 07.74', E 144° 22.15' — Yellow cone mark.",
+    "coordinatesStatus": "published-approximate"
   },
   {
-    "id": "syc-tower",
-    "name": "SYC Tower",
+    "id": "cb-5",
+    "name": "CB 5",
     "aliases": [
-      "Tower"
+      "CB5"
     ],
-    "latitude": -37.94568642580152,
-    "longitude": 144.99576111746006,
-    "description": "37 56.74S, 144 59.75E",
-    "coordinatesStatus": "verified"
+    "latitude": -38.1033333,
+    "longitude": 144.3821667,
+    "description": "S 38° 06.20', E 144° 22.93' — Yellow cone mark.",
+    "coordinatesStatus": "published-approximate"
   },
   {
-    "id": "p2",
-    "name": "P2",
-    "aliases": [],
-    "latitude": -37.923833,
-    "longitude": 144.8865,
-    "description": "37 55.43S, 144 53.19E",
-    "coordinatesStatus": "verified"
-  },
-  {
-    "id": "p3",
-    "name": "P3",
-    "aliases": [],
-    "latitude": -37.889833,
-    "longitude": 144.880833,
-    "description": "37 53.39S, 144 52.85E",
-    "coordinatesStatus": "verified"
-  },
-  {
-    "id": "r2",
-    "name": "R2",
-    "aliases": [],
-    "latitude": -37.909,
-    "longitude": 144.938333,
-    "description": "37 54.54S, 144 56.30E",
-    "coordinatesStatus": "verified"
-  },
-  {
-    "id": "r3",
-    "name": "R3",
-    "aliases": [],
-    "latitude": -37.886,
-    "longitude": 144.939833,
-    "description": "37 53.16S, 144 56.39E",
-    "coordinatesStatus": "verified"
-  },
-  {
-    "id": "oa",
-    "name": "OA",
-    "aliases": [],
-    "latitude": -37.950167,
-    "longitude": 144.857167,
-    "description": "37 57.01S, 144 51.43E",
-    "coordinatesStatus": "verified"
-  },
-  {
-    "id": "rmys-g",
-    "name": "RMYS G",
+    "id": "cb-6",
+    "name": "CB 6",
     "aliases": [
-      "RMYS"
+      "CB6"
     ],
-    "latitude": -37.849667,
-    "longitude": 144.935833,
-    "description": "37 50.98S, 144 56.15E",
-    "coordinatesStatus": "verified"
+    "latitude": -38.1086667,
+    "longitude": 144.4001667,
+    "description": "S 38° 06.52', E 144° 24.01' — Yellow cone mark.",
+    "coordinatesStatus": "published-approximate"
   },
   {
-    "id": "carrum-no2",
-    "name": "Carrum No2",
+    "id": "fos-1",
+    "name": "FoS 1",
     "aliases": [
-      "Carrum 2",
-      "Carrum No 2"
+      "FOS 1",
+      "FoS Laid Pt Richards",
+      "PT Richards Laid Mark",
+      "Point Richards Laid Mark"
     ],
-    "latitude": -38.051333,
-    "longitude": 145.076,
-    "description": "38 03.08S, 145 04.56E",
-    "coordinatesStatus": "verified"
+    "latitude": -38.1126667,
+    "longitude": 144.5583667,
+    "description": "S 38° 06.760', E 144° 33.502' — Red and white conical buoy; rounding side varies by course.",
+    "coordinatesStatus": "published-approximate"
   },
   {
-    "id": "t1",
-    "name": "T1",
-    "aliases": [],
-    "latitude": -38,
-    "longitude": 144.928167,
-    "description": "38 00.00S, 144 55.69E",
-    "coordinatesStatus": "verified"
-  },
-  {
-    "id": "t2",
-    "name": "T2",
-    "aliases": [],
-    "latitude": -38,
-    "longitude": 144.9145,
-    "description": "38 00.00S, 144 54.87E",
-    "coordinatesStatus": "verified"
-  },
-  {
-    "id": "centre-m1",
-    "name": "Centre M1",
+    "id": "fos-2",
+    "name": "FoS 2",
     "aliases": [
-      "M1"
+      "FOS 2"
     ],
-    "latitude": -38.058167,
-    "longitude": 144.870167,
-    "description": "38 03.49S, 144 52.21E",
-    "coordinatesStatus": "verified"
+    "latitude": -38.13385,
+    "longitude": 144.4532,
+    "description": "S 38° 08.031', E 144° 27.192' — Yellow inflatable buoy.",
+    "coordinatesStatus": "published-approximate"
   },
   {
-    "id": "spoil-ground",
-    "name": "Spoil Ground",
+    "id": "fos-3",
+    "name": "FoS 3",
     "aliases": [
-      "SPOIL GROUND"
+      "FOS 3",
+      "FOS3"
     ],
-    "latitude": -37.984433,
-    "longitude": 144.883167,
-    "description": "37 59.066S, 144 52.99E",
-    "coordinatesStatus": "verified"
+    "latitude": -38.1516667,
+    "longitude": 144.4848333,
+    "description": "S 38° 09.100', E 144° 29.09' — Yellow inflatable buoy.",
+    "coordinatesStatus": "published-approximate"
+  },
+  {
+    "id": "fos-4",
+    "name": "FoS 4",
+    "aliases": [
+      "FOS 4"
+    ],
+    "latitude": -38.1022333,
+    "longitude": 144.4699833,
+    "description": "S 38° 06.134', E 144° 28.199' — Yellow inflatable buoy; every listed special-course use rounds it to starboard.",
+    "coordinatesStatus": "published-approximate"
+  },
+  {
+    "id": "fos-5",
+    "name": "FoS 5",
+    "aliases": [
+      "FOS 5",
+      "Wilson Spit Laid Mark"
+    ],
+    "latitude": -38.126,
+    "longitude": 144.5141667,
+    "description": "S 38° 07.56', E 144° 30.85' — Orange inflatable buoy.",
+    "coordinatesStatus": "published-approximate"
+  },
+  {
+    "id": "fos-6",
+    "name": "FoS 6",
+    "aliases": [
+      "FOS 6",
+      "Curlewis Laid Mark"
+    ],
+    "latitude": -38.1446667,
+    "longitude": 144.5166667,
+    "description": "S 38° 08.68', E 144° 31.0' — Yellow inflatable buoy.",
+    "coordinatesStatus": "published-approximate"
+  },
+  {
+    "id": "fos-7",
+    "name": "FoS 7",
+    "aliases": [
+      "FOS 7"
+    ],
+    "latitude": -38.1260667,
+    "longitude": 144.5330833,
+    "description": "S 38° 07.564', E 144° 31.985' — Orange inflatable buoy; new for 2026.",
+    "coordinatesStatus": "published-approximate"
+  },
+  {
+    "id": "hopetoun-gate-1-2",
+    "name": "Gate - Hopetoun Channel 1 & 2",
+    "aliases": [
+      "GATE HOPETOUN CHANNEL 1&2",
+      "Gate H1 H2"
+    ],
+    "latitude": -38.1185,
+    "longitude": 144.446,
+    "description": "S 38° 07.110', E 144° 26.76' — Transit between Beacons No. 1 and 2. Published coordinate appears to represent the gate, not both endpoints; endpoint coordinates require verification.",
+    "coordinatesStatus": "published-approximate-representative"
+  },
+  {
+    "id": "hopetoun-gate-9-10",
+    "name": "Gate - Hopetoun Channel 9 & 10",
+    "aliases": [
+      "GATE HOPETOUN CHANNEL 9&10",
+      "Gate H9 H10"
+    ],
+    "latitude": -38.1226833,
+    "longitude": 144.4018333,
+    "description": "S 38° 07.361', E 144° 24.11' — Transit between Beacons No. 9 and 10. Published coordinate appears to represent the gate, not both endpoints; endpoint coordinates require verification.",
+    "coordinatesStatus": "published-approximate-representative"
+  },
+  {
+    "id": "outer-explosives-beacon",
+    "name": "Outer Explosives Beacon",
+    "aliases": [
+      "Ex Out"
+    ],
+    "latitude": -38.0961667,
+    "longitude": 144.5525,
+    "description": "S 38° 05.77', E 144° 33.15'",
+    "coordinatesStatus": "published-approximate"
+  },
+  {
+    "id": "pt-richards-entry-cardinal",
+    "name": "Pt Richards Entry Cardinal",
+    "aliases": [
+      "PRE",
+      "PT RICHARDS ENTRY CARDINAL"
+    ],
+    "latitude": -38.0825,
+    "longitude": 144.6656667,
+    "description": "S 38° 04.95', E 144° 39.94' — Passage-race use is to port.",
+    "coordinatesStatus": "published-approximate"
+  },
+  {
+    "id": "pt-wilson-pier-sp-3",
+    "name": "Pt Wilson Pier SP Mark 3",
+    "aliases": [
+      "PT WILSON PIER SP Mk 3",
+      "Pt Wil SP3"
+    ],
+    "latitude": -38.1095,
+    "longitude": 144.554,
+    "description": "S 38° 06.57', E 144° 33.24'",
+    "coordinatesStatus": "published-approximate"
+  },
+  {
+    "id": "pt-wilson-pier-sp-4",
+    "name": "Pt Wilson Pier SP Mark 4",
+    "aliases": [
+      "PT WILSON PIER SP Mk 4",
+      "Pt Wil SP4"
+    ],
+    "latitude": -38.1095,
+    "longitude": 144.5306667,
+    "description": "S 38° 06.57', E 144° 31.84' — Special Courses 3 and 14 use it to starboard.",
+    "coordinatesStatus": "published-approximate"
+  },
+  {
+    "id": "prince-george-light",
+    "name": "Red Lateral Mark (Prince George Light)",
+    "aliases": [
+      "Prince George Light",
+      "PG Red Light"
+    ],
+    "latitude": -38.1068333,
+    "longitude": 144.7365,
+    "description": "S 38° 06.41', E 144° 44.19' — Mornington passage-race use is to port.",
+    "coordinatesStatus": "published-approximate"
+  },
+  {
+    "id": "melbourne-start-by-fleet",
+    "name": "Melbourne Passage Start",
+    "aliases": [
+      "STARTING LINE"
+    ],
+    "latitude": -37.8943667,
+    "longitude": 144.8841167,
+    "description": "Fleet-to-line mapping is stored on the passage course.",
+    "coordinatesStatus": "dynamic-with-published-vicinity"
+  },
+  {
+    "id": "melbourne-southern-start",
+    "name": "Melbourne Southern Start Line",
+    "aliases": [
+      "Southern Start Line"
+    ],
+    "latitude": -37.8943667,
+    "longitude": 144.8841167,
+    "description": "",
+    "coordinatesStatus": "dynamic-with-published-vicinity"
+  },
+  {
+    "id": "melbourne-northern-start",
+    "name": "Melbourne Northern Start Line",
+    "aliases": [
+      "Northern Start Line"
+    ],
+    "latitude": -37.8943667,
+    "longitude": 144.8841167,
+    "description": "",
+    "coordinatesStatus": "dynamic-with-published-vicinity"
+  },
+  {
+    "id": "mornington-start-line",
+    "name": "Mornington Start Line",
+    "aliases": [
+      "MYC Start"
+    ],
+    "latitude": -38.2086667,
+    "longitude": 145.02,
+    "description": "Optional inner limit mark may be laid and left on same side as Starting Vessel.",
+    "coordinatesStatus": "defined-by-objects-with-published-vicinity"
   }
 ]

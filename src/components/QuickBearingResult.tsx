@@ -1,5 +1,5 @@
 import { useEffect, type ReactNode } from 'react'
-import type { Mark } from '../data/marks'
+import type { Mark } from '../data/bundledCoursePack'
 import { useCurrentPosition } from '../hooks/useCurrentPosition'
 import {
   applyMagneticVariation,

@@ -259,9 +259,13 @@ struct ChartImageView: View {
 
     #if canImport(UIKit)
     private func loadImage() -> UIImage? {
-        let fileName = URL(fileURLWithPath: chartImage).lastPathComponent
+        let normalizedPath = chartImage.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+        let pathURL = URL(fileURLWithPath: normalizedPath)
+        let fileName = pathURL.lastPathComponent
         let name = URL(fileURLWithPath: fileName).deletingPathExtension().lastPathComponent
-        let url = Bundle.module.url(forResource: name, withExtension: "png", subdirectory: "course-charts")
+        let subdirectory = pathURL.deletingLastPathComponent().path
+        let url = Bundle.module.url(forResource: name, withExtension: "png", subdirectory: subdirectory)
+            ?? Bundle.module.url(forResource: name, withExtension: "png", subdirectory: "course-charts")
             ?? Bundle.module.url(forResource: name, withExtension: "png")
 
         guard let url else { return nil }

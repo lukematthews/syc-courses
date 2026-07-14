@@ -1,9 +1,8 @@
 import * as Collapsible from '@radix-ui/react-collapsible'
 import { useState, type ReactNode } from 'react'
-import type { Course } from '../data/courses'
+import { coursePack, laidCourses, type Course } from '../data/bundledCoursePack'
 import { CourseCard } from '../components/CourseCard'
 import { QuickBearingCard } from '../components/QuickBearingCard'
-import { laidCourses } from '../data/laidCourses'
 
 const courseSectionOpenState = {
   fixed: false,
@@ -83,7 +82,7 @@ export function CourseListScreen({
     <main className="safe-page app-page">
       <header className="app-header px-5 pb-6 pt-[max(28px,env(safe-area-inset-top))]">
         <p className="text-lg font-black uppercase tracking-wide text-cyan-100">Race-day reference</p>
-        <h1 className="mt-2 text-5xl font-black leading-none">SYC Courses</h1>
+        <h1 className="mt-2 text-5xl font-black leading-none">{coursePack.name}</h1>
       </header>
 
       <div className="mx-auto flex w-full max-w-xl flex-col gap-5 px-4 py-4">
@@ -104,7 +103,7 @@ export function CourseListScreen({
           tone="fixed"
         >
           {courses.map((course) => (
-            <CourseCard key={course.courseNumber} course={course} onOpen={onOpenCourse} />
+            <CourseCard key={course.id} course={course} onOpen={onOpenCourse} />
           ))}
         </CollapsibleCourseSection>
 
@@ -116,7 +115,7 @@ export function CourseListScreen({
         >
           {laidCourses.map((course) => (
             <CourseCard
-              key={course.courseNumber}
+              key={course.id}
               course={course}
               label="Course"
               onOpen={onOpenCourse}

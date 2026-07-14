@@ -72,6 +72,9 @@ final class GPXExporterTests: XCTestCase {
 
     private func course(number: Int, marks: [String]) -> Course {
         Course(
+            id: "test/fixed/course-\(number)",
+            packId: "test",
+            kind: .fixed,
             courseNumber: number,
             route: nil,
             passInstruction: "All marks to Port",

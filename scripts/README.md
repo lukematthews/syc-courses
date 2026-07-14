@@ -32,3 +32,14 @@ The laid-course script writes:
 - `public/course-charts/course-80.png` through `public/course-charts/course-98.png`
 
 `src/data/laidCourses.ts` is the app-facing TypeScript data file generated from that extracted JSON.
+
+## Android Port Phillip coastline
+
+The Android Race Tracker uses a simplified, offline coastline derived from the Victorian
+Government's Vicmap Index Framework Line dataset (CC BY 4.0). To refresh it:
+
+```bash
+node scripts/build_port_phillip_coastline.mjs
+```
+
+The script writes `android/app/src/main/assets/port-phillip-coastline.json`.

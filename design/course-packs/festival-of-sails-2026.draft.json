@@ -1,0 +1,2530 @@
+{
+  "schemaVersion": "course-pack-draft-1",
+  "status": "draft-requires-manual-verification",
+  "packId": "festival-of-sails-2026",
+  "name": "Festival of Sails 2026",
+  "organiser": "Royal Geelong Yacht Club",
+  "version": "2026-01-20-amendment-1",
+  "validDates": {
+    "from": "2026-01-21",
+    "to": "2026-01-26"
+  },
+  "sources": [
+    {
+      "sourceId": "fos-2026-si",
+      "type": "official-sailing-instructions",
+      "title": "2026 Festival of Sails Sailing Instructions",
+      "url": "https://www.topyacht.com.au/notice_brd/RGYC_FOS_26/2026FestivalofSailsSailingInstructions-Online.pdf?r=1769471646",
+      "versionDate": "2026-01-20",
+      "versionNote": "Consolidated edition including Amendment #1; version history on PDF page 2."
+    },
+    {
+      "sourceId": "fos-2026-amendment-1",
+      "type": "official-amendment",
+      "title": "Sailing Instruction Amendments - Amendment #1",
+      "url": "https://www.topyacht.com.au/notice_brd/RGYC_FOS_26/SailingInstructionsAmendments.pdf?r=1783983833",
+      "versionDate": "2026-01-20"
+    },
+    {
+      "sourceId": "fos-2026-onb",
+      "type": "official-noticeboard",
+      "title": "Festival of Sails 2026 Official Notice Board",
+      "url": "https://www.topyacht.com.au/notice_brd/notice_brd.php?ev=107.107.107.1.1885"
+    }
+  ],
+  "sourceRefs": {
+    "si-version": {
+      "sourceId": "fos-2026-si",
+      "pdfPage": 2,
+      "section": "Version History"
+    },
+    "si-schedule": {
+      "sourceId": "fos-2026-si",
+      "pdfPages": [
+        5,
+        18
+      ],
+      "section": "SI 8 and Appendices A-I"
+    },
+    "si-starts": {
+      "sourceId": "fos-2026-si",
+      "pdfPage": 6,
+      "section": "SI 9"
+    },
+    "si-exclusions": {
+      "sourceId": "fos-2026-si",
+      "pdfPage": 8,
+      "section": "SI 16.3"
+    },
+    "si-melbourne": {
+      "sourceId": "fos-2026-si",
+      "pdfPages": [
+        19,
+        22
+      ],
+      "section": "Appendix J - Melbourne to Geelong Passage Race"
+    },
+    "si-mornington": {
+      "sourceId": "fos-2026-si",
+      "pdfPages": [
+        23,
+        25
+      ],
+      "section": "Appendix J - Mornington to Geelong Passage Race"
+    },
+    "si-wl": {
+      "sourceId": "fos-2026-si",
+      "pdfPages": [
+        26,
+        27
+      ],
+      "section": "Appendix J - Windward / Leeward Courses"
+    },
+    "si-special-rules": {
+      "sourceId": "fos-2026-si",
+      "pdfPages": [
+        28,
+        29
+      ],
+      "section": "Appendix J - Special Courses 1-4.1"
+    },
+    "si-special-marks": {
+      "sourceId": "fos-2026-si",
+      "pdfPage": 29,
+      "section": "Appendix J - Special Courses 4.1 mark table"
+    },
+    "si-special-courses": {
+      "sourceId": "fos-2026-si",
+      "pdfPages": [
+        32,
+        57
+      ],
+      "section": "Appendix J - Special Courses 1-14"
+    },
+    "si-race-areas": {
+      "sourceId": "fos-2026-si",
+      "pdfPage": 58,
+      "section": "Appendix K"
+    }
+  },
+  "raceAreas": [
+    {
+      "raceAreaId": "festival-of-sails-2026/melbourne/passage-start",
+      "name": "Melbourne Passage Start",
+      "positionMode": "dynamic-with-published-vicinity",
+      "vicinity": {
+        "latitude": -37.8943667,
+        "longitude": 144.8841167,
+        "coordinateText": "S 37° 53.662', E 144° 53.047'"
+      },
+      "notes": [
+        "Actual position subject to Ports Victoria and confirmed on race day."
+      ],
+      "sourceRefs": [
+        "si-melbourne"
+      ]
+    },
+    {
+      "raceAreaId": "festival-of-sails-2026/mornington/passage-start",
+      "name": "Mornington Passage Start",
+      "positionMode": "line-defined-by-physical-objects",
+      "vicinity": {
+        "latitude": -38.2086667,
+        "longitude": 145.02,
+        "coordinateText": "S 38° 12.52', E 145° 01.2'"
+      },
+      "notes": [
+        "Line is MYC tower black line to MYC orange spar; endpoint coordinates are not published."
+      ],
+      "sourceRefs": [
+        "si-mornington"
+      ]
+    },
+    {
+      "raceAreaId": "festival-of-sails-2026/corio-bay/inner",
+      "name": "Inner Start Area",
+      "positionMode": "dynamic-area-description",
+      "notes": [
+        "Start lines laid north of RGYC Marina unless advised otherwise."
+      ],
+      "sourceRefs": [
+        "si-special-rules",
+        "si-race-areas"
+      ]
+    },
+    {
+      "raceAreaId": "festival-of-sails-2026/corio-bay/outer",
+      "name": "Outer Start Area",
+      "positionMode": "dynamic-area-description",
+      "notes": [
+        "Start lines laid northeast of Alcoa Inner at eastern end of Hopetoun Channel unless advised otherwise."
+      ],
+      "sourceRefs": [
+        "si-special-rules",
+        "si-race-areas"
+      ]
+    },
+    {
+      "raceAreaId": "festival-of-sails-2026/corio-bay/windward-leeward-north",
+      "name": "Windward/Leeward North",
+      "positionMode": "diagram-only",
+      "sourceRefs": [
+        "si-race-areas"
+      ]
+    },
+    {
+      "raceAreaId": "festival-of-sails-2026/corio-bay/windward-leeward-south",
+      "name": "Windward/Leeward South",
+      "positionMode": "diagram-only",
+      "sourceRefs": [
+        "si-race-areas"
+      ]
+    },
+    {
+      "raceAreaId": "festival-of-sails-2026/corio-bay/windward-leeward-outer",
+      "name": "Windward/Leeward Outer",
+      "positionMode": "diagram-only",
+      "sourceRefs": [
+        "si-race-areas"
+      ]
+    }
+  ],
+  "applicabilityProfiles": {
+    "melbourne-passage": [
+      "passage-rating-div-1",
+      "passage-rating-div-2",
+      "passage-rating-div-3",
+      "passage-rating-div-4",
+      "passage-spinnaker-div-1",
+      "passage-spinnaker-div-2",
+      "passage-spinnaker-div-3",
+      "passage-spinnaker-div-4",
+      "double-handed",
+      "passage-non-spinnaker",
+      "australian-multihull-div-1",
+      "australian-multihull-div-2",
+      "multihull",
+      "s80",
+      "j24",
+      "passage-mini"
+    ],
+    "mornington-passage": [
+      "mornington-peninsula"
+    ],
+    "special-course-base": [
+      "passage-rating-div-1",
+      "passage-rating-div-2",
+      "passage-rating-div-3",
+      "passage-rating-div-4",
+      "passage-spinnaker-div-1",
+      "passage-spinnaker-div-2",
+      "passage-spinnaker-div-3",
+      "passage-spinnaker-div-4",
+      "mornington-peninsula",
+      "double-handed",
+      "passage-non-spinnaker",
+      "australian-multihull-div-1",
+      "australian-multihull-div-2",
+      "multihull",
+      "passage-mini"
+    ],
+    "windward-leeward": [
+      "australian-multihull-div-1",
+      "australian-multihull-div-2",
+      "s80",
+      "j24"
+    ]
+  },
+  "marks": [
+    {
+      "markId": "festival-of-sails-2026/marks/alcoa-inner",
+      "displayName": "Alcoa Inner",
+      "aliases": [
+        "Point Henry Inner Lead Beacon",
+        "Al In"
+      ],
+      "markType": "navigation-beacon",
+      "permanence": "permanent",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.1168333,
+        "longitude": 144.4568333,
+        "coordinateText": "S 38° 07.01', E 144° 27.41'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": null,
+      "notes": []
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/alcoa-outer",
+      "displayName": "Alcoa Outer",
+      "aliases": [
+        "Point Henry Outer Lead Beacon",
+        "Outer Lead Beacon",
+        "Al Out"
+      ],
+      "markType": "navigation-beacon",
+      "permanence": "permanent",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.1138333,
+        "longitude": 144.462,
+        "coordinateText": "S 38° 06.83', E 144° 27.72'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": null,
+      "notes": [
+        "Rounding side varies by course."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/cat-6-laid",
+      "displayName": "Cat 6 Laid Mark",
+      "aliases": [
+        "CAT 6 LAID MARK"
+      ],
+      "markType": "event-laid-buoy",
+      "permanence": "temporary",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -37.9980667,
+        "longitude": 144.7147667,
+        "coordinateText": "S 37° 59.884', E 144° 42.886'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": "port",
+      "notes": [
+        "Orange cylinder; a conditional passage-race mark for J24/Category 6 only."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/cb-1",
+      "displayName": "CB 1",
+      "aliases": [
+        "CB1"
+      ],
+      "markType": "event-laid-buoy",
+      "permanence": "temporary",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.0925,
+        "longitude": 144.4033333,
+        "coordinateText": "S 38° 05.55', E 144° 24.20'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": null,
+      "notes": [
+        "Yellow cone mark."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/cb-2",
+      "displayName": "CB 2",
+      "aliases": [
+        "CB2"
+      ],
+      "markType": "event-laid-buoy",
+      "permanence": "temporary",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.1268333,
+        "longitude": 144.403,
+        "coordinateText": "S 38° 07.61', E 144° 24.18'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": null,
+      "notes": [
+        "Yellow cone mark."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/cb-3",
+      "displayName": "CB 3",
+      "aliases": [
+        "CB3"
+      ],
+      "markType": "event-laid-buoy",
+      "permanence": "temporary",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.1266667,
+        "longitude": 144.3925,
+        "coordinateText": "S 38° 07.60', E 144° 23.55'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": null,
+      "notes": [
+        "Yellow cone mark."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/cb-4",
+      "displayName": "CB 4",
+      "aliases": [
+        "CB4"
+      ],
+      "markType": "event-laid-buoy",
+      "permanence": "temporary",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.129,
+        "longitude": 144.3691667,
+        "coordinateText": "S 38° 07.74', E 144° 22.15'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": null,
+      "notes": [
+        "Yellow cone mark."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/cb-5",
+      "displayName": "CB 5",
+      "aliases": [
+        "CB5"
+      ],
+      "markType": "event-laid-buoy",
+      "permanence": "temporary",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.1033333,
+        "longitude": 144.3821667,
+        "coordinateText": "S 38° 06.20', E 144° 22.93'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": null,
+      "notes": [
+        "Yellow cone mark."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/cb-6",
+      "displayName": "CB 6",
+      "aliases": [
+        "CB6"
+      ],
+      "markType": "event-laid-buoy",
+      "permanence": "temporary",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.1086667,
+        "longitude": 144.4001667,
+        "coordinateText": "S 38° 06.52', E 144° 24.01'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": null,
+      "notes": [
+        "Yellow cone mark."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/fos-1",
+      "displayName": "FoS 1",
+      "aliases": [
+        "FOS 1",
+        "FoS Laid Pt Richards",
+        "PT Richards Laid Mark",
+        "Point Richards Laid Mark"
+      ],
+      "markType": "event-laid-buoy",
+      "permanence": "temporary",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.1126667,
+        "longitude": 144.5583667,
+        "coordinateText": "S 38° 06.760', E 144° 33.502'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": null,
+      "notes": [
+        "Red and white conical buoy; rounding side varies by course."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/fos-2",
+      "displayName": "FoS 2",
+      "aliases": [
+        "FOS 2"
+      ],
+      "markType": "event-laid-buoy",
+      "permanence": "temporary",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.13385,
+        "longitude": 144.4532,
+        "coordinateText": "S 38° 08.031', E 144° 27.192'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": null,
+      "notes": [
+        "Yellow inflatable buoy."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/fos-3",
+      "displayName": "FoS 3",
+      "aliases": [
+        "FOS 3",
+        "FOS3"
+      ],
+      "markType": "event-laid-buoy",
+      "permanence": "temporary",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.1516667,
+        "longitude": 144.4848333,
+        "coordinateText": "S 38° 09.100', E 144° 29.09'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": null,
+      "notes": [
+        "Yellow inflatable buoy."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/fos-4",
+      "displayName": "FoS 4",
+      "aliases": [
+        "FOS 4"
+      ],
+      "markType": "event-laid-buoy",
+      "permanence": "temporary",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.1022333,
+        "longitude": 144.4699833,
+        "coordinateText": "S 38° 06.134', E 144° 28.199'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": "starboard",
+      "notes": [
+        "Yellow inflatable buoy; every listed special-course use rounds it to starboard."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/fos-5",
+      "displayName": "FoS 5",
+      "aliases": [
+        "FOS 5",
+        "Wilson Spit Laid Mark"
+      ],
+      "markType": "event-laid-buoy",
+      "permanence": "temporary",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.126,
+        "longitude": 144.5141667,
+        "coordinateText": "S 38° 07.56', E 144° 30.85'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": "starboard",
+      "notes": [
+        "Orange inflatable buoy."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/fos-6",
+      "displayName": "FoS 6",
+      "aliases": [
+        "FOS 6",
+        "Curlewis Laid Mark"
+      ],
+      "markType": "event-laid-buoy",
+      "permanence": "temporary",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.1446667,
+        "longitude": 144.5166667,
+        "coordinateText": "S 38° 08.68', E 144° 31.0'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": "port",
+      "notes": [
+        "Yellow inflatable buoy."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/fos-7",
+      "displayName": "FoS 7",
+      "aliases": [
+        "FOS 7"
+      ],
+      "markType": "event-laid-buoy",
+      "permanence": "temporary",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.1260667,
+        "longitude": 144.5330833,
+        "coordinateText": "S 38° 07.564', E 144° 31.985'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": "starboard",
+      "notes": [
+        "Orange inflatable buoy; new for 2026."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/hopetoun-gate-1-2",
+      "displayName": "Gate - Hopetoun Channel 1 & 2",
+      "aliases": [
+        "GATE HOPETOUN CHANNEL 1&2",
+        "Gate H1 H2"
+      ],
+      "markType": "gate",
+      "permanence": "permanent",
+      "position": {
+        "kind": "published-approximate-representative",
+        "latitude": -38.1185,
+        "longitude": 144.446,
+        "coordinateText": "S 38° 07.110', E 144° 26.76'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": null,
+      "notes": [
+        "Transit between Beacons No. 1 and 2. Published coordinate appears to represent the gate, not both endpoints; endpoint coordinates require verification."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/hopetoun-gate-9-10",
+      "displayName": "Gate - Hopetoun Channel 9 & 10",
+      "aliases": [
+        "GATE HOPETOUN CHANNEL 9&10",
+        "Gate H9 H10"
+      ],
+      "markType": "gate",
+      "permanence": "permanent",
+      "position": {
+        "kind": "published-approximate-representative",
+        "latitude": -38.1226833,
+        "longitude": 144.4018333,
+        "coordinateText": "S 38° 07.361', E 144° 24.11'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": null,
+      "notes": [
+        "Transit between Beacons No. 9 and 10. Published coordinate appears to represent the gate, not both endpoints; endpoint coordinates require verification."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/outer-explosives-beacon",
+      "displayName": "Outer Explosives Beacon",
+      "aliases": [
+        "Ex Out"
+      ],
+      "markType": "navigation-beacon",
+      "permanence": "permanent",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.0961667,
+        "longitude": 144.5525,
+        "coordinateText": "S 38° 05.77', E 144° 33.15'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": null,
+      "notes": []
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/pt-richards-entry-cardinal",
+      "displayName": "Pt Richards Entry Cardinal",
+      "aliases": [
+        "PRE",
+        "PT RICHARDS ENTRY CARDINAL"
+      ],
+      "markType": "north-cardinal-beacon",
+      "permanence": "permanent",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.0825,
+        "longitude": 144.6656667,
+        "coordinateText": "S 38° 04.95', E 144° 39.94'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": "port",
+      "notes": [
+        "Passage-race use is to port."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/pt-wilson-pier-sp-3",
+      "displayName": "Pt Wilson Pier SP Mark 3",
+      "aliases": [
+        "PT WILSON PIER SP Mk 3",
+        "Pt Wil SP3"
+      ],
+      "markType": "yellow-special-mark",
+      "permanence": "permanent-or-charted",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.1095,
+        "longitude": 144.554,
+        "coordinateText": "S 38° 06.57', E 144° 33.24'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": null,
+      "notes": []
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/pt-wilson-pier-sp-4",
+      "displayName": "Pt Wilson Pier SP Mark 4",
+      "aliases": [
+        "PT WILSON PIER SP Mk 4",
+        "Pt Wil SP4"
+      ],
+      "markType": "yellow-special-mark",
+      "permanence": "permanent-or-charted",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.1095,
+        "longitude": 144.5306667,
+        "coordinateText": "S 38° 06.57', E 144° 31.84'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": "starboard",
+      "notes": [
+        "Special Courses 3 and 14 use it to starboard."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/prince-george-light",
+      "displayName": "Red Lateral Mark (Prince George Light)",
+      "aliases": [
+        "Prince George Light",
+        "PG Red Light"
+      ],
+      "markType": "red-lateral-beacon-pile",
+      "permanence": "permanent",
+      "position": {
+        "kind": "published-approximate",
+        "latitude": -38.1068333,
+        "longitude": 144.7365,
+        "coordinateText": "S 38° 06.41', E 144° 44.19'",
+        "sourceRef": "si-special-marks"
+      },
+      "defaultRoundingSide": "port",
+      "notes": [
+        "Mornington passage-race use is to port."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/special-start-line",
+      "displayName": "Special Course Starting Line",
+      "aliases": [
+        "STARTING LINE"
+      ],
+      "markType": "dynamic-line",
+      "permanence": "dynamic",
+      "position": {
+        "kind": "dynamic",
+        "placementRule": "Committee-vessel orange-flag signal mast to port-end orange buoy; inner or outer start area selected daily."
+      },
+      "defaultRoundingSide": null,
+      "notes": [
+        "Start Line A/B assignment is a property of fleet/start sequence, not a coordinate."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/special-laid-by-start-line",
+      "displayName": "Laid Mark",
+      "aliases": [
+        "LAID MARK"
+      ],
+      "markType": "conditional-dynamic-mark-selector",
+      "permanence": "dynamic",
+      "position": {
+        "kind": "relative",
+        "anchorMarkId": "festival-of-sails-2026/marks/special-start-line",
+        "bearingRule": "approximately windward",
+        "distanceNm": {
+          "min": 0.5,
+          "max": 0.9
+        }
+      },
+      "variantRule": {
+        "start-line-a": "festival-of-sails-2026/marks/special-laid-a",
+        "start-line-b": "festival-of-sails-2026/marks/special-laid-b"
+      },
+      "roundingRule": "green flag = starboard; red flag = port; no flag = delete this leg",
+      "renderPolicy": {
+        "courseTable": "show",
+        "map": "omit",
+        "reason": "The SI table includes the mark but its course diagrams do not plot the race-day position."
+      },
+      "defaultRoundingSide": null,
+      "notes": [
+        "This is the route-level selector; the A and B variants retain their distinct buoy colours."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/special-laid-a",
+      "displayName": "Special Course Laid Mark A",
+      "aliases": [
+        "LAID MARK",
+        "Race 1 Laid Mark"
+      ],
+      "markType": "dynamic-laid-mark",
+      "permanence": "dynamic",
+      "position": {
+        "kind": "relative",
+        "anchorMarkId": "festival-of-sails-2026/marks/special-start-line",
+        "bearingRule": "approximately windward",
+        "distanceNm": {
+          "min": 0.5,
+          "max": 0.9
+        }
+      },
+      "appearance": "blue conical buoy",
+      "defaultRoundingSide": null,
+      "roundingRule": "green flag = starboard; red flag = port; no flag = delete this leg",
+      "notes": [
+        "Applies to Start Line A."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/special-laid-b",
+      "displayName": "Special Course Laid Mark B",
+      "aliases": [
+        "LAID MARK",
+        "Race 2 Laid Mark"
+      ],
+      "markType": "dynamic-laid-mark",
+      "permanence": "dynamic",
+      "position": {
+        "kind": "relative",
+        "anchorMarkId": "festival-of-sails-2026/marks/special-start-line",
+        "bearingRule": "approximately windward",
+        "distanceNm": {
+          "min": 0.5,
+          "max": 0.9
+        }
+      },
+      "appearance": "pink conical buoy",
+      "defaultRoundingSide": null,
+      "roundingRule": "green flag = starboard; red flag = port; no flag = delete this leg",
+      "notes": [
+        "Applies to Start Line B."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/special-finish-line",
+      "displayName": "Special Course Finish",
+      "aliases": [
+        "FINISH",
+        "FOS Fin"
+      ],
+      "markType": "dynamic-line",
+      "permanence": "dynamic",
+      "position": {
+        "kind": "dynamic",
+        "placementRule": "Northeast of RGYC Marina; blue-flag finishing vessel to red/white conical mark or blue-flag pin vessel."
+      },
+      "defaultRoundingSide": null,
+      "notes": []
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/wl-start-line",
+      "displayName": "Windward/Leeward Start",
+      "aliases": [
+        "START"
+      ],
+      "markType": "dynamic-line",
+      "permanence": "dynamic",
+      "position": {
+        "kind": "dynamic",
+        "placementRule": "Orange-flag committee-vessel signal mast to port-end start mark."
+      },
+      "defaultRoundingSide": null,
+      "notes": []
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/wl-mark-1",
+      "displayName": "Mark 1",
+      "aliases": [
+        "1"
+      ],
+      "markType": "dynamic-laid-mark",
+      "permanence": "dynamic",
+      "position": {
+        "kind": "relative",
+        "anchorMarkId": "festival-of-sails-2026/marks/wl-start-line",
+        "bearingRule": "windward; magnetic bearing may be displayed at warning"
+      },
+      "appearance": "orange cylindrical buoy",
+      "defaultRoundingSide": "port",
+      "notes": []
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/wl-mark-1-change",
+      "displayName": "Change Mark for Mark 1",
+      "aliases": [
+        "Change of Course mark for Mark 1"
+      ],
+      "markType": "dynamic-substitution-mark",
+      "permanence": "dynamic",
+      "position": {
+        "kind": "dynamic",
+        "placementRule": "Laid by RC to change the next leg; substitutes for Mark 1."
+      },
+      "appearance": "orange cylindrical buoy with black band",
+      "defaultRoundingSide": "port",
+      "notes": []
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/wl-offset",
+      "displayName": "Offset Mark",
+      "aliases": [
+        "Offset"
+      ],
+      "markType": "dynamic-optional-offset",
+      "permanence": "dynamic",
+      "position": {
+        "kind": "relative",
+        "anchorMarkId": "festival-of-sails-2026/marks/wl-mark-1",
+        "placementRule": "Approximately five boat lengths leeward or to port of Mark 1."
+      },
+      "appearance": "yellow pencil buoy",
+      "defaultRoundingSide": "port",
+      "notes": [
+        "If laid, follows every rounding of Mark 1."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/wl-gate",
+      "displayName": "Windward/Leeward Gate",
+      "aliases": [
+        "Gate"
+      ],
+      "markType": "dynamic-gate",
+      "permanence": "dynamic",
+      "position": {
+        "kind": "relative",
+        "anchorMarkId": "festival-of-sails-2026/marks/wl-mark-1",
+        "placementRule": "Leeward gate of two yellow cylindrical buoys."
+      },
+      "defaultRoundingSide": null,
+      "roundingRule": "Enter from previous mark and round either gate mark; if one mark only, round it to port.",
+      "notes": []
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/wl-finish-line",
+      "displayName": "Windward/Leeward Finish",
+      "aliases": [
+        "FINISH"
+      ],
+      "markType": "dynamic-line",
+      "permanence": "dynamic",
+      "position": {
+        "kind": "dynamic",
+        "placementRule": "Blue-flag finishing-vessel signal mast to nearby black-cone finish mark."
+      },
+      "defaultRoundingSide": null,
+      "notes": []
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/melbourne-start-by-fleet",
+      "displayName": "Melbourne Passage Start",
+      "aliases": [
+        "STARTING LINE"
+      ],
+      "markType": "conditional-line-selector",
+      "permanence": "dynamic",
+      "position": {
+        "kind": "dynamic-with-published-vicinity",
+        "latitude": -37.8943667,
+        "longitude": 144.8841167
+      },
+      "variantRule": {
+        "southern-fleets": "festival-of-sails-2026/marks/melbourne-southern-start",
+        "northern-fleets": "festival-of-sails-2026/marks/melbourne-northern-start"
+      },
+      "defaultRoundingSide": null,
+      "notes": [
+        "Fleet-to-line mapping is stored on the passage course."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/melbourne-southern-start",
+      "displayName": "Melbourne Southern Start Line",
+      "aliases": [
+        "Southern Start Line"
+      ],
+      "markType": "dynamic-line",
+      "permanence": "dynamic",
+      "position": {
+        "kind": "dynamic-with-published-vicinity",
+        "latitude": -37.8943667,
+        "longitude": 144.8841167,
+        "placementRule": "Orange-flag committee vessel to port-end orange buoy; actual position confirmed race day."
+      },
+      "defaultRoundingSide": null,
+      "notes": []
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/melbourne-northern-start",
+      "displayName": "Melbourne Northern Start Line",
+      "aliases": [
+        "Northern Start Line"
+      ],
+      "markType": "dynamic-line",
+      "permanence": "dynamic",
+      "position": {
+        "kind": "dynamic-with-published-vicinity",
+        "latitude": -37.8943667,
+        "longitude": 144.8841167,
+        "placementRule": "Orange-flag committee vessel to port-end orange buoy; approximately 500 m north of southern line; actual position confirmed race day."
+      },
+      "defaultRoundingSide": null,
+      "notes": []
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/mornington-start-line",
+      "displayName": "Mornington Start Line",
+      "aliases": [
+        "MYC Start"
+      ],
+      "markType": "line-defined-by-objects",
+      "permanence": "fixed-definition",
+      "position": {
+        "kind": "defined-by-objects-with-published-vicinity",
+        "latitude": -38.2086667,
+        "longitude": 145.02,
+        "placementRule": "Black line on yellow disc at MYC Tower to MYC orange spar mark."
+      },
+      "defaultRoundingSide": null,
+      "notes": [
+        "Optional inner limit mark may be laid and left on same side as Starting Vessel."
+      ]
+    },
+    {
+      "markId": "festival-of-sails-2026/marks/passage-finish-line",
+      "displayName": "Geelong Passage Finish",
+      "aliases": [
+        "FINISHING LINE"
+      ],
+      "markType": "dynamic-line",
+      "permanence": "dynamic",
+      "position": {
+        "kind": "relative-area",
+        "placementRule": "Approximately 400 m northeast of RGYC Marina, between blue-flag masts on starboard and port-end finishing vessels."
+      },
+      "defaultRoundingSide": null,
+      "notes": [
+        "No coordinate is published."
+      ]
+    }
+  ],
+  "fullyNavigableCourses": [
+    {
+      "courseId": "festival-of-sails-2026/corio-bay/special/course-1",
+      "displayName": "Special Course 1",
+      "courseCategory": "mixed-fixed-and-dynamic-special",
+      "distanceNmApprox": 12.9,
+      "raceAreaIds": [
+        "festival-of-sails-2026/corio-bay/inner",
+        "festival-of-sails-2026/corio-bay/outer"
+      ],
+      "signal": {
+        "type": "numeral-pennant",
+        "value": "1"
+      },
+      "applicabilityProfileId": "special-course-base",
+      "fullyMapRenderable": false,
+      "fixedGeometryRenderable": true,
+      "route": [
+        [
+          "special-start-line",
+          "start"
+        ],
+        [
+          "special-laid-by-start-line",
+          "signal-or-omit"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "fos-4",
+          "starboard"
+        ],
+        [
+          "fos-2",
+          "starboard"
+        ],
+        [
+          "alcoa-outer",
+          "port"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "special-finish-line",
+          "finish"
+        ]
+      ],
+      "unresolvedAmbiguities": [
+        "Start area and laid-mark variant/side are race-day selections."
+      ],
+      "source": {
+        "sourceRef": "si-special-courses",
+        "pdfPage": 32
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/special-course-01.png",
+      "chartAlt": "Special Course 1 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 33."
+    },
+    {
+      "courseId": "festival-of-sails-2026/corio-bay/special/course-2",
+      "displayName": "Special Course 2",
+      "courseCategory": "mixed-fixed-and-dynamic-special",
+      "distanceNmApprox": 13.6,
+      "raceAreaIds": [
+        "festival-of-sails-2026/corio-bay/inner",
+        "festival-of-sails-2026/corio-bay/outer"
+      ],
+      "signal": {
+        "type": "numeral-pennant",
+        "value": "2"
+      },
+      "applicabilityProfileId": "special-course-base",
+      "fullyMapRenderable": false,
+      "fixedGeometryRenderable": true,
+      "route": [
+        [
+          "special-start-line",
+          "start"
+        ],
+        [
+          "special-laid-by-start-line",
+          "signal-or-omit"
+        ],
+        [
+          "cb-2",
+          "port"
+        ],
+        [
+          "cb-5",
+          "starboard"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "fos-4",
+          "starboard"
+        ],
+        [
+          "alcoa-outer",
+          "starboard"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "special-finish-line",
+          "finish"
+        ]
+      ],
+      "unresolvedAmbiguities": [
+        "Start area and laid-mark variant/side are race-day selections."
+      ],
+      "source": {
+        "sourceRef": "si-special-courses",
+        "pdfPage": 34
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/special-course-02.png",
+      "chartAlt": "Special Course 2 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 35."
+    },
+    {
+      "courseId": "festival-of-sails-2026/corio-bay/special/course-3",
+      "displayName": "Special Course 3",
+      "courseCategory": "mixed-fixed-and-dynamic-special",
+      "distanceNmApprox": 19.1,
+      "raceAreaIds": [
+        "festival-of-sails-2026/corio-bay/inner",
+        "festival-of-sails-2026/corio-bay/outer"
+      ],
+      "signal": {
+        "type": "numeral-pennant",
+        "value": "3"
+      },
+      "applicabilityProfileId": "special-course-base",
+      "fullyMapRenderable": false,
+      "fixedGeometryRenderable": true,
+      "route": [
+        [
+          "special-start-line",
+          "start"
+        ],
+        [
+          "special-laid-by-start-line",
+          "signal-or-omit"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "fos-5",
+          "starboard"
+        ],
+        [
+          "fos-6",
+          "port"
+        ],
+        [
+          "pt-wilson-pier-sp-4",
+          "starboard"
+        ],
+        [
+          "fos-7",
+          "starboard"
+        ],
+        [
+          "alcoa-outer",
+          "port"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "special-finish-line",
+          "finish"
+        ]
+      ],
+      "unresolvedAmbiguities": [
+        "Start area and laid-mark variant/side are race-day selections."
+      ],
+      "source": {
+        "sourceRef": "si-special-courses",
+        "pdfPage": 36
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/special-course-03.png",
+      "chartAlt": "Special Course 3 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 37."
+    },
+    {
+      "courseId": "festival-of-sails-2026/corio-bay/special/course-4",
+      "displayName": "Special Course 4",
+      "courseCategory": "mixed-fixed-and-dynamic-special",
+      "distanceNmApprox": 19.7,
+      "raceAreaIds": [
+        "festival-of-sails-2026/corio-bay/inner",
+        "festival-of-sails-2026/corio-bay/outer"
+      ],
+      "signal": {
+        "type": "numeral-pennant",
+        "value": "4"
+      },
+      "applicabilityProfileId": "special-course-base",
+      "fullyMapRenderable": false,
+      "fixedGeometryRenderable": true,
+      "route": [
+        [
+          "special-start-line",
+          "start"
+        ],
+        [
+          "special-laid-by-start-line",
+          "signal-or-omit"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "fos-3",
+          "port"
+        ],
+        [
+          "fos-1",
+          "port"
+        ],
+        [
+          "fos-5",
+          "starboard"
+        ],
+        [
+          "alcoa-outer",
+          "port"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "special-finish-line",
+          "finish"
+        ]
+      ],
+      "unresolvedAmbiguities": [
+        "Start area and laid-mark variant/side are race-day selections."
+      ],
+      "source": {
+        "sourceRef": "si-special-courses",
+        "pdfPage": 38
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/special-course-04.png",
+      "chartAlt": "Special Course 4 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 39."
+    },
+    {
+      "courseId": "festival-of-sails-2026/corio-bay/special/course-5",
+      "displayName": "Special Course 5",
+      "courseCategory": "mixed-fixed-and-dynamic-special",
+      "distanceNmApprox": 16.9,
+      "raceAreaIds": [
+        "festival-of-sails-2026/corio-bay/inner",
+        "festival-of-sails-2026/corio-bay/outer"
+      ],
+      "signal": {
+        "type": "numeral-pennant",
+        "value": "5"
+      },
+      "applicabilityProfileId": "special-course-base",
+      "fullyMapRenderable": false,
+      "fixedGeometryRenderable": true,
+      "route": [
+        [
+          "special-start-line",
+          "start"
+        ],
+        [
+          "special-laid-by-start-line",
+          "signal-or-omit"
+        ],
+        [
+          "cb-5",
+          "starboard"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "fos-4",
+          "starboard"
+        ],
+        [
+          "fos-3",
+          "starboard"
+        ],
+        [
+          "alcoa-outer",
+          "port"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "special-finish-line",
+          "finish"
+        ]
+      ],
+      "unresolvedAmbiguities": [
+        "Start area and laid-mark variant/side are race-day selections."
+      ],
+      "source": {
+        "sourceRef": "si-special-courses",
+        "pdfPage": 40
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/special-course-05.png",
+      "chartAlt": "Special Course 5 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 41."
+    },
+    {
+      "courseId": "festival-of-sails-2026/corio-bay/special/course-6",
+      "displayName": "Special Course 6",
+      "courseCategory": "mixed-fixed-and-dynamic-special",
+      "distanceNmApprox": 15.3,
+      "raceAreaIds": [
+        "festival-of-sails-2026/corio-bay/inner",
+        "festival-of-sails-2026/corio-bay/outer"
+      ],
+      "signal": {
+        "type": "numeral-pennant",
+        "value": "6"
+      },
+      "applicabilityProfileId": "special-course-base",
+      "fullyMapRenderable": false,
+      "fixedGeometryRenderable": true,
+      "route": [
+        [
+          "special-start-line",
+          "start"
+        ],
+        [
+          "special-laid-by-start-line",
+          "signal-or-omit"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "fos-4",
+          "starboard"
+        ],
+        [
+          "fos-3",
+          "starboard"
+        ],
+        [
+          "alcoa-outer",
+          "port"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "special-finish-line",
+          "finish"
+        ]
+      ],
+      "unresolvedAmbiguities": [
+        "Start area and laid-mark variant/side are race-day selections."
+      ],
+      "source": {
+        "sourceRef": "si-special-courses",
+        "pdfPage": 42
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/special-course-06.png",
+      "chartAlt": "Special Course 6 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 43."
+    },
+    {
+      "courseId": "festival-of-sails-2026/corio-bay/special/course-7",
+      "displayName": "Special Course 7",
+      "courseCategory": "mixed-fixed-and-dynamic-special",
+      "distanceNmApprox": 18.8,
+      "raceAreaIds": [
+        "festival-of-sails-2026/corio-bay/inner",
+        "festival-of-sails-2026/corio-bay/outer"
+      ],
+      "signal": {
+        "type": "numeral-pennant",
+        "value": "7"
+      },
+      "applicabilityProfileId": "special-course-base",
+      "fullyMapRenderable": false,
+      "fixedGeometryRenderable": true,
+      "route": [
+        [
+          "special-start-line",
+          "start"
+        ],
+        [
+          "special-laid-by-start-line",
+          "signal-or-omit"
+        ],
+        [
+          "cb-5",
+          "starboard"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "fos-2",
+          "port"
+        ],
+        [
+          "fos-4",
+          "starboard"
+        ],
+        [
+          "fos-3",
+          "starboard"
+        ],
+        [
+          "alcoa-outer",
+          "port"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "special-finish-line",
+          "finish"
+        ]
+      ],
+      "unresolvedAmbiguities": [
+        "Start area and laid-mark variant/side are race-day selections."
+      ],
+      "source": {
+        "sourceRef": "si-special-courses",
+        "pdfPage": 44
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/special-course-07.png",
+      "chartAlt": "Special Course 7 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 45."
+    },
+    {
+      "courseId": "festival-of-sails-2026/corio-bay/special/course-8",
+      "displayName": "Special Course 8",
+      "courseCategory": "mixed-fixed-and-dynamic-special",
+      "distanceNmApprox": 16.6,
+      "raceAreaIds": [
+        "festival-of-sails-2026/corio-bay/inner",
+        "festival-of-sails-2026/corio-bay/outer"
+      ],
+      "signal": {
+        "type": "numeral-pennant",
+        "value": "8"
+      },
+      "applicabilityProfileId": "special-course-base",
+      "fullyMapRenderable": false,
+      "fixedGeometryRenderable": true,
+      "route": [
+        [
+          "special-start-line",
+          "start"
+        ],
+        [
+          "special-laid-by-start-line",
+          "signal-or-omit"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "fos-2",
+          "port"
+        ],
+        [
+          "fos-4",
+          "starboard"
+        ],
+        [
+          "fos-3",
+          "starboard"
+        ],
+        [
+          "alcoa-outer",
+          "port"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "special-finish-line",
+          "finish"
+        ]
+      ],
+      "unresolvedAmbiguities": [
+        "Start area and laid-mark variant/side are race-day selections."
+      ],
+      "source": {
+        "sourceRef": "si-special-courses",
+        "pdfPage": 46
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/special-course-08.png",
+      "chartAlt": "Special Course 8 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 47."
+    },
+    {
+      "courseId": "festival-of-sails-2026/corio-bay/special/course-9",
+      "displayName": "Special Course 9",
+      "courseCategory": "mixed-fixed-and-dynamic-special",
+      "distanceNmApprox": 10.9,
+      "raceAreaIds": [
+        "festival-of-sails-2026/corio-bay/inner"
+      ],
+      "signal": {
+        "type": "numeral-pennant",
+        "value": "9"
+      },
+      "applicabilityProfileId": "special-course-base",
+      "fullyMapRenderable": false,
+      "fixedGeometryRenderable": true,
+      "route": [
+        [
+          "special-start-line",
+          "start"
+        ],
+        [
+          "special-laid-by-start-line",
+          "signal-or-omit"
+        ],
+        [
+          "cb-2",
+          "port"
+        ],
+        [
+          "cb-6",
+          "port"
+        ],
+        [
+          "cb-5",
+          "port"
+        ],
+        [
+          "cb-4",
+          "port"
+        ],
+        [
+          "cb-3",
+          "port"
+        ],
+        [
+          "cb-6",
+          "port"
+        ],
+        [
+          "cb-5",
+          "port"
+        ],
+        [
+          "cb-4",
+          "port"
+        ],
+        [
+          "special-finish-line",
+          "finish"
+        ]
+      ],
+      "unresolvedAmbiguities": [
+        "Inner-area assignment inferred from chart and must be manually confirmed; laid-mark variant/side is race-day selection."
+      ],
+      "source": {
+        "sourceRef": "si-special-courses",
+        "pdfPage": 48
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/special-course-09.png",
+      "chartAlt": "Special Course 9 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 49."
+    },
+    {
+      "courseId": "festival-of-sails-2026/corio-bay/special/course-11",
+      "displayName": "Special Course 11",
+      "courseCategory": "mixed-fixed-and-dynamic-special",
+      "distanceNmApprox": 9.6,
+      "raceAreaIds": [
+        "festival-of-sails-2026/corio-bay/inner"
+      ],
+      "signal": {
+        "type": "stacked-numeral-pennants",
+        "valuesTopToBottom": [
+          "1",
+          "1"
+        ]
+      },
+      "applicabilityProfileId": "special-course-base",
+      "fullyMapRenderable": false,
+      "fixedGeometryRenderable": true,
+      "route": [
+        [
+          "special-start-line",
+          "start"
+        ],
+        [
+          "special-laid-by-start-line",
+          "signal-or-omit"
+        ],
+        [
+          "cb-5",
+          "starboard"
+        ],
+        [
+          "cb-2",
+          "starboard"
+        ],
+        [
+          "cb-3",
+          "starboard"
+        ],
+        [
+          "cb-5",
+          "starboard"
+        ],
+        [
+          "cb-6",
+          "starboard"
+        ],
+        [
+          "cb-2",
+          "starboard"
+        ],
+        [
+          "cb-4",
+          "port"
+        ],
+        [
+          "special-finish-line",
+          "finish"
+        ]
+      ],
+      "unresolvedAmbiguities": [
+        "Inner-area assignment inferred from chart and must be manually confirmed; laid-mark variant/side is race-day selection."
+      ],
+      "source": {
+        "sourceRef": "si-special-courses",
+        "pdfPage": 50
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/special-course-11.png",
+      "chartAlt": "Special Course 11 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 51."
+    },
+    {
+      "courseId": "festival-of-sails-2026/corio-bay/special/course-12",
+      "displayName": "Special Course 12",
+      "courseCategory": "mixed-fixed-and-dynamic-special",
+      "distanceNmApprox": 11.7,
+      "raceAreaIds": [
+        "festival-of-sails-2026/corio-bay/inner"
+      ],
+      "signal": {
+        "type": "stacked-numeral-pennants",
+        "valuesTopToBottom": [
+          "1",
+          "2"
+        ]
+      },
+      "applicabilityProfileId": "special-course-base",
+      "fullyMapRenderable": false,
+      "fixedGeometryRenderable": true,
+      "route": [
+        [
+          "special-start-line",
+          "start"
+        ],
+        [
+          "special-laid-by-start-line",
+          "signal-or-omit"
+        ],
+        [
+          "cb-2",
+          "port"
+        ],
+        [
+          "cb-1",
+          "port"
+        ],
+        [
+          "cb-5",
+          "port"
+        ],
+        [
+          "cb-4",
+          "port"
+        ],
+        [
+          "cb-3",
+          "port"
+        ],
+        [
+          "cb-6",
+          "port"
+        ],
+        [
+          "cb-5",
+          "port"
+        ],
+        [
+          "cb-4",
+          "port"
+        ],
+        [
+          "special-finish-line",
+          "finish"
+        ]
+      ],
+      "unresolvedAmbiguities": [
+        "Inner-area assignment inferred from chart and must be manually confirmed; laid-mark variant/side is race-day selection."
+      ],
+      "source": {
+        "sourceRef": "si-special-courses",
+        "pdfPage": 52
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/special-course-12.png",
+      "chartAlt": "Special Course 12 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 53."
+    },
+    {
+      "courseId": "festival-of-sails-2026/corio-bay/special/course-13",
+      "displayName": "Special Course 13",
+      "courseCategory": "mixed-fixed-and-dynamic-special",
+      "distanceNmApprox": 15,
+      "raceAreaIds": [
+        "festival-of-sails-2026/corio-bay/outer"
+      ],
+      "signal": {
+        "type": "stacked-numeral-pennants",
+        "valuesTopToBottom": [
+          "1",
+          "3"
+        ]
+      },
+      "applicabilityProfileId": "special-course-base",
+      "fullyMapRenderable": false,
+      "fixedGeometryRenderable": true,
+      "route": [
+        [
+          "special-start-line",
+          "start"
+        ],
+        [
+          "special-laid-by-start-line",
+          "signal-or-omit"
+        ],
+        [
+          "fos-3",
+          "port"
+        ],
+        [
+          "fos-1",
+          "port"
+        ],
+        [
+          "fos-5",
+          "starboard"
+        ],
+        [
+          "alcoa-outer",
+          "port"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "special-finish-line",
+          "finish"
+        ]
+      ],
+      "unresolvedAmbiguities": [
+        "Outer-area assignment inferred from chart and must be manually confirmed; laid-mark variant/side is race-day selection."
+      ],
+      "source": {
+        "sourceRef": "si-special-courses",
+        "pdfPage": 54
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/special-course-13.png",
+      "chartAlt": "Special Course 13 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 55."
+    },
+    {
+      "courseId": "festival-of-sails-2026/corio-bay/special/course-14",
+      "displayName": "Special Course 14",
+      "courseCategory": "mixed-fixed-and-dynamic-special",
+      "distanceNmApprox": 14.4,
+      "raceAreaIds": [
+        "festival-of-sails-2026/corio-bay/outer"
+      ],
+      "signal": {
+        "type": "stacked-numeral-pennants",
+        "valuesTopToBottom": [
+          "1",
+          "4"
+        ]
+      },
+      "applicabilityProfileId": "special-course-base",
+      "fullyMapRenderable": false,
+      "fixedGeometryRenderable": true,
+      "route": [
+        [
+          "special-start-line",
+          "start"
+        ],
+        [
+          "special-laid-by-start-line",
+          "signal-or-omit"
+        ],
+        [
+          "fos-5",
+          "starboard"
+        ],
+        [
+          "fos-6",
+          "port"
+        ],
+        [
+          "pt-wilson-pier-sp-4",
+          "starboard"
+        ],
+        [
+          "fos-7",
+          "starboard"
+        ],
+        [
+          "alcoa-outer",
+          "port"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "special-finish-line",
+          "finish"
+        ]
+      ],
+      "unresolvedAmbiguities": [
+        "Outer-area assignment inferred from chart and must be manually confirmed; laid-mark variant/side is race-day selection."
+      ],
+      "source": {
+        "sourceRef": "si-special-courses",
+        "pdfPage": 56
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/special-course-14.png",
+      "chartAlt": "Special Course 14 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 57."
+    }
+  ],
+  "courseTemplates": [
+    {
+      "courseId": "festival-of-sails-2026/corio-bay/laid/windward-leeward/course-1",
+      "displayName": "Windward/Leeward Course 1",
+      "courseCategory": "laid-course-template",
+      "signal": {
+        "type": "numeral-pennant",
+        "value": "1"
+      },
+      "applicabilityProfileId": "windward-leeward",
+      "raceAreaIds": [
+        "festival-of-sails-2026/corio-bay/windward-leeward-north",
+        "festival-of-sails-2026/corio-bay/windward-leeward-south",
+        "festival-of-sails-2026/corio-bay/windward-leeward-outer"
+      ],
+      "fullyMapRenderable": false,
+      "route": [
+        [
+          "wl-start-line",
+          "start"
+        ],
+        [
+          "wl-mark-1",
+          "port"
+        ],
+        [
+          "wl-offset",
+          "port-if-laid"
+        ],
+        [
+          "wl-finish-line",
+          "finish"
+        ]
+      ],
+      "substitutions": [
+        {
+          "replace": "wl-mark-1",
+          "with": "wl-mark-1-change",
+          "when": "course changed by RC"
+        }
+      ],
+      "unresolvedAmbiguities": [
+        "Race area, bearing, distances, and all coordinates are race-day values."
+      ],
+      "source": {
+        "sourceRef": "si-wl",
+        "pdfPage": 27
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/windward-leeward-courses.png",
+      "chartAlt": "Windward/leeward Laid Course diagram and course key extracted from Festival of Sails 2026 Sailing Instructions PDF page 27."
+    },
+    {
+      "courseId": "festival-of-sails-2026/corio-bay/laid/windward-leeward/course-2",
+      "displayName": "Windward/Leeward Course 2",
+      "courseCategory": "laid-course-template",
+      "signal": {
+        "type": "numeral-pennant",
+        "value": "2"
+      },
+      "applicabilityProfileId": "windward-leeward",
+      "raceAreaIds": [
+        "festival-of-sails-2026/corio-bay/windward-leeward-north",
+        "festival-of-sails-2026/corio-bay/windward-leeward-south",
+        "festival-of-sails-2026/corio-bay/windward-leeward-outer"
+      ],
+      "fullyMapRenderable": false,
+      "route": [
+        [
+          "wl-start-line",
+          "start"
+        ],
+        [
+          "wl-mark-1",
+          "port"
+        ],
+        [
+          "wl-offset",
+          "port-if-laid"
+        ],
+        [
+          "wl-gate",
+          "either-or-port-if-single"
+        ],
+        [
+          "wl-mark-1",
+          "port"
+        ],
+        [
+          "wl-offset",
+          "port-if-laid"
+        ],
+        [
+          "wl-finish-line",
+          "finish"
+        ]
+      ],
+      "substitutions": [
+        {
+          "replace": "wl-mark-1",
+          "with": "wl-mark-1-change",
+          "when": "course changed by RC"
+        }
+      ],
+      "unresolvedAmbiguities": [
+        "Race area, bearing, distances, and all coordinates are race-day values."
+      ],
+      "source": {
+        "sourceRef": "si-wl",
+        "pdfPage": 27
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/windward-leeward-courses.png",
+      "chartAlt": "Windward/leeward Laid Course diagram and course key extracted from Festival of Sails 2026 Sailing Instructions PDF page 27."
+    },
+    {
+      "courseId": "festival-of-sails-2026/corio-bay/laid/windward-leeward/course-3",
+      "displayName": "Windward/Leeward Course 3",
+      "courseCategory": "laid-course-template",
+      "signal": {
+        "type": "numeral-pennant",
+        "value": "3"
+      },
+      "applicabilityProfileId": "windward-leeward",
+      "raceAreaIds": [
+        "festival-of-sails-2026/corio-bay/windward-leeward-north",
+        "festival-of-sails-2026/corio-bay/windward-leeward-south",
+        "festival-of-sails-2026/corio-bay/windward-leeward-outer"
+      ],
+      "fullyMapRenderable": false,
+      "route": [
+        [
+          "wl-start-line",
+          "start"
+        ],
+        [
+          "wl-mark-1",
+          "port"
+        ],
+        [
+          "wl-offset",
+          "port-if-laid"
+        ],
+        [
+          "wl-gate",
+          "either-or-port-if-single"
+        ],
+        [
+          "wl-mark-1",
+          "port"
+        ],
+        [
+          "wl-offset",
+          "port-if-laid"
+        ],
+        [
+          "wl-gate",
+          "either-or-port-if-single"
+        ],
+        [
+          "wl-mark-1",
+          "port"
+        ],
+        [
+          "wl-offset",
+          "port-if-laid"
+        ],
+        [
+          "wl-finish-line",
+          "finish"
+        ]
+      ],
+      "substitutions": [
+        {
+          "replace": "wl-mark-1",
+          "with": "wl-mark-1-change",
+          "when": "course changed by RC"
+        }
+      ],
+      "unresolvedAmbiguities": [
+        "Race area, bearing, distances, and all coordinates are race-day values."
+      ],
+      "source": {
+        "sourceRef": "si-wl",
+        "pdfPage": 27
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/windward-leeward-courses.png",
+      "chartAlt": "Windward/leeward Laid Course diagram and course key extracted from Festival of Sails 2026 Sailing Instructions PDF page 27."
+    }
+  ],
+  "passageCourses": [
+    {
+      "courseId": "festival-of-sails-2026/port-phillip/passage/melbourne-to-geelong",
+      "displayName": "Melbourne to Geelong Passage Race",
+      "courseCategory": "passage",
+      "signal": {
+        "type": "warning-flag",
+        "value": "Code Flag D"
+      },
+      "applicabilityProfileId": "melbourne-passage",
+      "raceAreaId": "festival-of-sails-2026/melbourne/passage-start",
+      "fullyMapRenderable": false,
+      "fixedGeometryRenderable": true,
+      "startLineSelection": {
+        "southern": [
+          "passage-rating-div-1",
+          "passage-rating-div-2",
+          "passage-rating-div-3",
+          "passage-rating-div-4",
+          "double-handed",
+          "australian-multihull-div-1",
+          "australian-multihull-div-2",
+          "multihull"
+        ],
+        "northern": [
+          "passage-spinnaker-div-1",
+          "passage-spinnaker-div-2",
+          "passage-spinnaker-div-3",
+          "passage-spinnaker-div-4",
+          "passage-non-spinnaker",
+          "passage-mini",
+          "s80",
+          "j24"
+        ]
+      },
+      "route": [
+        [
+          "melbourne-start-by-fleet",
+          "start"
+        ],
+        [
+          "cat-6-laid",
+          "port",
+          "j24-only"
+        ],
+        [
+          "fos-1",
+          "starboard"
+        ],
+        [
+          "alcoa-outer",
+          "port"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "passage-finish-line",
+          "finish"
+        ]
+      ],
+      "unresolvedAmbiguities": [
+        "Start and finish are dynamic; Cat 6 terminology says J24/Category 6 and should be manually reconciled with fleet records."
+      ],
+      "source": {
+        "sourceRef": "si-melbourne",
+        "pdfPages": [
+          19,
+          22
+        ]
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/passage-melbourne-to-geelong.png",
+      "chartVariants": [
+        {
+          "condition": "j24-category-6",
+          "chartImage": "/course-charts/festival-of-sails-2026/passage-melbourne-to-geelong-cat-6.png",
+          "chartAlt": "Melbourne to Geelong passage chart including the Cat 6 laid mark, extracted from PDF page 22."
+        }
+      ],
+      "chartAlt": "Melbourne to Geelong passage chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 21."
+    },
+    {
+      "courseId": "festival-of-sails-2026/port-phillip/passage/mornington-to-geelong",
+      "displayName": "Mornington to Geelong Passage Race",
+      "courseCategory": "passage",
+      "signal": {
+        "type": "light-sequence",
+        "value": "MYC red/white start sequence"
+      },
+      "applicabilityProfileId": "mornington-passage",
+      "raceAreaId": "festival-of-sails-2026/mornington/passage-start",
+      "fullyMapRenderable": false,
+      "fixedGeometryRenderable": true,
+      "route": [
+        [
+          "mornington-start-line",
+          "start"
+        ],
+        [
+          "prince-george-light",
+          "port"
+        ],
+        [
+          "pt-richards-entry-cardinal",
+          "port"
+        ],
+        [
+          "fos-1",
+          "starboard"
+        ],
+        [
+          "alcoa-outer",
+          "port"
+        ],
+        [
+          "hopetoun-gate-1-2",
+          "gate"
+        ],
+        [
+          "hopetoun-gate-9-10",
+          "gate"
+        ],
+        [
+          "passage-finish-line",
+          "finish"
+        ]
+      ],
+      "unresolvedAmbiguities": [
+        "Start endpoint and finish coordinates are not published."
+      ],
+      "source": {
+        "sourceRef": "si-mornington",
+        "pdfPages": [
+          23,
+          25
+        ]
+      },
+      "chartImage": "/course-charts/festival-of-sails-2026/passage-mornington-to-geelong.png",
+      "chartAlt": "Mornington to Geelong passage chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 25."
+    }
+  ],
+  "safetyZones": [
+    {
+      "zoneId": "festival-of-sails-2026/safety/melbourne-route-marine-farm",
+      "name": "Marine Farm - Melbourne passage route",
+      "geometry": {
+        "kind": "polygon",
+        "coordinateStatus": "published-approximate",
+        "vertices": [
+          {
+            "id": "northeast",
+            "latitude": -38.05,
+            "longitude": 144.655,
+            "coordinateText": "S 38° 03.00', E 144° 39.30'"
+          },
+          {
+            "id": "southeast",
+            "latitude": -38.0593333,
+            "longitude": 144.655,
+            "coordinateText": "S 38° 03.56', E 144° 39.30'"
+          },
+          {
+            "id": "southwest",
+            "latitude": -38.0593333,
+            "longitude": 144.6326667,
+            "coordinateText": "S 38° 03.56', E 144° 37.96'"
+          },
+          {
+            "id": "northwest",
+            "latitude": -38.05,
+            "longitude": 144.6326667,
+            "coordinateText": "S 38° 03.00', E 144° 37.96'"
+          }
+        ]
+      },
+      "routeData": false,
+      "sourceRef": "si-exclusions"
+    },
+    {
+      "zoneId": "festival-of-sails-2026/safety/portarlington-marine-farm",
+      "name": "Portarlington Marine Farm",
+      "geometry": {
+        "kind": "polygon-unvalidated",
+        "coordinateStatus": "published-approximate-source-conflict",
+        "vertices": [
+          {
+            "id": "northeast",
+            "latitude": -38.105,
+            "longitude": 144.703,
+            "coordinateText": "S 38° 06.30', E 144° 42.18'"
+          },
+          {
+            "id": "southeast",
+            "latitude": -38.1106667,
+            "longitude": 144.7028333,
+            "coordinateText": "S 38° 06.64', E 144° 42.17'"
+          },
+          {
+            "id": "northwest",
+            "latitude": -38.1,
+            "longitude": 144.678,
+            "coordinateText": "S 38° 06.00', E 144° 40.68'"
+          },
+          {
+            "id": "southwest",
+            "latitude": -38.1106667,
+            "longitude": 144.7028333,
+            "coordinateText": "S 38° 06.64', E 144° 42.17'"
+          }
+        ]
+      },
+      "routeData": false,
+      "notes": [
+        "Published southwest coordinate duplicates southeast coordinate; do not render polygon until manually corrected from an authoritative source."
+      ],
+      "sourceRef": "si-exclusions"
+    },
+    {
+      "zoneId": "festival-of-sails-2026/safety/clifton-springs-marine-farm",
+      "name": "Clifton Springs Marine Farm",
+      "geometry": {
+        "kind": "polygon-unvalidated",
+        "coordinateStatus": "published-approximate",
+        "vertices": [
+          {
+            "id": "northeast",
+            "latitude": -38.1121667,
+            "longitude": 144.5856667,
+            "coordinateText": "S 38° 06.73', E 144° 35.14'"
+          },
+          {
+            "id": "southeast",
+            "latitude": -38.1198333,
+            "longitude": 144.5926667,
+            "coordinateText": "S 38° 07.19', E 144° 35.56'"
+          },
+          {
+            "id": "northwest",
+            "latitude": -38.128,
+            "longitude": 144.5571667,
+            "coordinateText": "S 38° 07.68', E 144° 33.43'"
+          },
+          {
+            "id": "southwest",
+            "latitude": -38.1358333,
+            "longitude": 144.5638333,
+            "coordinateText": "S 38° 08.15', E 144° 33.83'"
+          }
+        ]
+      },
+      "routeData": false,
+      "notes": [
+        "Compass labels/geometry appear unusual and require manual chart comparison before rendering."
+      ],
+      "sourceRef": "si-exclusions"
+    }
+  ],
+  "referenceOnlyInstructions": [
+    {
+      "referenceId": "festival-of-sails-2026/reference/schedule-and-class-assignments",
+      "title": "Schedules, class flags, start order and course-type applicability",
+      "reasonNotRouteData": "Operational metadata; attach to pack/fleet filters.",
+      "sourceRefs": [
+        "si-schedule",
+        "si-starts"
+      ]
+    },
+    {
+      "referenceId": "festival-of-sails-2026/reference/start-area-notification",
+      "title": "Start areas advised by SMS/ONB",
+      "reasonNotRouteData": "Race-day state, not a permanent course attribute.",
+      "sourceRefs": [
+        "si-starts",
+        "si-race-areas"
+      ]
+    },
+    {
+      "referenceId": "festival-of-sails-2026/reference/course-10",
+      "title": "Special Course 10 - intentionally blank",
+      "reasonNotRouteData": "No selectable course or route exists.",
+      "sourceRefs": [
+        "si-special-courses"
+      ]
+    },
+    {
+      "referenceId": "festival-of-sails-2026/reference/long-special-course",
+      "title": "Long Special Course designation",
+      "reasonNotRouteData": "The schedule names an LSC for Double Handed race 2, but the SI does not identify a distinct LSC route.",
+      "sourceRefs": [
+        "si-schedule"
+      ]
+    },
+    {
+      "referenceId": "festival-of-sails-2026/reference/exclusion-zones",
+      "title": "Exclusion zones and obstacles",
+      "reasonNotRouteData": "Safety constraints should be optional overlays/warnings, never inserted as route legs.",
+      "sourceRefs": [
+        "si-exclusions"
+      ]
+    },
+    {
+      "referenceId": "festival-of-sails-2026/reference/change-shortening-and-comms",
+      "title": "Course changes, shortening and VHF/SMS communications",
+      "reasonNotRouteData": "Operational rules; preserve as source-linked notes. Windward change-mark substitution is the only part encoded structurally.",
+      "sourceRefs": [
+        "si-wl"
+      ]
+    },
+    {
+      "referenceId": "festival-of-sails-2026/reference/onb-sunday-intentions",
+      "title": "Race Committee Intentions - Sunday 25 January",
+      "reasonNotRouteData": "Historical race-day configuration, not base pack geometry; text says race 2 Course 1 while its image heading says Course 11, requiring manual verification.",
+      "url": "https://www.topyacht.com.au/notice_brd/RGYC_FOS_26/RaceCommitteeIntentions-Sunday25January2026.pdf?r=1783983833"
+    },
+    {
+      "referenceId": "festival-of-sails-2026/reference/onb-monday-intentions",
+      "title": "Race Committee Intentions - Monday 26 January",
+      "reasonNotRouteData": "Historical race-day assignment (keelboats Course 12; S80 southern area), useful as an event instance layer rather than base course data.",
+      "url": "https://www.topyacht.com.au/notice_brd/RGYC_FOS_26/RaceCommitteeIntentions-Monday26January2026.pdf?r=1783983833"
+    }
+  ],
+  "validation": {
+    "coordinateConversion": "Decimal degrees are direct conversions of the published degrees-and-decimal-minutes values; original text is retained for manual comparison.",
+    "unresolvedMarks": [
+      "Individual endpoints for Hopetoun Channel gates 1/2 and 9/10",
+      "MYC tower and orange-spar endpoint coordinates",
+      "All race-day committee-vessel, pin, inner-distance, start, finish, windward, gate and offset positions"
+    ],
+    "missingCoordinates": [
+      "Special course start and finish",
+      "Special laid marks A/B",
+      "Passage finish",
+      "Windward/leeward start, Mark 1, gate, offset and finish",
+      "Race-area boundaries shown only diagrammatically"
+    ],
+    "ambiguousRoundingDirections": [
+      "Special laid first mark: red/green race-day flag; omitted if neither",
+      "Windward/leeward gate: either mark, or port if a single mark",
+      "Start/finish lines are crossings, not roundings"
+    ],
+    "conditionalRoutes": [
+      "Melbourne passage Cat 6 mark applies only to J24/Category 6",
+      "Special laid first mark depends on start line and flag; may be deleted",
+      "Windward/leeward offset is included only if laid",
+      "Mark 1 may be replaced by a change mark",
+      "Windward/leeward gate may be one or two marks"
+    ],
+    "unsupportedCourseConceptsInCurrentApp": [
+      "Compound pack/course identity",
+      "Mixed fixed and dynamic legs",
+      "Composite gates",
+      "Optional and fleet-conditional legs",
+      "Dynamic positioning rules",
+      "Substitution marks",
+      "Stacked pennant signals",
+      "Race areas and fleet/day applicability",
+      "Safety-zone geometry",
+      "Source/version citations per entity"
+    ],
+    "manualChecksRequired": [
+      "Compare every mark and course row against the consolidated SI",
+      "Confirm Special Course 9/11/12 inner and 13/14 outer race-area inference",
+      "Resolve Portarlington southwest marine-farm coordinate duplication",
+      "Check Clifton Springs boundary labels/order against an authoritative chart or notice",
+      "Resolve source schedule date inconsistencies in Appendices H and I",
+      "Identify what route 'Long Special Course' denotes",
+      "Resolve Sunday intention notice Course 1 versus image heading Course 11",
+      "Confirm whether Cat 6 is exactly equivalent to J24 for this event",
+      "Verify whether published gate coordinates are midpoints or one component mark"
+    ]
+  },
+  "referenceImages": [
+    {
+      "imageId": "festival-of-sails-2026/melbourne-start-area",
+      "chartImage": "/course-charts/festival-of-sails-2026/melbourne-start-area.png",
+      "sourcePdfPage": 20
+    },
+    {
+      "imageId": "festival-of-sails-2026/mornington-start-area",
+      "chartImage": "/course-charts/festival-of-sails-2026/mornington-start-area.png",
+      "sourcePdfPage": 23
+    },
+    {
+      "imageId": "festival-of-sails-2026/outer-harbour-marks",
+      "chartImage": "/course-charts/festival-of-sails-2026/outer-harbour-marks.png",
+      "sourcePdfPage": 30
+    },
+    {
+      "imageId": "festival-of-sails-2026/start-areas",
+      "chartImage": "/course-charts/festival-of-sails-2026/start-areas.png",
+      "sourcePdfPage": 58
+    }
+  ]
+}

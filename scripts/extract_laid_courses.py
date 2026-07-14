@@ -4,7 +4,7 @@ from pathlib import Path
 import fitz
 
 PDF_PATH = Path('source/Club-sailing-Instructions-2025-28_Rev-0.pdf')
-CHART_DIR = Path('public/course-charts')
+CHART_DIR = Path('public/course-charts/syc')
 OUT_JSON = Path('source/extracted-laid-courses.json')
 CELL_INSET = 1.4
 
@@ -136,7 +136,7 @@ for pno in range(19, len(doc)):
             'route': route,
             'passInstruction': pass_instruction,
             'totalDistance': nominal,
-            'chartImage': f'/course-charts/{chart_name}',
+            'chartImage': f'/course-charts/syc/{chart_name}',
             'chartAlt': f'Course {number} laid mark course diagram from Appendix A.4 page {pno+1}.',
             'dataStatus': 'verified-from-pdf',
             'sourcePage': pno+1,

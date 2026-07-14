@@ -43,7 +43,7 @@ struct CourseDetailView: View {
     let course: Course
 
     private var activeTargetMark: Mark? {
-        if activeRaceStore.activeCourseNumber == course.courseNumber,
+        if activeRaceStore.activeCourseID == course.id,
            let activeMark = activeRaceStore.activeMark {
             return activeMark
         }
@@ -83,7 +83,7 @@ struct CourseDetailView: View {
                     } else {
                         ActiveCourseControlPanel(course: course)
                         CourseLineAssistPanel()
-                        CourseTableView(course: course, marks: marks, activeMarkID: activeRaceStore.activeCourseNumber == course.courseNumber ? activeRaceStore.activeMarkID : nil)
+                        CourseTableView(course: course, marks: marks, activeMarkID: activeRaceStore.activeCourseID == course.id ? activeRaceStore.activeMarkID : nil)
                         ChartImageView(chartImage: course.chartImage)
                             .frame(maxWidth: .infinity, maxHeight: geometry.size.height * 0.62)
 
@@ -513,7 +513,7 @@ struct CourseTableView: View {
     private let courseBearingVariationDegrees = 12.0
 
     private var calculatedRows: [CalculatedCourseRow] {
-        var previousMark = CourseDataLoader.findMark(named: "SYC 4", in: marks)
+        var previousMark = CourseDataLoader.startFinishMark(in: marks)
         return course.rows.map { row in
             guard !row.isCourseTotalRow else {
                 return CalculatedCourseRow(row: row, mark: nil, bearing: nil, distanceNm: nil)
@@ -587,7 +587,7 @@ struct CourseTableView: View {
 
     private func resolvedMark(for name: String) -> Mark? {
         if name.normalizedCourseMarkName == "start" || name.normalizedCourseMarkName == "finish" {
-            return CourseDataLoader.findMark(named: "SYC 4", in: marks)
+            return CourseDataLoader.startFinishMark(in: marks)
         }
         return CourseDataLoader.findMark(named: name, in: marks)
     }

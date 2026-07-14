@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "course-pack:festival": "node scripts/build_festival_of_sails_sources.mjs",
+    "course-pack": "node scripts/build_web_course_pack.mjs",
+    "prebuild": "npm run course-pack",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"

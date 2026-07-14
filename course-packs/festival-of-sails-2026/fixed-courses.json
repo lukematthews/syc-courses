@@ -1,0 +1,1121 @@
+[
+  {
+    "courseNumber": 1,
+    "route": "Special Course 1",
+    "passInstruction": "Start area and laid-mark variant/side are race-day selections.",
+    "rows": [
+      {
+        "mark": "Special Course Starting Line",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Laid Mark",
+        "side": "signal-or-omit",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Alcoa Outer",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Special Course Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "12.9 nm approx.",
+    "chartImage": "/course-charts/festival-of-sails-2026/special-course-01.png",
+    "chartAlt": "Special Course 1 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 33.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 32,
+    "comparableCourseNote": "Signal: 1. Dynamic marks and lines require race-day confirmation."
+  },
+  {
+    "courseNumber": 2,
+    "route": "Special Course 2",
+    "passInstruction": "Start area and laid-mark variant/side are race-day selections.",
+    "rows": [
+      {
+        "mark": "Special Course Starting Line",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Laid Mark",
+        "side": "signal-or-omit",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Alcoa Outer",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Special Course Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "13.6 nm approx.",
+    "chartImage": "/course-charts/festival-of-sails-2026/special-course-02.png",
+    "chartAlt": "Special Course 2 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 35.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 34,
+    "comparableCourseNote": "Signal: 2. Dynamic marks and lines require race-day confirmation."
+  },
+  {
+    "courseNumber": 3,
+    "route": "Special Course 3",
+    "passInstruction": "Start area and laid-mark variant/side are race-day selections.",
+    "rows": [
+      {
+        "mark": "Special Course Starting Line",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Laid Mark",
+        "side": "signal-or-omit",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Pt Wilson Pier SP Mark 4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 7",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Alcoa Outer",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Special Course Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "19.1 nm approx.",
+    "chartImage": "/course-charts/festival-of-sails-2026/special-course-03.png",
+    "chartAlt": "Special Course 3 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 37.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 36,
+    "comparableCourseNote": "Signal: 3. Dynamic marks and lines require race-day confirmation."
+  },
+  {
+    "courseNumber": 4,
+    "route": "Special Course 4",
+    "passInstruction": "Start area and laid-mark variant/side are race-day selections.",
+    "rows": [
+      {
+        "mark": "Special Course Starting Line",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Laid Mark",
+        "side": "signal-or-omit",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Alcoa Outer",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Special Course Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "19.7 nm approx.",
+    "chartImage": "/course-charts/festival-of-sails-2026/special-course-04.png",
+    "chartAlt": "Special Course 4 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 39.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 38,
+    "comparableCourseNote": "Signal: 4. Dynamic marks and lines require race-day confirmation."
+  },
+  {
+    "courseNumber": 5,
+    "route": "Special Course 5",
+    "passInstruction": "Start area and laid-mark variant/side are race-day selections.",
+    "rows": [
+      {
+        "mark": "Special Course Starting Line",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Laid Mark",
+        "side": "signal-or-omit",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Alcoa Outer",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Special Course Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "16.9 nm approx.",
+    "chartImage": "/course-charts/festival-of-sails-2026/special-course-05.png",
+    "chartAlt": "Special Course 5 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 41.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 40,
+    "comparableCourseNote": "Signal: 5. Dynamic marks and lines require race-day confirmation."
+  },
+  {
+    "courseNumber": 6,
+    "route": "Special Course 6",
+    "passInstruction": "Start area and laid-mark variant/side are race-day selections.",
+    "rows": [
+      {
+        "mark": "Special Course Starting Line",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Laid Mark",
+        "side": "signal-or-omit",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Alcoa Outer",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Special Course Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "15.3 nm approx.",
+    "chartImage": "/course-charts/festival-of-sails-2026/special-course-06.png",
+    "chartAlt": "Special Course 6 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 43.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 42,
+    "comparableCourseNote": "Signal: 6. Dynamic marks and lines require race-day confirmation."
+  },
+  {
+    "courseNumber": 7,
+    "route": "Special Course 7",
+    "passInstruction": "Start area and laid-mark variant/side are race-day selections.",
+    "rows": [
+      {
+        "mark": "Special Course Starting Line",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Laid Mark",
+        "side": "signal-or-omit",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Alcoa Outer",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Special Course Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "18.8 nm approx.",
+    "chartImage": "/course-charts/festival-of-sails-2026/special-course-07.png",
+    "chartAlt": "Special Course 7 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 45.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 44,
+    "comparableCourseNote": "Signal: 7. Dynamic marks and lines require race-day confirmation."
+  },
+  {
+    "courseNumber": 8,
+    "route": "Special Course 8",
+    "passInstruction": "Start area and laid-mark variant/side are race-day selections.",
+    "rows": [
+      {
+        "mark": "Special Course Starting Line",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Laid Mark",
+        "side": "signal-or-omit",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Alcoa Outer",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Special Course Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "16.6 nm approx.",
+    "chartImage": "/course-charts/festival-of-sails-2026/special-course-08.png",
+    "chartAlt": "Special Course 8 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 47.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 46,
+    "comparableCourseNote": "Signal: 8. Dynamic marks and lines require race-day confirmation."
+  },
+  {
+    "courseNumber": 9,
+    "route": "Special Course 9",
+    "passInstruction": "Inner-area assignment inferred from chart and must be manually confirmed; laid-mark variant/side is race-day selection.",
+    "rows": [
+      {
+        "mark": "Special Course Starting Line",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Laid Mark",
+        "side": "signal-or-omit",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Special Course Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10.9 nm approx.",
+    "chartImage": "/course-charts/festival-of-sails-2026/special-course-09.png",
+    "chartAlt": "Special Course 9 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 49.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 48,
+    "comparableCourseNote": "Signal: 9. Dynamic marks and lines require race-day confirmation."
+  },
+  {
+    "courseNumber": 11,
+    "route": "Special Course 11",
+    "passInstruction": "Inner-area assignment inferred from chart and must be manually confirmed; laid-mark variant/side is race-day selection.",
+    "rows": [
+      {
+        "mark": "Special Course Starting Line",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Laid Mark",
+        "side": "signal-or-omit",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Special Course Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "9.6 nm approx.",
+    "chartImage": "/course-charts/festival-of-sails-2026/special-course-11.png",
+    "chartAlt": "Special Course 11 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 51.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 50,
+    "comparableCourseNote": "Signal: 1 over 1. Dynamic marks and lines require race-day confirmation."
+  },
+  {
+    "courseNumber": 12,
+    "route": "Special Course 12",
+    "passInstruction": "Inner-area assignment inferred from chart and must be manually confirmed; laid-mark variant/side is race-day selection.",
+    "rows": [
+      {
+        "mark": "Special Course Starting Line",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Laid Mark",
+        "side": "signal-or-omit",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CB 4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Special Course Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "11.7 nm approx.",
+    "chartImage": "/course-charts/festival-of-sails-2026/special-course-12.png",
+    "chartAlt": "Special Course 12 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 53.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 52,
+    "comparableCourseNote": "Signal: 1 over 2. Dynamic marks and lines require race-day confirmation."
+  },
+  {
+    "courseNumber": 13,
+    "route": "Special Course 13",
+    "passInstruction": "Outer-area assignment inferred from chart and must be manually confirmed; laid-mark variant/side is race-day selection.",
+    "rows": [
+      {
+        "mark": "Special Course Starting Line",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Laid Mark",
+        "side": "signal-or-omit",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Alcoa Outer",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Special Course Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "15 nm approx.",
+    "chartImage": "/course-charts/festival-of-sails-2026/special-course-13.png",
+    "chartAlt": "Special Course 13 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 55.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 54,
+    "comparableCourseNote": "Signal: 1 over 3. Dynamic marks and lines require race-day confirmation."
+  },
+  {
+    "courseNumber": 14,
+    "route": "Special Course 14",
+    "passInstruction": "Outer-area assignment inferred from chart and must be manually confirmed; laid-mark variant/side is race-day selection.",
+    "rows": [
+      {
+        "mark": "Special Course Starting Line",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Laid Mark",
+        "side": "signal-or-omit",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Pt Wilson Pier SP Mark 4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 7",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Alcoa Outer",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Special Course Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "14.4 nm approx.",
+    "chartImage": "/course-charts/festival-of-sails-2026/special-course-14.png",
+    "chartAlt": "Special Course 14 chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 57.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 56,
+    "comparableCourseNote": "Signal: 1 over 4. Dynamic marks and lines require race-day confirmation."
+  },
+  {
+    "courseNumber": 20,
+    "route": "Melbourne to Geelong Passage Race",
+    "passInstruction": "Start and finish are dynamic; Cat 6 terminology says J24/Category 6 and should be manually reconciled with fleet records.",
+    "rows": [
+      {
+        "mark": "Melbourne Passage Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Cat 6 Laid Mark",
+        "side": "port — j24-only",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Alcoa Outer",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Geelong Passage Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "/course-charts/festival-of-sails-2026/passage-melbourne-to-geelong.png",
+    "chartAlt": "Melbourne to Geelong passage chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 21.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 19,
+    "comparableCourseNote": "Signal: Code Flag D. Dynamic marks and lines require race-day confirmation."
+  },
+  {
+    "courseNumber": 21,
+    "route": "Mornington to Geelong Passage Race",
+    "passInstruction": "Start endpoint and finish coordinates are not published.",
+    "rows": [
+      {
+        "mark": "Mornington Start Line",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Red Lateral Mark (Prince George Light)",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Pt Richards Entry Cardinal",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "FoS 1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Alcoa Outer",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 1 & 2",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate - Hopetoun Channel 9 & 10",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Geelong Passage Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "/course-charts/festival-of-sails-2026/passage-mornington-to-geelong.png",
+    "chartAlt": "Mornington to Geelong passage chart extracted from Festival of Sails 2026 Sailing Instructions PDF page 25.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 23,
+    "comparableCourseNote": "Signal: MYC red/white start sequence. Dynamic marks and lines require race-day confirmation."
+  }
+]

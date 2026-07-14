@@ -85,17 +85,17 @@ fun SYCCoursesApp(app: AppViewModel) {
 
 @Composable
 private fun HomeScreen(app: AppViewModel, nav: NavHostController) {
-    val recentNumbers by app.recents.collectAsStateWithLifecycle()
+    val recentCourseIDs by app.recents.collectAsStateWithLifecycle()
     val tracks by app.recentTracks.collectAsStateWithLifecycle()
     val activeNumber by app.activeCourse.collectAsStateWithLifecycle()
     var renameTrack by remember { mutableStateOf<SavedRaceTrack?>(null) }
     var renameText by remember { mutableStateOf("") }
-    ScreenScaffold("SYC Courses") { padding ->
+    ScreenScaffold(app.repository.coursePack.name) { padding ->
         LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             item {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Image(painterResource(R.drawable.app_icon), "SYC Courses", modifier = Modifier.size(54.dp), contentScale = ContentScale.Fit)
-                    Spacer(Modifier.width(12.dp)); Text("SYC Courses", fontSize = 32.sp, fontWeight = FontWeight.Bold, color = Navy)
+                    Image(painterResource(R.drawable.app_icon), app.repository.coursePack.name, modifier = Modifier.size(54.dp), contentScale = ContentScale.Fit)
+                    Spacer(Modifier.width(12.dp)); Text(app.repository.coursePack.name, fontSize = 32.sp, fontWeight = FontWeight.Bold, color = Navy)
                 }
             }
             activeNumber?.let { item { ActiveRaceHomePanel(app, nav) } }
@@ -106,9 +106,9 @@ private fun HomeScreen(app: AppViewModel, nav: NavHostController) {
             item { HomeCard("Line Assist", "Start and finish line crossing", Icons.Default.Timer) { nav.navigate("line/start") } }
             item { HomeCard("Race Tracker", "Record and review your course", Icons.Default.Map) { nav.navigate("tracker") } }
             item { HomeCard("Instruments", "Boat communication over an NMEA Wi-Fi gateway", Icons.Default.SettingsInputAntenna) { nav.navigate("instruments") } }
-            if (recentNumbers.isNotEmpty()) {
+            if (recentCourseIDs.isNotEmpty()) {
                 item { SectionHeader("Recently Viewed", "Clear…", app::clearRecents) }
-                items(recentNumbers.mapNotNull(app.repository::course)) { CourseRow(it) { nav.navigate("course/${it.courseNumber}") } }
+                items(recentCourseIDs.mapNotNull(app.repository::course), key = Course::id) { CourseRow(it) { nav.navigate("course/${it.courseNumber}") } }
             }
             if (tracks.isNotEmpty()) {
                 item { SectionHeader("Recent Tracks", "Clear…", app::clearTracks) }
@@ -130,13 +130,13 @@ private fun HomeScreen(app: AppViewModel, nav: NavHostController) {
 
 @Composable
 private fun ActiveRaceHomePanel(app: AppViewModel, nav: NavHostController) {
-    val number by app.activeCourse.collectAsStateWithLifecycle(); val activeName by app.activeMark.collectAsStateWithLifecycle()
+    val courseID by app.activeCourse.collectAsStateWithLifecycle(); val activeName by app.activeMark.collectAsStateWithLifecycle()
+    val course = courseID?.let(app.repository::course) ?: return
     val marks = app.activeCourseMarks(); val index = marks.indexOfFirst { it.name == activeName || it.id == activeName }
-    number ?: return
     OutlinedCard(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Row { Column(Modifier.weight(1f)) { Text("Course $number", fontWeight = FontWeight.Bold, fontSize = 18.sp); Text("Going to: ${marks.getOrNull(index)?.name ?: "--"}", color = Color.Gray) }; CoursePennantHoist(number!!, 58, 22) }
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) { OutlinedButton(app::retreatActiveMark, enabled = index > 0) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Previous mark") }; Button(app::advanceActiveMark, enabled = index >= 0 && index < marks.lastIndex) { Text("Next Mark"); Icon(Icons.Default.ChevronRight, null) }; Spacer(Modifier.weight(1f)); IconButton({ nav.navigate("tracker") }) { Icon(Icons.Default.Map, "Race Tracker") }; IconButton({ nav.navigate("course/$number") }) { Icon(Icons.Default.FormatListNumbered, "Course") } }
+            Row { Column(Modifier.weight(1f)) { Text("Course ${course.courseNumber}", fontWeight = FontWeight.Bold, fontSize = 18.sp); Text("Going to: ${marks.getOrNull(index)?.name ?: "--"}", color = Color.Gray) }; CoursePennantHoist(course.courseNumber, 58, 22) }
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) { OutlinedButton(app::retreatActiveMark, enabled = index > 0) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Previous mark") }; Button(app::advanceActiveMark, enabled = index >= 0 && index < marks.lastIndex) { Text("Next Mark"); Icon(Icons.Default.ChevronRight, null) }; Spacer(Modifier.weight(1f)); IconButton({ nav.navigate("tracker") }) { Icon(Icons.Default.Map, "Race Tracker") }; IconButton({ nav.navigate("course/${course.courseNumber}") }) { Icon(Icons.Default.FormatListNumbered, "Course") } }
         }
     }
 }
@@ -150,7 +150,7 @@ private fun CourseListScreen(app: AppViewModel, nav: NavHostController, laid: Bo
     val courses = if (laid) app.repository.laidCourses else app.repository.fixedCourses
     ScreenScaffold(if (laid) "Laid Courses" else "Fixed Mark Courses", { nav.popBackStack() }) { padding ->
         LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            items(courses) { CourseRow(it) { app.recordRecent(it.courseNumber); nav.navigate("course/${it.courseNumber}") } }
+            items(courses, key = Course::id) { CourseRow(it) { app.recordRecent(it); nav.navigate("course/${it.courseNumber}") } }
             item { Spacer(Modifier.height(16.dp)) }
         }
     }
@@ -252,7 +252,7 @@ private fun CourseDetailScreen(app: AppViewModel, nav: NavHostController, course
                     )
                 }
             }
-            if (course.courseNumber >= 80) {
+            if (course.kind == CourseKind.laid) {
                 item { LaidCourseInfo(course) }
                 if (course.chartImage.isNotBlank()) item { AssetImage(course.chartImage.removePrefix("/")) }
                 item { LaidCourseSequence(course) }
@@ -280,8 +280,8 @@ private fun CourseDetailScreen(app: AppViewModel, nav: NavHostController, course
 
 @Composable
 private fun ActiveCourseControls(app: AppViewModel, course: Course) {
-    val activeNumber by app.activeCourse.collectAsStateWithLifecycle(); val activeName by app.activeMark.collectAsStateWithLifecycle()
-    val isActive = activeNumber == course.courseNumber
+    val activeCourseID by app.activeCourse.collectAsStateWithLifecycle(); val activeName by app.activeMark.collectAsStateWithLifecycle()
+    val isActive = activeCourseID == course.id
     val marks = if (isActive) app.activeCourseMarks() else emptyList()
     val index = marks.indexOfFirst { it.name == activeName || it.id == activeName }
     OutlinedCard(Modifier.fillMaxWidth(), shape = RoundedCornerShape(8.dp)) {
@@ -299,7 +299,7 @@ private fun ActiveCourseControls(app: AppViewModel, course: Course) {
 private data class DisplayLeg(val leg: CourseLeg, val mark: Mark?, val bearing: String, val distance: String)
 
 private fun calculatedLegs(app: AppViewModel, course: Course): List<DisplayLeg> {
-    var previous = app.repository.mark("SYC 4")
+    var previous = app.repository.startFinishMark()
     return course.rows.map { leg ->
         if (leg.mark.normalizedMarkName() in setOf("total", "sub-total", "subtotal")) DisplayLeg(leg, null, "", leg.distance)
         else {
@@ -315,14 +315,14 @@ private fun calculatedLegs(app: AppViewModel, course: Course): List<DisplayLeg> 
 
 @Composable
 private fun FixedCourseTable(app: AppViewModel, nav: NavHostController, course: Course) {
-    val activeNumber by app.activeCourse.collectAsStateWithLifecycle(); val activeName by app.activeMark.collectAsStateWithLifecycle()
+    val activeCourseID by app.activeCourse.collectAsStateWithLifecycle(); val activeName by app.activeMark.collectAsStateWithLifecycle()
     val rows = remember(course) { calculatedLegs(app, course) }
     OutlinedCard(Modifier.fillMaxWidth(), shape = RoundedCornerShape(8.dp)) {
         Column {
             Row(Modifier.background(Color.Gray.copy(alpha = .12f)).padding(vertical = 10.dp)) { listOf("Mark", "Side", "Bearing", "Dist").forEach { Text(it, Modifier.weight(1f).padding(horizontal = 10.dp), color = Color.Gray, fontSize = 12.sp, fontWeight = FontWeight.Bold) } }
             rows.forEach { row ->
                 val tappable = row.mark != null && row.leg.mark.normalizedMarkName() !in setOf("start", "finish")
-                Row(Modifier.fillMaxWidth().background(if (activeNumber == course.courseNumber && (activeName == row.mark?.name || activeName == row.mark?.id)) Teal.copy(alpha = .14f) else Color.Transparent).clickable(enabled = tappable) { row.mark?.let { nav.navigate("mark/${it.id}") } }.padding(horizontal = 10.dp, vertical = 14.dp), verticalAlignment = Alignment.CenterVertically) {
+                Row(Modifier.fillMaxWidth().background(if (activeCourseID == course.id && (activeName == row.mark?.name || activeName == row.mark?.id)) Teal.copy(alpha = .14f) else Color.Transparent).clickable(enabled = tappable) { row.mark?.let { nav.navigate("mark/${it.id}") } }.padding(horizontal = 10.dp, vertical = 14.dp), verticalAlignment = Alignment.CenterVertically) {
                     Text(row.leg.mark, Modifier.weight(1f), fontWeight = FontWeight.Bold); Text(row.leg.side, Modifier.weight(1f)); Text(row.bearing, Modifier.weight(1f)); Row(Modifier.weight(1f)) { Text(row.distance); if (tappable) Icon(Icons.Default.ChevronRight, null, Modifier.size(16.dp), tint = Color.Gray) }
                 }
                 HorizontalDivider()
@@ -334,8 +334,8 @@ private fun FixedCourseTable(app: AppViewModel, nav: NavHostController, course: 
 @Composable
 private fun NavigationOutputPanel(app: AppViewModel, course: Course) {
     val status by app.networkStatus.collectAsStateWithLifecycle(); val settings by app.settings.collectAsStateWithLifecycle()
-    val activeNumber by app.activeCourse.collectAsStateWithLifecycle(); val activeName by app.activeMark.collectAsStateWithLifecycle()
-    val target = if (activeNumber == course.courseNumber) activeName?.let(app.repository::mark) else course.rows.mapNotNull { app.repository.mark(it.mark) }.firstOrNull()
+    val activeCourseID by app.activeCourse.collectAsStateWithLifecycle(); val activeName by app.activeMark.collectAsStateWithLifecycle()
+    val target = if (activeCourseID == course.id) activeName?.let(app.repository::mark) else course.rows.mapNotNull { app.repository.mark(it.mark) }.firstOrNull()
     val fix = app.activeFix; val scope = rememberCoroutineScope(); var message by remember { mutableStateOf<String?>(null) }
     val connected = status in setOf("Connected", "Receiving")
     OutlinedCard(Modifier.fillMaxWidth(), shape = RoundedCornerShape(8.dp)) {
@@ -477,11 +477,13 @@ private fun MarkDetailScreen(app: AppViewModel, nav: NavHostController, mark: Ma
 
 @Composable
 private fun FinishOptionsScreen(app: AppViewModel, nav: NavHostController) {
-    val finish = app.repository.mark("SYC 4")!!
+    val finish = app.repository.startFinishMark()!!
+    val finishLine = app.repository.finishLineMarks()
+    val lineName = finishLine.joinToString(" ↔ ", transform = Mark::name)
     ScreenScaffold("Finish", { nav.popBackStack() }) { padding ->
         Column(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            HomeCard("Line Crossing", "Predict crossing the SYC Tower ↔ SYC 4 finish line", Icons.Default.Timer) { nav.navigate("line/finish") }
-            HomeCard("Bearing to SYC 4", "Bearing, distance, and time to the finish mark", Icons.Default.NearMe) { nav.navigate("mark/${finish.id}") }
+            HomeCard("Line Crossing", "Predict crossing the $lineName finish line", Icons.Default.Timer) { nav.navigate("line/finish") }
+            HomeCard("Bearing to ${finish.name}", "Bearing, distance, and time to the finish mark", Icons.Default.NearMe) { nav.navigate("mark/${finish.id}") }
         }
     }
 }
@@ -492,14 +494,14 @@ private fun MarkLocationChart(app: AppViewModel, onSelect: (Mark) -> Unit) {
     val image = remember {
         runCatching { context.assets.open("mark-locations.png").use(BitmapFactory::decodeStream) }.getOrNull()
     }
-    val activeCourseNumber by app.activeCourse.collectAsStateWithLifecycle()
+    val activeCourseID by app.activeCourse.collectAsStateWithLifecycle()
     val activeMarkName by app.activeMark.collectAsStateWithLifecycle()
-    val activeCourseMarkIds = remember(activeCourseNumber) {
-        app.repository.course(activeCourseNumber ?: -1)?.rows
+    val activeCourseMarkIds = remember(activeCourseID) {
+        activeCourseID?.let(app.repository::course)?.rows
             ?.mapNotNull { app.repository.mark(it.mark)?.id }
             ?.toSet().orEmpty()
     }
-    val activeLineIds = remember(activeCourseNumber) { app.activeCourseLineMarks().map { it.id } }
+    val activeLineIds = remember(activeCourseID) { app.activeCourseLineMarks().map { it.id } }
     val activeMarkId = remember(activeMarkName) { activeMarkName?.let { app.repository.mark(it)?.id } }
     val markHotspots = app.repository.markHotspots
 
@@ -633,7 +635,7 @@ private fun FlagsScreen(app: AppViewModel, nav: NavHostController) {
                     )
                     if (matchedCourse != null) {
                         CourseRow(matchedCourse) {
-                            app.recordRecent(matchedCourse.courseNumber)
+                            app.recordRecent(matchedCourse)
                             nav.navigate("course/${matchedCourse.courseNumber}")
                         }
                     } else if (digits.isNotEmpty()) {
@@ -671,8 +673,8 @@ private fun LineAssistScreen(app: AppViewModel, nav: NavHostController, initialM
             bearingSource = runCatching { BearingSource.valueOf(prefs.getString("line_bearing_source", "COG")!!) }.getOrDefault(BearingSource.COG),
         )
     }
-    val tower = app.repository.mark("SYC Tower")!!
-    val mark4 = app.repository.mark("SYC 4")!!
+    val tower = app.repository.startLineMarks().first()
+    val mark4 = app.repository.startLineMarks().last()
     val result = NavigationMath.lineCrossing(fix, tower, mark4, geometry)
     val startTime = gunTimeMillis + offsetMinutes * 60_000L
     val timeToStart = (startTime - now) / 1000.0
@@ -742,7 +744,7 @@ private fun LineAssistScreen(app: AppViewModel, nav: NavHostController, initialM
         ) {
             item {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("SYC Tower ↔ SYC 4", Modifier.weight(1f), color = secondary, fontWeight = FontWeight.Bold)
+                    Text("${tower.name} ↔ ${mark4.name}", Modifier.weight(1f), color = secondary, fontWeight = FontWeight.Bold)
                     if (mode == LineMode.START) TextButton({
                         val rounded = kotlin.math.round(timeToStart / 60.0) * 60.0
                         gunTimeMillis = now + rounded.toLong() * 1000 - offsetMinutes * 60_000L
@@ -1182,7 +1184,7 @@ private fun InstrumentsScreen(app: AppViewModel, nav: NavHostController) {
         item { Row { Text("Output", Modifier.weight(1f)); Text(if (settings.outputEnabled) status else "Disabled", fontWeight = FontWeight.SemiBold) } }
         if (status.startsWith("Error")) item { Text(status, color = Color.Red, fontSize = 12.sp) }
         item { Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) { Button({ app.connectActisense() }, Modifier.weight(1f), enabled = settings.host.isNotBlank() && settings.port in 1..65535) { Text("Test Connection") }; OutlinedButton(app::disconnectActisense, Modifier.weight(1f), enabled = status != "Disconnected") { Text("Disconnect") } } }
-        item { OutlinedButton({ app.repository.mark("SYC 4")?.let { mark -> scope.launch { app.sendWaypoint(mark) } } }, enabled = settings.outputEnabled && status in setOf("Connected", "Receiving") && app.activeFix != null) { Text("Test Output") } }
+        item { OutlinedButton({ app.repository.startFinishMark()?.let { mark -> scope.launch { app.sendWaypoint(mark) } } }, enabled = settings.outputEnabled && status in setOf("Connected", "Receiving") && app.activeFix != null) { Text("Test Output") } }
         item { HorizontalDivider(); TextButton({ showGeometry = !showGeometry }) { Text("Line Assist · Boat Geometry"); Icon(if (showGeometry) Icons.Default.ExpandLess else Icons.Default.ExpandMore, null) } }
         if (showGeometry) item { SettingSwitch("Use bow position for Line Assist", useBow) { useBow = it; prefs.edit().putBoolean("line_use_bow", it).apply() } }
         if (showGeometry) item { OutlinedTextField(bowOffset, { value -> bowOffset = value; value.toFloatOrNull()?.let { prefs.edit().putFloat("line_bow_offset", it.coerceIn(0f, 30f)).apply() } }, Modifier.fillMaxWidth(), label = { Text("GPS to bow distance (m)") }, supportingText = { Text("Measured forward from the GPS/compass sensor to the bow.") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)) }

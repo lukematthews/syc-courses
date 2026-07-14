@@ -7,9 +7,10 @@ class DataRepository(context: Context) {
     private val assets = context.assets
     private val json = Json { ignoreUnknownKeys = true }
 
-    val fixedCourses: List<Course> by lazy { decode("fixed-courses.json") }
-    val laidCourses: List<Course> by lazy { decode("laid-courses.json") }
-    val marks: List<Mark> by lazy { decode("marks.json") }
+    val coursePack: CoursePack by lazy { decode("course-pack.json") }
+    val fixedCourses: List<Course> by lazy { decode(coursePack.resources.fixedCourses) }
+    val laidCourses: List<Course> by lazy { decode(coursePack.resources.laidCourses) }
+    val marks: List<Mark> by lazy { decode(coursePack.resources.marks) }
     val markHotspots: List<MarkHotspot> by lazy { decode("mark-location-hotspots.json") }
     val portPhillipCoastline: CoastlineData by lazy { decode("port-phillip-coastline.json") }
     val allCourses: List<Course> get() = fixedCourses + laidCourses
@@ -18,11 +19,16 @@ class DataRepository(context: Context) {
         json.decodeFromString(assets.open(file).bufferedReader().use { it.readText() })
 
     fun course(number: Int) = allCourses.firstOrNull { it.courseNumber == number }
+    fun course(id: String) = allCourses.firstOrNull { it.id == id }
     fun markById(id: String) = marks.firstOrNull { it.id == id }
+    fun startLineMarks() = coursePack.navigation.startLineMarkIds.mapNotNull(::markById)
+    fun finishLineMarks() = coursePack.navigation.finishLineMarkIds.mapNotNull(::markById)
+    fun startFinishMark() = markById(coursePack.navigation.startFinishMarkId)
 
     fun mark(named: String): Mark? {
         val key = named.normalizedMarkName()
-        val lookup = if (key == "start" || key == "finish") "syc 4" else key
+        if (key == "start" || key == "finish") return startFinishMark()
+        val lookup = key
         return marks.firstOrNull { mark ->
             mark.name.normalizedMarkName() == lookup || mark.aliases.any { it.normalizedMarkName() == lookup }
         }

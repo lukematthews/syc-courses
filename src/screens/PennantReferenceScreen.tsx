@@ -1,8 +1,7 @@
 import { useMemo, useState } from 'react'
 import { PennantReference } from '../components/PennantReference'
 import { PennantStrip } from '../components/PennantStrip'
-import { courses } from '../data/courses'
-import { laidCourses } from '../data/laidCourses'
+import { courses, laidCourses } from '../data/bundledCoursePack'
 
 type PennantReferenceScreenProps = {
   onBack: () => void

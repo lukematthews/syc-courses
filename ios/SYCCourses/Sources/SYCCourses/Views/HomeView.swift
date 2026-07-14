@@ -14,8 +14,8 @@ struct HomeView: View {
     private let laidCourses = CourseDataLoader.laidCourses()
 
     var recentCourses: [Course] {
-        recentsStore.recentCourseNumbers.compactMap { number in
-            (fixedCourses + laidCourses).first { $0.courseNumber == number }
+        recentsStore.recentCourseIDs.compactMap { id in
+            (fixedCourses + laidCourses).first { $0.id == id }
         }
     }
 
@@ -176,7 +176,7 @@ private struct HomeHeader: View {
     var body: some View {
         HStack(alignment: .center, spacing: 14) {
             AppIconImage(size: 54, cornerRadius: 12)
-            Text("SYC Courses")
+            Text(CourseDataLoader.bundledPack.name)
                 .font(.largeTitle.bold())
                 .foregroundStyle(HomeColors.navy)
                 .minimumScaleFactor(0.8)
@@ -227,14 +227,15 @@ enum HomeRoute: Hashable {
 }
 
 private struct FinishOptionsView: View {
-    private let finishMark = CourseDataLoader.findMark(named: "SYC 4")!
+    private let finishMark = CourseDataLoader.startFinishMark()!
+    private let finishLineName = CourseDataLoader.finishLineMarks().map(\.name).joined(separator: " ↔ ")
 
     var body: some View {
         List {
             NavigationLink(value: HomeRoute.lineAssist(.finish)) {
                 FinishOptionRow(
                     title: "Line Crossing",
-                    subtitle: "Predict crossing the SYC Tower ↔ SYC 4 finish line",
+                    subtitle: "Predict crossing the \(finishLineName) finish line",
                     systemImage: "timer"
                 )
             }
@@ -243,7 +244,7 @@ private struct FinishOptionsView: View {
                 MarkDetailView(mark: finishMark)
             } label: {
                 FinishOptionRow(
-                    title: "Bearing to SYC 4",
+                    title: "Bearing to \(finishMark.name)",
                     subtitle: "Bearing, distance, and time to the finish mark",
                     systemImage: "location.north.line"
                 )

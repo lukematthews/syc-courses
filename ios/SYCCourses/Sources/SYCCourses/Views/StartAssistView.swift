@@ -41,8 +41,8 @@ struct StartAssistView: View {
     @State private var isOffsetPickerPresented = false
     @FocusState private var isOffsetFieldFocused: Bool
 
-    private let lineStart = CourseDataLoader.findMark(named: "SYC Tower")!
-    private let lineEnd = CourseDataLoader.findMark(named: "SYC 4")!
+    private let lineStart = CourseDataLoader.startLineMarks().first!
+    private let lineEnd = CourseDataLoader.startLineMarks().last!
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     private let offsetRange = -5...25
 

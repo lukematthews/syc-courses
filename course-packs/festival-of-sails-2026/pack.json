@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "packId": "festival-of-sails-2026",
+  "assetNamespace": "festival-of-sails-2026",
+  "name": "Festival of Sails 2026",
+  "shortName": "FoS 2026",
+  "organiser": "Royal Geelong Yacht Club",
+  "version": "2026-01-20-amendment-1",
+  "source": {
+    "type": "official-sailing-instructions",
+    "title": "2026 Festival of Sails Sailing Instructions (Amendment 1)",
+    "url": "https://www.topyacht.com.au/notice_brd/RGYC_FOS_26/2026FestivalofSailsSailingInstructions-Online.pdf"
+  },
+  "courseKinds": [
+    "fixed",
+    "laid"
+  ],
+  "navigation": {
+    "startLineMarkIds": [
+      "melbourne-start-by-fleet"
+    ],
+    "finishLineMarkIds": [
+      "melbourne-start-by-fleet"
+    ],
+    "startFinishMarkId": "melbourne-start-by-fleet"
+  },
+  "buildSources": {
+    "fixedCourses": "course-packs/festival-of-sails-2026/fixed-courses.json",
+    "laidCourses": "course-packs/festival-of-sails-2026/laid-courses.json",
+    "marks": "course-packs/festival-of-sails-2026/marks.json",
+    "courseCharts": "public/course-charts/festival-of-sails-2026"
+  }
+}

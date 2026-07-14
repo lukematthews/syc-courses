@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { MarkList } from '../components/MarkList'
 import { QuickBearingResult } from '../components/QuickBearingResult'
-import { marks, type Mark } from '../data/marks'
+import { marks, type Mark } from '../data/bundledCoursePack'
 
 type QuickBearingScreenProps = {
   onBack: () => void

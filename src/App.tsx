@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { courses } from './data/courses'
-import { laidCourses } from './data/laidCourses'
+import { courses, laidCourses } from './data/bundledCoursePack'
 import { CourseDetailScreen } from './screens/CourseDetailScreen'
 import { CourseListScreen } from './screens/CourseListScreen'
 import { PennantReferenceScreen } from './screens/PennantReferenceScreen'

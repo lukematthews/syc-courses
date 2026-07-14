@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "packId": "sandringham-yacht-club-2025-2028",
+  "assetNamespace": "syc",
+  "name": "SYC Courses",
+  "shortName": "SYC",
+  "organiser": "Sandringham Yacht Club",
+  "version": "2025-2028",
+  "source": {
+    "type": "official-course-booklet",
+    "title": "SYC Courses 2025-2028"
+  },
+  "courseKinds": [
+    "fixed",
+    "laid"
+  ],
+  "navigation": {
+    "startLineMarkIds": [
+      "syc-tower",
+      "syc-4"
+    ],
+    "finishLineMarkIds": [
+      "syc-tower",
+      "syc-4"
+    ],
+    "startFinishMarkId": "syc-4"
+  },
+  "buildSources": {
+    "fixedCourses": "source/extracted-courses.json",
+    "laidCourses": "source/extracted-laid-courses.json",
+    "marks": "src/data/marks.ts",
+    "courseCharts": "public/course-charts/syc"
+  }
+}

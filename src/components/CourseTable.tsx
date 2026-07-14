@@ -1,7 +1,6 @@
 import { Fragment, useState } from 'react'
 import { MarkBearingInlinePanel } from './MarkBearingInlinePanel'
-import type { CourseRow } from '../data/courses'
-import { findMarkByName } from '../data/marks'
+import { findMarkByName, type CourseRow } from '../data/bundledCoursePack'
 
 type CourseTableProps = {
   rows: CourseRow[]

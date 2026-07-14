@@ -1,6 +1,6 @@
 import { CourseTable } from '../components/CourseTable'
 import { PennantStrip } from '../components/PennantStrip'
-import type { Course } from '../data/courses'
+import type { Course } from '../data/bundledCoursePack'
 
 type CourseDetailScreenProps = {
   course: Course

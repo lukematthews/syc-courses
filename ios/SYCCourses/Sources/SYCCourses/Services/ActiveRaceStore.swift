@@ -2,10 +2,11 @@ import CoreLocation
 import Foundation
 
 final class ActiveRaceStore: ObservableObject {
-    @Published private(set) var activeCourseNumber: Int?
+    @Published private(set) var activeCourseID: String?
     @Published private(set) var activeMarkID: String?
 
-    private let courseNumberKey = "activeRaceCourseNumber"
+    private let courseIDKey = "activeRaceCourseID"
+    private let legacyCourseNumberKey = "activeRaceCourseNumber"
     private let markIDKey = "activeRaceMarkID"
     private let defaults: UserDefaults
     private let marks: [Mark]
@@ -15,11 +16,18 @@ final class ActiveRaceStore: ObservableObject {
         self.defaults = defaults
         self.marks = marks
         self.fixedCourses = fixedCourses
-        activeCourseNumber = defaults.object(forKey: courseNumberKey) as? Int
+        activeCourseID = defaults.string(forKey: courseIDKey)
+        if activeCourseID == nil,
+           let legacyNumber = defaults.object(forKey: legacyCourseNumberKey) as? Int,
+           let migratedCourse = fixedCourses.first(where: { $0.courseNumber == legacyNumber }) {
+            activeCourseID = migratedCourse.id
+            defaults.set(migratedCourse.id, forKey: courseIDKey)
+            defaults.removeObject(forKey: legacyCourseNumberKey)
+        }
         activeMarkID = defaults.string(forKey: markIDKey)
 
         if activeCourse == nil {
-            activeCourseNumber = nil
+            activeCourseID = nil
             activeMarkID = nil
         } else if activeMark == nil {
             activeMarkID = courseMarks.first?.id
@@ -27,8 +35,8 @@ final class ActiveRaceStore: ObservableObject {
     }
 
     var activeCourse: Course? {
-        guard let activeCourseNumber else { return nil }
-        return fixedCourses.first { $0.courseNumber == activeCourseNumber }
+        guard let activeCourseID else { return nil }
+        return fixedCourses.first { $0.id == activeCourseID }
     }
 
     var courseMarks: [Mark] {
@@ -62,7 +70,7 @@ final class ActiveRaceStore: ObservableObject {
 
     func setActiveCourse(_ course: Course) {
         guard !course.isLaidMarkCourse else { return }
-        activeCourseNumber = course.courseNumber
+        activeCourseID = course.id
         activeMarkID = ActiveRaceCourseBuilder.navigationMarks(for: course, marks: marks).first?.id
         persist()
     }
@@ -87,17 +95,18 @@ final class ActiveRaceStore: ObservableObject {
     }
 
     func clearActiveCourse() {
-        activeCourseNumber = nil
+        activeCourseID = nil
         activeMarkID = nil
-        defaults.removeObject(forKey: courseNumberKey)
+        defaults.removeObject(forKey: courseIDKey)
+        defaults.removeObject(forKey: legacyCourseNumberKey)
         defaults.removeObject(forKey: markIDKey)
     }
 
     private func persist() {
-        if let activeCourseNumber {
-            defaults.set(activeCourseNumber, forKey: courseNumberKey)
+        if let activeCourseID {
+            defaults.set(activeCourseID, forKey: courseIDKey)
         } else {
-            defaults.removeObject(forKey: courseNumberKey)
+            defaults.removeObject(forKey: courseIDKey)
         }
 
         if let activeMarkID {
@@ -118,7 +127,7 @@ enum ActiveRaceCourseBuilder {
 
     static func courseLineMarks(for course: Course, marks: [Mark] = CourseDataLoader.marks()) -> [Mark] {
         var lineMarks: [Mark] = []
-        if let start = CourseDataLoader.findMark(named: "SYC 4", in: marks) {
+        if let start = CourseDataLoader.startFinishMark(in: marks) {
             lineMarks.append(start)
         }
 
@@ -135,7 +144,7 @@ enum ActiveRaceCourseBuilder {
 
     private static func resolvedMark(for name: String, marks: [Mark]) -> Mark? {
         if name.normalizedCourseMarkName == "start" || name.normalizedCourseMarkName == "finish" {
-            return CourseDataLoader.findMark(named: "SYC 4", in: marks)
+            return CourseDataLoader.startFinishMark(in: marks)
         }
         return CourseDataLoader.findMark(named: name, in: marks)
     }
@@ -149,7 +158,7 @@ extension Mark {
 
 extension Course {
     var isLaidMarkCourse: Bool {
-        courseNumber >= 80
+        kind == .laid
     }
 }
 

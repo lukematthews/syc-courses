@@ -1,4 +1,4 @@
-import type { Mark } from '../data/marks'
+import type { Mark } from '../data/bundledCoursePack'
 
 type MarkListProps = {
   marks: Mark[]

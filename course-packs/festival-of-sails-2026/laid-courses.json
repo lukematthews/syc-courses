@@ -1,0 +1,167 @@
+[
+  {
+    "courseNumber": 1,
+    "route": "Windward/Leeward Course 1",
+    "passInstruction": "Race area, bearing, distances, and all coordinates are race-day values.",
+    "rows": [
+      {
+        "mark": "Windward/Leeward Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Mark 1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Offset Mark",
+        "side": "port-if-laid",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Windward/Leeward Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "/course-charts/festival-of-sails-2026/windward-leeward-courses.png",
+    "chartAlt": "Windward/leeward Laid Course diagram and course key extracted from Festival of Sails 2026 Sailing Instructions PDF page 27.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 27,
+    "comparableCourseNote": "Signal: 1. Dynamic marks and lines require race-day confirmation."
+  },
+  {
+    "courseNumber": 2,
+    "route": "Windward/Leeward Course 2",
+    "passInstruction": "Race area, bearing, distances, and all coordinates are race-day values.",
+    "rows": [
+      {
+        "mark": "Windward/Leeward Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Mark 1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Offset Mark",
+        "side": "port-if-laid",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Windward/Leeward Gate",
+        "side": "either-or-port-if-single",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Mark 1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Offset Mark",
+        "side": "port-if-laid",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Windward/Leeward Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "/course-charts/festival-of-sails-2026/windward-leeward-courses.png",
+    "chartAlt": "Windward/leeward Laid Course diagram and course key extracted from Festival of Sails 2026 Sailing Instructions PDF page 27.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 27,
+    "comparableCourseNote": "Signal: 2. Dynamic marks and lines require race-day confirmation."
+  },
+  {
+    "courseNumber": 3,
+    "route": "Windward/Leeward Course 3",
+    "passInstruction": "Race area, bearing, distances, and all coordinates are race-day values.",
+    "rows": [
+      {
+        "mark": "Windward/Leeward Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Mark 1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Offset Mark",
+        "side": "port-if-laid",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Windward/Leeward Gate",
+        "side": "either-or-port-if-single",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Mark 1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Offset Mark",
+        "side": "port-if-laid",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Windward/Leeward Gate",
+        "side": "either-or-port-if-single",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Mark 1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Offset Mark",
+        "side": "port-if-laid",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Windward/Leeward Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "/course-charts/festival-of-sails-2026/windward-leeward-courses.png",
+    "chartAlt": "Windward/leeward Laid Course diagram and course key extracted from Festival of Sails 2026 Sailing Instructions PDF page 27.",
+    "dataStatus": "official-2026-si-draft-requires-race-day-verification",
+    "sourcePage": 27,
+    "comparableCourseNote": "Signal: 3. Dynamic marks and lines require race-day confirmation."
+  }
+]

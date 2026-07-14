@@ -141,6 +141,6 @@ struct ActiveCourseControlPanel: View {
     }
 
     private var isActiveCourse: Bool {
-        activeRaceStore.activeCourseNumber == course.courseNumber
+        activeRaceStore.activeCourseID == course.id
     }
 }

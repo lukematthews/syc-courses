@@ -1,0 +1,175 @@
+{
+  "packId": "festival-of-sails-2026",
+  "source": "2026 Festival of Sails Sailing Instructions",
+  "status": "draft-requires-manual-verification",
+  "images": [
+    {
+      "imageId": "festival-of-sails-2026/melbourne-start-area",
+      "path": "/course-charts/festival-of-sails-2026/melbourne-start-area.png",
+      "sourcePdfPage": 20,
+      "extraction": "largest embedded raster image",
+      "width": 1353,
+      "height": 790
+    },
+    {
+      "imageId": "festival-of-sails-2026/passage-melbourne-to-geelong",
+      "path": "/course-charts/festival-of-sails-2026/passage-melbourne-to-geelong.png",
+      "sourcePdfPage": 21,
+      "extraction": "largest embedded raster image",
+      "width": 1353,
+      "height": 739
+    },
+    {
+      "imageId": "festival-of-sails-2026/passage-melbourne-to-geelong-cat-6",
+      "path": "/course-charts/festival-of-sails-2026/passage-melbourne-to-geelong-cat-6.png",
+      "sourcePdfPage": 22,
+      "extraction": "largest embedded raster image",
+      "width": 1353,
+      "height": 745
+    },
+    {
+      "imageId": "festival-of-sails-2026/mornington-start-area",
+      "path": "/course-charts/festival-of-sails-2026/mornington-start-area.png",
+      "sourcePdfPage": 23,
+      "extraction": "largest embedded raster image",
+      "width": 932,
+      "height": 717
+    },
+    {
+      "imageId": "festival-of-sails-2026/passage-mornington-to-geelong",
+      "path": "/course-charts/festival-of-sails-2026/passage-mornington-to-geelong.png",
+      "sourcePdfPage": 25,
+      "extraction": "largest embedded raster image",
+      "width": 1353,
+      "height": 547
+    },
+    {
+      "imageId": "festival-of-sails-2026/windward-leeward-courses",
+      "path": "/course-charts/festival-of-sails-2026/windward-leeward-courses.png",
+      "sourcePdfPage": 27,
+      "extraction": "rendered vector crop including course key",
+      "width": 1353,
+      "height": 1878
+    },
+    {
+      "imageId": "festival-of-sails-2026/outer-harbour-marks",
+      "path": "/course-charts/festival-of-sails-2026/outer-harbour-marks.png",
+      "sourcePdfPage": 30,
+      "extraction": "largest embedded raster image",
+      "width": 1353,
+      "height": 909
+    },
+    {
+      "imageId": "festival-of-sails-2026/special-course-01",
+      "path": "/course-charts/festival-of-sails-2026/special-course-01.png",
+      "sourcePdfPage": 33,
+      "extraction": "largest embedded raster image",
+      "width": 2041,
+      "height": 1039
+    },
+    {
+      "imageId": "festival-of-sails-2026/special-course-02",
+      "path": "/course-charts/festival-of-sails-2026/special-course-02.png",
+      "sourcePdfPage": 35,
+      "extraction": "largest embedded raster image",
+      "width": 2044,
+      "height": 1062
+    },
+    {
+      "imageId": "festival-of-sails-2026/special-course-03",
+      "path": "/course-charts/festival-of-sails-2026/special-course-03.png",
+      "sourcePdfPage": 37,
+      "extraction": "largest embedded raster image",
+      "width": 2049,
+      "height": 881
+    },
+    {
+      "imageId": "festival-of-sails-2026/special-course-04",
+      "path": "/course-charts/festival-of-sails-2026/special-course-04.png",
+      "sourcePdfPage": 39,
+      "extraction": "largest embedded raster image",
+      "width": 2040,
+      "height": 914
+    },
+    {
+      "imageId": "festival-of-sails-2026/special-course-05",
+      "path": "/course-charts/festival-of-sails-2026/special-course-05.png",
+      "sourcePdfPage": 41,
+      "extraction": "largest embedded raster image",
+      "width": 1999,
+      "height": 1155
+    },
+    {
+      "imageId": "festival-of-sails-2026/special-course-06",
+      "path": "/course-charts/festival-of-sails-2026/special-course-06.png",
+      "sourcePdfPage": 43,
+      "extraction": "largest embedded raster image",
+      "width": 2016,
+      "height": 1285
+    },
+    {
+      "imageId": "festival-of-sails-2026/special-course-07",
+      "path": "/course-charts/festival-of-sails-2026/special-course-07.png",
+      "sourcePdfPage": 45,
+      "extraction": "largest embedded raster image",
+      "width": 2062,
+      "height": 1245
+    },
+    {
+      "imageId": "festival-of-sails-2026/special-course-08",
+      "path": "/course-charts/festival-of-sails-2026/special-course-08.png",
+      "sourcePdfPage": 47,
+      "extraction": "largest embedded raster image",
+      "width": 2029,
+      "height": 1174
+    },
+    {
+      "imageId": "festival-of-sails-2026/special-course-09",
+      "path": "/course-charts/festival-of-sails-2026/special-course-09.png",
+      "sourcePdfPage": 49,
+      "extraction": "largest embedded raster image",
+      "width": 2064,
+      "height": 1243
+    },
+    {
+      "imageId": "festival-of-sails-2026/special-course-11",
+      "path": "/course-charts/festival-of-sails-2026/special-course-11.png",
+      "sourcePdfPage": 51,
+      "extraction": "largest embedded raster image",
+      "width": 2038,
+      "height": 1220
+    },
+    {
+      "imageId": "festival-of-sails-2026/special-course-12",
+      "path": "/course-charts/festival-of-sails-2026/special-course-12.png",
+      "sourcePdfPage": 53,
+      "extraction": "largest embedded raster image",
+      "width": 2013,
+      "height": 1301
+    },
+    {
+      "imageId": "festival-of-sails-2026/special-course-13",
+      "path": "/course-charts/festival-of-sails-2026/special-course-13.png",
+      "sourcePdfPage": 55,
+      "extraction": "largest embedded raster image",
+      "width": 2094,
+      "height": 985
+    },
+    {
+      "imageId": "festival-of-sails-2026/special-course-14",
+      "path": "/course-charts/festival-of-sails-2026/special-course-14.png",
+      "sourcePdfPage": 57,
+      "extraction": "largest embedded raster image",
+      "width": 2077,
+      "height": 985
+    },
+    {
+      "imageId": "festival-of-sails-2026/start-areas",
+      "path": "/course-charts/festival-of-sails-2026/start-areas.png",
+      "sourcePdfPage": 58,
+      "extraction": "largest embedded raster image",
+      "width": 1740,
+      "height": 966
+    }
+  ]
+}

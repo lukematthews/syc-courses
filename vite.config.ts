@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import coursePack from './src/generated/course-pack/manifest.json'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -12,9 +13,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'pwa-icon.svg'],
       manifest: {
-        name: 'SYC Courses',
-        short_name: 'SYC Courses',
-        description: 'Offline race-day course reference for SYC sailors.',
+        name: coursePack.name,
+        short_name: coursePack.shortName,
+        description: `Offline race-day course reference for ${coursePack.organiser} sailors.`,
         display: 'standalone',
         orientation: 'portrait',
         start_url: '/',
@@ -32,6 +33,7 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,webp,ico,json}'],
+        maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
       },
       devOptions: {
         enabled: true,

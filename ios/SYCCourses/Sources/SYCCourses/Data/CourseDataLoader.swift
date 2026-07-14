@@ -1,16 +1,18 @@
 import Foundation
 
 enum CourseDataLoader {
+    static let bundledPack: CoursePack = load("course-pack")
+
     static func fixedCourses() -> [Course] {
-        load("fixed-courses")
+        load(resourceName(bundledPack.resources.fixedCourses))
     }
 
     static func laidCourses() -> [Course] {
-        load("laid-courses")
+        load(resourceName(bundledPack.resources.laidCourses))
     }
 
     static func marks() -> [Mark] {
-        load("marks")
+        load(resourceName(bundledPack.resources.marks))
     }
 
     static func findMark(named name: String, in marks: [Mark] = marks()) -> Mark? {
@@ -18,6 +20,22 @@ enum CourseDataLoader {
         return marks.first { mark in
             ([mark.name] + mark.aliases).contains { normalizeMarkName($0) == normalized }
         }
+    }
+
+    static func mark(id: String, in marks: [Mark] = marks()) -> Mark? {
+        marks.first { $0.id == id }
+    }
+
+    static func startLineMarks(in marks: [Mark] = marks()) -> [Mark] {
+        bundledPack.navigation.startLineMarkIds.compactMap { mark(id: $0, in: marks) }
+    }
+
+    static func finishLineMarks(in marks: [Mark] = marks()) -> [Mark] {
+        bundledPack.navigation.finishLineMarkIds.compactMap { mark(id: $0, in: marks) }
+    }
+
+    static func startFinishMark(in marks: [Mark] = marks()) -> Mark? {
+        mark(id: bundledPack.navigation.startFinishMarkId, in: marks)
     }
 
     private static func load<T: Decodable>(_ resource: String) -> T {
@@ -31,6 +49,10 @@ enum CourseDataLoader {
         } catch {
             fatalError("Could not decode \(resource).json: \(error)")
         }
+    }
+
+    private static func resourceName(_ value: String) -> String {
+        URL(fileURLWithPath: value).deletingPathExtension().lastPathComponent
     }
 
     private static func normalizeMarkName(_ value: String) -> String {

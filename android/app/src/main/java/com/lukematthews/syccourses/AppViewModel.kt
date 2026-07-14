@@ -29,8 +29,8 @@ class AppViewModel(application: Application) : AndroidViewModel(application), Lo
     private val _recording = MutableStateFlow(false)
     private val _currentTrack = MutableStateFlow<SavedRaceTrack?>(null)
     private val _recentTracks = MutableStateFlow(loadTracks())
-    private val _recents = MutableStateFlow(loadInts("recent_courses"))
-    private val _activeCourse = MutableStateFlow(prefs.getInt("active_course", -1).takeIf { it >= 0 })
+    private val _recents = MutableStateFlow(loadCourseIDs())
+    private val _activeCourse = MutableStateFlow(loadActiveCourseID())
     private val _activeMark = MutableStateFlow(prefs.getString("active_mark", null))
     private val _settings = MutableStateFlow(loadSettings())
     private val _lastOutputMessage = MutableStateFlow<String?>(null)
@@ -80,32 +80,32 @@ class AppViewModel(application: Application) : AndroidViewModel(application), Lo
         if (_recording.value) appendTrack(fix)
     }
 
-    fun recordRecent(courseNumber: Int) {
-        _recents.value = (listOf(courseNumber) + _recents.value.filterNot { it == courseNumber }).take(6)
-        saveInts("recent_courses", _recents.value)
+    fun recordRecent(course: Course) {
+        _recents.value = (listOf(course.id) + _recents.value.filterNot { it == course.id }).take(6)
+        saveStrings("recent_course_ids", _recents.value)
     }
 
-    fun clearRecents() { _recents.value = emptyList(); prefs.edit().remove("recent_courses").apply() }
+    fun clearRecents() { _recents.value = emptyList(); prefs.edit().remove("recent_course_ids").remove("recent_courses").apply() }
 
     fun activateCourse(course: Course) {
-        if (course.courseNumber >= 80) return
-        _activeCourse.value = course.courseNumber
+        if (course.kind == CourseKind.laid) return
+        _activeCourse.value = course.id
         _activeMark.value = course.rows.firstOrNull { it.mark.normalizedMarkName() !in setOf("start", "total") }?.mark
-        prefs.edit().putInt("active_course", course.courseNumber).putString("active_mark", _activeMark.value).apply()
+        prefs.edit().putString("active_course_id", course.id).remove("active_course").putString("active_mark", _activeMark.value).apply()
     }
 
     fun setActiveMark(name: String) { _activeMark.value = name; prefs.edit().putString("active_mark", name).apply() }
-    fun clearActiveCourse() { _activeCourse.value = null; _activeMark.value = null; prefs.edit().remove("active_course").remove("active_mark").apply() }
+    fun clearActiveCourse() { _activeCourse.value = null; _activeMark.value = null; prefs.edit().remove("active_course_id").remove("active_course").remove("active_mark").apply() }
 
-    fun activeCourseMarks(): List<Mark> = repository.course(_activeCourse.value ?: -1)?.rows
+    fun activeCourseMarks(): List<Mark> = _activeCourse.value?.let(repository::course)?.rows
         ?.filterNot { it.mark.normalizedMarkName() in setOf("start", "finish", "total", "sub-total", "subtotal") || it.side.equals("Pass", true) }
         ?.mapNotNull { repository.mark(it.mark) }
         .orEmpty()
 
     fun activeCourseLineMarks(): List<Mark> {
-        val course = repository.course(_activeCourse.value ?: -1) ?: return emptyList()
+        val course = _activeCourse.value?.let(repository::course) ?: return emptyList()
         val result = mutableListOf<Mark>()
-        repository.mark("SYC 4")?.let(result::add)
+        repository.startFinishMark()?.let(result::add)
         course.rows.filterNot { it.mark.normalizedMarkName() in setOf("total", "sub-total", "subtotal") || it.side.equals("Pass", true) }
             .mapNotNull { repository.mark(it.mark) }
             .forEach { if (result.lastOrNull()?.id != it.id) result += it }
@@ -188,8 +188,28 @@ class AppViewModel(application: Application) : AndroidViewModel(application), Lo
     private fun loadSettings() = prefs.getString("actisense", null)?.let { runCatching { json.decodeFromString<ActisenseSettings>(it) }.getOrNull() } ?: ActisenseSettings()
     private fun loadTracks() = prefs.getString("race_tracks", null)?.let { runCatching { json.decodeFromString<List<SavedRaceTrack>>(it) }.getOrNull() } ?: emptyList()
     private fun saveTracks() = prefs.edit().putString("race_tracks", json.encodeToString(_recentTracks.value)).apply()
-    private fun loadInts(key: String) = prefs.getString(key, "")!!.split(',').mapNotNull(String::toIntOrNull)
-    private fun saveInts(key: String, values: List<Int>) = prefs.edit().putString(key, values.joinToString(",")).apply()
+    private fun loadCourseIDs(): List<String> {
+        val stored = loadStrings("recent_course_ids")
+        if (stored.isNotEmpty()) return stored
+        val migrated = prefs.getString("recent_courses", "").orEmpty().split(',')
+            .mapNotNull(String::toIntOrNull).mapNotNull(repository::course).map(Course::id)
+        if (migrated.isNotEmpty()) {
+            saveStrings("recent_course_ids", migrated)
+            prefs.edit().remove("recent_courses").apply()
+        }
+        return migrated
+    }
+
+    private fun loadActiveCourseID(): String? {
+        prefs.getString("active_course_id", null)?.let { return it.takeIf { id -> repository.course(id) != null } }
+        val legacyNumber = prefs.getInt("active_course", -1)
+        return repository.course(legacyNumber)?.id?.also {
+            prefs.edit().putString("active_course_id", it).remove("active_course").apply()
+        }
+    }
+
+    private fun loadStrings(key: String) = prefs.getString(key, "").orEmpty().split(',').filter(String::isNotBlank)
+    private fun saveStrings(key: String, values: List<String>) = prefs.edit().putString(key, values.joinToString(",")).apply()
 
     override fun onCleared() { actisense?.disconnect(); locationManager.removeUpdates(this) }
 }

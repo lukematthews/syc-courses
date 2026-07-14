@@ -5,7 +5,7 @@ from pathlib import Path
 import fitz
 
 PDF_PATH = Path("source/SYC-2025-28-Course-Booklet_Rev_0.pdf")
-CHART_DIR = Path("public/course-charts")
+CHART_DIR = Path("public/course-charts/syc")
 OUT_JSON = Path("source/extracted-courses.json")
 
 
@@ -157,7 +157,7 @@ def extract_courses() -> list[dict]:
                     "passInstruction": pass_instruction,
                     "rows": rows,
                     "totalDistance": f"{total} nm" if total else "",
-                    "chartImage": f"/course-charts/{chart_name}",
+                    "chartImage": f"/course-charts/syc/{chart_name}",
                     "chartAlt": (
                         f"Course {course_number} chart cropped from SYC 2025-28 "
                         f"course booklet page {pno + 1}."

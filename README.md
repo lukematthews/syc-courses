@@ -61,16 +61,17 @@ Version 2.0 uses a small iOS app target at `ios/SYCCoursesApp/SYCCoursesApp.xcod
 the Swift package in `ios/SYCCourses`. Open the Xcode project, select the `SYCCoursesApp` scheme,
 and run it on an iPhone simulator or device.
 
-The native app is bundled for offline use. It reuses the web app data by processing these sources into
-Swift Package resources:
+The native app is bundled for offline use. Course Pack v1 selects one pack at build time and processes
+its sources into Swift Package resources:
 
 ```bash
 node scripts/build_ios_resources.mjs
 ```
 
-That command copies fixed courses from `source/extracted-courses.json`, laid courses from
-`source/extracted-laid-courses.json`, mark coordinates from `src/data/marks.ts`, chart PNGs from
-`public/course-charts`, and numeral pennant SVGs from `src/assets/pennants`.
+The selected pack and its source paths are declared under `course-packs/`. That command generates a
+runtime manifest, namespaced course identities, fixed and laid courses, mark coordinates, and chart
+assets. See [COURSE_PACKS.md](COURSE_PACKS.md) for the pack schema, selection file, and Android/web
+resource commands.
 
 To update course data or mark coordinates, update the existing web source files first, run the resource
 script, then rebuild the iOS app. To test offline use, install the app on a simulator/device, disable

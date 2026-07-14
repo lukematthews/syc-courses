@@ -1,7 +1,9 @@
 import Foundation
 
 struct Course: Codable, Identifiable, Hashable {
-    var id: Int { courseNumber }
+    let id: String
+    let packId: String
+    let kind: CourseKind
     let courseNumber: Int
     let route: String?
     let passInstruction: String
@@ -36,7 +38,7 @@ struct Mark: Codable, Identifiable, Hashable {
     let coordinatesStatus: String
 }
 
-enum CourseKind: String, CaseIterable, Identifiable {
+enum CourseKind: String, Codable, CaseIterable, Identifiable {
     case fixed
     case laid
 
@@ -48,6 +50,39 @@ enum CourseKind: String, CaseIterable, Identifiable {
         case .laid: "Laid Courses"
         }
     }
+}
+
+struct CoursePack: Codable, Hashable {
+    let schemaVersion: Int
+    let packId: String
+    let assetNamespace: String
+    let name: String
+    let shortName: String
+    let organiser: String
+    let version: String
+    let source: CoursePackSource
+    let courseKinds: [CourseKind]
+    let navigation: CoursePackNavigation
+    let resources: CoursePackResources
+}
+
+struct CoursePackSource: Codable, Hashable {
+    let type: String
+    let title: String
+    let url: String?
+}
+
+struct CoursePackNavigation: Codable, Hashable {
+    let startLineMarkIds: [String]
+    let finishLineMarkIds: [String]
+    let startFinishMarkId: String
+}
+
+struct CoursePackResources: Codable, Hashable {
+    let fixedCourses: String
+    let laidCourses: String
+    let marks: String
+    let courseCharts: String
 }
 
 struct BearingSnapshot: Equatable {
