@@ -273,8 +273,10 @@ struct StartAssistView: View {
         VStack(alignment: .leading, spacing: 5) {
             HStack(spacing: 10) {
                 Image(systemName: "scope")
-                Text(sourceSummary.statusMessage)
-                    .fontWeight(.semibold)
+                if let message = sourceSummary.statusMessage {
+                    Text(message)
+                        .fontWeight(.semibold)
+                }
                 if let lastUpdate = sourceSummary.lastUpdate {
                     Text(lastUpdate.formatted(date: .omitted, time: .standard))
                         .monospacedDigit()

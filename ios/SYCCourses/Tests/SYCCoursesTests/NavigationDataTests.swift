@@ -4,6 +4,33 @@ import XCTest
 
 @MainActor
 final class NavigationDataTests: XCTestCase {
+    func testDefaultIPhoneGPSDoesNotEmitSourceMessage() {
+        let defaults = UserDefaults(suiteName: "NavigationDataTests-\(UUID().uuidString)")!
+        let service = NavigationDataService(defaults: defaults)
+        let now = freshNMEADate()
+
+        let summary = service.sourceSummary(iPhoneFix: iPhoneFix(timestamp: now), now: now)
+
+        XCTAssertEqual(summary.activeSource, .iPhoneGPS)
+        XCTAssertNil(summary.statusMessage)
+    }
+
+    func testYDWGFactoryProfile() {
+        XCTAssertEqual(NMEAWiFiGateway.yachtDevicesYDWG02.defaultHost, "192.168.4.1")
+        XCTAssertEqual(NMEAWiFiGateway.yachtDevicesYDWG02.defaultPort, 1456)
+        XCTAssertEqual(NMEAWiFiGateway.yachtDevicesYDWG02.defaultProtocol, .tcp)
+    }
+
+    func testLegacyInputConfigMigratesToActisense() throws {
+        let legacyJSON = #"{"isEnabled":true,"host":"10.0.0.2","port":60002,"networkProtocol":"tcp","staleAfterSeconds":5}"#
+
+        let config = try JSONDecoder().decode(ActisenseInputConfig.self, from: Data(legacyJSON.utf8))
+
+        XCTAssertEqual(config.gateway, .actisenseW2K2)
+        XCTAssertEqual(config.host, "10.0.0.2")
+        XCTAssertEqual(config.port, 60002)
+    }
+
     func testRMCParsing() {
         let now = Date(timeIntervalSinceReferenceDate: 0)
         let update = NMEASentenceParser.parse("$GPRMC,092751.000,A,3756.8100,S,14459.4000,E,6.2,185.5,160626,,,A*00", now: now)
@@ -22,6 +49,15 @@ final class NavigationDataTests: XCTestCase {
         XCTAssertEqual(update?.fix?.longitude ?? 0, 144.99, accuracy: 0.00001)
         XCTAssertEqual(update?.fix?.validFix, true)
         XCTAssertEqual(update?.fix?.hdop, 0.9)
+    }
+
+    func testGLLParsingForYDWGRapidPosition() {
+        let now = Date(timeIntervalSinceReferenceDate: 0)
+        let update = NMEASentenceParser.parse("$GPGLL,3756.8100,S,14459.4000,E,092751.000,A,A*00", now: now)
+
+        XCTAssertEqual(update?.fix?.latitude ?? 0, -37.946833, accuracy: 0.00001)
+        XCTAssertEqual(update?.fix?.longitude ?? 0, 144.99, accuracy: 0.00001)
+        XCTAssertEqual(update?.fix?.validFix, true)
     }
 
     func testVTGParsing() {

@@ -3,13 +3,13 @@ import Network
 import OSLog
 
 @MainActor
-final class ActisenseW2K2Adapter: NavigationOutputAdapter {
+final class NMEAWiFiGatewayAdapter: NavigationOutputAdapter {
     private(set) var status: NavigationOutputStatus = .disconnected
     private(set) var diagnostics = NavigationOutputDiagnostics()
 
     private var settings: NavigationOutputSettings
     private var connection: NWConnection?
-    private let logger = Logger(subsystem: "SYCCourses", category: "ActisenseW2K2")
+    private let logger = Logger(subsystem: "SYCCourses", category: "NMEAWiFiGateway")
 
     init(settings: NavigationOutputSettings) {
         self.settings = settings
@@ -55,7 +55,7 @@ final class ActisenseW2K2Adapter: NavigationOutputAdapter {
                         self.status = .connected
                         self.diagnostics.isConnected = true
                         self.diagnostics.lastError = nil
-                        self.logger.info("Connected to W2K-2 at \(self.settings.host, privacy: .public):\(self.settings.port)")
+                        self.logger.info("Connected to NMEA Wi-Fi gateway at \(self.settings.host, privacy: .public):\(self.settings.port)")
                         if !didResume {
                             didResume = true
                             continuation.resume()
@@ -150,6 +150,6 @@ final class ActisenseW2K2Adapter: NavigationOutputAdapter {
         status = .error(message)
         diagnostics.isConnected = false
         diagnostics.lastError = message
-        logger.error("W2K-2 adapter error: \(message, privacy: .public)")
+        logger.error("NMEA Wi-Fi gateway adapter error: \(message, privacy: .public)")
     }
 }

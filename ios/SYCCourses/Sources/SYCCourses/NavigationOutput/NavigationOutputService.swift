@@ -32,7 +32,7 @@ final class NavigationOutputService: ObservableObject {
 
     init(
         defaults: UserDefaults = .standard,
-        adapterFactory: @MainActor @escaping (NavigationOutputSettings) -> NavigationOutputAdapter = { ActisenseW2K2Adapter(settings: $0) }
+        adapterFactory: @MainActor @escaping (NavigationOutputSettings) -> NavigationOutputAdapter = { NMEAWiFiGatewayAdapter(settings: $0) }
     ) {
         self.defaults = defaults
         self.adapterFactory = adapterFactory
@@ -41,7 +41,7 @@ final class NavigationOutputService: ObservableObject {
     }
 
     var canConnect: Bool {
-        settings.target == .actisenseW2K2 && settings.isConfigured
+        settings.target != .disabled && settings.isConfigured
     }
 
     var isConnected: Bool {
@@ -124,7 +124,7 @@ final class NavigationOutputService: ObservableObject {
 
     private func rebuildAdapter() {
         adapter?.disconnect()
-        guard settings.target == .actisenseW2K2 else {
+        guard settings.target != .disabled else {
             adapter = nil
             updateStatus(.notConfigured)
             diagnostics = NavigationOutputDiagnostics()

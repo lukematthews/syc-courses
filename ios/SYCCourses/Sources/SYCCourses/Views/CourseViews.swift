@@ -443,7 +443,7 @@ private struct NavigationOutputCoursePanel: View {
 
     private var statusText: String {
         if outputService.isSending {
-            "Sending to W2K-2"
+            "Sending to boat"
         } else if outputService.isConnected {
             "Navigation output connected"
         } else if outputService.settings.target == .disabled {
@@ -468,7 +468,9 @@ private struct NavigationOutputCoursePanel: View {
                 Text("Active waypoint: \(targetMark.name)")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
-                NavigationSourceStatusLine(summary: sourceSummary)
+                if sourceSummary.statusMessage != nil {
+                    NavigationSourceStatusLine(summary: sourceSummary)
+                }
             } else {
                 Text("No fixed mark waypoint is available for this course.")
                     .font(.subheadline)

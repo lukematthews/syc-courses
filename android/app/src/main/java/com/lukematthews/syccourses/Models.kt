@@ -40,6 +40,17 @@ data class CoastlineData(
 )
 
 @Serializable
+data class MarkHotspot(
+    val markId: String,
+    val x: Float,
+    val y: Float,
+    val labelLeft: Float? = null,
+    val labelTop: Float? = null,
+    val labelRight: Float? = null,
+    val labelBottom: Float? = null,
+)
+
+@Serializable
 data class TrackPoint(val latitude: Double, val longitude: Double, val timestampMillis: Long)
 
 @Serializable
@@ -72,7 +83,28 @@ enum class NavigationSource { PHONE_GPS, ACTISENSE }
 enum class NetworkProtocol { TCP, UDP }
 
 @Serializable
+enum class NmeaWifiGateway {
+    ACTISENSE_W2K2,
+    YACHT_DEVICES_YDWG_02;
+
+    val displayName: String
+        get() = when (this) {
+            ACTISENSE_W2K2 -> "Actisense W2K-2"
+            YACHT_DEVICES_YDWG_02 -> "Yacht Devices YDWG-02"
+        }
+
+    val defaultHost: String get() = "192.168.4.1"
+    val defaultPort: Int
+        get() = when (this) {
+            ACTISENSE_W2K2 -> 60001
+            YACHT_DEVICES_YDWG_02 -> 1456
+        }
+    val defaultProtocol: NetworkProtocol get() = NetworkProtocol.TCP
+}
+
+@Serializable
 data class ActisenseSettings(
+    val gateway: NmeaWifiGateway = NmeaWifiGateway.ACTISENSE_W2K2,
     val inputEnabled: Boolean = false,
     val outputEnabled: Boolean = false,
     val host: String = "192.168.4.1",

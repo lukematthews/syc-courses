@@ -15,7 +15,7 @@ final class ActisenseNMEAProvider: ObservableObject {
     private var lastSOG: Double?
     private var lastCOG: Double?
     private var lastHeading: Double?
-    private let logger = Logger(subsystem: "SYCCourses", category: "ActisenseNMEAInput")
+    private let logger = Logger(subsystem: "SYCCourses", category: "NMEAGatewayInput")
 
     init(config: ActisenseInputConfig = ActisenseInputConfig()) {
         self.config = config
@@ -157,7 +157,7 @@ final class ActisenseNMEAProvider: ObservableObject {
         switch state {
         case .ready:
             status = .connected
-            logger.info("Connected to Actisense NMEA input at \(self.config.host, privacy: .public):\(self.config.port)")
+            logger.info("Connected to \(self.config.gateway.label, privacy: .public) NMEA input at \(self.config.host, privacy: .public):\(self.config.port)")
         case .preparing, .setup, .waiting:
             status = .connecting
         case let .failed(error):
@@ -179,7 +179,6 @@ final class ActisenseNMEAProvider: ObservableObject {
     private func setError(_ message: String) {
         lastError = message
         status = .error(message)
-        logger.error("Actisense input error: \(message, privacy: .public)")
+        logger.error("NMEA gateway input error: \(message, privacy: .public)")
     }
 }
-

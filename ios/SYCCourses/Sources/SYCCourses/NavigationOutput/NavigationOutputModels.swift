@@ -3,6 +3,7 @@ import Foundation
 enum NavigationOutputTarget: String, CaseIterable, Codable, Identifiable {
     case disabled
     case actisenseW2K2
+    case yachtDevicesYDWG02
 
     var id: String { rawValue }
 
@@ -10,6 +11,22 @@ enum NavigationOutputTarget: String, CaseIterable, Codable, Identifiable {
         switch self {
         case .disabled: "Disabled"
         case .actisenseW2K2: "Actisense W2K-2"
+        case .yachtDevicesYDWG02: "Yacht Devices YDWG-02"
+        }
+    }
+
+    var gateway: NMEAWiFiGateway? {
+        switch self {
+        case .disabled: nil
+        case .actisenseW2K2: .actisenseW2K2
+        case .yachtDevicesYDWG02: .yachtDevicesYDWG02
+        }
+    }
+
+    init(gateway: NMEAWiFiGateway) {
+        switch gateway {
+        case .actisenseW2K2: self = .actisenseW2K2
+        case .yachtDevicesYDWG02: self = .yachtDevicesYDWG02
         }
     }
 }
@@ -110,4 +127,3 @@ enum NavigationOutputError: LocalizedError, Equatable {
         }
     }
 }
-

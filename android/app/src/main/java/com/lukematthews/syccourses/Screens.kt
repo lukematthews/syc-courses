@@ -9,6 +9,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -104,7 +105,7 @@ private fun HomeScreen(app: AppViewModel, nav: NavHostController) {
             item { HomeCard("Laid Courses", "${app.repository.laidCourses.size} courses", Icons.Default.ChangeHistory) { nav.navigate("courses/laid") } }
             item { HomeCard("Line Assist", "Start and finish line crossing", Icons.Default.Timer) { nav.navigate("line/start") } }
             item { HomeCard("Race Tracker", "Record and review your course", Icons.Default.Map) { nav.navigate("tracker") } }
-            item { HomeCard("Instruments", "Boat communication with Actisense W2K-2", Icons.Default.SettingsInputAntenna) { nav.navigate("instruments") } }
+            item { HomeCard("Instruments", "Boat communication over an NMEA Wi-Fi gateway", Icons.Default.SettingsInputAntenna) { nav.navigate("instruments") } }
             if (recentNumbers.isNotEmpty()) {
                 item { SectionHeader("Recently Viewed", "Clear…", app::clearRecents) }
                 items(recentNumbers.mapNotNull(app.repository::course)) { CourseRow(it) { nav.navigate("course/${it.courseNumber}") } }
@@ -341,9 +342,10 @@ private fun NavigationOutputPanel(app: AppViewModel, course: Course) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Row { Icon(if (connected) Icons.Default.SettingsInputAntenna else Icons.Default.PortableWifiOff, null, tint = if (connected) Color(0xFF2E7D32) else Color.Gray); Spacer(Modifier.width(8.dp)); Text(if (connected) "Navigation output connected" else if (!settings.outputEnabled) "Navigation output disabled" else "Navigation output unavailable", fontWeight = FontWeight.SemiBold) }
             Text(target?.let { "Active waypoint: ${it.name}" } ?: "No fixed mark waypoint is available for this course.", color = Color.Gray)
-            if (target != null) Text(if (fix == null) "Current GPS position is needed before output can be sent." else if (fix.source == NavigationSource.ACTISENSE) "Source: NMEA2000" else "Source: Android GPS", color = Color.Gray)
+            if (target != null && fix == null) Text("Current GPS position is needed before output can be sent.", color = Color.Gray)
+            if (target != null && fix?.source == NavigationSource.ACTISENSE) Text("Using NMEA 2000 gateway", color = Color.Gray)
             message?.let { Text(it, color = if (it.startsWith("Sent")) Teal else Color.Red) }
-            Button({ target?.let { mark -> scope.launch { val result = app.sendWaypoint(mark); message = if (result.isSuccess) "Sent to W2K-2" else result.exceptionOrNull()?.localizedMessage } } }, Modifier.fillMaxWidth(), enabled = connected && target != null && fix != null) { Icon(Icons.AutoMirrored.Filled.Send, null); Text(" Send to Boat") }
+            Button({ target?.let { mark -> scope.launch { val result = app.sendWaypoint(mark); message = if (result.isSuccess) "Sent to boat" else result.exceptionOrNull()?.localizedMessage } } }, Modifier.fillMaxWidth(), enabled = connected && target != null && fix != null) { Icon(Icons.AutoMirrored.Filled.Send, null); Text(" Send to Boat") }
         }
     }
 }
@@ -406,7 +408,8 @@ private fun QuickBearingScreen(app: AppViewModel, nav: NavHostController) {
     val activeMark = activeMarks.firstOrNull { it.name == activeMarkName || it.id == activeMarkName }
     ScreenScaffold("Quick Bearing", { nav.popBackStack() }, actions = { IconButton(app::startLocation) { Icon(Icons.Default.Refresh, "Refresh position") } }) { padding ->
         LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            item { Text(if (fix?.source == NavigationSource.ACTISENSE) "Source: NMEA2000" else if (fix != null) "Source: Android GPS" else "No valid position", color = if (fix == null) Color.Red else Teal) }
+            if (fix?.source == NavigationSource.ACTISENSE) item { Text("Using NMEA 2000 gateway", color = Teal) }
+            else if (fix == null) item { Text("No valid position", color = Color.Red) }
             item {
                 Text("Approximate Mark Locations", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Navy)
                 Spacer(Modifier.height(8.dp))
@@ -454,7 +457,8 @@ private fun MarkDetailScreen(app: AppViewModel, nav: NavHostController, mark: Ma
     ScreenScaffold(mark.name, { nav.popBackStack() }) { padding ->
         LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
             mark.description?.let { item { Text(it, color = Color.Gray) } }
-            item { Text(if (fix?.source == NavigationSource.ACTISENSE) "Source: NMEA2000" else if (fix != null) "Source: Android GPS" else "No valid position", color = if (fix == null) Color.Red else Teal, fontWeight = FontWeight.SemiBold) }
+            if (fix?.source == NavigationSource.ACTISENSE) item { Text("Using NMEA 2000 gateway", color = Teal, fontWeight = FontWeight.SemiBold) }
+            else if (fix == null) item { Text("No valid position", color = Color.Red, fontWeight = FontWeight.SemiBold) }
             if (snapshot != null) {
                 if (snapshot.distanceNm > 100) item { Card(colors = CardDefaults.cardColors(containerColor = Color(0xFFFFE0B2))) { Column(Modifier.padding(16.dp)) { Text("Location looks far from SYC", fontWeight = FontWeight.Bold); Text("Current location: %.5f, %.5f".format(fix.latitude, fix.longitude)); Text("Set the emulator or device location near Sandringham for race-day distances.", color = Color.Gray) } } }
                 item { MetricCard("Bearing", "%03.0f° T".format(snapshot.bearingTrue)) }
@@ -482,26 +486,6 @@ private fun FinishOptionsScreen(app: AppViewModel, nav: NavHostController) {
     }
 }
 
-private data class MarkHotspot(val markId: String, val x: Float, val y: Float)
-
-private val markHotspots = listOf(
-    MarkHotspot("rmys-g", .596f, .135f),
-    MarkHotspot("r3", .592f, .308f),
-    MarkHotspot("r2", .575f, .432f),
-    MarkHotspot("syc-7", .817f, .535f),
-    MarkHotspot("syc-3", .840f, .567f),
-    MarkHotspot("syc-6", .642f, .604f),
-    MarkHotspot("syc-2", .721f, .604f),
-    MarkHotspot("syc-4", .831f, .617f),
-    MarkHotspot("syc-1", .802f, .703f),
-    MarkHotspot("syc-5", .751f, .789f),
-    MarkHotspot("spoil-ground", .286f, .833f),
-    MarkHotspot("t2", .485f, .867f),
-    MarkHotspot("t1", .509f, .867f),
-    MarkHotspot("centre-m1", .265f, .940f),
-    MarkHotspot("carrum-no2", .922f, .935f),
-)
-
 @Composable
 private fun MarkLocationChart(app: AppViewModel, onSelect: (Mark) -> Unit) {
     val context = LocalContext.current
@@ -517,6 +501,7 @@ private fun MarkLocationChart(app: AppViewModel, onSelect: (Mark) -> Unit) {
     }
     val activeLineIds = remember(activeCourseNumber) { app.activeCourseLineMarks().map { it.id } }
     val activeMarkId = remember(activeMarkName) { activeMarkName?.let { app.repository.mark(it)?.id } }
+    val markHotspots = app.repository.markHotspots
 
     if (image == null) {
         Text("Mark map unavailable", color = Color.Gray)
@@ -528,7 +513,32 @@ private fun MarkLocationChart(app: AppViewModel, onSelect: (Mark) -> Unit) {
             .fillMaxWidth()
             .aspectRatio(1215f / 1680f)
             .background(Color.White, RoundedCornerShape(8.dp))
-            .border(1.dp, Color(0xFFD7DEE3), RoundedCornerShape(8.dp)),
+            .border(1.dp, Color(0xFFD7DEE3), RoundedCornerShape(8.dp))
+            .pointerInput(markHotspots) {
+                detectTapGestures { tap ->
+                    val labelMatch = markHotspots.firstOrNull { hotspot ->
+                        val left = hotspot.labelLeft ?: return@firstOrNull false
+                        val top = hotspot.labelTop ?: return@firstOrNull false
+                        val right = hotspot.labelRight ?: return@firstOrNull false
+                        val bottom = hotspot.labelBottom ?: return@firstOrNull false
+                        tap.x in (left * size.width.toFloat())..(right * size.width.toFloat()) &&
+                            tap.y in (top * size.height.toFloat())..(bottom * size.height.toFloat())
+                    }
+                    val selected = labelMatch ?: markHotspots
+                        .map { hotspot ->
+                            hotspot to kotlin.math.hypot(
+                                tap.x - hotspot.x * size.width.toFloat(),
+                                tap.y - hotspot.y * size.height.toFloat(),
+                            )
+                        }
+                        .minByOrNull { it.second }
+                        ?.takeIf { it.second <= 36.dp.toPx() }
+                        ?.first
+                    selected?.let { hotspot ->
+                        app.repository.markById(hotspot.markId)?.let(onSelect)
+                    }
+                }
+            },
     ) {
         Image(
             bitmap = image.asImageBitmap(),
@@ -555,8 +565,7 @@ private fun MarkLocationChart(app: AppViewModel, onSelect: (Mark) -> Unit) {
             Box(
                 modifier = Modifier
                     .offset(x = maxWidth * hotspot.x - 22.dp, y = maxHeight * hotspot.y - 22.dp)
-                    .size(44.dp)
-                    .clickable { onSelect(mark) },
+                    .size(44.dp),
                 contentAlignment = Alignment.Center,
             ) {
                 Box(
@@ -668,10 +677,10 @@ private fun LineAssistScreen(app: AppViewModel, nav: NavHostController, initialM
     val startTime = gunTimeMillis + offsetMinutes * 60_000L
     val timeToStart = (startTime - now) / 1000.0
     val timeToBurn = result.secondsToLine?.let { timeToStart - it }
-    val sourceText = when {
-        fix?.source == NavigationSource.ACTISENSE -> "Source: NMEA2000"
-        fix != null -> "Source: Android GPS"
-        settings.inputEnabled && actisenseFix != null -> "Actisense stale — no valid position"
+    val sourceText: String? = when {
+        fix?.source == NavigationSource.ACTISENSE -> "NMEA 2000 gateway"
+        fix != null -> null
+        settings.inputEnabled && actisenseFix != null -> "${settings.gateway.displayName} stale — no valid position"
         else -> "No valid position"
     }
     val lcd = Color(0xFFADCA9B)
@@ -821,7 +830,15 @@ private fun LineAssistScreen(app: AppViewModel, nav: NavHostController, initialM
             }
             item {
                 Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
-                    Row { Icon(Icons.Default.GpsFixed, null, tint = secondary); Spacer(Modifier.width(10.dp)); Text(sourceText, color = secondary, fontWeight = FontWeight.SemiBold); fix?.let { Text("  ${formatClock(it.timestampMillis)}", color = secondary) } }
+                    Row {
+                        Icon(Icons.Default.GpsFixed, null, tint = secondary)
+                        Spacer(Modifier.width(10.dp))
+                        sourceText?.let {
+                            Text(it, color = secondary, fontWeight = FontWeight.SemiBold)
+                            Spacer(Modifier.width(10.dp))
+                        }
+                        fix?.let { Text(formatClock(it.timestampMillis), color = secondary) }
+                    }
                     Row { Icon(if (result.referencePoint == ReferencePoint.BOW) Icons.Default.Sailing else Icons.Default.LocationOn, null, tint = secondary); Spacer(Modifier.width(10.dp)); Text(referenceText, color = secondary, fontWeight = FontWeight.SemiBold) }
                     result.bowGainToLineMeters?.let { Text("Bow gain to line: %.1f m".format(it), color = secondary) }
                 }
@@ -1124,21 +1141,43 @@ private fun InstrumentsScreen(app: AppViewModel, nav: NavHostController) {
     var sidewaysOffset by remember { mutableStateOf(prefs.getFloat("line_gps_sideways", 0f).toString()) }
     var bearingSource by remember { mutableStateOf(runCatching { BearingSource.valueOf(prefs.getString("line_bearing_source", "COG")!!) }.getOrDefault(BearingSource.COG)) }
     fun persist(value: ActisenseSettings) { settings = value; app.updateSettings(value) }
+    fun selectGateway(gateway: NmeaWifiGateway) {
+        if (gateway == settings.gateway) return
+        persist(settings.copy(
+            gateway = gateway,
+            host = gateway.defaultHost,
+            port = gateway.defaultPort,
+            protocol = gateway.defaultProtocol,
+        ))
+        discoveryMessage = null
+    }
     ScreenScaffold("Instruments", { nav.popBackStack() }) { padding -> LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        item { Text("Configure one Actisense W2K-2, then choose input, output, or both.", color = Color.Gray) }
-        item { Text("Instrument display depends on W2K-2 configuration and downstream support.", color = Color.Gray, fontSize = 12.sp) }
-        item { Text("Actisense W2K-2", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Navy) }
+        item { Text("Configure an NMEA 2000 Wi-Fi gateway, then choose input, output, or both.", color = Color.Gray) }
+        item { Text("Instrument display depends on the gateway configuration and downstream support.", color = Color.Gray, fontSize = 12.sp) }
+        item { Text(settings.gateway.displayName, fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Navy) }
+        item {
+            Text("Gateway", fontWeight = FontWeight.SemiBold)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                NmeaWifiGateway.entries.forEach { gateway ->
+                    FilterChip(settings.gateway == gateway, { selectGateway(gateway) }, { Text(when (gateway) {
+                        NmeaWifiGateway.ACTISENSE_W2K2 -> "W2K-2"
+                        NmeaWifiGateway.YACHT_DEVICES_YDWG_02 -> "YDWG-02"
+                    }) })
+                }
+            }
+        }
         item { OutlinedTextField(settings.host, { persist(settings.copy(host = it)) }, Modifier.fillMaxWidth(), label = { Text("IP address") }) }
         item { OutlinedTextField(settings.port.toString(), { it.toIntOrNull()?.let { port -> persist(settings.copy(port = port)) } }, Modifier.fillMaxWidth(), label = { Text("Data server port") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)) }
         item { Row { FilterChip(settings.protocol == NetworkProtocol.TCP, { persist(settings.copy(protocol = NetworkProtocol.TCP)) }, { Text("TCP") }); Spacer(Modifier.width(8.dp)); FilterChip(settings.protocol == NetworkProtocol.UDP, { persist(settings.copy(protocol = NetworkProtocol.UDP)) }, { Text("UDP") }) } }
-        item { OutlinedButton({ scope.launch { discovering = true; discoveryMessage = "Scanning likely W2K-2 addresses and ports…"; val found = discoverActisense(settings.host, settings.port); discovering = false; if (found != null) { persist(settings.copy(host = found.first, port = found.second)); discoveryMessage = "Found Actisense at ${found.first}:${found.second}." } else discoveryMessage = "No Actisense data server found. Check Wi-Fi, IP address, and port." } }, enabled = !discovering) { Icon(Icons.Default.Search, null); Text(if (discovering) " Finding Actisense" else " Find Actisense") } }
+        item { OutlinedButton({ scope.launch { discovering = true; discoveryMessage = "Scanning likely gateway addresses and NMEA data ports…"; val found = discoverGateway(settings.gateway, settings.host, settings.port); discovering = false; if (found != null) { persist(settings.copy(host = found.first, port = found.second)); discoveryMessage = "Found a gateway at ${found.first}:${found.second}." } else discoveryMessage = "No NMEA data server found. Check Wi-Fi, IP address, and port." } }, enabled = !discovering) { Icon(Icons.Default.Search, null); Text(if (discovering) " Finding Gateway" else " Find Gateway") } }
         discoveryMessage?.let { item { Text(it, color = if (it.startsWith("No")) Color.Red else Color.Gray, fontSize = 12.sp) } }
         item { SettingSwitch("Use for boat data input", settings.inputEnabled) { persist(settings.copy(inputEnabled = it)) } }
         item { SettingSwitch("Send output to instruments", settings.outputEnabled) { persist(settings.copy(outputEnabled = it)) } }
         if (settings.outputEnabled) item { SettingSwitch("Auto-connect output", settings.autoConnectOutput) { persist(settings.copy(autoConnectOutput = it)) } }
-        item { Text("The data server port is the TCP/UDP port configured for NMEA 0183 streaming. Common setups use 60001.", color = Color.Gray, fontSize = 12.sp) }
-        item { Text("Quick Bearing and Line Assist prefer fresh Actisense position/SOG and fall back to Android GPS when it is stale.", color = Color.Gray, fontSize = 12.sp) }
-        item { HorizontalDivider(); Text("Actisense Status", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Navy) }
+        item { Text(if (settings.gateway == NmeaWifiGateway.YACHT_DEVICES_YDWG_02) "The YDWG-02 factory NMEA Server #1 profile uses TCP port 1456 and NMEA 0183." else "Use the TCP/UDP port configured on the W2K-2 for NMEA 0183 streaming. Common W2K setups use port 60001.", color = Color.Gray, fontSize = 12.sp) }
+        if (settings.gateway == NmeaWifiGateway.YACHT_DEVICES_YDWG_02 && settings.outputEnabled) item { Text("For output, configure the selected YDWG NMEA Server direction to allow data from the app (Both or Receive Only).", color = Color.Gray, fontSize = 12.sp) }
+        item { Text("Quick Bearing and Line Assist prefer fresh gateway position/SOG and fall back to Android GPS when it is stale.", color = Color.Gray, fontSize = 12.sp) }
+        item { HorizontalDivider(); Text("Gateway Status", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Navy) }
         item { Row { Text("Input", Modifier.weight(1f)); Text(if (settings.inputEnabled) status else "Disabled", fontWeight = FontWeight.SemiBold) } }
         item { Row { Text("Output", Modifier.weight(1f)); Text(if (settings.outputEnabled) status else "Disabled", fontWeight = FontWeight.SemiBold) } }
         if (status.startsWith("Error")) item { Text(status, color = Color.Red, fontSize = 12.sp) }
@@ -1175,9 +1214,13 @@ private fun InstrumentsScreen(app: AppViewModel, nav: NavHostController) {
 
 @Composable private fun DiagnosticRow(label: String, value: String) = Row(Modifier.fillMaxWidth()) { Text(label, Modifier.weight(1f)); Text(value, color = Color.Gray) }
 
-private suspend fun discoverActisense(currentHost: String, currentPort: Int): Pair<String, Int>? = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+private suspend fun discoverGateway(gateway: NmeaWifiGateway, currentHost: String, currentPort: Int): Pair<String, Int>? = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
     val hosts = listOf(currentHost, "192.168.4.1", "192.168.1.1", "192.168.0.1", "10.0.0.1").filter { it.isNotBlank() }.distinct()
-    val ports = listOf(currentPort, 60001, 60002, 60003).filter { it in 1..65535 }.distinct()
+    val devicePorts = when (gateway) {
+        NmeaWifiGateway.ACTISENSE_W2K2 -> listOf(60001, 60002, 60003)
+        NmeaWifiGateway.YACHT_DEVICES_YDWG_02 -> listOf(1456, 1457, 1458)
+    }
+    val ports = (listOf(currentPort) + devicePorts).filter { it in 1..65535 }.distinct()
     for (host in hosts) for (port in ports) runCatching { java.net.Socket().use { it.connect(java.net.InetSocketAddress(host, port), 750) } }.onSuccess { return@withContext host to port }
     null
 }

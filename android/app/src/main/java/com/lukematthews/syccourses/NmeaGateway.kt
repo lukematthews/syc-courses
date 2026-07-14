@@ -80,6 +80,7 @@ object NmeaParser {
         return when (fields.firstOrNull()?.takeLast(3)) {
             "RMC" -> parseRmc(fields, previous)
             "GGA" -> parseGga(fields, previous)
+            "GLL" -> parseGll(fields, previous)
             "VTG" -> previous?.copy(cogDegrees = fields.getOrNull(1)?.toDoubleOrNull(), sogKnots = fields.getOrNull(5)?.toDoubleOrNull(), timestampMillis = System.currentTimeMillis())
             "HDT", "HDM", "HDG" -> previous?.copy(headingDegrees = fields.getOrNull(1)?.toDoubleOrNull(), timestampMillis = System.currentTimeMillis())
             else -> null
@@ -96,6 +97,20 @@ object NmeaParser {
         val lat = coordinate(f.getOrNull(2), f.getOrNull(3)) ?: return null
         val lon = coordinate(f.getOrNull(4), f.getOrNull(5)) ?: return null
         return NavigationFix(lat, lon, old?.sogKnots, old?.cogDegrees, old?.headingDegrees, source = NavigationSource.ACTISENSE, hdop = f.getOrNull(8)?.toDoubleOrNull(), validFix = (f.getOrNull(6)?.toIntOrNull() ?: 0) > 0)
+    }
+
+    private fun parseGll(f: List<String>, old: NavigationFix?): NavigationFix? {
+        val lat = coordinate(f.getOrNull(1), f.getOrNull(2)) ?: return null
+        val lon = coordinate(f.getOrNull(3), f.getOrNull(4)) ?: return null
+        return NavigationFix(
+            lat,
+            lon,
+            old?.sogKnots,
+            old?.cogDegrees,
+            old?.headingDegrees,
+            source = NavigationSource.ACTISENSE,
+            validFix = f.getOrNull(6) == "A",
+        )
     }
 
     private fun coordinate(value: String?, hemisphere: String?): Double? {

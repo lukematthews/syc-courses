@@ -62,16 +62,16 @@ final class NavigationDataService: ObservableObject {
             available.append(.actisense)
         }
 
-        let message: String
+        let message: String?
         if active?.source == .actisense {
-            message = "Source: NMEA2000"
+            message = "Using \(actisenseConfig.gateway.label)"
         } else if actisenseConfig.isEnabled,
                   actisenseProvider.latestFix != nil,
                   !actisenseProvider.isFresh(now: now),
                   iPhoneFix?.isUsablePosition == true {
-            message = "Actisense stale - using iPhone GPS"
+            message = "\(actisenseConfig.gateway.label) stale - using iPhone GPS"
         } else if active?.source == .iPhoneGPS {
-            message = "Source: iPhone GPS"
+            message = nil
         } else {
             message = "No valid position"
         }
