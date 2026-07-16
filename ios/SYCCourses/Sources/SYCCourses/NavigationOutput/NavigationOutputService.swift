@@ -24,6 +24,7 @@ final class NavigationOutputService: ObservableObject {
     @Published private(set) var diagnostics = NavigationOutputDiagnostics()
     @Published private(set) var isSending = false
     @Published private(set) var lastError: String?
+    @Published private(set) var hasInstrumentAccess: Bool
 
     private let defaults: UserDefaults
     private var adapterFactory: @MainActor (NavigationOutputSettings) -> NavigationOutputAdapter
@@ -32,16 +33,18 @@ final class NavigationOutputService: ObservableObject {
 
     init(
         defaults: UserDefaults = .standard,
+        hasInstrumentAccess: Bool = false,
         adapterFactory: @MainActor @escaping (NavigationOutputSettings) -> NavigationOutputAdapter = { NMEAWiFiGatewayAdapter(settings: $0) }
     ) {
         self.defaults = defaults
+        self.hasInstrumentAccess = hasInstrumentAccess
         self.adapterFactory = adapterFactory
         settings = defaults.navigationOutputSettings
         rebuildAdapter()
     }
 
     var canConnect: Bool {
-        settings.target != .disabled && settings.isConfigured
+        hasInstrumentAccess && settings.target != .disabled && settings.isConfigured
     }
 
     var isConnected: Bool {
@@ -49,6 +52,10 @@ final class NavigationOutputService: ObservableObject {
     }
 
     func connect() async {
+        guard hasInstrumentAccess else {
+            updateStatus(.notConfigured)
+            return
+        }
         guard settings.target != .disabled else {
             updateStatus(.notConfigured)
             return
@@ -66,6 +73,20 @@ final class NavigationOutputService: ObservableObject {
     func disconnect() {
         adapter?.disconnect()
         syncAdapterState()
+    }
+
+    func setInstrumentAccess(_ hasAccess: Bool) {
+        guard hasAccess != hasInstrumentAccess else { return }
+        hasInstrumentAccess = hasAccess
+        if hasAccess {
+            rebuildAdapter()
+        } else {
+            adapter?.disconnect()
+            adapter = nil
+            diagnostics = NavigationOutputDiagnostics()
+            lastError = nil
+            updateStatus(.notConfigured)
+        }
     }
 
     func sendActiveWaypoint(_ waypoint: NavigationWaypointState?) async {
@@ -101,6 +122,7 @@ final class NavigationOutputService: ObservableObject {
     }
 
     private func send(_ waypoint: NavigationWaypointState?) async throws {
+        guard hasInstrumentAccess else { throw NavigationOutputError.purchaseRequired }
         guard settings.target != .disabled else { throw NavigationOutputError.disabled }
         guard settings.isConfigured else { throw NavigationOutputError.notConfigured }
         guard let waypoint else { throw NavigationOutputError.noActiveWaypoint }
@@ -124,6 +146,12 @@ final class NavigationOutputService: ObservableObject {
 
     private func rebuildAdapter() {
         adapter?.disconnect()
+        guard hasInstrumentAccess else {
+            adapter = nil
+            updateStatus(.notConfigured)
+            diagnostics = NavigationOutputDiagnostics()
+            return
+        }
         guard settings.target != .disabled else {
             adapter = nil
             updateStatus(.notConfigured)

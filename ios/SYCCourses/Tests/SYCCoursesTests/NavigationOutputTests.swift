@@ -4,6 +4,43 @@ import XCTest
 
 @MainActor
 final class NavigationOutputTests: XCTestCase {
+    func testPurchaseRequiredBlocksConnectionAndOutput() async {
+        let adapter = FakeNavigationOutputAdapter()
+        let defaults = UserDefaults(suiteName: "NavigationOutputTests-\(UUID().uuidString)")!
+        let service = NavigationOutputService(
+            defaults: defaults,
+            hasInstrumentAccess: false,
+            adapterFactory: { _ in adapter }
+        )
+        service.settings = NavigationOutputSettings(
+            target: .actisenseW2K2,
+            host: "192.168.4.1",
+            port: 60001,
+            networkProtocol: .tcp,
+            autoConnect: true
+        )
+
+        await service.connect()
+        await service.sendActiveWaypoint(sampleWaypoint())
+
+        XCTAssertFalse(service.canConnect)
+        XCTAssertEqual(service.status, .error(NavigationOutputError.purchaseRequired.localizedDescription))
+        XCTAssertEqual(service.lastError, NavigationOutputError.purchaseRequired.localizedDescription)
+        XCTAssertTrue(adapter.sentMessages.isEmpty)
+    }
+
+    func testRevokingAccessDisconnectsOutput() async {
+        let adapter = FakeNavigationOutputAdapter()
+        let service = makeService(adapter: adapter, target: .actisenseW2K2)
+
+        await service.connect()
+        service.setInstrumentAccess(false)
+
+        XCTAssertFalse(adapter.diagnostics.isConnected)
+        XCTAssertFalse(service.canConnect)
+        XCTAssertEqual(service.status, .notConfigured)
+    }
+
     func testNoOutputWhenDisabled() async {
         let adapter = FakeNavigationOutputAdapter()
         let service = makeService(adapter: adapter)
@@ -93,7 +130,11 @@ final class NavigationOutputTests: XCTestCase {
         port: Int = 60001
     ) -> NavigationOutputService {
         let defaults = UserDefaults(suiteName: "NavigationOutputTests-\(UUID().uuidString)")!
-        let service = NavigationOutputService(defaults: defaults) { _ in adapter }
+        let service = NavigationOutputService(
+            defaults: defaults,
+            hasInstrumentAccess: true,
+            adapterFactory: { _ in adapter }
+        )
         service.settings = NavigationOutputSettings(
             target: target,
             host: "192.168.4.1",

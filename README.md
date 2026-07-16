@@ -109,6 +109,18 @@ Manual test notes:
 8. Tap Send to Boat.
 9. Confirm boat instruments show expected navigation fields if supported by the W2K-2 configuration and instruments.
 
+### Instrument Integration purchase
+
+The iPhone app gates NMEA Wi-Fi gateway input and output behind a StoreKit 2 non-consumable product.
+Create the product in App Store Connect with the exact product ID
+`au.com.syc.courses.instrument-integration`. The App Store transaction is the entitlement source of
+truth; the app does not persist a separate purchased flag. The paywall supports purchase, pending and
+cancelled transactions, verified entitlement refresh, transaction updates, revocation, and restore.
+
+Normal iPhone GPS navigation remains available without this purchase. Both navigation services also
+enforce the entitlement, so gateway auto-connect, received gateway fixes, and navigation output cannot
+bypass the paywall.
+
 ### Actisense Boat Data Input v1
 
 The native app can also read NMEA 0183-style boat data from an Actisense/W2K-2 network stream.

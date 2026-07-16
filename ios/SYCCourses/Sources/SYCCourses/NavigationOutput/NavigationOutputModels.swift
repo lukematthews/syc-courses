@@ -103,6 +103,7 @@ struct NavigationOutputMessage: Equatable {
 }
 
 enum NavigationOutputError: LocalizedError, Equatable {
+    case purchaseRequired
     case disabled
     case notConfigured
     case notConnected
@@ -112,6 +113,8 @@ enum NavigationOutputError: LocalizedError, Equatable {
 
     var errorDescription: String? {
         switch self {
+        case .purchaseRequired:
+            "Instrument Integration is required to communicate with boat instruments."
         case .disabled:
             "Navigation output is disabled."
         case .notConfigured:

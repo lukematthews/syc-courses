@@ -4,6 +4,31 @@ import XCTest
 
 @MainActor
 final class NavigationDataTests: XCTestCase {
+    func testPurchaseRequiredPreventsGatewayFixFromBecomingActive() {
+        let provider = ActisenseNMEAProvider()
+        let defaults = UserDefaults(suiteName: "NavigationDataTests-\(UUID().uuidString)")!
+        let service = NavigationDataService(
+            defaults: defaults,
+            actisenseProvider: provider,
+            hasInstrumentAccess: false
+        )
+        service.actisenseConfig = ActisenseInputConfig(
+            isEnabled: true,
+            host: "192.168.4.1",
+            port: 60001,
+            networkProtocol: .tcp,
+            staleAfterSeconds: 5
+        )
+        let now = freshNMEADate()
+        provider.ingest(sentence: "$GPRMC,000000.000,A,3756.8100,S,14459.4000,E,7.0,180.0,160626,,,A*00", now: now)
+
+        let active = service.activeFix(iPhoneFix: iPhoneFix(timestamp: now), now: now)
+
+        XCTAssertFalse(service.canConnectActisense)
+        XCTAssertEqual(active?.source, .iPhoneGPS)
+        XCTAssertFalse(service.sourceSummary(iPhoneFix: nil, now: now).availableSources.contains(.actisense))
+    }
+
     func testDefaultIPhoneGPSDoesNotEmitSourceMessage() {
         let defaults = UserDefaults(suiteName: "NavigationDataTests-\(UUID().uuidString)")!
         let service = NavigationDataService(defaults: defaults)
@@ -131,7 +156,11 @@ final class NavigationDataTests: XCTestCase {
 
     private func makeService(provider: ActisenseNMEAProvider, staleAfterSeconds: TimeInterval = 5) -> NavigationDataService {
         let defaults = UserDefaults(suiteName: "NavigationDataTests-\(UUID().uuidString)")!
-        let service = NavigationDataService(defaults: defaults, actisenseProvider: provider)
+        let service = NavigationDataService(
+            defaults: defaults,
+            actisenseProvider: provider,
+            hasInstrumentAccess: true
+        )
         service.actisenseConfig = ActisenseInputConfig(
             isEnabled: true,
             host: "192.168.4.1",

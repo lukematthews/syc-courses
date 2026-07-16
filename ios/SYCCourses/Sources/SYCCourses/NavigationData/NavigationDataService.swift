@@ -10,12 +10,18 @@ final class NavigationDataService: ObservableObject {
         }
     }
     @Published private(set) var actisenseProvider: ActisenseNMEAProvider
+    @Published private(set) var hasInstrumentAccess: Bool
 
     private let defaults: UserDefaults
     private var cancellable: AnyCancellable?
 
-    init(defaults: UserDefaults = .standard, actisenseProvider: ActisenseNMEAProvider? = nil) {
+    init(
+        defaults: UserDefaults = .standard,
+        actisenseProvider: ActisenseNMEAProvider? = nil,
+        hasInstrumentAccess: Bool = false
+    ) {
         self.defaults = defaults
+        self.hasInstrumentAccess = hasInstrumentAccess
         let config = defaults.actisenseInputConfig
         actisenseConfig = config
         self.actisenseProvider = actisenseProvider ?? ActisenseNMEAProvider(config: config)
@@ -30,12 +36,20 @@ final class NavigationDataService: ObservableObject {
     }
 
     var canConnectActisense: Bool {
-        actisenseConfig.isConfigured
+        hasInstrumentAccess && actisenseConfig.isConfigured
     }
 
     func connectActisense() async {
-        guard actisenseConfig.isConfigured else { return }
+        guard hasInstrumentAccess, actisenseConfig.isConfigured else { return }
         await actisenseProvider.connect()
+    }
+
+    func setInstrumentAccess(_ hasAccess: Bool) {
+        guard hasAccess != hasInstrumentAccess else { return }
+        hasInstrumentAccess = hasAccess
+        if !hasAccess {
+            actisenseProvider.disconnect()
+        }
     }
 
     func disconnectActisense() {
@@ -43,7 +57,8 @@ final class NavigationDataService: ObservableObject {
     }
 
     func activeFix(iPhoneFix: NavigationFix?, now: Date = Date()) -> NavigationFix? {
-        if actisenseConfig.isEnabled,
+        if hasInstrumentAccess,
+           actisenseConfig.isEnabled,
            let actisenseFix = actisenseProvider.latestFix,
            actisenseFix.isUsablePosition,
            actisenseProvider.isFresh(now: now) {
@@ -58,14 +73,18 @@ final class NavigationDataService: ObservableObject {
         if iPhoneFix?.isUsablePosition == true {
             available.append(.iPhoneGPS)
         }
-        if let actisenseFix = actisenseProvider.latestFix, actisenseFix.isUsablePosition, actisenseProvider.isFresh(now: now) {
+        if hasInstrumentAccess,
+           let actisenseFix = actisenseProvider.latestFix,
+           actisenseFix.isUsablePosition,
+           actisenseProvider.isFresh(now: now) {
             available.append(.actisense)
         }
 
         let message: String?
         if active?.source == .actisense {
             message = "Using \(actisenseConfig.gateway.label)"
-        } else if actisenseConfig.isEnabled,
+        } else if hasInstrumentAccess,
+                  actisenseConfig.isEnabled,
                   actisenseProvider.latestFix != nil,
                   !actisenseProvider.isFresh(now: now),
                   iPhoneFix?.isUsablePosition == true {
