@@ -11,7 +11,7 @@ final class ActiveRaceStoreTests: XCTestCase {
         XCTAssertEqual(CourseDataLoader.startLineMarks().map(\.id), ["syc-tower", "syc-4"])
     }
 
-    func testCourseBuilderStartsAtSYC4AndFindsNavigationMarks() throws {
+    func testCourseBuilderStartsAtBundledPackLineAndFindsNavigationMarks() throws {
         let course = try XCTUnwrap(
             CourseDataLoader.fixedCourses().first { ActiveRaceCourseBuilder.navigationMarks(for: $0).count >= 2 }
         )

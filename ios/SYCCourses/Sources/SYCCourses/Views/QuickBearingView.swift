@@ -24,7 +24,7 @@ struct QuickBearingView: View {
                 }
             }
 
-            Section("Approximate Mark Locations") {
+            Section {
                 MarkLocationMapView(
                     marks: marks,
                     activeCourseMarkIDs: Set(activeRaceStore.courseMarks.map(\.id)),
@@ -133,23 +133,7 @@ private struct MarkLocationMapView: View {
     let activeMarkID: String?
     let onSelect: (Mark) -> Void
 
-    private let hotspots: [MarkLocationHotspot] = [
-        MarkLocationHotspot(markID: "rmys-g", x: 0.596, y: 0.135),
-        MarkLocationHotspot(markID: "r3", x: 0.592, y: 0.308),
-        MarkLocationHotspot(markID: "r2", x: 0.575, y: 0.432),
-        MarkLocationHotspot(markID: "syc-7", x: 0.817, y: 0.535),
-        MarkLocationHotspot(markID: "syc-3", x: 0.840, y: 0.567),
-        MarkLocationHotspot(markID: "syc-6", x: 0.642, y: 0.604),
-        MarkLocationHotspot(markID: "syc-2", x: 0.721, y: 0.604),
-        MarkLocationHotspot(markID: "syc-4", x: 0.831, y: 0.617),
-        MarkLocationHotspot(markID: "syc-1", x: 0.802, y: 0.703),
-        MarkLocationHotspot(markID: "syc-5", x: 0.751, y: 0.789),
-        MarkLocationHotspot(markID: "spoil-ground", x: 0.286, y: 0.833),
-        MarkLocationHotspot(markID: "t2", x: 0.485, y: 0.867),
-        MarkLocationHotspot(markID: "t1", x: 0.509, y: 0.867),
-        MarkLocationHotspot(markID: "centre-m1", x: 0.265, y: 0.940),
-        MarkLocationHotspot(markID: "carrum-no2", x: 0.922, y: 0.935),
-    ]
+    private let hotspots = MarkLocationHotspot.loadBundled()
 
     var body: some View {
         #if canImport(UIKit)
@@ -166,6 +150,21 @@ private struct MarkLocationMapView: View {
 
                         ForEach(hotspots) { hotspot in
                             if let mark = marks.first(where: { $0.id == hotspot.markID }) {
+                                if let labelFrame = hotspot.labelFrame(in: proxy.size) {
+                                    Button {
+                                        onSelect(mark)
+                                    } label: {
+                                        Color.clear
+                                            .frame(
+                                                width: max(44, labelFrame.width + 16),
+                                                height: max(44, labelFrame.height + 16)
+                                            )
+                                            .contentShape(Rectangle())
+                                    }
+                                    .buttonStyle(.plain)
+                                    .position(x: labelFrame.midX, y: labelFrame.midY)
+                                }
+
                                 Button {
                                     onSelect(mark)
                                 } label: {
@@ -227,12 +226,45 @@ private struct ActiveCourseHotspotLine: View {
     }
 }
 
-private struct MarkLocationHotspot: Identifiable {
+private struct MarkLocationHotspot: Identifiable, Decodable {
     let markID: String
     let x: CGFloat
     let y: CGFloat
+    let labelLeft: CGFloat?
+    let labelTop: CGFloat?
+    let labelRight: CGFloat?
+    let labelBottom: CGFloat?
 
     var id: String { markID }
+
+    private enum CodingKeys: String, CodingKey {
+        case markID = "markId"
+        case x
+        case y
+        case labelLeft
+        case labelTop
+        case labelRight
+        case labelBottom
+    }
+
+    func labelFrame(in size: CGSize) -> CGRect? {
+        guard let labelLeft, let labelTop, let labelRight, let labelBottom else { return nil }
+        return CGRect(
+            x: labelLeft * size.width,
+            y: labelTop * size.height,
+            width: (labelRight - labelLeft) * size.width,
+            height: (labelBottom - labelTop) * size.height
+        )
+    }
+
+    static func loadBundled() -> [MarkLocationHotspot] {
+        guard let url = Bundle.module.url(forResource: "mark-location-hotspots", withExtension: "json"),
+              let data = try? Data(contentsOf: url),
+              let hotspots = try? JSONDecoder().decode([MarkLocationHotspot].self, from: data) else {
+            return []
+        }
+        return hotspots
+    }
 }
 
 private struct MarkLocationButton: View {

@@ -411,8 +411,6 @@ private fun QuickBearingScreen(app: AppViewModel, nav: NavHostController) {
             if (fix?.source == NavigationSource.ACTISENSE) item { Text("Using NMEA 2000 gateway", color = Teal) }
             else if (fix == null) item { Text("No valid position", color = Color.Red) }
             item {
-                Text("Approximate Mark Locations", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Navy)
-                Spacer(Modifier.height(8.dp))
                 MarkLocationChart(app = app, onSelect = { nav.navigate("mark/${it.id}") })
             }
             if (activeMark != null) {
@@ -518,14 +516,23 @@ private fun MarkLocationChart(app: AppViewModel, onSelect: (Mark) -> Unit) {
             .border(1.dp, Color(0xFFD7DEE3), RoundedCornerShape(8.dp))
             .pointerInput(markHotspots) {
                 detectTapGestures { tap ->
-                    val labelMatch = markHotspots.firstOrNull { hotspot ->
-                        val left = hotspot.labelLeft ?: return@firstOrNull false
-                        val top = hotspot.labelTop ?: return@firstOrNull false
-                        val right = hotspot.labelRight ?: return@firstOrNull false
-                        val bottom = hotspot.labelBottom ?: return@firstOrNull false
-                        tap.x in (left * size.width.toFloat())..(right * size.width.toFloat()) &&
-                            tap.y in (top * size.height.toFloat())..(bottom * size.height.toFloat())
-                    }
+                    val labelPadding = 14.dp.toPx()
+                    val labelMatch = markHotspots.mapNotNull { hotspot ->
+                        val left = hotspot.labelLeft ?: return@mapNotNull null
+                        val top = hotspot.labelTop ?: return@mapNotNull null
+                        val right = hotspot.labelRight ?: return@mapNotNull null
+                        val bottom = hotspot.labelBottom ?: return@mapNotNull null
+                        val leftPx = left * size.width.toFloat()
+                        val topPx = top * size.height.toFloat()
+                        val rightPx = right * size.width.toFloat()
+                        val bottomPx = bottom * size.height.toFloat()
+                        if (tap.x !in (leftPx - labelPadding)..(rightPx + labelPadding) ||
+                            tap.y !in (topPx - labelPadding)..(bottomPx + labelPadding)) return@mapNotNull null
+                        hotspot to kotlin.math.hypot(
+                            tap.x - (leftPx + rightPx) / 2f,
+                            tap.y - (topPx + bottomPx) / 2f,
+                        )
+                    }.minByOrNull { it.second }?.first
                     val selected = labelMatch ?: markHotspots
                         .map { hotspot ->
                             hotspot to kotlin.math.hypot(
@@ -534,7 +541,7 @@ private fun MarkLocationChart(app: AppViewModel, onSelect: (Mark) -> Unit) {
                             )
                         }
                         .minByOrNull { it.second }
-                        ?.takeIf { it.second <= 36.dp.toPx() }
+                        ?.takeIf { it.second <= 28.dp.toPx() }
                         ?.first
                     selected?.let { hotspot ->
                         app.repository.markById(hotspot.markId)?.let(onSelect)

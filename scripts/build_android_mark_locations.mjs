@@ -1,18 +1,21 @@
 import { execFileSync } from 'node:child_process'
 import { readFile, unlink, writeFile } from 'node:fs/promises'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { loadBundledCoursePack } from './course_pack.mjs'
 
 // Requires rsvg-convert (librsvg) to rasterise the generated SVG without adding
 // a JavaScript image-rendering dependency to the application project.
 
 const width = 1215
 const height = 1680
-const marksUrl = new URL('../android/app/src/main/assets/marks.json', import.meta.url)
+const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const coastlineUrl = new URL('../android/app/src/main/assets/port-phillip-coastline.json', import.meta.url)
-const outputUrl = new URL('../android/app/src/main/assets/mark-locations.png', import.meta.url)
-const hotspotsUrl = new URL('../android/app/src/main/assets/mark-location-hotspots.json', import.meta.url)
+const outputUrl = new URL('../ios/SYCCourses/Sources/SYCCourses/Resources/mark-locations.png', import.meta.url)
+const hotspotsUrl = new URL('../ios/SYCCourses/Sources/SYCCourses/Resources/mark-location-hotspots.json', import.meta.url)
 const temporarySvgUrl = new URL('./.mark-locations.generated.svg', import.meta.url)
 
-const marks = JSON.parse(await readFile(marksUrl, 'utf8'))
+const marks = loadBundledCoursePack(root).marks
 const coastline = JSON.parse(await readFile(coastlineUrl, 'utf8'))
 
 const semiMajorAxis = 6_378_137

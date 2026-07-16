@@ -14,6 +14,7 @@ cp "$ios_resources/fixed-courses.json" "$android_main/assets/fixed-courses.json"
 cp "$ios_resources/laid-courses.json" "$android_main/assets/laid-courses.json"
 cp "$ios_resources/marks.json" "$android_main/assets/marks.json"
 cp "$ios_resources/mark-locations.png" "$android_main/assets/mark-locations.png"
+cp "$ios_resources/mark-location-hotspots.json" "$android_main/assets/mark-location-hotspots.json"
 cp "$ios_resources"/course-charts/"$pack_namespace"/*.png "$android_main/assets/course-charts/$pack_namespace/"
 cp "$ios_resources/app-icon.png" "$android_main/res/drawable/app_icon.png"
 

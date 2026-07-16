@@ -1,15 +1,14 @@
 {
   "schemaVersion": 1,
-  "packId": "festival-of-sails-2026",
-  "assetNamespace": "festival-of-sails-2026",
-  "name": "Festival of Sails 2026",
-  "shortName": "FoS 2026",
-  "organiser": "Royal Geelong Yacht Club",
-  "version": "2026-01-20-amendment-1",
+  "packId": "sandringham-yacht-club-2025-2028",
+  "assetNamespace": "syc",
+  "name": "SYC Courses",
+  "shortName": "SYC",
+  "organiser": "Sandringham Yacht Club",
+  "version": "2025-2028",
   "source": {
-    "type": "official-sailing-instructions",
-    "title": "2026 Festival of Sails Sailing Instructions (Amendment 1)",
-    "url": "https://www.topyacht.com.au/notice_brd/RGYC_FOS_26/2026FestivalofSailsSailingInstructions-Online.pdf"
+    "type": "official-course-booklet",
+    "title": "SYC Courses 2025-2028"
   },
   "courseKinds": [
     "fixed",
@@ -17,17 +16,19 @@
   ],
   "navigation": {
     "startLineMarkIds": [
-      "melbourne-start-by-fleet"
+      "syc-tower",
+      "syc-4"
     ],
     "finishLineMarkIds": [
-      "melbourne-start-by-fleet"
+      "syc-tower",
+      "syc-4"
     ],
-    "startFinishMarkId": "melbourne-start-by-fleet"
+    "startFinishMarkId": "syc-4"
   },
   "resources": {
     "fixedCourses": "fixed-courses.json",
     "laidCourses": "laid-courses.json",
     "marks": "marks.json",
-    "courseCharts": "/course-charts/festival-of-sails-2026"
+    "courseCharts": "/course-charts/syc"
   }
 }
