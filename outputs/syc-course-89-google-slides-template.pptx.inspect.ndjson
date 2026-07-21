@@ -1,0 +1,44 @@
+{"kind":"deck","id":"pr/rbtuz6","name":"Deck"}
+{"kind":"layout","layoutId":"489901a9-e51c-4bf8-b116-3aefa7dd2923","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"7c00398d-4367-4168-b5f1-2faf5f71b5d5","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/q50qpc","slide":1,"title":"Wind","textShapes":9}
+{"kind":"shape","id":"sh/mx4vutg3","slide":1,"name":"Lap 1 upwind","bbox":[208,89,10,721]}
+{"kind":"shape","id":"sh/90vup8fu","slide":1,"name":"Lap 1 top rounding","bbox":[116,51,102,41]}
+{"kind":"shape","id":"sh/8zmdw3y9","slide":1,"name":"Lap 1 downwind","bbox":[116,92,32,589]}
+{"kind":"shape","id":"sh/zatcjehs","slide":1,"name":"Lap 1 gate rounding","bbox":[117,681,59,33]}
+{"kind":"shape","id":"sh/y9kvqtg7","slide":1,"name":"Finish course downwind","bbox":[585,64,105,746]}
+{"kind":"shape","id":"sh/lwvulofy","slide":1,"name":"Finish course top rounding","bbox":[585,25,85,39]}
+{"kind":"shape","id":"sh/0b2dsjyd","slide":1,"name":"Finish course upwind","bbox":[670,64,0,465]}
+{"kind":"textbox","id":"sh/b6tcfehg","slide":1,"name":"Wind label","text":"Wind","textPreview":"Wind","textChars":4,"textLines":1,"bbox":[390,6,120,42]}
+{"kind":"shape","id":"sh/q5kvm9gb","slide":1,"name":"Wind arrow","bbox":[424,48,52,66]}
+{"kind":"shape","id":"sh/sfyd4jix","slide":1,"name":"Lap 1 down arrow","bbox":[121,304,22,22]}
+{"kind":"shape","id":"sh/dg7uxoji","slide":1,"name":"Lap 1 up arrow","bbox":[207,303,22,22]}
+{"kind":"shape","id":"sh/qtgv2907","slide":1,"name":"Finish down arrow","bbox":[609,304,22,22]}
+{"kind":"shape","id":"sh/rupcve1s","slide":1,"name":"Finish up arrow","bbox":[659,303,22,22]}
+{"kind":"shape","id":"sh/4ryt0zi1","slide":1,"name":"Finish bottom arrow","bbox":[677,786,26,28]}
+{"kind":"shape","id":"sh/5s7ut4jm","slide":1,"name":"Gate left arrow","bbox":[91,681,19,18]}
+{"kind":"shape","id":"sh/ipwby90v","slide":1,"name":"Gate right arrow","bbox":[188,681,19,18]}
+{"kind":"shape","id":"sh/3qpcre1g","slide":1,"name":"Mark 1 left","bbox":[185,63,26,26]}
+{"kind":"textbox","id":"sh/onidc3i5","slide":1,"name":"Mark 1 label left","text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[181,91,34,40]}
+{"kind":"shape","id":"sh/poru58zq","slide":1,"name":"Mark 2","bbox":[135,79,26,26]}
+{"kind":"textbox","id":"sh/xsnm94ny","slide":1,"name":"Mark 2 label","text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[131,108,34,40]}
+{"kind":"shape","id":"sh/crel0z6d","slide":1,"name":"Mark 4 left","bbox":[184,187,26,26]}
+{"kind":"textbox","id":"sh/bqlk7u5s","slide":1,"name":"Mark 4 label left","text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[180,216,34,40]}
+{"kind":"shape","id":"sh/apc3y9o7","slide":1,"name":"Gate left","bbox":[102,666,30,30]}
+{"kind":"shape","id":"sh/po3254nm","slide":1,"name":"Gate right","bbox":[161,666,30,30]}
+{"kind":"textbox","id":"sh/o3ulwz61","slide":1,"name":"Gate label","text":"Gate","textPreview":"Gate","textChars":4,"textLines":1,"bbox":[104,700,84,45]}
+{"kind":"shape","id":"sh/n2lk3u5g","slide":1,"name":"Mark 1 right","bbox":[611,63,26,26]}
+{"kind":"textbox","id":"sh/21c3upob","slide":1,"name":"Mark 1 label right","text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[607,88,34,40]}
+{"kind":"shape","id":"sh/10321knq","slide":1,"name":"Mark 4 right","bbox":[611,204,26,26]}
+{"kind":"textbox","id":"sh/0zulsf65","slide":1,"name":"Mark 4 label right","text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[607,229,34,40]}
+{"kind":"shape","id":"sh/q58j2l43","slide":1,"name":"Start line","bbox":[80,748,308,0]}
+{"kind":"shape","id":"sh/r6h0bql8","slide":1,"name":"Start outer mark","bbox":[65,733,30,30]}
+{"kind":"shape","id":"sh/s7q14vmt","slide":1,"name":"Start inner mark","bbox":[373,733,30,30]}
+{"kind":"textbox","id":"sh/d8jid03e","slide":1,"name":"Start label","text":"Start","textPreview":"Start","textChars":5,"textLines":1,"bbox":[55,760,96,44]}
+{"kind":"shape","id":"sh/i18zyl4r","slide":1,"name":"Finish line","bbox":[490,748,310,0]}
+{"kind":"shape","id":"sh/32h076lc","slide":1,"name":"Finish inner mark","bbox":[478,736,24,24]}
+{"kind":"shape","id":"sh/43qh0bmx","slide":1,"name":"Finish outer mark","bbox":[788,736,24,24]}
+{"kind":"textbox","id":"sh/54zi9g3i","slide":1,"name":"Finish label","text":"Finish","textPreview":"Finish","textChars":6,"textLines":1,"bbox":[698,760,105,44]}
+{"kind":"shape","id":"sh/udozu14v","slide":1,"name":"Start boat","bbox":[220,712,28,54]}
+{"kind":"shape","id":"sh/vex0365g","slide":1,"name":"Finish boat","bbox":[635,712,28,54]}
+{"kind":"notes","id":"nt/q50qpc","slide":1,"text":""}

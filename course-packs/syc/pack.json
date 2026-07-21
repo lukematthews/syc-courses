@@ -14,6 +14,10 @@
     "fixed",
     "laid"
   ],
+  "courseGroups": [
+    { "id": "fixed", "name": "Fixed Mark", "kind": "fixed" },
+    { "id": "laid", "name": "Laid Mark", "kind": "laid" }
+  ],
   "navigation": {
     "startLineMarkIds": [
       "syc-tower",
@@ -23,7 +27,27 @@
       "syc-tower",
       "syc-4"
     ],
-    "startFinishMarkId": "syc-4"
+    "startFinishMarkId": "syc-4",
+    "quickBearingMapViews": [
+      {
+        "id": "overview",
+        "name": "Overview"
+      },
+      {
+        "id": "syc",
+        "name": "SYC",
+        "fitMarkIds": [
+          "syc-1",
+          "syc-2",
+          "syc-3",
+          "syc-4",
+          "syc-5",
+          "syc-6",
+          "syc-7",
+          "syc-tower"
+        ]
+      }
+    ]
   },
   "buildSources": {
     "fixedCourses": "source/extracted-courses.json",

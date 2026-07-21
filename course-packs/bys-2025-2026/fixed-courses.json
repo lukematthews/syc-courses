@@ -1,0 +1,5538 @@
+[
+  {
+    "courseNumber": 1,
+    "route": "KBC - Club front (N, S, NW, SE)",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "8 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 8,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 2,
+    "route": "KBC - Club front (N, S, NW, SE)",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7.8 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 8,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 3,
+    "route": "KBC - Club front (N, S, NW, SE)",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "6.9 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 8,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 4,
+    "route": "KBC - Club front (N, S, NW, SE)",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "8.9 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 8,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 5,
+    "route": "KBC - Capel Sound (N, S, SW)",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7.1 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 8,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 6,
+    "route": "KBC - Capel Sound (N, S, SW, NE)",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.13",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "8.4 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 8,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 7,
+    "route": "KBC - Capel Sound (N, S, SW, SE)",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7.1 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 8,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 8,
+    "route": "KBC - Capel Sound (E, W)",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7.6 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 8,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 9,
+    "route": "KBC - Capel Sound (N, S, SW, NE)",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7.2 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 8,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 45,
+    "route": "KBC - Capel Sound (EW, NW, SW, NE)",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CS laid mark",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "8.8 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 8,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 46,
+    "route": "KBC - Capel Sound (EW, NW, SW, NE)",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CS laid mark",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "12.1 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 8,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 12,
+    "identitySuffix": "div-a",
+    "route": "Division A - N, S, NW, SE",
+    "groupId": "fixed-div-a",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10.2 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 9,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 12,
+    "identitySuffix": "div-b",
+    "route": "Division B - N, S, NW, SE",
+    "groupId": "fixed-div-b",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "8 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 9,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 13,
+    "identitySuffix": "div-a",
+    "route": "Division A - N, S, NW, SE",
+    "groupId": "fixed-div-a",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "9.8 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 9,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 13,
+    "identitySuffix": "div-b",
+    "route": "Division B - N, S, NW, SE",
+    "groupId": "fixed-div-b",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7.6 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 9,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 14,
+    "identitySuffix": "div-a",
+    "route": "Division A - N, S",
+    "groupId": "fixed-div-a",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.7",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10.8 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 9,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 14,
+    "identitySuffix": "div-b",
+    "route": "Division B - N, S",
+    "groupId": "fixed-div-b",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.7",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "6.4 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 9,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 15,
+    "identitySuffix": "div-a",
+    "route": "Division A - N, S, SW, NE",
+    "groupId": "fixed-div-a",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "9.8 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 9,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 15,
+    "identitySuffix": "div-b",
+    "route": "Division B - N, S, SW, NE",
+    "groupId": "fixed-div-b",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7.6 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 9,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 16,
+    "identitySuffix": "div-a",
+    "route": "Division A - E, W",
+    "groupId": "fixed-div-a",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "12 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 9,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 16,
+    "identitySuffix": "div-b",
+    "route": "Division B - E, W",
+    "groupId": "fixed-div-b",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "6.8 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 9,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 17,
+    "identitySuffix": "div-a",
+    "route": "Division A - N, S, SW, NE",
+    "groupId": "fixed-div-a",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "8.2 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 9,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 17,
+    "identitySuffix": "div-b",
+    "route": "Division B - N, S, SW, NE",
+    "groupId": "fixed-div-b",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "6.8 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 9,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 18,
+    "identitySuffix": "div-a",
+    "route": "Division A - N, S",
+    "groupId": "fixed-div-a",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.7",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "8.6 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 9,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 18,
+    "identitySuffix": "div-b",
+    "route": "Division B - N, S",
+    "groupId": "fixed-div-b",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.7",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "5.2 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 9,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 19,
+    "route": "KBC Spry - E, W",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.7",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.1",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.7",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.13",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.11",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "32.2 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 20,
+    "route": "KBC Spry - E, W",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.Light",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.13",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.13",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.7",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.1",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.2",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.6",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.8",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "29.3 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 21,
+    "route": "John Medley Trophy - to Queenscliff",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.8",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.6",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.4",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.2",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "PpeEyeLght",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Cut Outer Pile",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish at southern end of QCYC",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7.8 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 22,
+    "route": "William Buckley Trophy - from Queenscliff",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start at QCYC",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Cut Outer Pile",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "PpeEyeLght",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.2",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.6",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.8",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS0",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7.8 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 23,
+    "route": "Ross Crow - around the sands anti-clockwise",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.19",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.21",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R1",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYB",
+        "side": "port-passing-mark-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.Pile",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.7",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.6",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.5",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.3",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.1",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.2",
+        "side": "port-passing-mark-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.6",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.8",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "41.2 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 24,
+    "route": "Ross Crow - around the sands anti-clockwise",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.19",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "HovPile",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYB",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SymCh.Pile",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.Pile",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.7",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.6",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.5",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.3",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.1",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.2",
+        "side": "port-passing-mark-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.6",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.8",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "35.1 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 25,
+    "route": "Ross Crow - around the sands clockwise",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.8",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.6",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.4",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.2",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.1",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.3",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.2",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.5",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.6",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.7",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.Pile",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYB",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R1",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.21",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.19",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "37.7 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 26,
+    "route": "Ross Crow - around the sands clockwise",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.8",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.6",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.4",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.2",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.1",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.3",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.2",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.5",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.7",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.Pile",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SymCh.Pile",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYB",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "HovPile",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.19",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "33.4 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 27,
+    "route": "Pinto Long - east",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.19",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.21",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "AquaCult3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "AquaCult1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "AquaCult2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYB",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "MMFNW",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "MMFNE",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "MMFSE",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R1",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.21",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.21",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "59.7 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 28,
+    "route": "Pinto Short - east",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.19",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.21",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "AquaCult3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "AquaCult1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "AquaCult2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYB",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "MMFNW",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "MMFNE",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "MMFSE",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R1",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.21",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "48.6 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 29,
+    "route": "Pinto Long - west",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Old.SCh.6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CoCh.Light1",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CoCh.3",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CoCh.5",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CoCh.7",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.Pile",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "PrcGrgBnkLt",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.Pile",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.7",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.6",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.5",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.3",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.1",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "PpsEyeLght",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.1",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.2",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.6",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.8",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS0",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.13",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "50 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 30,
+    "route": "Pinto Short - west",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.7",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CoCh.Light1",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CoCh.3",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CoCh.5",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "CoCh.7",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.13",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.11",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.7",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.6",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.5",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.3",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "WCh.1",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "PpsEyeLght",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.2",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.6",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.8",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.13",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "44 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 31,
+    "route": "Figure 8, Spry, club front area",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.7",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.3",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.2",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.6",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.8",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS0",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.13",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "27 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 32,
+    "route": "Figure 8, Spry, club front east area",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.7",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.3",
+        "side": "port-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.2",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.6",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.8",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS0",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SCh.19",
+        "side": "starboard-radio-report",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "20 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 13,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 33,
+    "route": "Around sands navigation race",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "{ SCh.19 or WCh.1 }",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Virtual mark 38°10.000'S 144°49.000'E",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "{ SCh.19 or WCh.1 }",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "32 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 13,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 35,
+    "route": "Special course - refer to Official Notice Board",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Course published on Official Notice Board",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 13,
+    "comparableCourseNote": "Route is race-day data published on the Official Notice Board."
+  },
+  {
+    "courseNumber": 40,
+    "route": "Twilight - E, W short course",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "4.2 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 13,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 41,
+    "route": "Twilight - NW, SE club front",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS14",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7.1 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 13,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 42,
+    "route": "Twilight - N, S, E, W",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "6.0 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 13,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 43,
+    "route": "Twilight - E, W",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "starboard-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "5.2 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 13,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 44,
+    "route": "Twilight - N, S, E, W (OTB clash at BYS14)",
+    "groupId": "fixed-kbc",
+    "passInstruction": "Round or pass to port or starboard as shown. A passing mark is labelled in the table; radio-report marks require a position report.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS14",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "4.2 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 13,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 50,
+    "identitySuffix": "div-a",
+    "route": "Division A - on-the-wind start, east",
+    "groupId": "fixed-div-a",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Turning mark",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "12.4 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 14,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 50,
+    "identitySuffix": "div-b",
+    "route": "Division B - on-the-wind start, east",
+    "groupId": "fixed-div-b",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Turning mark",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "9.0 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 14,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 51,
+    "identitySuffix": "div-a",
+    "route": "Division A - on-the-wind start, west",
+    "groupId": "fixed-div-a",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Turning mark",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "12.4 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 14,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 51,
+    "identitySuffix": "div-b",
+    "route": "Division B - on-the-wind start, west",
+    "groupId": "fixed-div-b",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Turning mark",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.10",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "So.12",
+        "side": "port-passing-mark",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10.9 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 14,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 52,
+    "identitySuffix": "div-a",
+    "route": "Division A - on-the-wind start, north",
+    "groupId": "fixed-div-a",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Turning mark",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10.3 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 14,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 52,
+    "identitySuffix": "div-b",
+    "route": "Division B - on-the-wind start, north",
+    "groupId": "fixed-div-b",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Turning mark",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS14",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7.4 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 14,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 53,
+    "identitySuffix": "div-a",
+    "route": "Division A - on-the-wind start, south",
+    "groupId": "fixed-div-a",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Turning mark",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10.3 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 14,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 53,
+    "identitySuffix": "div-b",
+    "route": "Division B - on-the-wind start, south",
+    "groupId": "fixed-div-b",
+    "passInstruction": "Round or pass marks to port unless shown as starboard. A passing mark is labelled in the table.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Turning mark",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS14",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "BYS1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7.1 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2",
+    "sourcePage": 14,
+    "comparableCourseNote": null
+  }
+]

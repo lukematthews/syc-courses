@@ -11,8 +11,22 @@ let package = Package(
     targets: [
         .target(
             name: "SYCCourses",
-            exclude: ["Info.plist"],
-            resources: [.process("Resources")]
+            exclude: [
+                "Info.plist",
+                "Resources/app-icon.png",
+                "Resources/course-charts",
+                "Resources/mark-location-hotspots.json",
+                "Resources/mark-location-syc-hotspots.json",
+                "Resources/mark-locations.png",
+                "Resources/mark-locations-syc.png",
+                "Resources/pennants",
+            ],
+            resources: [
+                .copy("Resources/course-pack.json"),
+                .copy("Resources/fixed-courses.json"),
+                .copy("Resources/laid-courses.json"),
+                .copy("Resources/marks.json"),
+            ]
         ),
         .testTarget(
             name: "SYCCoursesTests",

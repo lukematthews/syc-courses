@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "variants": {
+    "syc": {
+      "packDirectory": "syc",
+      "displayName": "SYC Courses",
+      "bundleIdentifier": "au.com.syc.courses",
+      "appIcon": "AppIcon"
+    },
+    "festival": {
+      "packDirectory": "festival-of-sails-2026",
+      "displayName": "Festival of Sails Courses",
+      "bundleIdentifier": "au.com.syc.courses.festival",
+      "appIcon": "AppIconFestival"
+    },
+    "bys": {
+      "packDirectory": "bys-2025-2026",
+      "displayName": "BYS Courses",
+      "bundleIdentifier": "au.com.syc.courses.bys",
+      "appIcon": "AppIconBYS"
+    },
+    "rbyc": {
+      "packDirectory": "rbyc-2025-2026",
+      "displayName": "RBYC Courses",
+      "bundleIdentifier": "au.com.syc.courses.rbyc",
+      "appIcon": "AppIconRBYC"
+    },
+    "rycv": {
+      "packDirectory": "rycv",
+      "displayName": "RYCV Courses",
+      "bundleIdentifier": "au.com.syc.courses.rycv",
+      "appIcon": "AppIconRYCV"
+    },
+    "rmys": {
+      "packDirectory": "rmys",
+      "displayName": "RMYS Courses",
+      "bundleIdentifier": "au.com.syc.courses.rmys",
+      "appIcon": "AppIconRMYS"
+    }
+  }
+}

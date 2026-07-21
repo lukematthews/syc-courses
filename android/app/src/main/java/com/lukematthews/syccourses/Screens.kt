@@ -56,6 +56,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import java.io.File
+import android.net.Uri
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -66,13 +67,15 @@ private val Navy = Color(0xFF102D3D)
 private val Page = Color(0xFFF1F5F8)
 private val Teal = Color(0xFF087F8C)
 
+private fun courseRoute(course: Course) = "course/${Uri.encode(course.id)}"
+
 @Composable
 fun SYCCoursesApp(app: AppViewModel) {
     val nav = rememberNavController()
     NavHost(nav, "home") {
         composable("home") { HomeScreen(app, nav) }
-        composable("courses/{kind}") { CourseListScreen(app, nav, it.arguments?.getString("kind") == "laid") }
-        composable("course/{number}") { app.repository.course(it.arguments?.getString("number")?.toIntOrNull() ?: -1)?.let { course -> CourseDetailScreen(app, nav, course) } }
+        composable("courses/{groupId}") { CourseListScreen(app, nav, it.arguments?.getString("groupId").orEmpty()) }
+        composable("course/{id}") { app.repository.course(Uri.decode(it.arguments?.getString("id").orEmpty()))?.let { course -> CourseDetailScreen(app, nav, course) } }
         composable("quick") { QuickBearingScreen(app, nav) }
         composable("mark/{id}") { entry -> app.repository.markById(entry.arguments?.getString("id").orEmpty())?.let { MarkDetailScreen(app, nav, it) } }
         composable("flags") { FlagsScreen(app, nav) }
@@ -101,14 +104,18 @@ private fun HomeScreen(app: AppViewModel, nav: NavHostController) {
             activeNumber?.let { item { ActiveRaceHomePanel(app, nav) } }
             item { HomeCard("Quick Bearing", "Bearing and distance to a mark", Icons.Default.NearMe) { nav.navigate("quick") } }
             item { HomeCard("Flags", "Numeral pennants 0–9", Icons.Default.Flag) { nav.navigate("flags") } }
-            item { HomeCard("Fixed Mark Courses", "${app.repository.fixedCourses.size} courses", Icons.Default.FormatListNumbered) { nav.navigate("courses/fixed") } }
-            item { HomeCard("Laid Courses", "${app.repository.laidCourses.size} courses", Icons.Default.ChangeHistory) { nav.navigate("courses/laid") } }
+            app.repository.courseGroups.forEach { group ->
+                val courses = app.repository.courses(group.id)
+                if (courses.isNotEmpty()) item {
+                    HomeCard(group.name, "${courses.size} courses", if (group.kind == CourseKind.laid) Icons.Default.ChangeHistory else Icons.Default.FormatListNumbered) { nav.navigate("courses/${group.id}") }
+                }
+            }
             item { HomeCard("Line Assist", "Start and finish line crossing", Icons.Default.Timer) { nav.navigate("line/start") } }
             item { HomeCard("Race Tracker", "Record and review your course", Icons.Default.Map) { nav.navigate("tracker") } }
             item { HomeCard("Instruments", "Boat communication over an NMEA Wi-Fi gateway", Icons.Default.SettingsInputAntenna) { nav.navigate("instruments") } }
             if (recentCourseIDs.isNotEmpty()) {
                 item { SectionHeader("Recently Viewed", "Clear…", app::clearRecents) }
-                items(recentCourseIDs.mapNotNull(app.repository::course), key = Course::id) { CourseRow(it) { nav.navigate("course/${it.courseNumber}") } }
+                items(recentCourseIDs.mapNotNull(app.repository::course), key = Course::id) { CourseRow(it) { nav.navigate(courseRoute(it)) } }
             }
             if (tracks.isNotEmpty()) {
                 item { SectionHeader("Recent Tracks", "Clear…", app::clearTracks) }
@@ -136,7 +143,7 @@ private fun ActiveRaceHomePanel(app: AppViewModel, nav: NavHostController) {
     OutlinedCard(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Row { Column(Modifier.weight(1f)) { Text("Course ${course.courseNumber}", fontWeight = FontWeight.Bold, fontSize = 18.sp); Text("Going to: ${marks.getOrNull(index)?.name ?: "--"}", color = Color.Gray) }; CoursePennantHoist(course.courseNumber, 58, 22) }
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) { OutlinedButton(app::retreatActiveMark, enabled = index > 0) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Previous mark") }; Button(app::advanceActiveMark, enabled = index >= 0 && index < marks.lastIndex) { Text("Next Mark"); Icon(Icons.Default.ChevronRight, null) }; Spacer(Modifier.weight(1f)); IconButton({ nav.navigate("tracker") }) { Icon(Icons.Default.Map, "Race Tracker") }; IconButton({ nav.navigate("course/${course.courseNumber}") }) { Icon(Icons.Default.FormatListNumbered, "Course") } }
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) { OutlinedButton(app::retreatActiveMark, enabled = index > 0) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Previous mark") }; Button(app::advanceActiveMark, enabled = index >= 0 && index < marks.lastIndex) { Text("Next Mark"); Icon(Icons.Default.ChevronRight, null) }; Spacer(Modifier.weight(1f)); IconButton({ nav.navigate("tracker") }) { Icon(Icons.Default.Map, "Race Tracker") }; IconButton({ nav.navigate(courseRoute(course)) }) { Icon(Icons.Default.FormatListNumbered, "Course") } }
         }
     }
 }
@@ -146,11 +153,12 @@ private fun ActiveRaceHomePanel(app: AppViewModel, nav: NavHostController) {
 @Composable private fun SectionHeader(title: String, actionName: String, action: () -> Unit) = Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) { Text(title, Modifier.weight(1f), fontWeight = FontWeight.Bold, color = Navy); TextButton(action) { Text(actionName) } }
 
 @Composable
-private fun CourseListScreen(app: AppViewModel, nav: NavHostController, laid: Boolean) {
-    val courses = if (laid) app.repository.laidCourses else app.repository.fixedCourses
-    ScreenScaffold(if (laid) "Laid Courses" else "Fixed Mark Courses", { nav.popBackStack() }) { padding ->
+private fun CourseListScreen(app: AppViewModel, nav: NavHostController, groupId: String) {
+    val group = app.repository.courseGroups.firstOrNull { it.id == groupId }
+    val courses = app.repository.courses(groupId)
+    ScreenScaffold(group?.name ?: "Courses", { nav.popBackStack() }) { padding ->
         LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            items(courses, key = Course::id) { CourseRow(it) { app.recordRecent(it); nav.navigate("course/${it.courseNumber}") } }
+            items(courses, key = Course::id) { CourseRow(it) { app.recordRecent(it); nav.navigate(courseRoute(it)) } }
             item { Spacer(Modifier.height(16.dp)) }
         }
     }
@@ -489,8 +497,12 @@ private fun FinishOptionsScreen(app: AppViewModel, nav: NavHostController) {
 @Composable
 private fun MarkLocationChart(app: AppViewModel, onSelect: (Mark) -> Unit) {
     val context = LocalContext.current
-    val image = remember {
-        runCatching { context.assets.open("mark-locations.png").use(BitmapFactory::decodeStream) }.getOrNull()
+    val maps = app.repository.coursePack.resources.quickBearingMaps
+    var selectedMapIndex by remember { mutableIntStateOf(if (maps.size > 1) 1 else 0) }
+    var mapMenuExpanded by remember { mutableStateOf(false) }
+    val selectedMap = maps[selectedMapIndex.coerceAtMost(maps.lastIndex)]
+    val image = remember(selectedMap.image) {
+        runCatching { context.assets.open(selectedMap.image).use(BitmapFactory::decodeStream) }.getOrNull()
     }
     val activeCourseID by app.activeCourse.collectAsStateWithLifecycle()
     val activeMarkName by app.activeMark.collectAsStateWithLifecycle()
@@ -501,7 +513,7 @@ private fun MarkLocationChart(app: AppViewModel, onSelect: (Mark) -> Unit) {
     }
     val activeLineIds = remember(activeCourseID) { app.activeCourseLineMarks().map { it.id } }
     val activeMarkId = remember(activeMarkName) { activeMarkName?.let { app.repository.mark(it)?.id } }
-    val markHotspots = app.repository.markHotspots
+    val markHotspots = remember(selectedMap.hotspots) { app.repository.markHotspots(selectedMap.hotspots) }
 
     if (image == null) {
         Text("Mark map unavailable", color = Color.Gray)
@@ -592,6 +604,36 @@ private fun MarkLocationChart(app: AppViewModel, onSelect: (Mark) -> Unit) {
                 }
             }
         }
+        if (maps.size == 2) {
+            FilledTonalIconButton(
+                onClick = { selectedMapIndex = if (selectedMapIndex == 0) 1 else 0 },
+                modifier = Modifier.align(Alignment.TopEnd).padding(10.dp).size(44.dp),
+            ) {
+                Icon(
+                    if (selectedMapIndex == 0) Icons.Default.ZoomIn else Icons.Default.ZoomOut,
+                    if (selectedMapIndex == 0) "Zoom in to ${maps[1].name}" else "Zoom out",
+                )
+            }
+        } else if (maps.size > 2) {
+            Box(Modifier.align(Alignment.TopEnd).padding(10.dp)) {
+                FilledTonalButton(onClick = { mapMenuExpanded = true }) {
+                    Text(selectedMap.name)
+                    Icon(Icons.Default.ArrowDropDown, null)
+                }
+                DropdownMenu(expanded = mapMenuExpanded, onDismissRequest = { mapMenuExpanded = false }) {
+                    maps.forEachIndexed { index, map ->
+                        DropdownMenuItem(
+                            text = { Text(map.name) },
+                            leadingIcon = if (index == selectedMapIndex) {{ Icon(Icons.Default.Check, null) }} else null,
+                            onClick = {
+                                selectedMapIndex = index
+                                mapMenuExpanded = false
+                            },
+                        )
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -643,7 +685,7 @@ private fun FlagsScreen(app: AppViewModel, nav: NavHostController) {
                     if (matchedCourse != null) {
                         CourseRow(matchedCourse) {
                             app.recordRecent(matchedCourse)
-                            nav.navigate("course/${matchedCourse.courseNumber}")
+                            nav.navigate(courseRoute(matchedCourse))
                         }
                     } else if (digits.isNotEmpty()) {
                         Text("No course $digits.", color = Color.Gray)

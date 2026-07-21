@@ -1,0 +1,6 @@
+#include "Base-Debug.xcconfig"
+
+COURSE_APP_VARIANT = syc
+COURSE_APP_DISPLAY_NAME = SYC Courses
+COURSE_APP_BUNDLE_ID = au.com.syc.courses
+COURSE_APP_ICON = AppIcon

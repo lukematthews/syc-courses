@@ -22,7 +22,64 @@
     "finishLineMarkIds": [
       "melbourne-start-by-fleet"
     ],
-    "startFinishMarkId": "melbourne-start-by-fleet"
+    "startFinishMarkId": "melbourne-start-by-fleet",
+    "quickBearingMapViews": [
+      {
+        "id": "overview",
+        "name": "Overview"
+      },
+      {
+        "id": "melbourne",
+        "name": "Melbourne Start",
+        "fitMarkIds": [
+          "melbourne-start-by-fleet",
+          "melbourne-southern-start",
+          "melbourne-northern-start"
+        ]
+      },
+      {
+        "id": "bellarine",
+        "name": "Bellarine",
+        "fitMarkIds": [
+          "cat-6-laid",
+          "pt-richards-entry-cardinal",
+          "prince-george-light"
+        ]
+      },
+      {
+        "id": "corio",
+        "name": "Corio Bay",
+        "fitMarkIds": [
+          "alcoa-inner",
+          "alcoa-outer",
+          "cb-1",
+          "cb-2",
+          "cb-3",
+          "cb-4",
+          "cb-5",
+          "cb-6",
+          "fos-1",
+          "fos-2",
+          "fos-3",
+          "fos-4",
+          "fos-5",
+          "fos-6",
+          "fos-7",
+          "hopetoun-gate-1-2",
+          "hopetoun-gate-9-10",
+          "outer-explosives-beacon",
+          "pt-wilson-pier-sp-3",
+          "pt-wilson-pier-sp-4"
+        ]
+      },
+      {
+        "id": "mornington",
+        "name": "Mornington Start",
+        "fitMarkIds": [
+          "mornington-start-line"
+        ]
+      }
+    ]
   },
   "buildSources": {
     "fixedCourses": "course-packs/festival-of-sails-2026/fixed-courses.json",

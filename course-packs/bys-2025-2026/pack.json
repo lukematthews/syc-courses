@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "packId": "blairgowrie-yacht-squadron-2025-2026",
+  "assetNamespace": "bys-2025-2026",
+  "name": "BYS Courses 2025-26",
+  "shortName": "BYS",
+  "organiser": "Blairgowrie Yacht Squadron",
+  "version": "2025-2026-v2",
+  "source": {
+    "type": "official-sailing-instructions",
+    "title": "BYS Season 2025-26 Keelboat Sailing Instructions V2"
+  },
+  "courseKinds": ["fixed", "laid"],
+  "courseGroups": [
+    { "id": "fixed-kbc", "name": "Fixed Mark - KBC", "kind": "fixed" },
+    { "id": "fixed-div-a", "name": "Fixed Mark - Division A", "kind": "fixed" },
+    { "id": "fixed-div-b", "name": "Fixed Mark - Division B", "kind": "fixed" },
+    { "id": "laid", "name": "Laid Marks", "kind": "laid" }
+  ],
+  "navigation": {
+    "startLineMarkIds": ["bys-0"],
+    "finishLineMarkIds": ["bys-0"],
+    "startFinishMarkId": "bys-0",
+    "quickBearingMapViews": [
+      { "id": "overview", "name": "Overview" },
+      {
+        "id": "club-front",
+        "name": "Club Front",
+        "fitMarkIds": ["bys-0", "bys-1", "bys-2", "bys-3", "bys-4", "bys-11", "bys-14", "port-nav-pile", "so-10"]
+      },
+      {
+        "id": "capel-sound",
+        "name": "Capel Sound",
+        "fitMarkIds": ["bys-4", "bys-5", "bys-6", "cs-laid-mark", "south-channel-light", "r1"]
+      },
+      {
+        "id": "northern",
+        "name": "Northern Courses",
+        "fitMarkIds": ["r1", "byb", "hovell-pile", "aquacult-1", "aquacult-2", "aquacult-3", "mmf-nw", "mmf-ne", "mmf-se", "symonds-channel-pile"]
+      }
+    ]
+  },
+  "buildSources": {
+    "fixedCourses": "course-packs/bys-2025-2026/fixed-courses.json",
+    "laidCourses": "course-packs/bys-2025-2026/laid-courses.json",
+    "marks": "course-packs/bys-2025-2026/marks.json",
+    "courseCharts": "public/course-charts/bys-2025-2026"
+  }
+}

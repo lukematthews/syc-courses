@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+  xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+  width="840"
+  height="841"
+  viewBox="0 0 840 841"
+  version="1.1">
+  <title>SYC Course 89 — Inkscape template</title>
+  <desc>Editable sailing-course diagram with named Inkscape layers and reusable SVG objects.</desc>
+
+  <sodipodi:namedview
+    id="namedview"
+    pagecolor="#d8d8d8"
+    bordercolor="#666666"
+    borderopacity="1"
+    inkscape:document-units="px"
+    showgrid="false"
+    inkscape:zoom="0.8"
+    inkscape:cx="420"
+    inkscape:cy="420" />
+
+  <defs>
+    <style><![CDATA[
+      .course-path { fill: none; stroke: #000; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+      .rounding-path { fill: none; stroke: #000; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .direction-chevron { fill: none; stroke: #000; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .course-label { fill: #000; font-family: Arial, Helvetica, sans-serif; font-size: 29px; text-anchor: middle; }
+      .line-label { fill: #000; font-family: Arial, Helvetica, sans-serif; font-size: 29px; text-anchor: middle; }
+      .start-finish-line { fill: none; stroke: #000; stroke-width: 2; stroke-dasharray: 3 7; stroke-linecap: round; }
+    ]]></style>
+
+    <!-- Reusable objects. In Inkscape, Edit > Clone > Unlink Clone makes any instance independent. -->
+    <circle id="mark-small" cx="0" cy="0" r="13" fill="#000" />
+    <circle id="mark-large" cx="0" cy="0" r="15" fill="#000" />
+    <g id="committee-boat" fill="#000">
+      <path d="M0 15 L14 0 L28 15 Z" />
+      <rect x="0" y="15" width="28" height="39" />
+    </g>
+    <path id="gate-arrow-left" d="M13 0 L0 18 L19 15 Z" fill="#000" />
+    <path id="gate-arrow-right" d="M0 15 L19 18 L6 0 Z" fill="#000" />
+    <path id="down-arrow-solid" d="M0 0 L13 28 L26 0 Z" fill="#000" />
+  </defs>
+
+  <g inkscape:groupmode="layer" inkscape:label="00 Background" id="layer-background">
+    <rect id="background" x="0" y="0" width="840" height="841" fill="#fff" />
+  </g>
+
+  <g inkscape:groupmode="layer" inkscape:label="01 Course paths" id="layer-course-paths">
+    <g id="lap-one-course">
+      <path id="lap-one-upwind" class="course-path" d="M208 810 C211 640 214 440 218 89" />
+      <path id="lap-one-top-rounding" class="course-path" d="M218 89 C220 61 211 48 196 51 C164 57 124 67 116 92" />
+      <path id="lap-one-downwind" class="course-path" d="M116 92 C120 285 128 490 148 681" />
+      <path id="lap-one-gate-rounding" class="rounding-path" d="M176 681 C176 704 163 714 146 714 C128 714 117 704 117 681" />
+    </g>
+    <g id="finish-course">
+      <path id="finish-downwind" class="course-path" d="M690 810 C665 650 633 430 610 300 C594 207 586 112 585 64" />
+      <path id="finish-top-rounding" class="course-path" d="M585 64 C585 35 602 24 625 25 C651 26 669 42 670 64" />
+      <path id="finish-upwind" class="course-path" d="M670 64 L670 529" />
+    </g>
+  </g>
+
+  <g inkscape:groupmode="layer" inkscape:label="02 Direction arrows" id="layer-direction-arrows">
+    <g id="lap-one-direction-arrows">
+      <path id="lap-one-downwind-chevron" class="direction-chevron" d="M121 304 L132 326 L143 304" />
+      <path id="lap-one-upwind-chevron" class="direction-chevron" d="M207 325 L218 303 L229 325" />
+      <use id="lap-one-gate-left-arrow" href="#gate-arrow-left" xlink:href="#gate-arrow-left" x="91" y="681" />
+      <use id="lap-one-gate-right-arrow" href="#gate-arrow-right" xlink:href="#gate-arrow-right" x="188" y="681" />
+    </g>
+    <g id="finish-direction-arrows">
+      <path id="finish-downwind-chevron" class="direction-chevron" d="M609 304 L620 326 L631 304" />
+      <path id="finish-upwind-chevron" class="direction-chevron" d="M659 325 L670 303 L681 325" />
+      <use id="finish-bottom-arrow" href="#down-arrow-solid" xlink:href="#down-arrow-solid" x="677" y="786" />
+    </g>
+  </g>
+
+  <g inkscape:groupmode="layer" inkscape:label="03 Marks and labels" id="layer-marks-labels">
+    <g id="lap-one-marks">
+      <use id="lap-one-mark-1" href="#mark-small" xlink:href="#mark-small" x="198" y="76" />
+      <text id="lap-one-label-1" class="course-label" x="198" y="119">1</text>
+      <use id="lap-one-mark-2" href="#mark-small" xlink:href="#mark-small" x="148" y="92" />
+      <text id="lap-one-label-2" class="course-label" x="148" y="135">2</text>
+      <use id="lap-one-mark-4" href="#mark-small" xlink:href="#mark-small" x="197" y="200" />
+      <text id="lap-one-label-4" class="course-label" x="197" y="243">4</text>
+      <use id="gate-port" href="#mark-large" xlink:href="#mark-large" x="117" y="681" />
+      <use id="gate-starboard" href="#mark-large" xlink:href="#mark-large" x="176" y="681" />
+      <text id="gate-label" class="course-label" x="146" y="735">Gate</text>
+    </g>
+    <g id="finish-marks">
+      <use id="finish-mark-1" href="#mark-small" xlink:href="#mark-small" x="624" y="76" />
+      <text id="finish-label-1" class="course-label" x="624" y="116">1</text>
+      <use id="finish-mark-4" href="#mark-small" xlink:href="#mark-small" x="624" y="217" />
+      <text id="finish-label-4" class="course-label" x="624" y="257">4</text>
+    </g>
+  </g>
+
+  <g inkscape:groupmode="layer" inkscape:label="04 Start line" id="layer-start-line">
+    <path id="start-line" class="start-finish-line" d="M80 748 H388" />
+    <use id="start-line-pin" href="#mark-large" xlink:href="#mark-large" x="80" y="748" />
+    <use id="start-line-outer" href="#mark-large" xlink:href="#mark-large" x="388" y="748" />
+    <text id="start-label" class="line-label" x="103" y="790">Start</text>
+    <use id="start-boat" href="#committee-boat" xlink:href="#committee-boat" x="220" y="712" />
+  </g>
+
+  <g inkscape:groupmode="layer" inkscape:label="05 Finish line" id="layer-finish-line">
+    <path id="finish-line" class="start-finish-line" d="M490 748 H800" />
+    <use id="finish-line-pin" href="#mark-small" xlink:href="#mark-small" x="490" y="748" />
+    <use id="finish-line-outer" href="#mark-small" xlink:href="#mark-small" x="800" y="748" />
+    <text id="finish-label" class="line-label" x="750" y="789">Finish</text>
+    <use id="finish-boat" href="#committee-boat" xlink:href="#committee-boat" x="635" y="712" />
+  </g>
+
+  <g inkscape:groupmode="layer" inkscape:label="06 Wind" id="layer-wind">
+    <text id="wind-label" x="450" y="42" fill="#000" font-family="Arial, Helvetica, sans-serif" font-size="32" text-anchor="middle">Wind</text>
+    <path id="wind-arrow" d="M439 48 H461 V86 H476 L450 114 L424 86 H439 Z" fill="#000" />
+  </g>
+</svg>

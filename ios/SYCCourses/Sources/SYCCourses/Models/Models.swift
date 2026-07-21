@@ -4,6 +4,7 @@ struct Course: Codable, Identifiable, Hashable {
     let id: String
     let packId: String
     let kind: CourseKind
+    let groupId: String?
     let courseNumber: Int
     let route: String?
     let passInstruction: String
@@ -62,8 +63,15 @@ struct CoursePack: Codable, Hashable {
     let version: String
     let source: CoursePackSource
     let courseKinds: [CourseKind]
+    let courseGroups: [CourseGroup]?
     let navigation: CoursePackNavigation
     let resources: CoursePackResources
+}
+
+struct CourseGroup: Codable, Hashable, Identifiable {
+    let id: String
+    let name: String
+    let kind: CourseKind
 }
 
 struct CoursePackSource: Codable, Hashable {
@@ -76,6 +84,13 @@ struct CoursePackNavigation: Codable, Hashable {
     let startLineMarkIds: [String]
     let finishLineMarkIds: [String]
     let startFinishMarkId: String
+    let quickBearingMapViews: [QuickBearingMapViewDefinition]
+}
+
+struct QuickBearingMapViewDefinition: Codable, Hashable {
+    let id: String
+    let name: String
+    let fitMarkIds: [String]?
 }
 
 struct CoursePackResources: Codable, Hashable {
@@ -83,6 +98,14 @@ struct CoursePackResources: Codable, Hashable {
     let laidCourses: String
     let marks: String
     let courseCharts: String
+    let quickBearingMaps: [QuickBearingMapResource]
+}
+
+struct QuickBearingMapResource: Codable, Hashable, Identifiable {
+    let id: String
+    let name: String
+    let image: String
+    let hotspots: String
 }
 
 struct BearingSnapshot: Equatable {

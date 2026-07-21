@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { courses, laidCourses } from './data/bundledCoursePack'
+import { allCourses } from './data/bundledCoursePack'
 import { CourseDetailScreen } from './screens/CourseDetailScreen'
 import { CourseListScreen } from './screens/CourseListScreen'
 import { PennantReferenceScreen } from './screens/PennantReferenceScreen'
@@ -7,7 +7,7 @@ import { QuickBearingScreen } from './screens/QuickBearingScreen'
 
 type Screen =
   | { name: 'courses' }
-  | { name: 'detail'; courseNumber: number }
+  | { name: 'detail'; courseId: string }
   | { name: 'pennants' }
   | { name: 'quick-bearing' }
 
@@ -23,14 +23,17 @@ function App() {
       return undefined
     }
 
-    return [...courses, ...laidCourses].find((course) => course.courseNumber === screen.courseNumber)
+    return allCourses.find((course) => course.id === screen.courseId)
   }, [screen])
 
   if (screen.name === 'pennants') {
     return (
       <PennantReferenceScreen
         onBack={() => setScreen({ name: 'courses' })}
-        onOpenCourse={(courseNumber) => setScreen({ name: 'detail', courseNumber })}
+        onOpenCourse={(courseNumber) => {
+          const course = allCourses.find((candidate) => candidate.courseNumber === courseNumber)
+          if (course) setScreen({ name: 'detail', courseId: course.id })
+        }}
       />
     )
   }
@@ -50,8 +53,7 @@ function App() {
 
   return (
     <CourseListScreen
-      courses={courses}
-      onOpenCourse={(courseNumber) => setScreen({ name: 'detail', courseNumber })}
+      onOpenCourse={(courseId) => setScreen({ name: 'detail', courseId })}
       onOpenPennants={() => setScreen({ name: 'pennants' })}
       onOpenQuickBearing={() => setScreen({ name: 'quick-bearing' })}
     />

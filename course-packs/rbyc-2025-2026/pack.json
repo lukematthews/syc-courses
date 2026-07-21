@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "packId": "royal-brighton-yacht-club-2025-2026",
+  "assetNamespace": "rbyc-2025-2026",
+  "name": "RBYC Courses 2025-26",
+  "shortName": "RBYC",
+  "organiser": "Royal Brighton Yacht Club",
+  "version": "2025-2026-v6",
+  "source": {
+    "type": "official-sailing-instructions",
+    "title": "RBYC Keelboat Sailing Instructions 2025-2026 V6"
+  },
+  "courseKinds": ["fixed", "laid"],
+  "courseGroups": [
+    { "id": "boat-boat-etchells-dragon", "name": "Boat/Boat - Etchells & Dragon", "kind": "laid" },
+    { "id": "boat-boat-vx-one", "name": "Boat/Boat - VX One", "kind": "laid" },
+    { "id": "boat-boat-24mr", "name": "Boat/Boat - 2.4mR", "kind": "laid" },
+    { "id": "boat-boat-other", "name": "Boat/Boat - Other Keelboats", "kind": "laid" },
+    { "id": "boat-tower", "name": "Boat/Tower Courses", "kind": "fixed" },
+    { "id": "tower-tower", "name": "Tower/Tower Courses", "kind": "fixed" }
+  ],
+  "navigation": {
+    "startLineMarkIds": ["rbyc-6"],
+    "finishLineMarkIds": ["rbyc-6"],
+    "startFinishMarkId": "rbyc-6",
+    "quickBearingMapViews": [
+      { "id": "overview", "name": "Overview" },
+      {
+        "id": "club-course-area",
+        "name": "Club Course Area",
+        "fitMarkIds": ["rbyc-1", "rbyc-2", "rbyc-3", "rbyc-4", "rbyc-5", "rbyc-6", "r2", "r3"]
+      },
+      {
+        "id": "extended-course-area",
+        "name": "Extended Course Area",
+        "fitMarkIds": ["rbyc-1", "rbyc-4", "r4", "spoil-ground", "outer-anchorage", "pipeline-2", "pipeline-3"]
+      }
+    ]
+  },
+  "buildSources": {
+    "fixedCourses": "course-packs/rbyc-2025-2026/fixed-courses.json",
+    "laidCourses": "course-packs/rbyc-2025-2026/laid-courses.json",
+    "marks": "course-packs/rbyc-2025-2026/marks.json",
+    "courseCharts": "public/course-charts/rbyc-2025-2026"
+  }
+}

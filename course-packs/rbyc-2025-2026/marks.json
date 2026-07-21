@@ -1,0 +1,16 @@
+[
+  {"id":"rbyc-1","name":"RBYC 1","aliases":["1"],"latitude":-37.9271667,"longitude":144.9706667,"description":"Yellow mark with light. Approximate position S 37° 55.63', E 144° 58.24'.","coordinatesStatus":"published-approximate"},
+  {"id":"rbyc-2","name":"RBYC 2","aliases":["2"],"latitude":-37.9233333,"longitude":144.9561667,"description":"Yellow mark with light. Approximate position S 37° 55.40', E 144° 57.37'.","coordinatesStatus":"published-approximate"},
+  {"id":"rbyc-3","name":"RBYC 3","aliases":["3"],"latitude":-37.9076667,"longitude":144.9526667,"description":"Yellow mark with light. Approximate position S 37° 54.46', E 144° 57.16'.","coordinatesStatus":"published-approximate"},
+  {"id":"rbyc-4","name":"RBYC 4","aliases":["4"],"latitude":-37.8935,"longitude":144.9513333,"description":"Yellow mark with light. Approximate position S 37° 53.61', E 144° 57.08'.","coordinatesStatus":"published-approximate"},
+  {"id":"rbyc-5","name":"RBYC 5","aliases":["5"],"latitude":-37.8968333,"longitude":144.9743333,"description":"Yellow mark with light. Approximate position S 37° 53.81', E 144° 58.46'.","coordinatesStatus":"published-approximate"},
+  {"id":"rbyc-6","name":"RBYC 6","aliases":["6"],"latitude":-37.9058,"longitude":144.9757167,"description":"Yellow mark with light. Approximate position S 37° 54.348', E 144° 58.543'. Tower start/finish outer endpoint.","coordinatesStatus":"published-approximate"},
+  {"id":"r2","name":"R2","aliases":[],"latitude":-37.909,"longitude":144.9383333,"description":"Recreation mark. Source typography interpreted as S 37° 54.54', E 144° 56.30'.","coordinatesStatus":"published-approximate-source-typography-ambiguous"},
+  {"id":"r3","name":"R3","aliases":[],"latitude":-37.8876667,"longitude":144.9383333,"description":"Recreation mark. Approximate position S 37° 53.26', E 144° 56.30'.","coordinatesStatus":"published-approximate"},
+  {"id":"r4","name":"R4","aliases":[],"latitude":-37.845,"longitude":144.9226667,"description":"Recreation mark. Approximate position S 37° 50.70', E 144° 55.36'.","coordinatesStatus":"published-approximate"},
+  {"id":"spoil-ground","name":"Spoil Ground","aliases":["SG"],"latitude":-37.9841667,"longitude":144.8833333,"description":"Spoil Ground Mark. Approximate position S 37° 59.05', E 144° 53.00'.","coordinatesStatus":"published-approximate"},
+  {"id":"outer-anchorage","name":"Outer Anchorage","aliases":["OA"],"latitude":-37.9423333,"longitude":144.855,"description":"Outer Anchorage. Approximate position S 37° 56.54', E 144° 51.30'.","coordinatesStatus":"published-approximate"},
+  {"id":"pipeline-2","name":"Pipeline 2","aliases":["P2"],"latitude":-37.9208333,"longitude":144.885,"description":"Pipeline 2. Approximate position S 37° 55.25', E 144° 53.10'.","coordinatesStatus":"published-approximate"},
+  {"id":"pipeline-3","name":"Pipeline 3","aliases":["P3"],"latitude":-37.8896667,"longitude":144.88,"description":"Pipeline 3. Approximate position S 37° 53.38', E 144° 52.80'.","coordinatesStatus":"published-approximate"},
+  {"id":"bonnet-rock-beacon","name":"Bonnet Rock Beacon","aliases":["Bonnet Rock"],"latitude":-37.9136667,"longitude":144.9801667,"description":"Unlit starboard beacon surrounded by very shallow water; pass on the seaward side. S 37° 54.82', E 144° 58.81'.","coordinatesStatus":"published"}
+]

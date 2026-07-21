@@ -11,6 +11,20 @@ enum CourseDataLoader {
         load(resourceName(bundledPack.resources.laidCourses))
     }
 
+    static func allCourses() -> [Course] {
+        fixedCourses() + laidCourses()
+    }
+
+    static var courseGroups: [CourseGroup] {
+        bundledPack.courseGroups ?? CourseKind.allCases.map {
+            CourseGroup(id: $0.rawValue, name: $0.title, kind: $0)
+        }
+    }
+
+    static func courses(groupId: String) -> [Course] {
+        allCourses().filter { ($0.groupId ?? $0.kind.rawValue) == groupId }
+    }
+
     static func marks() -> [Mark] {
         load(resourceName(bundledPack.resources.marks))
     }
@@ -39,7 +53,7 @@ enum CourseDataLoader {
     }
 
     private static func load<T: Decodable>(_ resource: String) -> T {
-        guard let url = Bundle.module.url(forResource: resource, withExtension: "json") else {
+        guard let url = CourseResourceLocator.url(forResource: resource, withExtension: "json") else {
             fatalError("Missing bundled resource: \(resource).json")
         }
 

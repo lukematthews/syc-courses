@@ -1,0 +1,67 @@
+<div id="course-icon-colours">
+  <div class="card" aria-live="polite">
+    <span class="text-muted">Selected</span>
+    <span id="colour-name" class="viz-stat-value">2 · Pewter</span>
+    <code id="colour-hex">#657078</code>
+  </div>
+  <div class="colour-grid" role="group" aria-label="Ten app icon background colours">
+    <button type="button" class="btn viz-tile colour" style="--swatch:#4F575D" data-name="1 · Graphite" data-hex="#4F575D" aria-label="Option 1, Graphite, #4F575D">
+      <span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>1</span>
+    </button>
+    <button type="button" class="btn viz-tile colour is-selected" style="--swatch:#657078" data-name="2 · Pewter" data-hex="#657078" aria-label="Option 2, Pewter, #657078">
+      <span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>2</span>
+    </button>
+    <button type="button" class="btn viz-tile colour" style="--swatch:#596874" data-name="3 · Storm grey" data-hex="#596874" aria-label="Option 3, Storm grey, #596874">
+      <span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>3</span>
+    </button>
+    <button type="button" class="btn viz-tile colour" style="--swatch:#5E7268" data-name="4 · Sage slate" data-hex="#5E7268" aria-label="Option 4, Sage slate, #5E7268">
+      <span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>4</span>
+    </button>
+    <button type="button" class="btn viz-tile colour" style="--swatch:#477773" data-name="5 · Sea glass" data-hex="#477773" aria-label="Option 5, Sea glass, #477773">
+      <span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>5</span>
+    </button>
+    <button type="button" class="btn viz-tile colour" style="--swatch:#3F7477" data-name="6 · Muted teal" data-hex="#3F7477" aria-label="Option 6, Muted teal, #3F7477">
+      <span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>6</span>
+    </button>
+    <button type="button" class="btn viz-tile colour" style="--swatch:#526C86" data-name="7 · Dusty denim" data-hex="#526C86" aria-label="Option 7, Dusty denim, #526C86">
+      <span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>7</span>
+    </button>
+    <button type="button" class="btn viz-tile colour" style="--swatch:#6B6576" data-name="8 · Heather grey" data-hex="#6B6576" aria-label="Option 8, Heather grey, #6B6576">
+      <span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>8</span>
+    </button>
+    <button type="button" class="btn viz-tile colour" style="--swatch:#74645C" data-name="9 · Cocoa taupe" data-hex="#74645C" aria-label="Option 9, Cocoa taupe, #74645C">
+      <span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>9</span>
+    </button>
+    <button type="button" class="btn viz-tile colour" style="--swatch:#815F56" data-name="10 · Dusty clay" data-hex="#815F56" aria-label="Option 10, Dusty clay, #815F56">
+      <span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>10</span>
+    </button>
+  </div>
+</div>
+<style>
+  #course-icon-colours { display:grid; gap:1rem; }
+  #course-icon-colours .card { display:flex; align-items:baseline; gap:.75rem; flex-wrap:wrap; }
+  #course-icon-colours .colour-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.75rem; }
+  #course-icon-colours .colour { min-height:7rem; display:flex; flex-direction:column; justify-content:space-between; align-items:flex-start; background:var(--swatch); color:white; }
+  #course-icon-colours .colour > span:last-child { font-weight:500; }
+  #course-icon-colours .flag-test { display:flex; width:100%; height:1.1rem; border-radius:.25rem; overflow:hidden; box-shadow:0 0 0 1px color-mix(in srgb, white 50%, transparent); }
+  #course-icon-colours .flag-test i { flex:1; }
+  #course-icon-colours .flag-test i:nth-child(1) { background:#E6202A; }
+  #course-icon-colours .flag-test i:nth-child(2) { background:white; }
+  #course-icon-colours .flag-test i:nth-child(3) { background:#17233E; }
+  @media (max-width:560px) { #course-icon-colours .colour-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+</style>
+<script>
+  (() => {
+    const root = document.getElementById('course-icon-colours');
+    const name = root.querySelector('#colour-name');
+    const hex = root.querySelector('#colour-hex');
+    root.querySelectorAll('.colour').forEach((button) => {
+      button.addEventListener('click', () => {
+        root.querySelectorAll('.colour').forEach((item) => item.classList.remove('is-selected'));
+        button.classList.add('is-selected');
+        name.textContent = button.dataset.name;
+        hex.textContent = button.dataset.hex;
+      });
+    });
+  })();
+</script>

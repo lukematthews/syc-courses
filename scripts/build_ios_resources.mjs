@@ -1,10 +1,12 @@
 import { mkdirSync, copyFileSync, readdirSync, writeFileSync, rmSync } from 'node:fs'
 import { basename, join } from 'node:path'
 import { jsonFile, loadBundledCoursePack } from './course_pack.mjs'
+import { generateMissingCourseCharts } from './generate_missing_course_charts.mjs'
 
 const root = new URL('..', import.meta.url).pathname
-const resourceDir = join(root, 'ios/SYCCourses/Sources/SYCCourses/Resources')
+const resourceDir = process.env.IOS_RESOURCE_DIR ?? join(root, 'ios/SYCCourses/Sources/SYCCourses/Resources')
 const pack = loadBundledCoursePack(root)
+generateMissingCourseCharts(pack, root)
 const chartOutput = join(resourceDir, 'course-charts', pack.definition.assetNamespace)
 
 rmSync(join(resourceDir, 'course-charts'), { recursive: true, force: true })

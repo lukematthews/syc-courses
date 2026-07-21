@@ -1,8 +1,10 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-export function loadBundledCoursePack(root) {
-  const selection = readJson(join(root, 'course-packs/bundled-pack.json'))
+export function loadBundledCoursePack(root, requestedPackDirectory = process.env.COURSE_PACK_DIRECTORY) {
+  const selection = requestedPackDirectory
+    ? { packDirectory: requestedPackDirectory }
+    : readJson(join(root, 'course-packs/bundled-pack.json'))
   const packPath = join(root, 'course-packs', selection.packDirectory, 'pack.json')
   const definition = readJson(packPath)
   validateDefinition(definition, root)
@@ -35,26 +37,46 @@ export function jsonFile(value) {
 }
 
 function prepareCourses(courses, definition, kind) {
-  return courses.map((course) => ({
-    ...course,
-    id: `${definition.packId}/${kind}/course-${course.courseNumber}`,
-    packId: definition.packId,
-    kind,
-    chartImage: course.chartImage
-      ? `/course-charts/${definition.assetNamespace}/${course.chartImage.split('/').at(-1)}`
-      : '',
-  }))
+  return courses.map((course) => {
+    const { identitySuffix, ...runtimeCourse } = course
+    const suffix = identitySuffix ? `-${identitySuffix}` : ''
+    const generatedChartName = `generated-course-${course.courseNumber}${suffix}.png`
+    const hasChartableRoute = course.rows.some(({ mark }) =>
+      !/^(start|finish|course published|special course)/i.test(mark),
+    )
+    const chartName = course.chartImage
+      ? course.chartImage.split('/').at(-1)
+      : hasChartableRoute ? generatedChartName : ''
+    return {
+      ...runtimeCourse,
+      id: `${definition.packId}/${kind}/course-${course.courseNumber}${suffix}`,
+      packId: definition.packId,
+      kind,
+      groupId: course.groupId ?? kind,
+      chartImage: chartName ? `/course-charts/${definition.assetNamespace}/${chartName}` : '',
+      chartAlt: course.chartAlt || (chartName
+        ? `Generated course chart for ${definition.shortName} Course ${course.courseNumber}. Not for navigation.`
+        : ''),
+    }
+  })
 }
 
 function runtimeManifest(definition) {
   const { buildSources: _buildSources, ...manifest } = definition
   return {
     ...manifest,
+    courseGroups: courseGroups(definition),
     resources: {
       fixedCourses: 'fixed-courses.json',
       laidCourses: 'laid-courses.json',
       marks: 'marks.json',
       courseCharts: `/course-charts/${definition.assetNamespace}`,
+      quickBearingMaps: definition.navigation.quickBearingMapViews.map((view, index) => ({
+        id: view.id,
+        name: view.name,
+        image: index === 0 ? 'mark-locations.png' : `mark-locations-${view.id}.png`,
+        hotspots: index === 0 ? 'mark-location-hotspots.json' : `mark-location-${view.id}-hotspots.json`,
+      })),
     },
   }
 }
@@ -87,15 +109,40 @@ function validateDefinition(pack, root) {
 function validateData(pack, fixedCourses, laidCourses, marks) {
   const courseIds = [...fixedCourses, ...laidCourses].map((course) => course.id)
   if (new Set(courseIds).size !== courseIds.length) throw new Error('Course IDs must be unique')
+  const groupIds = new Set(courseGroups(pack).map((group) => group.id))
+  for (const course of [...fixedCourses, ...laidCourses]) {
+    if (!groupIds.has(course.groupId)) throw new Error(`Course references missing group: ${course.groupId}`)
+  }
   const markIds = new Set(marks.map((mark) => mark.id))
   if (markIds.size !== marks.length) throw new Error('Mark IDs must be unique')
+  const mapViews = pack.navigation.quickBearingMapViews
+  if (!Array.isArray(mapViews) || mapViews.length === 0) {
+    throw new Error('Course pack requires at least one Quick Bearing map view')
+  }
+  const viewIds = new Set()
+  for (const view of mapViews) {
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(view.id) || !view.name) {
+      throw new Error(`Invalid Quick Bearing map view: ${JSON.stringify(view)}`)
+    }
+    if (viewIds.has(view.id)) throw new Error(`Duplicate Quick Bearing map view: ${view.id}`)
+    viewIds.add(view.id)
+  }
   for (const markId of [
     ...pack.navigation.startLineMarkIds,
     ...pack.navigation.finishLineMarkIds,
     pack.navigation.startFinishMarkId,
+    ...mapViews.flatMap((view) => view.fitMarkIds ?? []),
   ]) {
     if (!markIds.has(markId)) throw new Error(`Navigation default references missing mark: ${markId}`)
   }
+}
+
+function courseGroups(pack) {
+  return pack.courseGroups ?? pack.courseKinds.map((kind) => ({
+    id: kind,
+    name: kind === 'fixed' ? 'Fixed Mark Courses' : 'Laid Courses',
+    kind,
+  }))
 }
 
 function readJson(file) {

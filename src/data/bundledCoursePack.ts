@@ -16,6 +16,7 @@ export type Course = {
   id: string
   packId: string
   kind: CourseKind
+  groupId?: string
   courseNumber: number
   route?: string
   passInstruction: string
@@ -52,16 +53,28 @@ export type CoursePackManifest = {
     url?: string
   }
   courseKinds: CourseKind[]
+  courseGroups: Array<{ id: string; name: string; kind: CourseKind }>
   navigation: {
     startLineMarkIds: string[]
     finishLineMarkIds: string[]
     startFinishMarkId: string
+    quickBearingMapViews: Array<{
+      id: string
+      name: string
+      fitMarkIds?: string[]
+    }>
   }
   resources: {
     fixedCourses: string
     laidCourses: string
     marks: string
     courseCharts: string
+    quickBearingMaps: Array<{
+      id: string
+      name: string
+      image: string
+      hotspots: string
+    }>
   }
 }
 
@@ -69,6 +82,12 @@ export const coursePack = manifestJson as CoursePackManifest
 export const courses = fixedCoursesJson as Course[]
 export const laidCourses = laidCoursesJson as Course[]
 export const marks = marksJson as Mark[]
+export const allCourses = [...courses, ...laidCourses]
+export const courseGroups = coursePack.courseGroups ?? coursePack.courseKinds.map((kind) => ({
+  id: kind,
+  name: kind === 'fixed' ? 'Fixed Mark Courses' : 'Laid Courses',
+  kind,
+}))
 
 function normalizeMarkName(value: string) {
   return value.replace(/\s*\([^)]*\)/g, '').replace(/\s+/g, ' ').trim().toLowerCase()

@@ -9,6 +9,7 @@ data class Course(
     val id: String,
     val packId: String,
     val kind: CourseKind,
+    val groupId: String? = null,
     val courseNumber: Int,
     val route: String? = null,
     val passInstruction: String = "",
@@ -35,9 +36,13 @@ data class CoursePack(
     val version: String,
     val source: CoursePackSource,
     val courseKinds: List<CourseKind>,
+    val courseGroups: List<CourseGroup> = emptyList(),
     val navigation: CoursePackNavigation,
     val resources: CoursePackResources,
 )
+
+@Serializable
+data class CourseGroup(val id: String, val name: String, val kind: CourseKind)
 
 @Serializable
 data class CoursePackSource(
@@ -51,6 +56,14 @@ data class CoursePackNavigation(
     val startLineMarkIds: List<String>,
     val finishLineMarkIds: List<String>,
     val startFinishMarkId: String,
+    val quickBearingMapViews: List<QuickBearingMapViewDefinition>,
+)
+
+@Serializable
+data class QuickBearingMapViewDefinition(
+    val id: String,
+    val name: String,
+    val fitMarkIds: List<String>? = null,
 )
 
 @Serializable
@@ -59,6 +72,15 @@ data class CoursePackResources(
     val laidCourses: String,
     val marks: String,
     val courseCharts: String,
+    val quickBearingMaps: List<QuickBearingMapResource>,
+)
+
+@Serializable
+data class QuickBearingMapResource(
+    val id: String,
+    val name: String,
+    val image: String,
+    val hotspots: String,
 )
 
 @Serializable

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="841" viewBox="0 0 840 841">
+  <title>SYC Course 89 editable template</title>
+  <desc>Two course diagrams with wind, marks, gate, start and finish lines.</desc>
+  <rect width="840" height="841" fill="#fff"/>
+
+  <g id="wind" fill="#000" stroke="#000">
+    <text x="450" y="42" text-anchor="middle" stroke="none" font-family="Arial, Helvetica, sans-serif" font-size="32">Wind</text>
+    <path d="M439 48h22v38h15l-26 28-26-28h15z" stroke="none"/>
+  </g>
+
+  <g id="lap-one" fill="none" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path id="lap-one-upwind" d="M208 810 C211 640 214 440 218 89"/>
+    <path id="lap-one-rounding" d="M218 89 C220 61 211 48 196 51 C164 57 124 67 116 92"/>
+    <path id="lap-one-downwind" d="M116 92 C120 285 128 490 148 681"/>
+    <path id="lap-one-gate-rounding" d="M176 681 C176 704 163 714 146 714 C128 714 117 704 117 681" stroke-width="5"/>
+  </g>
+
+  <g id="lap-one-direction-arrows" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M121 304 L132 326 L143 304"/>
+    <path d="M207 325 L218 303 L229 325"/>
+    <path d="M104 681 L91 699 L110 696" fill="#000" stroke="none"/>
+    <path d="M188 696 L207 699 L194 681" fill="#000" stroke="none"/>
+  </g>
+
+  <g id="lap-one-marks" fill="#000" font-family="Arial, Helvetica, sans-serif" font-size="29" text-anchor="middle">
+    <circle cx="198" cy="76" r="13"/><text x="198" y="119">1</text>
+    <circle cx="148" cy="92" r="13"/><text x="148" y="135">2</text>
+    <circle cx="197" cy="200" r="13"/><text x="197" y="243">4</text>
+    <circle cx="117" cy="681" r="15"/><circle cx="176" cy="681" r="15"/>
+    <text x="146" y="735">Gate</text>
+  </g>
+
+  <g id="start-line" font-family="Arial, Helvetica, sans-serif" font-size="29" text-anchor="middle">
+    <path d="M80 748 H388" fill="none" stroke="#000" stroke-width="2" stroke-dasharray="3 7"/>
+    <circle cx="80" cy="748" r="15" fill="#000"/>
+    <circle cx="388" cy="748" r="15" fill="#000"/>
+    <text x="103" y="790">Start</text>
+    <g id="start-boat" fill="#000"><path d="M220 727 L234 712 L248 727 Z"/><rect x="220" y="727" width="28" height="39"/></g>
+  </g>
+
+  <g id="finish-course" fill="none" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path id="finish-downwind" d="M690 810 C665 650 633 430 610 300 C594 207 586 112 585 64"/>
+    <path id="finish-rounding" d="M585 64 C585 35 602 24 625 25 C651 26 669 42 670 64"/>
+    <path id="finish-upwind" d="M670 64 L670 529"/>
+  </g>
+
+  <g id="finish-direction-arrows" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M609 304 L620 326 L631 304"/>
+    <path d="M659 325 L670 303 L681 325"/>
+    <path d="M677 786 L690 814 L703 786 Z" fill="#000" stroke="none"/>
+  </g>
+
+  <g id="finish-marks" fill="#000" font-family="Arial, Helvetica, sans-serif" font-size="29" text-anchor="middle">
+    <circle cx="624" cy="76" r="13"/><text x="624" y="116">1</text>
+    <circle cx="624" cy="217" r="13"/><text x="624" y="257">4</text>
+  </g>
+
+  <g id="finish-line" font-family="Arial, Helvetica, sans-serif" font-size="29" text-anchor="middle">
+    <path d="M490 748 H800" fill="none" stroke="#000" stroke-width="2" stroke-dasharray="3 7"/>
+    <circle cx="490" cy="748" r="12" fill="#000"/>
+    <circle cx="800" cy="748" r="12" fill="#000"/>
+    <text x="750" y="789">Finish</text>
+    <g id="finish-boat" fill="#000"><path d="M635 727 L649 712 L663 727 Z"/><rect x="635" y="727" width="28" height="39"/></g>
+  </g>
+</svg>

@@ -17,6 +17,18 @@
 		0A0000052C20A00000000001 /* SYC Courses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SYC Courses.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A0000062C20A00000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A0000182C20A00000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0D0000012E50000000000001 /* SYC-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "SYC-Debug.xcconfig"; sourceTree = "<group>"; };
+		0D0000022E50000000000001 /* SYC-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "SYC-Release.xcconfig"; sourceTree = "<group>"; };
+		0D0000032E50000000000001 /* Festival-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Festival-Debug.xcconfig"; sourceTree = "<group>"; };
+		0D0000042E50000000000001 /* Festival-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Festival-Release.xcconfig"; sourceTree = "<group>"; };
+		0D0000052E50000000000001 /* RYCV-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "RYCV-Debug.xcconfig"; sourceTree = "<group>"; };
+		0D0000062E50000000000001 /* RYCV-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "RYCV-Release.xcconfig"; sourceTree = "<group>"; };
+		0D0000072E50000000000001 /* RMYS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "RMYS-Debug.xcconfig"; sourceTree = "<group>"; };
+		0D0000082E50000000000001 /* RMYS-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "RMYS-Release.xcconfig"; sourceTree = "<group>"; };
+		0D0000092E51000000000001 /* BYS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BYS-Debug.xcconfig"; sourceTree = "<group>"; };
+		0D00000A2E51000000000001 /* BYS-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BYS-Release.xcconfig"; sourceTree = "<group>"; };
+		0D00000B2E52000000000001 /* RBYC-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "RBYC-Debug.xcconfig"; sourceTree = "<group>"; };
+		0D00000C2E52000000000001 /* RBYC-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "RBYC-Release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +47,7 @@
 			isa = PBXGroup;
 			children = (
 				0A0000092C20A00000000001 /* SYCCoursesApp */,
+				0D0000092E50000000000001 /* Configs */,
 				0A00000A2C20A00000000001 /* Products */,
 				0A00000B2C20A00000000001 /* Frameworks */,
 			);
@@ -65,6 +78,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0D0000092E50000000000001 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				0D0000012E50000000000001 /* SYC-Debug.xcconfig */,
+				0D0000022E50000000000001 /* SYC-Release.xcconfig */,
+				0D0000032E50000000000001 /* Festival-Debug.xcconfig */,
+				0D0000042E50000000000001 /* Festival-Release.xcconfig */,
+				0D0000052E50000000000001 /* RYCV-Debug.xcconfig */,
+				0D0000062E50000000000001 /* RYCV-Release.xcconfig */,
+				0D0000072E50000000000001 /* RMYS-Debug.xcconfig */,
+				0D0000082E50000000000001 /* RMYS-Release.xcconfig */,
+				0D0000092E51000000000001 /* BYS-Debug.xcconfig */,
+				0D00000A2E51000000000001 /* BYS-Release.xcconfig */,
+				0D00000B2E52000000000001 /* RBYC-Debug.xcconfig */,
+				0D00000C2E52000000000001 /* RBYC-Release.xcconfig */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -75,6 +107,7 @@
 				0A00000E2C20A00000000001 /* Sources */,
 				0A0000072C20A00000000001 /* Frameworks */,
 				0A00000F2C20A00000000001 /* Resources */,
+				0D0000102E50000000000001 /* Build Course Pack Resources */,
 			);
 			buildRules = (
 			);
@@ -135,6 +168,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D0000102E50000000000001 /* Build Course Pack Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/../../course-apps.json",
+			);
+			name = "Build Course Pack Resources";
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/CoursePackResources/course-pack.json",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\nexport PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\"\nnode_binary=\"$(command -v node || true)\"\nif [ -z \"$node_binary\" ]; then\n  echo \"error: Node.js was not found. Install Node with Homebrew or expose it to Xcode.\" >&2\n  exit 1\nfi\nif ! command -v rsvg-convert >/dev/null 2>&1; then\n  echo \"error: rsvg-convert was not found. Install librsvg with: brew install librsvg\" >&2\n  exit 1\nfi\noutput=\"$DERIVED_FILE_DIR/CoursePackResources-$COURSE_APP_VARIANT\"\n\"$node_binary\" \"$SRCROOT/../../scripts/build_ios_variant.mjs\" --variant \"$COURSE_APP_VARIANT\" --output \"$output\"\ndestination=\"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/CoursePackResources\"\nrm -rf \"$destination\"\nmkdir -p \"$(dirname \"$destination\")\"\ncp -R \"$output\" \"$destination\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0A00000E2C20A00000000001 /* Sources */ = {
@@ -276,6 +329,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				COURSE_APP_DISPLAY_NAME = "SYC Courses";
+				COURSE_APP_VARIANT = syc;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SYCCoursesApp/Info.plist;
@@ -304,6 +359,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				COURSE_APP_DISPLAY_NAME = "SYC Courses";
+				COURSE_APP_VARIANT = syc;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SYCCoursesApp/Info.plist;
@@ -325,6 +382,30 @@
 			};
 			name = Release;
 		};
+		0D0000202E50000000000001 /* Debug-SYC */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000012E50000000000001 /* SYC-Debug.xcconfig */; buildSettings = {}; name = "Debug-SYC"; };
+		0D0000212E50000000000001 /* Release-SYC */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000022E50000000000001 /* SYC-Release.xcconfig */; buildSettings = {}; name = "Release-SYC"; };
+		0D0000222E50000000000001 /* Debug-Festival */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000032E50000000000001 /* Festival-Debug.xcconfig */; buildSettings = {}; name = "Debug-Festival"; };
+		0D0000232E50000000000001 /* Release-Festival */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000042E50000000000001 /* Festival-Release.xcconfig */; buildSettings = {}; name = "Release-Festival"; };
+		0D0000242E50000000000001 /* Debug-RYCV */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000052E50000000000001 /* RYCV-Debug.xcconfig */; buildSettings = {}; name = "Debug-RYCV"; };
+		0D0000252E50000000000001 /* Release-RYCV */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000062E50000000000001 /* RYCV-Release.xcconfig */; buildSettings = {}; name = "Release-RYCV"; };
+		0D0000262E50000000000001 /* Debug-RMYS */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000072E50000000000001 /* RMYS-Debug.xcconfig */; buildSettings = {}; name = "Debug-RMYS"; };
+		0D0000272E50000000000001 /* Release-RMYS */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000082E50000000000001 /* RMYS-Release.xcconfig */; buildSettings = {}; name = "Release-RMYS"; };
+		0D0000282E51000000000001 /* Debug-BYS */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000092E51000000000001 /* BYS-Debug.xcconfig */; buildSettings = {}; name = "Debug-BYS"; };
+		0D0000292E51000000000001 /* Release-BYS */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D00000A2E51000000000001 /* BYS-Release.xcconfig */; buildSettings = {}; name = "Release-BYS"; };
+		0D00002A2E52000000000001 /* Debug-RBYC */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D00000B2E52000000000001 /* RBYC-Debug.xcconfig */; buildSettings = {}; name = "Debug-RBYC"; };
+		0D00002B2E52000000000001 /* Release-RBYC */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D00000C2E52000000000001 /* RBYC-Release.xcconfig */; buildSettings = {}; name = "Release-RBYC"; };
+		0D0000302E50000000000001 /* Debug-SYC */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000012E50000000000001 /* SYC-Debug.xcconfig */; buildSettings = {}; name = "Debug-SYC"; };
+		0D0000312E50000000000001 /* Release-SYC */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000022E50000000000001 /* SYC-Release.xcconfig */; buildSettings = {}; name = "Release-SYC"; };
+		0D0000322E50000000000001 /* Debug-Festival */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000032E50000000000001 /* Festival-Debug.xcconfig */; buildSettings = {}; name = "Debug-Festival"; };
+		0D0000332E50000000000001 /* Release-Festival */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000042E50000000000001 /* Festival-Release.xcconfig */; buildSettings = {}; name = "Release-Festival"; };
+		0D0000342E50000000000001 /* Debug-RYCV */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000052E50000000000001 /* RYCV-Debug.xcconfig */; buildSettings = {}; name = "Debug-RYCV"; };
+		0D0000352E50000000000001 /* Release-RYCV */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000062E50000000000001 /* RYCV-Release.xcconfig */; buildSettings = {}; name = "Release-RYCV"; };
+		0D0000362E50000000000001 /* Debug-RMYS */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000072E50000000000001 /* RMYS-Debug.xcconfig */; buildSettings = {}; name = "Debug-RMYS"; };
+		0D0000372E50000000000001 /* Release-RMYS */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000082E50000000000001 /* RMYS-Release.xcconfig */; buildSettings = {}; name = "Release-RMYS"; };
+		0D0000382E51000000000001 /* Debug-BYS */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000092E51000000000001 /* BYS-Debug.xcconfig */; buildSettings = {}; name = "Debug-BYS"; };
+		0D0000392E51000000000001 /* Release-BYS */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D00000A2E51000000000001 /* BYS-Release.xcconfig */; buildSettings = {}; name = "Release-BYS"; };
+		0D00003A2E52000000000001 /* Debug-RBYC */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D00000B2E52000000000001 /* RBYC-Debug.xcconfig */; buildSettings = {}; name = "Debug-RBYC"; };
+		0D00003B2E52000000000001 /* Release-RBYC */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D00000C2E52000000000001 /* RBYC-Release.xcconfig */; buildSettings = {}; name = "Release-RBYC"; };
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -333,6 +414,18 @@
 			buildConfigurations = (
 				0A0000152C20A00000000001 /* Debug */,
 				0A0000162C20A00000000001 /* Release */,
+				0D0000302E50000000000001 /* Debug-SYC */,
+				0D0000312E50000000000001 /* Release-SYC */,
+				0D0000322E50000000000001 /* Debug-Festival */,
+				0D0000332E50000000000001 /* Release-Festival */,
+				0D0000342E50000000000001 /* Debug-RYCV */,
+				0D0000352E50000000000001 /* Release-RYCV */,
+				0D0000362E50000000000001 /* Debug-RMYS */,
+				0D0000372E50000000000001 /* Release-RMYS */,
+				0D0000382E51000000000001 /* Debug-BYS */,
+				0D0000392E51000000000001 /* Release-BYS */,
+				0D00003A2E52000000000001 /* Debug-RBYC */,
+				0D00003B2E52000000000001 /* Release-RBYC */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -342,6 +435,18 @@
 			buildConfigurations = (
 				0A0000132C20A00000000001 /* Debug */,
 				0A0000142C20A00000000001 /* Release */,
+				0D0000202E50000000000001 /* Debug-SYC */,
+				0D0000212E50000000000001 /* Release-SYC */,
+				0D0000222E50000000000001 /* Debug-Festival */,
+				0D0000232E50000000000001 /* Release-Festival */,
+				0D0000242E50000000000001 /* Debug-RYCV */,
+				0D0000252E50000000000001 /* Release-RYCV */,
+				0D0000262E50000000000001 /* Debug-RMYS */,
+				0D0000272E50000000000001 /* Release-RMYS */,
+				0D0000282E51000000000001 /* Debug-BYS */,
+				0D0000292E51000000000001 /* Release-BYS */,
+				0D00002A2E52000000000001 /* Debug-RBYC */,
+				0D00002B2E52000000000001 /* Release-RBYC */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

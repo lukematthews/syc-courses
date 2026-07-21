@@ -1,0 +1,74 @@
+[
+  {
+    "markId": "syc-1",
+    "x": 0.571361,
+    "y": 0.559357,
+    "labelLeft": 0.528748,
+    "labelTop": 0.525429,
+    "labelRight": 0.613974,
+    "labelBottom": 0.548643
+  },
+  {
+    "markId": "syc-2",
+    "x": 0.437174,
+    "y": 0.407062,
+    "labelLeft": 0.394561,
+    "labelTop": 0.373133,
+    "labelRight": 0.479787,
+    "labelBottom": 0.396347
+  },
+  {
+    "markId": "syc-3",
+    "x": 0.616051,
+    "y": 0.35793,
+    "labelLeft": 0.573438,
+    "labelTop": 0.324001,
+    "labelRight": 0.658665,
+    "labelBottom": 0.347216
+  },
+  {
+    "markId": "syc-4",
+    "x": 0.639365,
+    "y": 0.430908,
+    "labelLeft": 0.596752,
+    "labelTop": 0.441623,
+    "labelRight": 0.681978,
+    "labelBottom": 0.464837
+  },
+  {
+    "markId": "syc-5",
+    "x": 0.503469,
+    "y": 0.690389,
+    "labelLeft": 0.460855,
+    "labelTop": 0.656461,
+    "labelRight": 0.546082,
+    "labelBottom": 0.679675
+  },
+  {
+    "markId": "syc-6",
+    "x": 0.31222,
+    "y": 0.421912,
+    "labelLeft": 0.269607,
+    "labelTop": 0.387984,
+    "labelRight": 0.354833,
+    "labelBottom": 0.411198
+  },
+  {
+    "markId": "syc-7",
+    "x": 0.579375,
+    "y": 0.309611,
+    "labelLeft": 0.536762,
+    "labelTop": 0.275682,
+    "labelRight": 0.621989,
+    "labelBottom": 0.298897
+  },
+  {
+    "markId": "syc-tower",
+    "x": 0.68778,
+    "y": 0.421302,
+    "labelLeft": 0.617002,
+    "labelTop": 0.387373,
+    "labelRight": 0.758558,
+    "labelBottom": 0.410588
+  }
+]

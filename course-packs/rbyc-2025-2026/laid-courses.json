@@ -1,0 +1,596 @@
+[
+  {
+    "courseNumber": 1,
+    "groupId": "boat-boat-etchells-dragon",
+    "route": "Boat Start/Boat Finish - Etchells & Dragon",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6-race-day-positions-required",
+    "sourcePage": 8,
+    "comparableCourseNote": "Temporary laid-mark positions and committee-vessel lines are race-day values.",
+    "identitySuffix": "etchells-dragon"
+  },
+  {
+    "courseNumber": 2,
+    "groupId": "boat-boat-etchells-dragon",
+    "route": "Boat Start/Boat Finish - Etchells & Dragon",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3p/s",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6-race-day-positions-required",
+    "sourcePage": 8,
+    "comparableCourseNote": "Temporary laid-mark positions and committee-vessel lines are race-day values.",
+    "identitySuffix": "etchells-dragon"
+  },
+  {
+    "courseNumber": 3,
+    "groupId": "boat-boat-etchells-dragon",
+    "route": "Boat Start/Boat Finish - Etchells & Dragon",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3p/s",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3p/s",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6-race-day-positions-required",
+    "sourcePage": 8,
+    "comparableCourseNote": "Temporary laid-mark positions and committee-vessel lines are race-day values.",
+    "identitySuffix": "etchells-dragon"
+  },
+  {
+    "courseNumber": 1,
+    "groupId": "boat-boat-vx-one",
+    "route": "Boat Start/Boat Finish - VX One",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6-race-day-positions-required",
+    "sourcePage": 8,
+    "comparableCourseNote": "Temporary laid-mark positions and committee-vessel lines are race-day values.",
+    "identitySuffix": "vx-one"
+  },
+  {
+    "courseNumber": 2,
+    "groupId": "boat-boat-vx-one",
+    "route": "Boat Start/Boat Finish - VX One",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1b",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2b",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3p/s",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1b",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2b",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6-race-day-positions-required",
+    "sourcePage": 8,
+    "comparableCourseNote": "Temporary laid-mark positions and committee-vessel lines are race-day values.",
+    "identitySuffix": "vx-one"
+  },
+  {
+    "courseNumber": 3,
+    "groupId": "boat-boat-vx-one",
+    "route": "Boat Start/Boat Finish - VX One",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3p/s",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6-race-day-positions-required",
+    "sourcePage": 8,
+    "comparableCourseNote": "Temporary laid-mark positions and committee-vessel lines are race-day values.",
+    "identitySuffix": "vx-one"
+  },
+  {
+    "courseNumber": 1,
+    "groupId": "boat-boat-24mr",
+    "route": "Boat Start/Boat Finish - 2.4mR",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1b",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6-race-day-positions-required",
+    "sourcePage": 8,
+    "comparableCourseNote": "Temporary laid-mark positions and committee-vessel lines are race-day values.",
+    "identitySuffix": "24mr"
+  },
+  {
+    "courseNumber": 2,
+    "groupId": "boat-boat-24mr",
+    "route": "Boat Start/Boat Finish - 2.4mR",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1b",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3p/s",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1b",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6-race-day-positions-required",
+    "sourcePage": 8,
+    "comparableCourseNote": "Temporary laid-mark positions and committee-vessel lines are race-day values.",
+    "identitySuffix": "24mr"
+  },
+  {
+    "courseNumber": 3,
+    "groupId": "boat-boat-24mr",
+    "route": "Boat Start/Boat Finish - 2.4mR",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1b",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3p/s",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1b",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3p/s",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1b",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6-race-day-positions-required",
+    "sourcePage": 8,
+    "comparableCourseNote": "Temporary laid-mark positions and committee-vessel lines are race-day values.",
+    "identitySuffix": "24mr"
+  },
+  {
+    "courseNumber": 1,
+    "groupId": "boat-boat-other",
+    "route": "Boat Start/Boat Finish - Other Keelboats",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1a",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6-race-day-positions-required",
+    "sourcePage": 8,
+    "comparableCourseNote": "Temporary laid-mark positions and committee-vessel lines are race-day values.",
+    "identitySuffix": "other"
+  },
+  {
+    "courseNumber": 2,
+    "groupId": "boat-boat-other",
+    "route": "Boat Start/Boat Finish - Other Keelboats",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1a",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1a",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6-race-day-positions-required",
+    "sourcePage": 8,
+    "comparableCourseNote": "Temporary laid-mark positions and committee-vessel lines are race-day values.",
+    "identitySuffix": "other"
+  },
+  {
+    "courseNumber": 3,
+    "groupId": "boat-boat-other",
+    "route": "Boat Start/Boat Finish - Other Keelboats",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1a",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1a",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1a",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6-race-day-positions-required",
+    "sourcePage": 8,
+    "comparableCourseNote": "Temporary laid-mark positions and committee-vessel lines are race-day values.",
+    "identitySuffix": "other"
+  }
+]

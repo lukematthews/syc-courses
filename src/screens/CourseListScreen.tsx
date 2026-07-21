@@ -1,17 +1,13 @@
 import * as Collapsible from '@radix-ui/react-collapsible'
 import { useState, type ReactNode } from 'react'
-import { coursePack, laidCourses, type Course } from '../data/bundledCoursePack'
+import { allCourses, courseGroups, coursePack } from '../data/bundledCoursePack'
 import { CourseCard } from '../components/CourseCard'
 import { QuickBearingCard } from '../components/QuickBearingCard'
 
-const courseSectionOpenState = {
-  fixed: false,
-  laid: false,
-}
+const courseSectionOpenState: Record<string, boolean> = {}
 
 type CourseListScreenProps = {
-  courses: Course[]
-  onOpenCourse: (courseNumber: number) => void
+  onOpenCourse: (courseId: string) => void
   onOpenPennants: () => void
   onOpenQuickBearing: () => void
 }
@@ -19,7 +15,7 @@ type CourseListScreenProps = {
 type CollapsibleCourseSectionProps = {
   title: string
   count: number
-  sectionKey: keyof typeof courseSectionOpenState
+  sectionKey: string
   tone: 'fixed' | 'laid'
   children: ReactNode
 }
@@ -73,7 +69,6 @@ function CollapsibleCourseSection({
 }
 
 export function CourseListScreen({
-  courses,
   onOpenCourse,
   onOpenPennants,
   onOpenQuickBearing,
@@ -96,32 +91,15 @@ export function CourseListScreen({
           <div className="text-3xl font-black leading-none text-cyan-950">Flags</div>
         </button>
 
-        <CollapsibleCourseSection
-          title="Fixed Mark Courses"
-          count={courses.length}
-          sectionKey="fixed"
-          tone="fixed"
-        >
-          {courses.map((course) => (
-            <CourseCard key={course.id} course={course} onOpen={onOpenCourse} />
-          ))}
-        </CollapsibleCourseSection>
-
-        <CollapsibleCourseSection
-          title="Laid Courses"
-          count={laidCourses.length}
-          sectionKey="laid"
-          tone="laid"
-        >
-          {laidCourses.map((course) => (
-            <CourseCard
-              key={course.id}
-              course={course}
-              label="Course"
-              onOpen={onOpenCourse}
-            />
-          ))}
-        </CollapsibleCourseSection>
+        {courseGroups.map((group) => {
+          const groupedCourses = allCourses.filter((course) => (course.groupId ?? course.kind) === group.id)
+          if (!groupedCourses.length) return null
+          return (
+            <CollapsibleCourseSection key={group.id} title={group.name} count={groupedCourses.length} sectionKey={group.id} tone={group.kind}>
+              {groupedCourses.map((course) => <CourseCard key={course.id} course={course} onOpen={onOpenCourse} />)}
+            </CollapsibleCourseSection>
+          )
+        })}
       </div>
     </main>
   )

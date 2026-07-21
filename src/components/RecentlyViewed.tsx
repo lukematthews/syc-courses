@@ -4,7 +4,7 @@ import { CourseCard } from './CourseCard'
 type RecentlyViewedProps = {
   courses: Course[]
   recentCourseNumbers: number[]
-  onOpenCourse: (courseNumber: number) => void
+  onOpenCourse: (courseId: string) => void
 }
 
 export function RecentlyViewed({ courses, recentCourseNumbers, onOpenCourse }: RecentlyViewedProps) {
@@ -21,7 +21,7 @@ export function RecentlyViewed({ courses, recentCourseNumbers, onOpenCourse }: R
       <h2 className="text-2xl font-black text-slate-950">Recently Viewed</h2>
       <div className="space-y-4">
         {recentCourses.map((course) => (
-          <CourseCard key={course.courseNumber} course={course} onOpen={onOpenCourse} />
+          <CourseCard key={course.id} course={course} onOpen={onOpenCourse} />
         ))}
       </div>
     </section>

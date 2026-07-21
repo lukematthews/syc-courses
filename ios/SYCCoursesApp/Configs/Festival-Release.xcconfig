@@ -1,0 +1,6 @@
+#include "Base-Release.xcconfig"
+
+COURSE_APP_VARIANT = festival
+COURSE_APP_DISPLAY_NAME = Festival of Sails Courses
+COURSE_APP_BUNDLE_ID = au.com.syc.courses.festival
+COURSE_APP_ICON = AppIconFestival

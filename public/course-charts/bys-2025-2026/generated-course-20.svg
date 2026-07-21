@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1215" height="1680" viewBox="0 0 1215 1680">
+<defs><marker id="arrow-map" markerWidth="80" markerHeight="80" refX="72" refY="28" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,56 L76,28 z" fill="#D44A2A"/></marker><marker id="arrow-flow" markerWidth="72" markerHeight="72" refX="64" refY="24" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,48 L68,24 z" fill="#D44A2A"/></marker><marker id="arrow-laid" markerWidth="42" markerHeight="42" refX="38" refY="14" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,28 L40,14 z" fill="#D44A2A"/></marker><marker id="arrow-wind" markerWidth="48" markerHeight="48" refX="42" refY="16" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,32 L44,16 z" fill="#173D51"/></marker><style>.title{font:700 44px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#173D51}.subtitle{font:500 25px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#45606D}.mark{font:700 27px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#173D51;paint-order:stroke;stroke:#fff;stroke-width:8px;stroke-linejoin:round}.node{font:700 22px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#173D51}.side{font:500 16px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#55707C}.laid-label{font:700 28px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#173D51;paint-order:stroke;stroke:#EAF5F8;stroke-width:8px;stroke-linejoin:round}.lap-title{font:700 24px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#173D51}.lap-label{font:700 20px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#173D51}.wind{font:700 25px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#173D51;letter-spacing:2px}.footer{font:500 18px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#465D67}</style></defs>
+<rect width="1215" height="1680" fill="#EAF5F8"/>
+<line x1="157.5" y1="314.8" x2="382.5" y2="314.8" stroke="#D44A2A" stroke-width="6"/>
+<line x1="382.5" y1="314.8" x2="607.5" y2="314.8" stroke="#D44A2A" stroke-width="6"/>
+<line x1="607.5" y1="314.8" x2="832.5" y2="314.8" stroke="#D44A2A" stroke-width="6"/>
+<line x1="832.5" y1="314.8" x2="1057.5" y2="314.8" stroke="#D44A2A" stroke-width="6"/>
+<line x1="1057.5" y1="314.8" x2="1057.5" y2="544.5" stroke="#D44A2A" stroke-width="6"/>
+<line x1="1057.5" y1="544.5" x2="832.5" y2="544.5" stroke="#D44A2A" stroke-width="6"/>
+<line x1="832.5" y1="544.5" x2="607.5" y2="544.5" stroke="#D44A2A" stroke-width="6"/>
+<line x1="607.5" y1="544.5" x2="382.5" y2="544.5" stroke="#D44A2A" stroke-width="6"/>
+<line x1="382.5" y1="544.5" x2="157.5" y2="544.5" stroke="#D44A2A" stroke-width="6"/>
+<line x1="157.5" y1="544.5" x2="157.5" y2="774.2" stroke="#D44A2A" stroke-width="6"/>
+<line x1="157.5" y1="774.2" x2="382.5" y2="774.2" stroke="#D44A2A" stroke-width="6"/>
+<line x1="382.5" y1="774.2" x2="607.5" y2="774.2" stroke="#D44A2A" stroke-width="6"/>
+<line x1="607.5" y1="774.2" x2="832.5" y2="774.2" stroke="#D44A2A" stroke-width="6"/>
+<line x1="832.5" y1="774.2" x2="1057.5" y2="774.2" stroke="#D44A2A" stroke-width="6"/>
+<line x1="1057.5" y1="774.2" x2="1057.5" y2="1003.8" stroke="#D44A2A" stroke-width="6"/>
+<line x1="1057.5" y1="1003.8" x2="832.5" y2="1003.8" stroke="#D44A2A" stroke-width="6"/>
+<line x1="832.5" y1="1003.8" x2="607.5" y2="1003.8" stroke="#D44A2A" stroke-width="6"/>
+<line x1="607.5" y1="1003.8" x2="382.5" y2="1003.8" stroke="#D44A2A" stroke-width="6"/>
+<line x1="382.5" y1="1003.8" x2="157.5" y2="1003.8" stroke="#D44A2A" stroke-width="6"/>
+<line x1="157.5" y1="1003.8" x2="157.5" y2="1233.5" stroke="#D44A2A" stroke-width="6"/>
+<line x1="157.5" y1="1233.5" x2="382.5" y2="1233.5" stroke="#D44A2A" stroke-width="6"/>
+<line x1="382.5" y1="1233.5" x2="607.5" y2="1233.5" stroke="#D44A2A" stroke-width="6"/>
+<line x1="607.5" y1="1233.5" x2="832.5" y2="1233.5" stroke="#D44A2A" stroke-width="6"/>
+<line x1="832.5" y1="1233.5" x2="1057.5" y2="1233.5" stroke="#D44A2A" stroke-width="6"/>
+<line x1="1057.5" y1="1233.5" x2="1057.5" y2="1463.2" stroke="#D44A2A" stroke-width="6"/>
+<line x1="1057.5" y1="1463.2" x2="832.5" y2="1463.2" stroke="#D44A2A" stroke-width="6"/>
+<line x1="157.5" y1="314.8" x2="270.0" y2="314.8" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="382.5" y1="314.8" x2="495.0" y2="314.8" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="607.5" y1="314.8" x2="720.0" y2="314.8" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="832.5" y1="314.8" x2="945.0" y2="314.8" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="1057.5" y1="314.8" x2="1057.5" y2="429.7" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="1057.5" y1="544.5" x2="945.0" y2="544.5" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="832.5" y1="544.5" x2="720.0" y2="544.5" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="607.5" y1="544.5" x2="495.0" y2="544.5" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="382.5" y1="544.5" x2="270.0" y2="544.5" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="157.5" y1="544.5" x2="157.5" y2="659.3" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="157.5" y1="774.2" x2="270.0" y2="774.2" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="382.5" y1="774.2" x2="495.0" y2="774.2" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="607.5" y1="774.2" x2="720.0" y2="774.2" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="832.5" y1="774.2" x2="945.0" y2="774.2" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="1057.5" y1="774.2" x2="1057.5" y2="889.0" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="1057.5" y1="1003.8" x2="945.0" y2="1003.8" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="832.5" y1="1003.8" x2="720.0" y2="1003.8" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="607.5" y1="1003.8" x2="495.0" y2="1003.8" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="382.5" y1="1003.8" x2="270.0" y2="1003.8" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="157.5" y1="1003.8" x2="157.5" y2="1118.7" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="157.5" y1="1233.5" x2="270.0" y2="1233.5" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="382.5" y1="1233.5" x2="495.0" y2="1233.5" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="607.5" y1="1233.5" x2="720.0" y2="1233.5" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="832.5" y1="1233.5" x2="945.0" y2="1233.5" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="1057.5" y1="1233.5" x2="1057.5" y2="1348.3" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<line x1="1057.5" y1="1463.2" x2="945.0" y2="1463.2" stroke="#D44A2A" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow-flow)"/>
+<g><rect x="69.8" y="276.8" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="157.5" y="307.8">Start</tspan></text><text x="157.5" y="340.8" text-anchor="middle" class="side">START</text></g>
+<g><rect x="294.8" y="276.8" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="382.5" y="307.8">So.10</tspan></text><text x="382.5" y="340.8" text-anchor="middle" class="side">PORT</text></g>
+<g><rect x="519.8" y="276.8" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="607.5" y="307.8">So.12</tspan></text><text x="607.5" y="340.8" text-anchor="middle" class="side">PORT</text></g>
+<g><rect x="744.8" y="276.8" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="832.5" y="307.8">SCh.Light</tspan></text><text x="832.5" y="340.8" text-anchor="middle" class="side">STARBOARD</text></g>
+<g><rect x="969.8" y="276.8" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="1057.5" y="307.8">BYS6</tspan></text><text x="1057.5" y="340.8" text-anchor="middle" class="side">PORT</text></g>
+<g><rect x="969.8" y="506.5" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="1057.5" y="537.5">SCh.13</tspan></text><text x="1057.5" y="570.5" text-anchor="middle" class="side">STARBOARD</text></g>
+<g><rect x="744.8" y="506.5" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="832.5" y="537.5">BYS5</tspan></text><text x="832.5" y="570.5" text-anchor="middle" class="side">STARBOARD</text></g>
+<g><rect x="519.8" y="506.5" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="607.5" y="537.5">SCh.13</tspan></text><text x="607.5" y="570.5" text-anchor="middle" class="side">STARBOARD</text></g>
+<g><rect x="294.8" y="506.5" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="382.5" y="537.5">BYS5</tspan></text><text x="382.5" y="570.5" text-anchor="middle" class="side">STARBOARD</text></g>
+<g><rect x="69.8" y="506.5" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="157.5" y="537.5">So.10</tspan></text><text x="157.5" y="570.5" text-anchor="middle" class="side">STARBOARD</text></g>
+<g><rect x="69.8" y="736.2" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="157.5" y="767.2">BYS4</tspan></text><text x="157.5" y="800.2" text-anchor="middle" class="side">STARBOARD</text></g>
+<g><rect x="294.8" y="736.2" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="382.5" y="767.2">BYS2</tspan></text><text x="382.5" y="800.2" text-anchor="middle" class="side">STARBOARD</text></g>
+<g><rect x="519.8" y="736.2" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="607.5" y="767.2">SCh.7</tspan></text><text x="607.5" y="800.2" text-anchor="middle" class="side">PORT</text></g>
+<g><rect x="744.8" y="736.2" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="832.5" y="767.2">SCh.1</tspan></text><text x="832.5" y="800.2" text-anchor="middle" class="side">PORT</text></g>
+<g><rect x="969.8" y="736.2" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="1057.5" y="767.2">So.1</tspan></text><text x="1057.5" y="800.2" text-anchor="middle" class="side">STARBOARD</text></g>
+<g><rect x="969.8" y="965.8" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="1057.5" y="996.8">So.2</tspan></text><text x="1057.5" y="1029.8" text-anchor="middle" class="side">PORT</text></g>
+<g><rect x="744.8" y="965.8" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="832.5" y="996.8">So.4</tspan></text><text x="832.5" y="1029.8" text-anchor="middle" class="side">PORT</text></g>
+<g><rect x="519.8" y="965.8" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="607.5" y="996.8">So.6</tspan></text><text x="607.5" y="1029.8" text-anchor="middle" class="side">PORT</text></g>
+<g><rect x="294.8" y="965.8" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="382.5" y="996.8">So.8</tspan></text><text x="382.5" y="1029.8" text-anchor="middle" class="side">PORT</text></g>
+<g><rect x="69.8" y="965.8" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="157.5" y="996.8">So.3</tspan></text><text x="157.5" y="1029.8" text-anchor="middle" class="side">STARBOARD</text></g>
+<g><rect x="69.8" y="1195.5" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="157.5" y="1226.5">BYS3</tspan></text><text x="157.5" y="1259.5" text-anchor="middle" class="side">PORT</text></g>
+<g><rect x="294.8" y="1195.5" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="382.5" y="1226.5">BYS4</tspan></text><text x="382.5" y="1259.5" text-anchor="middle" class="side">STARBOARD</text></g>
+<g><rect x="519.8" y="1195.5" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="607.5" y="1226.5">So.10</tspan></text><text x="607.5" y="1259.5" text-anchor="middle" class="side">PORT</text></g>
+<g><rect x="744.8" y="1195.5" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="832.5" y="1226.5">BYS5</tspan></text><text x="832.5" y="1259.5" text-anchor="middle" class="side">STARBOARD</text></g>
+<g><rect x="969.8" y="1195.5" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="1057.5" y="1226.5">So.10</tspan></text><text x="1057.5" y="1259.5" text-anchor="middle" class="side">STARBOARD</text></g>
+<g><rect x="969.8" y="1425.2" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="1057.5" y="1456.2">BYS1</tspan></text><text x="1057.5" y="1489.2" text-anchor="middle" class="side">STARBOARD</text></g>
+<g><rect x="744.8" y="1425.2" width="175.5" height="76.0" rx="12" fill="#fff" stroke="#46636F" stroke-width="2"/><text text-anchor="middle" class="node"><tspan x="832.5" y="1456.2">Finish</tspan></text><text x="832.5" y="1489.2" text-anchor="middle" class="side">FINISH</text></g>
+<rect width="1215" height="150" fill="#fff"/>
+<text x="42" y="62" class="title">BYS Course 20</text>
+<text x="42" y="105" class="subtitle">KBC Spry - E, W · 29.3 nm</text>
+<rect y="1618" width="1215" height="62" fill="#fff"/>
+<text x="24" y="1646" class="footer">Not for navigation · Official sailing instructions and race-day communications take precedence</text>
+<text x="24" y="1669" class="footer">Schematic used: coordinates unavailable for SCh.13, SCh.1, So.1, So.2, So.4, So.6, So.8, So.3</text>
+</svg>

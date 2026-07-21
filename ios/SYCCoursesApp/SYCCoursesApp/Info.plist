@@ -6,12 +6,14 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleDisplayName</key>
+	<string>$(COURSE_APP_DISPLAY_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>SYC Courses</string>
+	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -23,9 +25,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocalNetworkUsageDescription</key>
-	<string>SYC Courses connects to an Actisense W2K-2 on your boat Wi-Fi network to send course and waypoint information.</string>
+	<string>$(COURSE_APP_DISPLAY_NAME) connects to an Actisense W2K-2 on your boat Wi-Fi network to send course and waypoint information.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>SYC Courses uses your current location to calculate bearing, distance, and race tracks on the water.</string>
+	<string>$(COURSE_APP_DISPLAY_NAME) uses your current location to calculate bearing, distance, and race tracks on the water.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

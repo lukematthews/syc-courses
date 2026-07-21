@@ -133,7 +133,16 @@ private struct MarkLocationMapView: View {
     let activeMarkID: String?
     let onSelect: (Mark) -> Void
 
-    private let hotspots = MarkLocationHotspot.loadBundled()
+    @State private var selectedMapIndex = 1
+
+    private var resources: CoursePackResources { CourseDataLoader.bundledPack.resources }
+    private var maps: [QuickBearingMapResource] { resources.quickBearingMaps }
+    private var selectedMap: QuickBearingMapResource {
+        maps[min(selectedMapIndex, maps.count - 1)]
+    }
+    private var hotspots: [MarkLocationHotspot] {
+        MarkLocationHotspot.loadBundled(selectedMap.hotspots)
+    }
 
     var body: some View {
         #if canImport(UIKit)
@@ -181,6 +190,8 @@ private struct MarkLocationMapView: View {
                                 )
                             }
                         }
+
+                        mapViewControl
                     }
             }
             .aspectRatio(1215.0 / 1680.0, contentMode: .fit)
@@ -196,10 +207,57 @@ private struct MarkLocationMapView: View {
 
     #if canImport(UIKit)
     private func loadImage() -> UIImage? {
-        Bundle.module.url(forResource: "mark-locations", withExtension: "png")
+        let name = URL(fileURLWithPath: selectedMap.image).deletingPathExtension().lastPathComponent
+        return CourseResourceLocator.url(forResource: name, withExtension: "png")
             .flatMap { UIImage(contentsOfFile: $0.path) }
     }
     #endif
+
+    @ViewBuilder
+    private var mapViewControl: some View {
+        if maps.count > 1 {
+            VStack {
+                HStack {
+                    Spacer()
+                    if maps.count == 2 {
+                        Button {
+                            selectedMapIndex = selectedMapIndex == 0 ? 1 : 0
+                        } label: {
+                            Image(systemName: selectedMapIndex == 0 ? "plus.magnifyingglass" : "minus.magnifyingglass")
+                                .font(.title3.weight(.bold))
+                                .frame(width: 44, height: 44)
+                                .background(.regularMaterial, in: Circle())
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel(selectedMapIndex == 0 ? "Zoom in to \(maps[1].name)" : "Zoom out")
+                    } else {
+                        Menu {
+                            ForEach(Array(maps.enumerated()), id: \.element.id) { index, map in
+                                Button {
+                                    selectedMapIndex = index
+                                } label: {
+                                    Label(map.name, systemImage: index == selectedMapIndex ? "checkmark" : "map")
+                                }
+                            }
+                        } label: {
+                            HStack(spacing: 6) {
+                                Text(selectedMap.name)
+                                Image(systemName: "chevron.down")
+                            }
+                            .font(.subheadline.weight(.bold))
+                            .padding(.horizontal, 12)
+                            .frame(minHeight: 44)
+                            .background(.regularMaterial, in: Capsule())
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel("Map area, \(selectedMap.name)")
+                    }
+                }
+                Spacer()
+            }
+            .padding(10)
+        }
+    }
 }
 
 private struct ActiveCourseHotspotLine: View {
@@ -257,8 +315,9 @@ private struct MarkLocationHotspot: Identifiable, Decodable {
         )
     }
 
-    static func loadBundled() -> [MarkLocationHotspot] {
-        guard let url = Bundle.module.url(forResource: "mark-location-hotspots", withExtension: "json"),
+    static func loadBundled(_ resource: String) -> [MarkLocationHotspot] {
+        let name = URL(fileURLWithPath: resource).deletingPathExtension().lastPathComponent
+        guard let url = CourseResourceLocator.url(forResource: name, withExtension: "json"),
               let data = try? Data(contentsOf: url),
               let hotspots = try? JSONDecoder().decode([MarkLocationHotspot].self, from: data) else {
             return []

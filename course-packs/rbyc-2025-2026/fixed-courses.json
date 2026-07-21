@@ -1,0 +1,6620 @@
+[
+  {
+    "courseNumber": 4,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - N wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "14 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 5,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - N wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "18 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 6,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - N wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "20 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 7,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - N wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "15 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 8,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - N wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "20 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 9,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - N wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SG",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "21 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 10,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - N wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SG",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "26 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 11,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - NW wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 12,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - NW wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "15 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 13,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - NW wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "16 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 14,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - NW wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "14 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 15,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - NW wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "19 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 16,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - NW wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "25 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 17,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - W wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "11 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 18,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - W wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "11 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 19,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - W wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "19 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 20,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - W wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "23 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 21,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - SW wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 22,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - SW wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "14 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 23,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - SW wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SG",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "17 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 24,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - SW wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SG",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "18 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 25,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - SW wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SG",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "21 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 26,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - SW wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SG",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "23 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 27,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - S wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "12 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 28,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - S wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "16 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 29,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - S wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "18 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 30,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - S wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "23 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 31,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - S wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SG",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "OA",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "21 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 32,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - S wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SG",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "OA",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "26 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 33,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - SE wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "12 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 34,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - SE wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "15 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 35,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - SE wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "16 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 36,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - SE wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "21 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 9,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 37,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - SE wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "OA",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "25 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 10,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 38,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - SE wind/start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "OA",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "30 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 10,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 39,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - E wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 10,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 40,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - E wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "14 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 10,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 41,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - E wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "15 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 10,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 42,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - E wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "15 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 10,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 43,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - E wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "20 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 10,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 44,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - E wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "24 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 10,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 45,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - E wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "31 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 10,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 46,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - NE wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "17 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 10,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 47,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - NE wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SG",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "18 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 10,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 48,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - NE wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "22 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 10,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 49,
+    "groupId": "boat-tower",
+    "route": "Boat Start/Tower Finish - NE wind/start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Gate",
+        "side": "gate",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "P3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "SG",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "24 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 10,
+    "comparableCourseNote": "The weather gate is a temporary pink inflatable gate laid to weather of the start."
+  },
+  {
+    "courseNumber": 50,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - E wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "6 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 51,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - E wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "8 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 52,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - E wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 53,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - E wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "9 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 54,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - NE wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 55,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - NE wind, Sth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "9 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 56,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - NE wind, Sth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "11 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 57,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - N wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "4 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 58,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - N wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "5 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 59,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - N wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "6 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 60,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - N wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 61,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - N wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 62,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - N wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "8 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 63,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - N wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "9 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 64,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - N wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 65,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - N wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 66,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - N wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 67,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - N wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 68,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - N wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 69,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - N wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 70,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - N wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "11 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 71,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - N wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "12 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 72,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - N wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "14 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 73,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - NW wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "5 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 74,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - NW wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "6 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 75,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - NW wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 76,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - NW wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "9 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 77,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - NW wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "13 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 11,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 78,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - SE wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "6 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 79,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - SE wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish (northerly direction)",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 80,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - SE wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "11 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 81,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - S wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "4 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 82,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - S wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "5 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 83,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - S wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "5 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 84,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - S wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "6 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 85,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - S wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 86,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - S wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "9 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 87,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - S wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "9 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 88,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - S wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "10 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 89,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - S wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "11 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 90,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - S wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "13 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 91,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - S wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "14 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 92,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - SW wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "4 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 93,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - SW wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 94,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - SW wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "8 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 95,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - SW wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "8 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 96,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - SW wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "4",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "9 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 97,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - SW wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "6",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "5",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "13 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 98,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - W/NW wind, Nth start",
+    "passInstruction": "All marks are left to port except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "R2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "2",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "7 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 99,
+    "groupId": "tower-tower",
+    "route": "Tower Start/Tower Finish - SW wind, Sth start",
+    "passInstruction": "All marks are left to starboard except gate marks.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "starboard",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "3 nm",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v6",
+    "sourcePage": 12,
+    "comparableCourseNote": null
+  }
+]

@@ -1,0 +1,6 @@
+#include "Base-Debug.xcconfig"
+
+COURSE_APP_VARIANT = rbyc
+COURSE_APP_DISPLAY_NAME = RBYC Courses
+COURSE_APP_BUNDLE_ID = au.com.syc.courses.rbyc
+COURSE_APP_ICON = AppIconRBYC

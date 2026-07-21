@@ -43,12 +43,16 @@ struct HomeView: View {
                     NavigationLink(value: HomeRoute.flags) {
                         HomeCard(title: "Flags", subtitle: "Numeral pennants 0-9", systemImage: "flag")
                     }
-                    NavigationLink(value: HomeRoute.fixed) {
-                        HomeCard(title: "Fixed Mark Courses", subtitle: "\(fixedCourses.count) courses", systemImage: "list.bullet.rectangle")
-                    }
-                    if !laidCourses.isEmpty {
-                        NavigationLink(value: HomeRoute.laid) {
-                            HomeCard(title: "Laid Courses", subtitle: "\(laidCourses.count) courses", systemImage: "triangle")
+                    ForEach(CourseDataLoader.courseGroups) { group in
+                        let courses = CourseDataLoader.courses(groupId: group.id)
+                        if !courses.isEmpty {
+                            NavigationLink(value: HomeRoute.courseGroup(group.id)) {
+                                HomeCard(
+                                    title: group.name,
+                                    subtitle: "\(courses.count) courses",
+                                    systemImage: group.kind == .laid ? "triangle" : "list.bullet.rectangle"
+                                )
+                            }
                         }
                     }
                     NavigationLink(value: HomeRoute.lineAssist(.start)) {
@@ -144,8 +148,7 @@ struct HomeView: View {
                 switch route {
                 case .quickBearing: QuickBearingView()
                 case .flags: PennantReferenceView()
-                case .fixed: CourseListView(kind: .fixed)
-                case .laid: CourseListView(kind: .laid)
+                case let .courseGroup(groupId): CourseListView(groupId: groupId)
                 case let .lineAssist(mode): StartAssistView(initialMode: mode)
                 case .finishOptions: FinishOptionsView()
                 case .raceTracker: RaceTrackerView()
@@ -208,7 +211,7 @@ struct AppIconImage: View {
 
     var body: some View {
         #if canImport(UIKit)
-        if let url = Bundle.module.url(forResource: "app-icon", withExtension: "png"),
+        if let url = CourseResourceLocator.url(forResource: "app-icon", withExtension: "png"),
            let data = try? Data(contentsOf: url),
            let image = UIImage(data: data) {
             Image(uiImage: image)
@@ -227,8 +230,7 @@ struct AppIconImage: View {
 enum HomeRoute: Hashable {
     case quickBearing
     case flags
-    case fixed
-    case laid
+    case courseGroup(String)
     case lineAssist(LineMode)
     case finishOptions
     case raceTracker

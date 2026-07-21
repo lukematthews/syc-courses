@@ -1,0 +1,302 @@
+[
+  {
+    "courseNumber": 10,
+    "identitySuffix": "div-a",
+    "route": "Division A - Aggregate",
+    "groupId": "laid",
+    "passInstruction": "All laid marks are rounded to port. Mark positions and start/finish lines are set on the water.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1A",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2-race-day-positions-required",
+    "sourcePage": 10,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 10,
+    "identitySuffix": "div-b",
+    "route": "Division B - Aggregate",
+    "groupId": "laid",
+    "passInstruction": "All laid marks are rounded to port. Mark positions and start/finish lines are set on the water.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1A",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2-race-day-positions-required",
+    "sourcePage": 10,
+    "comparableCourseNote": null
+  },
+  {
+    "courseNumber": 11,
+    "identitySuffix": "div-a",
+    "route": "Division A - Aggregate, upwind finish",
+    "groupId": "laid",
+    "passInstruction": "All laid marks are rounded to port. Mark positions and start/finish lines are set on the water.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1A",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2-race-day-positions-required",
+    "sourcePage": 10,
+    "comparableCourseNote": "Finish is upwind of Mark 1."
+  },
+  {
+    "courseNumber": 11,
+    "identitySuffix": "div-b",
+    "route": "Division B - Aggregate, upwind finish",
+    "groupId": "laid",
+    "passInstruction": "All laid marks are rounded to port. Mark positions and start/finish lines are set on the water.",
+    "rows": [
+      {
+        "mark": "Start",
+        "side": "start",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1A",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "1",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "3",
+        "side": "port",
+        "bearing": "",
+        "distance": ""
+      },
+      {
+        "mark": "Finish",
+        "side": "finish",
+        "bearing": "",
+        "distance": ""
+      }
+    ],
+    "totalDistance": "",
+    "chartImage": "",
+    "chartAlt": "",
+    "dataStatus": "verified-from-official-pdf-v2-race-day-positions-required",
+    "sourcePage": 10,
+    "comparableCourseNote": "Finish is upwind of Mark 1."
+  }
+]

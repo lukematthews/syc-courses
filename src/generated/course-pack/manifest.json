@@ -14,6 +14,18 @@
     "fixed",
     "laid"
   ],
+  "courseGroups": [
+    {
+      "id": "fixed",
+      "name": "Fixed Mark",
+      "kind": "fixed"
+    },
+    {
+      "id": "laid",
+      "name": "Laid Mark",
+      "kind": "laid"
+    }
+  ],
   "navigation": {
     "startLineMarkIds": [
       "syc-tower",
@@ -23,12 +35,46 @@
       "syc-tower",
       "syc-4"
     ],
-    "startFinishMarkId": "syc-4"
+    "startFinishMarkId": "syc-4",
+    "quickBearingMapViews": [
+      {
+        "id": "overview",
+        "name": "Overview"
+      },
+      {
+        "id": "syc",
+        "name": "SYC",
+        "fitMarkIds": [
+          "syc-1",
+          "syc-2",
+          "syc-3",
+          "syc-4",
+          "syc-5",
+          "syc-6",
+          "syc-7",
+          "syc-tower"
+        ]
+      }
+    ]
   },
   "resources": {
     "fixedCourses": "fixed-courses.json",
     "laidCourses": "laid-courses.json",
     "marks": "marks.json",
-    "courseCharts": "/course-charts/syc"
+    "courseCharts": "/course-charts/syc",
+    "quickBearingMaps": [
+      {
+        "id": "overview",
+        "name": "Overview",
+        "image": "mark-locations.png",
+        "hotspots": "mark-location-hotspots.json"
+      },
+      {
+        "id": "syc",
+        "name": "SYC",
+        "image": "mark-locations-syc.png",
+        "hotspots": "mark-location-syc-hotspots.json"
+      }
+    ]
   }
 }

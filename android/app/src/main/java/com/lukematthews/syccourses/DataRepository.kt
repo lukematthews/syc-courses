@@ -11,9 +11,15 @@ class DataRepository(context: Context) {
     val fixedCourses: List<Course> by lazy { decode(coursePack.resources.fixedCourses) }
     val laidCourses: List<Course> by lazy { decode(coursePack.resources.laidCourses) }
     val marks: List<Mark> by lazy { decode(coursePack.resources.marks) }
-    val markHotspots: List<MarkHotspot> by lazy { decode("mark-location-hotspots.json") }
     val portPhillipCoastline: CoastlineData by lazy { decode("port-phillip-coastline.json") }
     val allCourses: List<Course> get() = fixedCourses + laidCourses
+    val courseGroups: List<CourseGroup> get() = coursePack.courseGroups.ifEmpty {
+        coursePack.courseKinds.map { kind ->
+            CourseGroup(kind.name, if (kind == CourseKind.fixed) "Fixed Mark Courses" else "Laid Courses", kind)
+        }
+    }
+
+    fun courses(groupId: String) = allCourses.filter { (it.groupId ?: it.kind.name) == groupId }
 
     private inline fun <reified T> decode(file: String): T =
         json.decodeFromString(assets.open(file).bufferedReader().use { it.readText() })
@@ -24,6 +30,7 @@ class DataRepository(context: Context) {
     fun startLineMarks() = coursePack.navigation.startLineMarkIds.mapNotNull(::markById)
     fun finishLineMarks() = coursePack.navigation.finishLineMarkIds.mapNotNull(::markById)
     fun startFinishMark() = markById(coursePack.navigation.startFinishMarkId)
+    fun markHotspots(resource: String): List<MarkHotspot> = decode(resource)
 
     fun mark(named: String): Mark? {
         val key = named.normalizedMarkName()

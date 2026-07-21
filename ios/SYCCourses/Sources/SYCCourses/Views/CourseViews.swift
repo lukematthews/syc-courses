@@ -4,13 +4,14 @@ import UIKit
 #endif
 
 struct CourseListView: View {
-    let kind: CourseKind
+    let groupId: String
 
     private var courses: [Course] {
-        switch kind {
-        case .fixed: CourseDataLoader.fixedCourses()
-        case .laid: CourseDataLoader.laidCourses()
-        }
+        CourseDataLoader.courses(groupId: groupId)
+    }
+
+    private var group: CourseGroup? {
+        CourseDataLoader.courseGroups.first { $0.id == groupId }
     }
 
     var body: some View {
@@ -26,7 +27,7 @@ struct CourseListView: View {
             .padding()
         }
         .background(AppColors.groupedBackground)
-        .navigationTitle(kind.title)
+        .navigationTitle(group?.name ?? "Courses")
     }
 }
 

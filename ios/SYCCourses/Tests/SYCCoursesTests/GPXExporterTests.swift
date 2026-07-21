@@ -75,6 +75,7 @@ final class GPXExporterTests: XCTestCase {
             id: "test/fixed/course-\(number)",
             packId: "test",
             kind: .fixed,
+            groupId: nil,
             courseNumber: number,
             route: nil,
             passInstruction: "All marks to Port",

@@ -264,9 +264,9 @@ struct ChartImageView: View {
         let fileName = pathURL.lastPathComponent
         let name = URL(fileURLWithPath: fileName).deletingPathExtension().lastPathComponent
         let subdirectory = pathURL.deletingLastPathComponent().path
-        let url = Bundle.module.url(forResource: name, withExtension: "png", subdirectory: subdirectory)
-            ?? Bundle.module.url(forResource: name, withExtension: "png", subdirectory: "course-charts")
-            ?? Bundle.module.url(forResource: name, withExtension: "png")
+        let url = CourseResourceLocator.url(forResource: name, withExtension: "png", subdirectory: subdirectory)
+            ?? CourseResourceLocator.url(forResource: name, withExtension: "png", subdirectory: "course-charts")
+            ?? CourseResourceLocator.url(forResource: name, withExtension: "png")
 
         guard let url else { return nil }
         return UIImage(contentsOfFile: url.path)

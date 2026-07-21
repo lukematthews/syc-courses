@@ -1,0 +1,47 @@
+<div id="icon-background-spectrum">
+  <div class="card" aria-live="polite">
+    <span class="text-muted">Selected</span>
+    <span id="spectrum-name" class="viz-stat-value">1 · Cool silver</span>
+    <code id="spectrum-hex">#68757D</code>
+  </div>
+  <div class="spectrum-grid" role="group" aria-label="Ten varied app icon background colours">
+    <button type="button" class="btn viz-tile spectrum-colour is-selected" style="--swatch:#68757D" data-name="1 · Cool silver" data-hex="#68757D" aria-label="Option 1, Cool silver, #68757D"><span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>1</span></button>
+    <button type="button" class="btn viz-tile spectrum-colour" style="--swatch:#736B63" data-name="2 · Warm stone" data-hex="#736B63" aria-label="Option 2, Warm stone, #736B63"><span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>2</span></button>
+    <button type="button" class="btn viz-tile spectrum-colour" style="--swatch:#5E7668" data-name="3 · Eucalyptus" data-hex="#5E7668" aria-label="Option 3, Eucalyptus, #5E7668"><span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>3</span></button>
+    <button type="button" class="btn viz-tile spectrum-colour" style="--swatch:#3F7B78" data-name="4 · Sea glass" data-hex="#3F7B78" aria-label="Option 4, Sea glass, #3F7B78"><span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>4</span></button>
+    <button type="button" class="btn viz-tile spectrum-colour" style="--swatch:#447A96" data-name="5 · Harbour blue" data-hex="#447A96" aria-label="Option 5, Harbour blue, #447A96"><span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>5</span></button>
+    <button type="button" class="btn viz-tile spectrum-colour" style="--swatch:#5D6FA0" data-name="6 · Cornflower" data-hex="#5D6FA0" aria-label="Option 6, Cornflower, #5D6FA0"><span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>6</span></button>
+    <button type="button" class="btn viz-tile spectrum-colour" style="--swatch:#746786" data-name="7 · Heather" data-hex="#746786" aria-label="Option 7, Heather, #746786"><span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>7</span></button>
+    <button type="button" class="btn viz-tile spectrum-colour" style="--swatch:#765568" data-name="8 · Muted plum" data-hex="#765568" aria-label="Option 8, Muted plum, #765568"><span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>8</span></button>
+    <button type="button" class="btn viz-tile spectrum-colour" style="--swatch:#945E4F" data-name="9 · Terracotta" data-hex="#945E4F" aria-label="Option 9, Terracotta, #945E4F"><span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>9</span></button>
+    <button type="button" class="btn viz-tile spectrum-colour" style="--swatch:#8A753F" data-name="10 · Muted olive" data-hex="#8A753F" aria-label="Option 10, Muted olive, #8A753F"><span class="flag-test" aria-hidden="true"><i></i><i></i><i></i></span><span>10</span></button>
+  </div>
+</div>
+<style>
+  #icon-background-spectrum { display:grid; gap:1rem; }
+  #icon-background-spectrum .card { display:flex; align-items:baseline; gap:.75rem; flex-wrap:wrap; }
+  #icon-background-spectrum .spectrum-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.75rem; }
+  #icon-background-spectrum .spectrum-colour { min-height:7rem; display:flex; flex-direction:column; justify-content:space-between; align-items:flex-start; background:var(--swatch); color:white; }
+  #icon-background-spectrum .spectrum-colour > span:last-child { font-weight:500; }
+  #icon-background-spectrum .flag-test { display:flex; width:100%; height:1.1rem; border-radius:.25rem; overflow:hidden; box-shadow:0 0 0 1px color-mix(in srgb, white 50%, transparent); }
+  #icon-background-spectrum .flag-test i { flex:1; }
+  #icon-background-spectrum .flag-test i:nth-child(1) { background:#E6202A; }
+  #icon-background-spectrum .flag-test i:nth-child(2) { background:white; }
+  #icon-background-spectrum .flag-test i:nth-child(3) { background:#17233E; }
+  @media (max-width:560px) { #icon-background-spectrum .spectrum-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+</style>
+<script>
+  (() => {
+    const root = document.getElementById('icon-background-spectrum');
+    const name = root.querySelector('#spectrum-name');
+    const hex = root.querySelector('#spectrum-hex');
+    root.querySelectorAll('.spectrum-colour').forEach((button) => {
+      button.addEventListener('click', () => {
+        root.querySelectorAll('.spectrum-colour').forEach((item) => item.classList.remove('is-selected'));
+        button.classList.add('is-selected');
+        name.textContent = button.dataset.name;
+        hex.textContent = button.dataset.hex;
+      });
+    });
+  })();
+</script>
