@@ -10,13 +10,45 @@
 		0A0000012C20A00000000001 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0000022C20A00000000001 /* App.swift */; };
 		0A0000032C20A00000000001 /* SYCCourses in Frameworks */ = {isa = PBXBuildFile; productRef = 0A0000042C20A00000000001 /* SYCCourses */; };
 		0A0000172C20A00000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A0000182C20A00000000001 /* Assets.xcassets */; };
+		0E0000012F00000000000001 /* SYCCoursesWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0000022F00000000000001 /* SYCCoursesWidgets.swift */; };
+		0E0000032F00000000000001 /* SYCCourses in Frameworks */ = {isa = PBXBuildFile; productRef = 0A0000042C20A00000000001 /* SYCCourses */; };
+		0E0000042F00000000000001 /* SYCCoursesWidgets.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0E0000052F00000000000001 /* SYCCoursesWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0E0000062F00000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A0000102C20A00000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0E0000072F00000000000001;
+			remoteInfo = SYCCoursesWidgets;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0E0000082F00000000000001 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				0E0000042F00000000000001 /* SYCCoursesWidgets.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0A0000022C20A00000000001 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		0A0000052C20A00000000001 /* SYC Courses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SYC Courses.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A0000062C20A00000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A0000182C20A00000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0E0000022F00000000000001 /* SYCCoursesWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SYCCoursesWidgets.swift; sourceTree = "<group>"; };
+		0E0000052F00000000000001 /* SYCCoursesWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SYCCoursesWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E0000092F00000000000001 /* Widget Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0E00000A2F00000000000001 /* SYCCoursesWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SYCCoursesWidgets.entitlements; sourceTree = "<group>"; };
+		0E00000B2F00000000000001 /* SYCCoursesApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SYCCoursesApp.entitlements; sourceTree = "<group>"; };
 		0D0000012E50000000000001 /* SYC-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "SYC-Debug.xcconfig"; sourceTree = "<group>"; };
 		0D0000022E50000000000001 /* SYC-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "SYC-Release.xcconfig"; sourceTree = "<group>"; };
 		0D0000032E50000000000001 /* Festival-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Festival-Debug.xcconfig"; sourceTree = "<group>"; };
@@ -40,6 +72,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0E00000C2F00000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E0000032F00000000000001 /* SYCCourses in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -47,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				0A0000092C20A00000000001 /* SYCCoursesApp */,
+				0E00000D2F00000000000001 /* SYCCoursesWidgets */,
 				0D0000092E50000000000001 /* Configs */,
 				0A00000A2C20A00000000001 /* Products */,
 				0A00000B2C20A00000000001 /* Frameworks */,
@@ -59,6 +100,7 @@
 				0A0000022C20A00000000001 /* App.swift */,
 				0A0000062C20A00000000001 /* Info.plist */,
 				0A0000182C20A00000000001 /* Assets.xcassets */,
+				0E00000B2F00000000000001 /* SYCCoursesApp.entitlements */,
 			);
 			path = SYCCoursesApp;
 			sourceTree = "<group>";
@@ -67,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				0A0000052C20A00000000001 /* SYC Courses.app */,
+				0E0000052F00000000000001 /* SYCCoursesWidgets.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,6 +119,16 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0E00000D2F00000000000001 /* SYCCoursesWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				0E0000022F00000000000001 /* SYCCoursesWidgets.swift */,
+				0E0000092F00000000000001 /* Widget Info.plist */,
+				0E00000A2F00000000000001 /* SYCCoursesWidgets.entitlements */,
+			);
+			path = SYCCoursesWidgets;
 			sourceTree = "<group>";
 		};
 		0D0000092E50000000000001 /* Configs */ = {
@@ -108,10 +161,12 @@
 				0A0000072C20A00000000001 /* Frameworks */,
 				0A00000F2C20A00000000001 /* Resources */,
 				0D0000102E50000000000001 /* Build Course Pack Resources */,
+				0E0000082F00000000000001 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0E00000E2F00000000000001 /* PBXTargetDependency */,
 			);
 			name = SYCCoursesApp;
 			packageProductDependencies = (
@@ -120,6 +175,26 @@
 			productName = SYCCoursesApp;
 			productReference = 0A0000052C20A00000000001 /* SYC Courses.app */;
 			productType = "com.apple.product-type.application";
+		};
+		0E0000072F00000000000001 /* SYCCoursesWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0E00000F2F00000000000001 /* Build configuration list for PBXNativeTarget "SYCCoursesWidgets" */;
+			buildPhases = (
+				0E0000102F00000000000001 /* Sources */,
+				0E00000C2F00000000000001 /* Frameworks */,
+				0E0000112F00000000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SYCCoursesWidgets;
+			packageProductDependencies = (
+				0A0000042C20A00000000001 /* SYCCourses */,
+			);
+			productName = SYCCoursesWidgets;
+			productReference = 0E0000052F00000000000001 /* SYCCoursesWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -132,6 +207,9 @@
 				LastUpgradeCheck = 2660;
 				TargetAttributes = {
 					0A00000C2C20A00000000001 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					0E0000072F00000000000001 = {
 						CreatedOnToolsVersion = 26.0;
 					};
 				};
@@ -154,6 +232,7 @@
 			projectRoot = "";
 			targets = (
 				0A00000C2C20A00000000001 /* SYCCoursesApp */,
+				0E0000072F00000000000001 /* SYCCoursesWidgets */,
 			);
 		};
 /* End PBXProject section */
@@ -164,6 +243,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A0000172C20A00000000001 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0E0000112F00000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +281,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A0000012C20A00000000001 /* App.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0E0000102F00000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E0000012F00000000000001 /* SYCCoursesWidgets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +421,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SYCCoursesApp/SYCCoursesApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COURSE_APP_DISPLAY_NAME = "SYC Courses";
@@ -357,6 +452,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SYCCoursesApp/SYCCoursesApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COURSE_APP_DISPLAY_NAME = "SYC Courses";
@@ -406,6 +502,64 @@
 		0D0000392E51000000000001 /* Release-BYS */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D00000A2E51000000000001 /* BYS-Release.xcconfig */; buildSettings = {}; name = "Release-BYS"; };
 		0D00003A2E52000000000001 /* Debug-RBYC */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D00000B2E52000000000001 /* RBYC-Debug.xcconfig */; buildSettings = {}; name = "Debug-RBYC"; };
 		0D00003B2E52000000000001 /* Release-RBYC */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D00000C2E52000000000001 /* RBYC-Release.xcconfig */; buildSettings = {}; name = "Release-RBYC"; };
+		0E0000202F00000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = SYCCoursesWidgets/SYCCoursesWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J3HK4X59L3;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SYCCoursesWidgets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = au.com.syc.courses.navigation-widget;
+				PRODUCT_NAME = SYCCoursesWidgets;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		0E0000212F00000000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = SYCCoursesWidgets/SYCCoursesWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J3HK4X59L3;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SYCCoursesWidgets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = au.com.syc.courses.navigation-widget;
+				PRODUCT_NAME = SYCCoursesWidgets;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		0E0000222F00000000000001 /* Debug-SYC */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000012E50000000000001 /* SYC-Debug.xcconfig */; buildSettings = {APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = SYCCoursesWidgets/SYCCoursesWidgets.entitlements; INFOPLIST_FILE = SYCCoursesWidgets/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = "$(COURSE_APP_BUNDLE_ID).navigation-widget"; PRODUCT_NAME = SYCCoursesWidgets; SKIP_INSTALL = YES; }; name = "Debug-SYC"; };
+		0E0000232F00000000000001 /* Release-SYC */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000022E50000000000001 /* SYC-Release.xcconfig */; buildSettings = {APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = SYCCoursesWidgets/SYCCoursesWidgets.entitlements; INFOPLIST_FILE = SYCCoursesWidgets/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = "$(COURSE_APP_BUNDLE_ID).navigation-widget"; PRODUCT_NAME = SYCCoursesWidgets; SKIP_INSTALL = YES; }; name = "Release-SYC"; };
+		0E0000242F00000000000001 /* Debug-Festival */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000032E50000000000001 /* Festival-Debug.xcconfig */; buildSettings = {APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = SYCCoursesWidgets/SYCCoursesWidgets.entitlements; INFOPLIST_FILE = SYCCoursesWidgets/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = "$(COURSE_APP_BUNDLE_ID).navigation-widget"; PRODUCT_NAME = SYCCoursesWidgets; SKIP_INSTALL = YES; }; name = "Debug-Festival"; };
+		0E0000252F00000000000001 /* Release-Festival */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000042E50000000000001 /* Festival-Release.xcconfig */; buildSettings = {APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = SYCCoursesWidgets/SYCCoursesWidgets.entitlements; INFOPLIST_FILE = SYCCoursesWidgets/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = "$(COURSE_APP_BUNDLE_ID).navigation-widget"; PRODUCT_NAME = SYCCoursesWidgets; SKIP_INSTALL = YES; }; name = "Release-Festival"; };
+		0E0000262F00000000000001 /* Debug-RYCV */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000052E50000000000001 /* RYCV-Debug.xcconfig */; buildSettings = {APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = SYCCoursesWidgets/SYCCoursesWidgets.entitlements; INFOPLIST_FILE = SYCCoursesWidgets/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = "$(COURSE_APP_BUNDLE_ID).navigation-widget"; PRODUCT_NAME = SYCCoursesWidgets; SKIP_INSTALL = YES; }; name = "Debug-RYCV"; };
+		0E0000272F00000000000001 /* Release-RYCV */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000062E50000000000001 /* RYCV-Release.xcconfig */; buildSettings = {APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = SYCCoursesWidgets/SYCCoursesWidgets.entitlements; INFOPLIST_FILE = SYCCoursesWidgets/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = "$(COURSE_APP_BUNDLE_ID).navigation-widget"; PRODUCT_NAME = SYCCoursesWidgets; SKIP_INSTALL = YES; }; name = "Release-RYCV"; };
+		0E0000282F00000000000001 /* Debug-RMYS */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000072E50000000000001 /* RMYS-Debug.xcconfig */; buildSettings = {APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = SYCCoursesWidgets/SYCCoursesWidgets.entitlements; INFOPLIST_FILE = SYCCoursesWidgets/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = "$(COURSE_APP_BUNDLE_ID).navigation-widget"; PRODUCT_NAME = SYCCoursesWidgets; SKIP_INSTALL = YES; }; name = "Debug-RMYS"; };
+		0E0000292F00000000000001 /* Release-RMYS */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000082E50000000000001 /* RMYS-Release.xcconfig */; buildSettings = {APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = SYCCoursesWidgets/SYCCoursesWidgets.entitlements; INFOPLIST_FILE = SYCCoursesWidgets/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = "$(COURSE_APP_BUNDLE_ID).navigation-widget"; PRODUCT_NAME = SYCCoursesWidgets; SKIP_INSTALL = YES; }; name = "Release-RMYS"; };
+		0E00002A2F00000000000001 /* Debug-BYS */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D0000092E51000000000001 /* BYS-Debug.xcconfig */; buildSettings = {APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = SYCCoursesWidgets/SYCCoursesWidgets.entitlements; INFOPLIST_FILE = SYCCoursesWidgets/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = "$(COURSE_APP_BUNDLE_ID).navigation-widget"; PRODUCT_NAME = SYCCoursesWidgets; SKIP_INSTALL = YES; }; name = "Debug-BYS"; };
+		0E00002B2F00000000000001 /* Release-BYS */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D00000A2E51000000000001 /* BYS-Release.xcconfig */; buildSettings = {APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = SYCCoursesWidgets/SYCCoursesWidgets.entitlements; INFOPLIST_FILE = SYCCoursesWidgets/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = "$(COURSE_APP_BUNDLE_ID).navigation-widget"; PRODUCT_NAME = SYCCoursesWidgets; SKIP_INSTALL = YES; }; name = "Release-BYS"; };
+		0E00002C2F00000000000001 /* Debug-RBYC */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D00000B2E52000000000001 /* RBYC-Debug.xcconfig */; buildSettings = {APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = SYCCoursesWidgets/SYCCoursesWidgets.entitlements; INFOPLIST_FILE = SYCCoursesWidgets/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = "$(COURSE_APP_BUNDLE_ID).navigation-widget"; PRODUCT_NAME = SYCCoursesWidgets; SKIP_INSTALL = YES; }; name = "Debug-RBYC"; };
+		0E00002D2F00000000000001 /* Release-RBYC */ = {isa = XCBuildConfiguration; baseConfigurationReference = 0D00000C2E52000000000001 /* RBYC-Release.xcconfig */; buildSettings = {APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = SYCCoursesWidgets/SYCCoursesWidgets.entitlements; INFOPLIST_FILE = SYCCoursesWidgets/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = "$(COURSE_APP_BUNDLE_ID).navigation-widget"; PRODUCT_NAME = SYCCoursesWidgets; SKIP_INSTALL = YES; }; name = "Release-RBYC"; };
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -451,7 +605,36 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		0E00000F2F00000000000001 /* Build configuration list for PBXNativeTarget "SYCCoursesWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E0000202F00000000000001 /* Debug */,
+				0E0000212F00000000000001 /* Release */,
+				0E0000222F00000000000001 /* Debug-SYC */,
+				0E0000232F00000000000001 /* Release-SYC */,
+				0E0000242F00000000000001 /* Debug-Festival */,
+				0E0000252F00000000000001 /* Release-Festival */,
+				0E0000262F00000000000001 /* Debug-RYCV */,
+				0E0000272F00000000000001 /* Release-RYCV */,
+				0E0000282F00000000000001 /* Debug-RMYS */,
+				0E0000292F00000000000001 /* Release-RMYS */,
+				0E00002A2F00000000000001 /* Debug-BYS */,
+				0E00002B2F00000000000001 /* Release-BYS */,
+				0E00002C2F00000000000001 /* Debug-RBYC */,
+				0E00002D2F00000000000001 /* Release-RBYC */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin PBXTargetDependency section */
+		0E00000E2F00000000000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0E0000072F00000000000001 /* SYCCoursesWidgets */;
+			targetProxy = 0E0000062F00000000000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCLocalSwiftPackageReference section */
 		0A0000122C20A00000000001 /* XCLocalSwiftPackageReference "../SYCCourses" */ = {

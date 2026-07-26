@@ -43,6 +43,41 @@ final class ActiveRaceStoreTests: XCTestCase {
         XCTAssertEqual(store.activeMark?.id, firstMark.id)
     }
 
+    func testActiveRaceStoreProgressesThroughRepeatedMarksByLeg() throws {
+        let suiteName = "ActiveRaceStoreTests-\(UUID().uuidString)"
+        let defaults = UserDefaults(suiteName: suiteName)!
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+
+        let course = try XCTUnwrap(
+            CourseDataLoader.fixedCourses().first { course in
+                let markIDs = ActiveRaceCourseBuilder.navigationMarks(for: course).map(\.id)
+                return Set(markIDs).count < markIDs.count
+            }
+        )
+        let store = ActiveRaceStore(defaults: defaults)
+
+        store.setActiveCourse(course)
+        for expectedIndex in store.courseMarks.indices {
+            XCTAssertEqual(store.activeLegIndex, expectedIndex)
+            if expectedIndex < store.courseMarks.count - 1 {
+                store.advanceMark()
+            }
+        }
+
+        XCTAssertEqual(store.activeLegIndex, store.courseMarks.count - 1)
+    }
+
+    func testWidgetStoreDerivesSharedGroupFromAppAndExtensionBundleIDs() {
+        XCTAssertEqual(
+            CourseNavigationWidgetStore.appGroupIdentifier(bundleIdentifier: "au.com.syc.courses"),
+            "group.au.com.syc.courses"
+        )
+        XCTAssertEqual(
+            CourseNavigationWidgetStore.appGroupIdentifier(bundleIdentifier: "au.com.syc.courses.navigation-widget"),
+            "group.au.com.syc.courses"
+        )
+    }
+
     func testActiveRaceStoreMigratesLegacyCourseNumber() throws {
         let suiteName = "ActiveRaceStoreTests-\(UUID().uuidString)"
         let defaults = UserDefaults(suiteName: suiteName)!

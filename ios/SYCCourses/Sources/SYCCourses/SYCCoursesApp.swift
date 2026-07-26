@@ -7,6 +7,7 @@ public struct SYCCoursesRootView: View {
     @StateObject private var recentsStore = RecentCoursesStore()
     @StateObject private var raceTrackStore = RaceTrackStore()
     @StateObject private var activeRaceStore = ActiveRaceStore()
+    @StateObject private var courseNavigationSurfaceCoordinator = CourseNavigationSurfaceCoordinator()
 
     public init() {}
 
@@ -21,6 +22,10 @@ public struct SYCCoursesRootView: View {
                     .environmentObject(activeRaceStore)
                     .onAppear {
                         raceTrackStore.configure(locationService: locationService)
+                        courseNavigationSurfaceCoordinator.configure(
+                            activeRaceStore: activeRaceStore,
+                            locationService: locationService
+                        )
                     }
             } else {
                 TrialAccessView(accessStore: trialAccessStore)

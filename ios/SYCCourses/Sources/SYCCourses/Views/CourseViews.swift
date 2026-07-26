@@ -85,12 +85,12 @@ struct CourseDetailView: View {
         .onAppear {
             recentsStore.record(course)
             if !course.isLaidMarkCourse {
-                locationService.startActiveUpdates()
+                locationService.startActiveUpdates(for: .courseDetail)
             }
         }
         .onDisappear {
             if !course.isLaidMarkCourse {
-                locationService.stopActiveUpdates()
+                locationService.stopActiveUpdates(for: .courseDetail)
             }
         }
     }
