@@ -301,7 +301,7 @@ struct NavigationSourceStatusLine: View {
     var body: some View {
         if let message = summary.statusMessage {
             HStack(spacing: 8) {
-                Image(systemName: summary.activeSource == .actisense ? "antenna.radiowaves.left.and.right" : "location")
+                Image(systemName: "location")
                     .foregroundStyle(.secondary)
                 Text(message)
                     .font(.footnote.weight(.semibold))

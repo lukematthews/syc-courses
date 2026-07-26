@@ -24,8 +24,6 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>$(COURSE_APP_DISPLAY_NAME) connects to an Actisense W2K-2 on your boat Wi-Fi network to send course and waypoint information.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>$(COURSE_APP_DISPLAY_NAME) uses your current location to calculate bearing, distance, and race tracks on the water.</string>
 	<key>UIApplicationSceneManifest</key>

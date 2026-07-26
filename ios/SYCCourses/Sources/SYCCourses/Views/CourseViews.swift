@@ -34,7 +34,6 @@ struct CourseListView: View {
 struct CourseDetailView: View {
     @EnvironmentObject private var locationService: LocationService
     @EnvironmentObject private var navigationDataService: NavigationDataService
-    @EnvironmentObject private var navigationOutputService: NavigationOutputService
     @EnvironmentObject private var recentsStore: RecentCoursesStore
     @EnvironmentObject private var activeRaceStore: ActiveRaceStore
     @State private var isCourseActionsPresented = false
@@ -42,33 +41,6 @@ struct CourseDetailView: View {
     @State private var exportErrorMessage: String?
     private let marks = CourseDataLoader.marks()
     let course: Course
-
-    private var activeTargetMark: Mark? {
-        if activeRaceStore.activeCourseID == course.id,
-           let activeMark = activeRaceStore.activeMark {
-            return activeMark
-        }
-        guard !course.isLaidMarkCourse else { return nil }
-        return course.rows.lazy.compactMap { CourseDataLoader.findMark(named: $0.mark, in: marks) }.first
-    }
-
-    private var activeWaypointState: NavigationWaypointState? {
-        guard let mark = activeTargetMark,
-              let snapshot = navigationDataService.snapshot(to: mark, iPhoneFix: locationService.navigationFix)
-        else { return nil }
-        return NavigationWaypointState(
-            courseNumber: course.courseNumber,
-            originName: "SYC",
-            waypointName: mark.name,
-            waypointID: mark.name,
-            latitude: mark.latitude,
-            longitude: mark.longitude,
-            bearingTrue: snapshot.bearingTrue,
-            distanceNm: snapshot.distanceNm,
-            speedOverGroundKnots: snapshot.speedOverGroundKnots,
-            timestamp: snapshot.timestamp
-        )
-    }
 
     var body: some View {
         GeometryReader { geometry in
@@ -87,12 +59,6 @@ struct CourseDetailView: View {
                         CourseTableView(course: course, marks: marks, activeMarkID: activeRaceStore.activeCourseID == course.id ? activeRaceStore.activeMarkID : nil)
                         ChartImageView(chartImage: course.chartImage)
                             .frame(maxWidth: .infinity, maxHeight: geometry.size.height * 0.62)
-
-                        NavigationOutputCoursePanel(
-                            targetMark: activeTargetMark,
-                            activeWaypointState: activeWaypointState,
-                            sourceSummary: navigationDataService.sourceSummary(iPhoneFix: locationService.navigationFix)
-                        )
                     }
                 }
                 .padding()
@@ -120,15 +86,6 @@ struct CourseDetailView: View {
             recentsStore.record(course)
             if !course.isLaidMarkCourse {
                 locationService.startActiveUpdates()
-                if navigationDataService.actisenseConfig.isConfigured,
-                   navigationDataService.actisenseStatus == .disconnected {
-                    Task { await navigationDataService.connectActisense() }
-                }
-                if navigationOutputService.settings.autoConnect,
-                   navigationOutputService.canConnect,
-                   !navigationOutputService.isConnected {
-                    Task { await navigationOutputService.connect() }
-                }
             }
         }
         .onDisappear {
@@ -433,77 +390,6 @@ private struct CourseLineAssistButton: View {
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .overlay(RoundedRectangle(cornerRadius: 8).stroke(.quaternary))
         .contentShape(Rectangle())
-    }
-}
-
-private struct NavigationOutputCoursePanel: View {
-    @EnvironmentObject private var outputService: NavigationOutputService
-    let targetMark: Mark?
-    let activeWaypointState: NavigationWaypointState?
-    let sourceSummary: NavigationSourceSummary
-
-    private var statusText: String {
-        if outputService.isSending {
-            "Sending to boat"
-        } else if outputService.isConnected {
-            "Navigation output connected"
-        } else if outputService.settings.target == .disabled {
-            "Navigation output disabled"
-        } else {
-            "Navigation output unavailable"
-        }
-    }
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                Image(systemName: outputService.isConnected ? "antenna.radiowaves.left.and.right" : "antenna.radiowaves.left.and.right.slash")
-                    .foregroundStyle(outputService.isConnected ? .green : .secondary)
-                Text(statusText)
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(outputService.isConnected ? .primary : .secondary)
-                Spacer()
-            }
-
-            if let targetMark {
-                Text("Active waypoint: \(targetMark.name)")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                if sourceSummary.statusMessage != nil {
-                    NavigationSourceStatusLine(summary: sourceSummary)
-                }
-            } else {
-                Text("No fixed mark waypoint is available for this course.")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-            }
-
-            if activeWaypointState == nil, targetMark != nil {
-                Text("Current GPS position is needed before output can be sent.")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-            }
-
-            if let lastError = outputService.lastError {
-                Text(lastError)
-                    .font(.footnote)
-                    .foregroundStyle(.red)
-            }
-
-            Button {
-                Task { await outputService.sendActiveWaypoint(activeWaypointState) }
-            } label: {
-                Label("Send to Boat", systemImage: "paperplane")
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.large)
-            .disabled(!outputService.isConnected || activeWaypointState == nil || outputService.isSending)
-        }
-        .padding()
-        .background(.background)
-        .clipShape(RoundedRectangle(cornerRadius: 8))
-        .overlay(RoundedRectangle(cornerRadius: 8).stroke(.quaternary))
     }
 }
 

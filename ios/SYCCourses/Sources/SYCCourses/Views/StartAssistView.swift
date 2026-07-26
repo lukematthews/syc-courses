@@ -115,10 +115,6 @@ struct StartAssistView: View {
             gunTime = today(atTimeOf: Date(timeIntervalSinceReferenceDate: storedGunTime))
             storedGunTime = gunTime.timeIntervalSinceReferenceDate
             locationService.startActiveUpdates()
-            if navigationDataService.actisenseConfig.isConfigured,
-               navigationDataService.actisenseStatus == .disconnected {
-                Task { await navigationDataService.connectActisense() }
-            }
         }
         .onDisappear {
             #if canImport(UIKit)
@@ -443,10 +439,6 @@ struct StartAssistView: View {
 
     private func refreshPosition() {
         locationService.requestLocation()
-        if navigationDataService.actisenseConfig.isConfigured,
-           navigationDataService.actisenseStatus == .disconnected {
-            Task { await navigationDataService.connectActisense() }
-        }
     }
 
     private func fireHapticIfNeeded() {

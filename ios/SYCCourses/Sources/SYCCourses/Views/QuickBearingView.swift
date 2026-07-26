@@ -75,10 +75,6 @@ struct QuickBearingView: View {
         }
         .onAppear {
             locationService.requestLocation()
-            if navigationDataService.actisenseConfig.isConfigured,
-               navigationDataService.actisenseStatus == .disconnected {
-                Task { await navigationDataService.connectActisense() }
-            }
         }
         .navigationDestination(item: $selectedMapMark) { mark in
             MarkDetailView(mark: mark)
@@ -419,10 +415,6 @@ struct MarkDetailView: View {
 
                 Button {
                     locationService.requestLocation()
-                    if navigationDataService.actisenseConfig.isConfigured,
-                       navigationDataService.actisenseStatus == .disconnected {
-                        Task { await navigationDataService.connectActisense() }
-                    }
                 } label: {
                     Label("Refresh Position", systemImage: "arrow.clockwise")
                         .frame(maxWidth: .infinity)
@@ -435,10 +427,6 @@ struct MarkDetailView: View {
         .navigationTitle(mark.name)
         .onAppear {
             locationService.startActiveUpdates()
-            if navigationDataService.actisenseConfig.isConfigured,
-               navigationDataService.actisenseStatus == .disconnected {
-                Task { await navigationDataService.connectActisense() }
-            }
         }
         .onDisappear {
             locationService.stopActiveUpdates()

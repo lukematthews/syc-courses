@@ -4,7 +4,6 @@ import UIKit
 #endif
 
 struct HomeView: View {
-    @EnvironmentObject private var instrumentAccessStore: InstrumentAccessStore
     @EnvironmentObject private var recentsStore: RecentCoursesStore
     @EnvironmentObject private var raceTrackStore: RaceTrackStore
     @EnvironmentObject private var activeRaceStore: ActiveRaceStore
@@ -60,17 +59,6 @@ struct HomeView: View {
                     }
                     NavigationLink(value: HomeRoute.raceTracker) {
                         HomeCard(title: "Race Tracker", subtitle: "Record and scrub your course on a map", systemImage: "map")
-                    }
-                    NavigationLink(value: HomeRoute.navigationOutput) {
-                        HomeCard(
-                            title: "Instruments",
-                            subtitle: instrumentAccessStore.hasAccess
-                                ? "Boat communication over an NMEA Wi-Fi gateway"
-                                : "Unlock NMEA Wi-Fi gateway integration",
-                            systemImage: instrumentAccessStore.hasAccess
-                                ? "antenna.radiowaves.left.and.right"
-                                : "lock.fill"
-                        )
                     }
 
                     if !recentCourses.isEmpty {
@@ -152,7 +140,6 @@ struct HomeView: View {
                 case let .lineAssist(mode): StartAssistView(initialMode: mode)
                 case .finishOptions: FinishOptionsView()
                 case .raceTracker: RaceTrackerView()
-                case .navigationOutput: InstrumentAccessView()
                 }
             }
             .navigationDestination(for: Course.self) { course in
@@ -234,7 +221,6 @@ enum HomeRoute: Hashable {
     case lineAssist(LineMode)
     case finishOptions
     case raceTracker
-    case navigationOutput
 }
 
 private struct FinishOptionsView: View {

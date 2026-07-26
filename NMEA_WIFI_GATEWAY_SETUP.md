@@ -1,6 +1,6 @@
 # NMEA Wi-Fi Gateway Setup
 
-SYC Courses supports these NMEA 2000 Wi-Fi gateways on iOS and Android:
+The Android app supports these NMEA 2000 Wi-Fi gateways. The iOS App Store remediation build does not include gateway integration:
 
 - Actisense W2K-2
 - Yacht Devices YDWG-02
