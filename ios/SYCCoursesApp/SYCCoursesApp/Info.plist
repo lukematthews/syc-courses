@@ -26,6 +26,8 @@
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>$(COURSE_APP_DISPLAY_NAME) uses your current location to calculate bearing, distance, and race tracks on the water.</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

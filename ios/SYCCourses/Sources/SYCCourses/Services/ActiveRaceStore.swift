@@ -4,10 +4,12 @@ import Foundation
 final class ActiveRaceStore: ObservableObject {
     @Published private(set) var activeCourseID: String?
     @Published private(set) var activeMarkID: String?
+    @Published private(set) var activeLegIndex: Int?
 
     private let courseIDKey = "activeRaceCourseID"
     private let legacyCourseNumberKey = "activeRaceCourseNumber"
     private let markIDKey = "activeRaceMarkID"
+    private let legIndexKey = "activeRaceLegIndex"
     private let defaults: UserDefaults
     private let marks: [Mark]
     private let fixedCourses: [Course]
@@ -25,12 +27,17 @@ final class ActiveRaceStore: ObservableObject {
             defaults.removeObject(forKey: legacyCourseNumberKey)
         }
         activeMarkID = defaults.string(forKey: markIDKey)
+        activeLegIndex = defaults.object(forKey: legIndexKey) as? Int
 
         if activeCourse == nil {
             activeCourseID = nil
             activeMarkID = nil
-        } else if activeMark == nil {
-            activeMarkID = courseMarks.first?.id
+            activeLegIndex = nil
+        } else {
+            let restoredIndex = activeLegIndex
+                ?? courseMarks.firstIndex { $0.id == activeMarkID }
+                ?? 0
+            setActiveLegIndex(restoredIndex)
         }
     }
 
@@ -55,13 +62,24 @@ final class ActiveRaceStore: ObservableObject {
     }
 
     var activeMark: Mark? {
-        guard let activeMarkID else { return nil }
-        return marks.first { $0.id == activeMarkID }
+        guard let activeLegIndex, courseMarks.indices.contains(activeLegIndex) else { return nil }
+        return courseMarks[activeLegIndex]
     }
 
     var activeMarkIndex: Int? {
-        guard let activeMarkID else { return nil }
-        return courseMarks.firstIndex { $0.id == activeMarkID }
+        activeLegIndex
+    }
+
+    var activeRoundingSide: String? {
+        guard let activeLegIndex,
+              navigationLegs.indices.contains(activeLegIndex)
+        else { return nil }
+        return navigationLegs[activeLegIndex].side
+    }
+
+    var navigationLegs: [ActiveRaceNavigationLeg] {
+        guard let activeCourse else { return [] }
+        return ActiveRaceCourseBuilder.navigationLegs(for: activeCourse, marks: marks)
     }
 
     var isCourseActive: Bool {
@@ -71,35 +89,41 @@ final class ActiveRaceStore: ObservableObject {
     func setActiveCourse(_ course: Course) {
         guard !course.isLaidMarkCourse else { return }
         activeCourseID = course.id
-        activeMarkID = ActiveRaceCourseBuilder.navigationMarks(for: course, marks: marks).first?.id
+        setActiveLegIndex(0)
         persist()
     }
 
     func setActiveMark(_ mark: Mark) {
-        activeMarkID = mark.id
-        defaults.set(mark.id, forKey: markIDKey)
+        let matchingIndices = courseMarks.indices.filter { courseMarks[$0].id == mark.id }
+        guard let index = matchingIndices.first(where: { $0 >= (activeLegIndex ?? 0) })
+            ?? matchingIndices.first
+        else { return }
+        setActiveLegIndex(index)
+        persist()
     }
 
     func advanceMark() {
         guard !courseMarks.isEmpty else { return }
         let nextIndex = min((activeMarkIndex ?? -1) + 1, courseMarks.count - 1)
-        activeMarkID = courseMarks[nextIndex].id
-        defaults.set(activeMarkID, forKey: markIDKey)
+        setActiveLegIndex(nextIndex)
+        persist()
     }
 
     func retreatMark() {
         guard !courseMarks.isEmpty else { return }
         let nextIndex = max((activeMarkIndex ?? 0) - 1, 0)
-        activeMarkID = courseMarks[nextIndex].id
-        defaults.set(activeMarkID, forKey: markIDKey)
+        setActiveLegIndex(nextIndex)
+        persist()
     }
 
     func clearActiveCourse() {
         activeCourseID = nil
         activeMarkID = nil
+        activeLegIndex = nil
         defaults.removeObject(forKey: courseIDKey)
         defaults.removeObject(forKey: legacyCourseNumberKey)
         defaults.removeObject(forKey: markIDKey)
+        defaults.removeObject(forKey: legIndexKey)
     }
 
     private func persist() {
@@ -114,15 +138,43 @@ final class ActiveRaceStore: ObservableObject {
         } else {
             defaults.removeObject(forKey: markIDKey)
         }
+
+        if let activeLegIndex {
+            defaults.set(activeLegIndex, forKey: legIndexKey)
+        } else {
+            defaults.removeObject(forKey: legIndexKey)
+        }
+    }
+
+    private func setActiveLegIndex(_ index: Int) {
+        guard !courseMarks.isEmpty else {
+            activeLegIndex = nil
+            activeMarkID = nil
+            return
+        }
+        let clampedIndex = min(max(index, 0), courseMarks.count - 1)
+        activeLegIndex = clampedIndex
+        activeMarkID = courseMarks[clampedIndex].id
     }
 }
 
+struct ActiveRaceNavigationLeg: Hashable {
+    let mark: Mark
+    let side: String
+}
+
 enum ActiveRaceCourseBuilder {
-    static func navigationMarks(for course: Course, marks: [Mark] = CourseDataLoader.marks()) -> [Mark] {
+    static func navigationLegs(for course: Course, marks: [Mark] = CourseDataLoader.marks()) -> [ActiveRaceNavigationLeg] {
         course.rows.compactMap { row in
-            guard !row.isCourseTotalRow, !row.isPassThroughRow, !row.isStartRow else { return nil }
-            return resolvedMark(for: row.mark, marks: marks)
+            guard !row.isCourseTotalRow, !row.isPassThroughRow, !row.isStartRow,
+                  let mark = resolvedMark(for: row.mark, marks: marks)
+            else { return nil }
+            return ActiveRaceNavigationLeg(mark: mark, side: row.side)
         }
+    }
+
+    static func navigationMarks(for course: Course, marks: [Mark] = CourseDataLoader.marks()) -> [Mark] {
+        navigationLegs(for: course, marks: marks).map(\.mark)
     }
 
     static func courseLineMarks(for course: Course, marks: [Mark] = CourseDataLoader.marks()) -> [Mark] {

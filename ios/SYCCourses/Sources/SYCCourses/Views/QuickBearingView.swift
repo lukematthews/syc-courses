@@ -426,10 +426,10 @@ struct MarkDetailView: View {
         }
         .navigationTitle(mark.name)
         .onAppear {
-            locationService.startActiveUpdates()
+            locationService.startActiveUpdates(for: .quickBearing)
         }
         .onDisappear {
-            locationService.stopActiveUpdates()
+            locationService.stopActiveUpdates(for: .quickBearing)
         }
     }
 

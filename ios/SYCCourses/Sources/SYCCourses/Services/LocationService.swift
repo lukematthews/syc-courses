@@ -2,11 +2,20 @@ import CoreLocation
 import Foundation
 
 final class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate {
+    enum UpdateOwner: Hashable {
+        case activeCourse
+        case courseDetail
+        case quickBearing
+        case raceTracker
+        case startAssist
+    }
+
     @Published private(set) var location: CLLocation?
     @Published private(set) var authorizationStatus: CLAuthorizationStatus
     @Published private(set) var errorMessage: String?
 
     private let manager = CLLocationManager()
+    private var updateOwners: Set<UpdateOwner> = []
 
     override init() {
         authorizationStatus = manager.authorizationStatus
@@ -28,15 +37,19 @@ final class LocationService: NSObject, ObservableObject, CLLocationManagerDelega
         manager.requestLocation()
     }
 
-    func startActiveUpdates() {
+    func startActiveUpdates(for owner: UpdateOwner) {
+        updateOwners.insert(owner)
         if authorizationStatus == .notDetermined {
             manager.requestWhenInUseAuthorization()
         }
         manager.startUpdatingLocation()
     }
 
-    func stopActiveUpdates() {
-        manager.stopUpdatingLocation()
+    func stopActiveUpdates(for owner: UpdateOwner) {
+        updateOwners.remove(owner)
+        if updateOwners.isEmpty {
+            manager.stopUpdatingLocation()
+        }
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

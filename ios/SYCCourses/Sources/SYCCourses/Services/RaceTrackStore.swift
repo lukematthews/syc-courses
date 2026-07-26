@@ -38,13 +38,13 @@ final class RaceTrackStore: ObservableObject {
         if let location = locationService?.location {
             append(location)
         }
-        locationService?.startActiveUpdates()
+        locationService?.startActiveUpdates(for: .raceTracker)
     }
 
     func stopRecording() {
         guard isRecording else { return }
         isRecording = false
-        locationService?.stopActiveUpdates()
+        locationService?.stopActiveUpdates(for: .raceTracker)
         saveCurrentTrack()
     }
 

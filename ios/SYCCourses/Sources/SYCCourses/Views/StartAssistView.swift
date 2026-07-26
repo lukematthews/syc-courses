@@ -114,13 +114,13 @@ struct StartAssistView: View {
             offsetEntry = "\(startOffsetMinutes)"
             gunTime = today(atTimeOf: Date(timeIntervalSinceReferenceDate: storedGunTime))
             storedGunTime = gunTime.timeIntervalSinceReferenceDate
-            locationService.startActiveUpdates()
+            locationService.startActiveUpdates(for: .startAssist)
         }
         .onDisappear {
             #if canImport(UIKit)
             UIApplication.shared.isIdleTimerDisabled = false
             #endif
-            locationService.stopActiveUpdates()
+            locationService.stopActiveUpdates(for: .startAssist)
         }
         .onReceive(timer) { value in
             now = value
