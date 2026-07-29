@@ -67,6 +67,66 @@ final class ActiveRaceStoreTests: XCTestCase {
         XCTAssertEqual(store.activeLegIndex, store.courseMarks.count - 1)
     }
 
+    func testStoppingClearsActiveCourseAndPersistedNavigationState() throws {
+        let suiteName = "ActiveRaceStoreTests-\(UUID().uuidString)"
+        let defaults = UserDefaults(suiteName: suiteName)!
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        let course = try XCTUnwrap(CourseDataLoader.fixedCourses().first)
+        let store = ActiveRaceStore(defaults: defaults)
+
+        store.setActiveCourse(course)
+        ActiveCourseEndAction.stop.perform(on: store)
+
+        XCTAssertNil(store.activeCourse)
+        XCTAssertNil(store.activeCourseID)
+        XCTAssertNil(store.activeMarkID)
+        XCTAssertNil(store.activeLegIndex)
+        XCTAssertNil(defaults.string(forKey: "activeRaceCourseID"))
+        XCTAssertNil(defaults.string(forKey: "activeRaceMarkID"))
+        XCTAssertNil(defaults.object(forKey: "activeRaceLegIndex"))
+    }
+
+    func testFinishingFinalMarkUsesSameStopBehaviour() throws {
+        let suiteName = "ActiveRaceStoreTests-\(UUID().uuidString)"
+        let defaults = UserDefaults(suiteName: suiteName)!
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        let course = try XCTUnwrap(CourseDataLoader.fixedCourses().first)
+        let store = ActiveRaceStore(defaults: defaults)
+
+        store.setActiveCourse(course)
+        while store.activeMarkIndex != store.courseMarks.count - 1 {
+            store.advanceMark()
+        }
+        ActiveCourseEndAction.finish.perform(on: store)
+
+        XCTAssertFalse(store.isCourseActive)
+        XCTAssertNil(store.activeCourseID)
+    }
+
+    @MainActor
+    func testCoordinatorReleasesActiveCourseLocationOwnerAfterStop() async throws {
+        let suiteName = "ActiveRaceStoreTests-\(UUID().uuidString)"
+        let defaults = UserDefaults(suiteName: suiteName)!
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        let course = try XCTUnwrap(CourseDataLoader.fixedCourses().first)
+        let store = ActiveRaceStore(defaults: defaults)
+        let locationService = LocationService()
+        let coordinator = CourseNavigationSurfaceCoordinator()
+
+        coordinator.configure(activeRaceStore: store, locationService: locationService)
+        store.setActiveCourse(course)
+        try await waitUntil {
+            locationService.isUpdating(for: .activeCourse)
+        }
+
+        ActiveCourseEndAction.stop.perform(on: store)
+        try await waitUntil {
+            !locationService.isUpdating(for: .activeCourse)
+        }
+
+        XCTAssertFalse(locationService.isUpdating(for: .activeCourse))
+    }
+
     func testWidgetStoreDerivesSharedGroupFromAppAndExtensionBundleIDs() {
         XCTAssertEqual(
             CourseNavigationWidgetStore.appGroupIdentifier(bundleIdentifier: "au.com.syc.courses"),
@@ -103,5 +163,21 @@ final class ActiveRaceStoreTests: XCTestCase {
         XCTAssertTrue(store.recentCourseIDs[0].hasSuffix("/fixed/course-1"))
         XCTAssertTrue(store.recentCourseIDs[1].hasSuffix("/laid/course-80"))
         XCTAssertNil(defaults.object(forKey: "recentCourseNumbers"))
+    }
+
+    @MainActor
+    private func waitUntil(
+        timeout: Duration = .seconds(1),
+        condition: @escaping @MainActor () -> Bool
+    ) async throws {
+        let clock = ContinuousClock()
+        let deadline = clock.now.advanced(by: timeout)
+        while !condition() {
+            if clock.now >= deadline {
+                XCTFail("Timed out waiting for condition")
+                return
+            }
+            try await Task.sleep(for: .milliseconds(10))
+        }
     }
 }

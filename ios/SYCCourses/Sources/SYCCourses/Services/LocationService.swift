@@ -52,6 +52,10 @@ final class LocationService: NSObject, ObservableObject, CLLocationManagerDelega
         }
     }
 
+    func isUpdating(for owner: UpdateOwner) -> Bool {
+        updateOwners.contains(owner)
+    }
+
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         authorizationStatus = manager.authorizationStatus
     }

@@ -40,13 +40,17 @@ struct ActiveRacePanel: View {
                     .buttonStyle(.bordered)
                     .disabled(activeRaceStore.activeMarkIndex == nil || activeRaceStore.activeMarkIndex == 0)
 
-                    Button {
-                        activeRaceStore.advanceMark()
-                    } label: {
-                        Label("Next Mark", systemImage: "chevron.right")
+                    if isOnFinalMark {
+                        ActiveCourseEndControl(action: .finish, style: .prominent)
+                    } else {
+                        Button {
+                            activeRaceStore.advanceMark()
+                        } label: {
+                            Label("Next Mark", systemImage: "chevron.right")
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(activeRaceStore.activeMarkIndex == nil)
                     }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(activeRaceStore.activeMarkIndex == nil || activeRaceStore.activeMarkIndex == activeRaceStore.courseMarks.count - 1)
 
                     Spacer()
 
@@ -70,12 +74,21 @@ struct ActiveRacePanel: View {
                         .buttonStyle(.bordered)
                     }
                 }
+
+                ActiveCourseEndControl(action: .stop, style: .fullWidth)
             }
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(.background)
             .clipShape(RoundedRectangle(cornerRadius: 8))
         }
+    }
+
+    private var isOnFinalMark: Bool {
+        guard let activeMarkIndex = activeRaceStore.activeMarkIndex,
+              !activeRaceStore.courseMarks.isEmpty
+        else { return false }
+        return activeMarkIndex == activeRaceStore.courseMarks.count - 1
     }
 }
 
@@ -91,10 +104,7 @@ struct ActiveCourseControlPanel: View {
                     .foregroundStyle(isActiveCourse ? .green : .primary)
                 Spacer()
                 if isActiveCourse {
-                    Button("Clear") {
-                        activeRaceStore.clearActiveCourse()
-                    }
-                    .font(.subheadline.weight(.semibold))
+                    ActiveCourseEndControl(action: .stop, style: .compact)
                 }
             }
 
@@ -108,14 +118,18 @@ struct ActiveCourseControlPanel: View {
                     .buttonStyle(.bordered)
                     .disabled(activeRaceStore.activeMarkIndex == nil || activeRaceStore.activeMarkIndex == 0)
 
-                    Button {
-                        activeRaceStore.advanceMark()
-                    } label: {
-                        Label("Next Mark", systemImage: "chevron.right")
-                            .frame(maxWidth: .infinity)
+                    if isOnFinalMark {
+                        ActiveCourseEndControl(action: .finish, style: .prominent)
+                    } else {
+                        Button {
+                            activeRaceStore.advanceMark()
+                        } label: {
+                            Label("Next Mark", systemImage: "chevron.right")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(activeRaceStore.activeMarkIndex == nil)
                     }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(activeRaceStore.activeMarkIndex == nil || activeRaceStore.activeMarkIndex == activeRaceStore.courseMarks.count - 1)
                 }
 
                 if let activeMark = activeRaceStore.activeMark {
@@ -142,5 +156,96 @@ struct ActiveCourseControlPanel: View {
 
     private var isActiveCourse: Bool {
         activeRaceStore.activeCourseID == course.id
+    }
+
+    private var isOnFinalMark: Bool {
+        guard isActiveCourse,
+              let activeMarkIndex = activeRaceStore.activeMarkIndex,
+              !activeRaceStore.courseMarks.isEmpty
+        else { return false }
+        return activeMarkIndex == activeRaceStore.courseMarks.count - 1
+    }
+}
+
+enum ActiveCourseEndAction {
+    case stop
+    case finish
+
+    var buttonTitle: String {
+        switch self {
+        case .stop: "Stop Course"
+        case .finish: "Finish Course"
+        }
+    }
+
+    var systemImage: String {
+        switch self {
+        case .stop: "stop.circle"
+        case .finish: "checkmark.circle"
+        }
+    }
+
+    func perform(on activeRaceStore: ActiveRaceStore) {
+        activeRaceStore.clearActiveCourse()
+    }
+}
+
+private enum ActiveCourseEndControlStyle {
+    case compact
+    case fullWidth
+    case prominent
+}
+
+private struct ActiveCourseEndControl: View {
+    @EnvironmentObject private var activeRaceStore: ActiveRaceStore
+    @State private var isConfirmationPresented = false
+    let action: ActiveCourseEndAction
+    let style: ActiveCourseEndControlStyle
+
+    var body: some View {
+        button
+            .confirmationDialog(
+                "Stop Course?",
+                isPresented: $isConfirmationPresented,
+                titleVisibility: .visible
+            ) {
+                Button("Stop Course", role: .destructive) {
+                    action.perform(on: activeRaceStore)
+                }
+                Button("Keep Running", role: .cancel) {}
+            } message: {
+                Text("This will stop navigation and background location updates.")
+            }
+    }
+
+    @ViewBuilder
+    private var button: some View {
+        switch style {
+        case .compact:
+            Button("Stop Course", role: .destructive) {
+                isConfirmationPresented = true
+            }
+            .font(.subheadline.weight(.semibold))
+
+        case .fullWidth:
+            Button(role: .destructive) {
+                isConfirmationPresented = true
+            } label: {
+                Label(action.buttonTitle, systemImage: action.systemImage)
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.bordered)
+            .tint(.red)
+
+        case .prominent:
+            Button(role: .destructive) {
+                isConfirmationPresented = true
+            } label: {
+                Label(action.buttonTitle, systemImage: action.systemImage)
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(.red)
+        }
     }
 }
