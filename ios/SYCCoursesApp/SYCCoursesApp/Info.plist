@@ -22,6 +22,17 @@
 	<string>1</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>LicensingAPIEndpoint</key>
+	<string>$(LICENSING_API_ENDPOINT)</string>
+	<key>LicensingKeyID</key>
+	<string>$(LICENSING_KEY_ID)</string>
+	<key>LicensingPublicKeyBase64</key>
+	<string>$(LICENSING_PUBLIC_KEY_BASE64)</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>

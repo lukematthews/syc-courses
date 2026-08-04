@@ -87,6 +87,11 @@ references.
 For v1, changing the bundled pack is a new application build. There is no user-facing pack picker,
 download format, signature verification, or update service yet.
 
+Club licensing entitlements now name authorised pack IDs through `permittedPackIds`, but runtime
+pack delivery remains deliberately deferred. The signed-manifest, validated download and atomic
+fallback design is in [`LICENSING_ARCHITECTURE.md`](LICENSING_ARCHITECTURE.md); licensing does not
+turn the existing static loader into a network layer.
+
 ## iPhone app variants
 
 Xcode app builds do not use `bundled-pack.json`. App branding and pack selection are registered in

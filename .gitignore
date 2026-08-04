@@ -13,6 +13,11 @@ dev-dist
 dist-ssr
 build
 *.local
+.dev.vars
+licensing-server/private-keys/
+licensing-server/dist/
+licensing-server/.env
+licensing-server/.wrangler/
 
 # Uploaded/source scratch copies
 *-uploaded.pdf

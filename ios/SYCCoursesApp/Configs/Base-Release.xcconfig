@@ -1,5 +1,10 @@
 #include "Base.xcconfig"
 
+// Set these through an uncommitted/CI configuration before a production archive.
+LICENSING_API_ENDPOINT =
+LICENSING_KEY_ID =
+LICENSING_PUBLIC_KEY_BASE64 =
+
 DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
 ENABLE_NS_ASSERTIONS = NO
 SWIFT_COMPILATION_MODE = wholemodule
