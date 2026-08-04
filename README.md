@@ -82,6 +82,15 @@ Start Assist is intentionally limited: it calculates gun time plus start offset,
 SYC 4, SOG-based time to mark, time to start, and time to burn. It does not provide laylines, VMG,
 polars, start-line geometry, race tracking, or tactical recommendations.
 
+## Club Licensing Guides
+
+- [Licensing operations guide](LICENSING_OPERATIONS_GUIDE.md): business-level procedures for adding
+  clubs, issuing or rotating invitations, suspending access, reviewing adoption, and support.
+- [Club member activation guide](CLUB_MEMBER_ACTIVATION_GUIDE.md): concise member-facing setup,
+  offline-use, troubleshooting, safety, and privacy instructions.
+- [Licensing architecture](LICENSING_ARCHITECTURE.md): trust boundaries, wire format, policy,
+  provisioning, recovery, and future runtime course-pack design.
+
 ## Native Android App
 
 The native Android app lives in `android` and is implemented with Kotlin and Jetpack Compose. It

@@ -1,7 +1,7 @@
 import SwiftUI
 
 public struct SYCCoursesRootView: View {
-    @StateObject private var trialAccessStore = TrialAccessStore()
+    @StateObject private var accessStore = ClubAccessStore.application()
     @StateObject private var locationService = LocationService()
     @StateObject private var navigationDataService = NavigationDataService()
     @StateObject private var recentsStore = RecentCoursesStore()
@@ -13,8 +13,11 @@ public struct SYCCoursesRootView: View {
 
     public var body: some View {
         Group {
-            if trialAccessStore.isUnlocked {
-                HomeView()
+            if accessStore.state.retainsDownloadedReferenceAccess {
+                VStack(spacing: 0) {
+                    accessNotice
+                    HomeView()
+                }
                     .environmentObject(locationService)
                     .environmentObject(navigationDataService)
                     .environmentObject(recentsStore)
@@ -27,9 +30,25 @@ public struct SYCCoursesRootView: View {
                             locationService: locationService
                         )
                     }
+                    .task { await accessStore.refreshIfDue() }
             } else {
-                TrialAccessView(accessStore: trialAccessStore)
+                ClubAccessView(accessStore: accessStore)
             }
+        }
+    }
+
+    @ViewBuilder private var accessNotice: some View {
+        switch accessStore.state {
+        case .legacyBundledSnapshot:
+            Text("Legacy access: bundled SYC course snapshot only. Updates require current club access.")
+                .font(.caption).padding(8).frame(maxWidth: .infinity).background(.yellow.opacity(0.2))
+        case .expired:
+            Text("Club access has expired. Previously downloaded course information remains available but may no longer be current. Connect and refresh.")
+                .font(.caption).padding(8).frame(maxWidth: .infinity).background(.orange.opacity(0.2))
+        case .gracePeriod, .temporarilyUnableToRefresh:
+            HStack { Text("Unable to confirm updates. Downloaded course information remains available."); Button("Retry") { Task { await accessStore.retryRefresh() } } }
+                .font(.caption).padding(8).frame(maxWidth: .infinity).background(.yellow.opacity(0.2))
+        default: EmptyView()
         }
     }
 
