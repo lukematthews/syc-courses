@@ -115,6 +115,7 @@ final class ClubAccessStore: ObservableObject {
             case "INVALID_INVITATION", "INVITATION_INACTIVE", "INVITATION_EXPIRED": return "That club invitation cannot be used. Ask your club for a current invitation."
             case "RATE_LIMITED": return "Too many attempts. Please wait before trying again."
             case "UNSUPPORTED_APP_VERSION": return "Update the app before activating."
+            case "MALFORMED_REQUEST": return "The app's licensing configuration is invalid. Check the app version and try again."
             default: break
             }
         }
