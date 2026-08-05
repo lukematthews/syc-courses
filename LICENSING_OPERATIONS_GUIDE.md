@@ -30,18 +30,143 @@ cd licensing-server
 npm install
 npm run check
 npm test
-npm run db:migrate:local
+npm run build
 ```
 
-For local work, create an uncommitted `.dev.vars` with the signing key and two independent HMAC
-secrets. Export the same invitation lookup secret only for commands that create invitations:
+For local work, create an uncommitted `.env` or export the MongoDB URL, signing key and two
+independent HMAC secrets. Create the MongoDB indexes with:
 
 ```bash
-export INVITATION_LOOKUP_SECRET='same value as the local API service variable'
+npm run db:indexes
 ```
 
 Never paste secrets into tickets, chat, shell history shared with others, source control, or routine
 logs. Never use the retired `SYC-TRIAL-26` code.
+
+For the live Railway development service, prefer running administration commands inside the API
+container. Install and authenticate the Railway CLI, link it to the project, then open a shell:
+
+```bash
+railway login
+railway link
+railway ssh --service YOUR_LICENSING_SERVICE
+```
+
+The deployed shell already has `MONGO_URL`, `MONGO_DATABASE`, and
+`INVITATION_LOOKUP_SECRET`. Do not paste their values into the SSH session. Railway private service
+references are usable from the deployed container, while the MongoDB service does not need a public
+application endpoint.
+
+## Live development example: three-year SYC term
+
+This example creates a three-calendar-year term beginning at midnight Melbourne time on 5 August
+2026 and ending at midnight Melbourne time on 5 August 2029. Both dates fall in AEST (UTC+10), so
+the commands use 14:00 UTC on the preceding calendar day. The licence permits the bundled SYC
+2025–2028 pack and includes the course-pack update service for the same term. Extending access
+beyond that pack's underlying source period is a licensing decision; it does not make the course
+information current beyond its stated source dates.
+
+### 1. Confirm the live service
+
+```bash
+curl -s https://syc-courses-production.up.railway.app/v1/health
+echo
+```
+
+Continue only when the response is:
+
+```json
+{"status":"ok","schemaVersion":1}
+```
+
+### 2. Open a Railway shell in the licensing API service
+
+From the local repository:
+
+```bash
+cd licensing-server
+railway login
+railway link
+railway ssh --service YOUR_LICENSING_SERVICE
+```
+
+Replace `YOUR_LICENSING_SERVICE` with the API service name shown on the Railway project canvas, not
+the MongoDB service name.
+
+### 3. Create the SYC term licence
+
+Run this inside the Railway shell:
+
+```bash
+node scripts/admin.mjs create-club \
+  --id sandringham-yacht-club \
+  --name 'Sandringham Yacht Club' \
+  --licence-type term \
+  --starts-at 2026-08-04T14:00:00Z \
+  --ends-at 2029-08-04T14:00:00Z \
+  --updates-until 2029-08-04T14:00:00Z \
+  --packs sandringham-yacht-club-2025-2028 \
+  --features coursePackUpdates
+```
+
+Expected confirmation:
+
+```text
+Created club sandringham-yacht-club.
+```
+
+Do not run the command twice. The stable club ID is unique, so a second attempt should fail rather
+than silently replace the existing commercial record.
+
+### 4. Generate the development invitation code
+
+Still inside the same Railway shell, run:
+
+```bash
+node scripts/admin.mjs create-invitation \
+  --environment development \
+  --club sandringham-yacht-club \
+  --valid-from 2026-08-04T14:00:00Z \
+  --valid-until 2029-08-04T14:00:00Z \
+  --limit 2000
+```
+
+The command generates a random code rather than accepting an operator-chosen universal code. Its
+output has this form:
+
+```text
+Invitation ID: <generated UUID>
+DISPLAY ONCE — distribute securely; the code cannot be retrieved later:
+DEV-<generated random value>
+```
+
+Copy both the invitation ID and the exact `DEV-...` code immediately into the approved development
+test record. The displayed `DEV-...` value is the invitation code entered in the iOS app. The
+database stores only its keyed digest and final-character hint, so there is no command to display it
+again. If it is lost, create a replacement invitation and disable the lost invitation by ID.
+
+### 5. Confirm the invitation record
+
+```bash
+node scripts/admin.mjs list-invitations
+```
+
+Confirm that the row shows:
+
+- `clubId` of `sandringham-yacht-club`;
+- `status` of `active`;
+- expiry on 5 August 2029;
+- `activationCount` of `0`;
+- `activationLimit` of `2000`.
+
+Exit the Railway shell with `exit`. Test the captured invitation on a development device using the
+Release-configured Railway endpoint and matching public signing key. After activation, reconnect
+with Railway SSH and run `node scripts/admin.mjs counts`; the active installation count should have
+increased.
+
+For a real production invitation, repeat only the invitation step with
+`--environment production --confirm-production yes`. Do not use that flag merely because the
+development service happens to be reachable on the public internet.
 
 ## Add a new yacht club
 

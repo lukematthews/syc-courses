@@ -1,9 +1,9 @@
 #include "Base.xcconfig"
 
 // Set these through an uncommitted/CI configuration before a production archive.
-LICENSING_API_ENDPOINT =
-LICENSING_KEY_ID =
-LICENSING_PUBLIC_KEY_BASE64 =
+LICENSING_API_ENDPOINT = https:/$()/syc-courses-production.up.railway.app
+LICENSING_KEY_ID = development-live-2026-08
+LICENSING_PUBLIC_KEY_BASE64 = UydDqfMTRzbR5bjcs2EwuXFrtyxKMRZbQ6N5KFLFP5A=
 
 DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
 ENABLE_NS_ASSERTIONS = NO
