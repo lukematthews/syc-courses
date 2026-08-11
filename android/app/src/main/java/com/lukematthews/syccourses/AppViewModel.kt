@@ -19,6 +19,7 @@ import kotlinx.serialization.json.Json
 
 class AppViewModel(application: Application) : AndroidViewModel(application), LocationListener {
     val repository = DataRepository(application)
+    private val clubAccess = ClubAccessManager(application, repository.coursePack.packId)
     private val prefs = application.getSharedPreferences("syc_courses", Context.MODE_PRIVATE)
     private val json = Json { ignoreUnknownKeys = true }
     private val locationManager = application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -52,7 +53,15 @@ class AppViewModel(application: Application) : AndroidViewModel(application), Lo
     val outputCount = _outputCount.asStateFlow()
     val outputError = _outputError.asStateFlow()
     val lastReconnectMillis = _lastReconnectMillis.asStateFlow()
+    val clubAccessState = clubAccess.state
+    val clubAccessWorking = clubAccess.working
+    val clubAccessMessage = clubAccess.message
     private var actisense: ActisenseClient? = null
+
+    init { viewModelScope.launch { clubAccess.refreshIfDue() } }
+
+    fun activateClub(invitationCode: String) { viewModelScope.launch { clubAccess.activate(invitationCode) } }
+    fun retryClubRefresh() { viewModelScope.launch { clubAccess.retryRefresh() } }
 
     val activeFix: NavigationFix?
         get() = _actisenseFix.value?.takeIf {

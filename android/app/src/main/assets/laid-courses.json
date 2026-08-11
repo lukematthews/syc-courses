@@ -30,7 +30,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-80",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 81,
@@ -63,7 +64,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-81",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 82,
@@ -108,7 +110,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-82",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 83,
@@ -153,7 +156,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-83",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 84,
@@ -198,7 +202,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-84",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 85,
@@ -255,7 +260,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-85",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 86,
@@ -312,7 +318,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-86",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 87,
@@ -369,7 +376,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-87",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 88,
@@ -408,7 +416,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-88",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 89,
@@ -459,7 +468,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-89",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 90,
@@ -510,7 +520,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-90",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 91,
@@ -555,7 +566,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-91",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 92,
@@ -618,7 +630,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-92",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 93,
@@ -681,7 +694,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-93",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 94,
@@ -744,7 +758,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-94",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 95,
@@ -801,7 +816,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-95",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 96,
@@ -846,7 +862,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-96",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 97,
@@ -903,7 +920,8 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-97",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   },
   {
     "courseNumber": 98,
@@ -960,6 +978,7 @@
     ],
     "id": "sandringham-yacht-club-2025-2028/laid/course-98",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "laid"
+    "kind": "laid",
+    "groupId": "laid"
   }
 ]

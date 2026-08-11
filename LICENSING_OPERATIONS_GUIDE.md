@@ -141,7 +141,7 @@ DEV-<generated random value>
 ```
 
 Copy both the invitation ID and the exact `DEV-...` code immediately into the approved development
-test record. The displayed `DEV-...` value is the invitation code entered in the iOS app. The
+test record. The displayed `DEV-...` value is the invitation code entered in the iPhone or Android app. The
 database stores only its keyed digest and final-character hint, so there is no command to display it
 again. If it is lost, create a replacement invitation and disable the lost invitation by ID.
 
@@ -188,7 +188,7 @@ services. For SYC, confirm the applicable version and service boundary commercia
 
 ### 2. Check the course pack exists
 
-The current iPhone app still bundles one course pack at build time. A licence can name a pack ID,
+The current iPhone and Android apps still bundle one course pack at build time. A licence can name a pack ID,
 but this does not create or download that pack. Confirm the ID in the pack's `pack.json` and confirm
 that the appropriate app variant can be built before onboarding the club.
 

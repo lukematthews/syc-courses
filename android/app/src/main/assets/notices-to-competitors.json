@@ -1,0 +1,24 @@
+[
+  {
+    "id": "syc-ntc-2026-sat-wint-1",
+    "noticeNumber": "2026_Sat_Wint_1",
+    "title": "Notice to Competitors",
+    "series": "Saturday Winter Series 2026",
+    "appliesTo": "SYC Alan Shiels Race 2",
+    "issueDate": "2026-07-25",
+    "summary": "Club Course boat start, amended warning signals and replacement courses 1-2.",
+    "warningSignals": [
+      "Division 1 - Code Flag W - no earlier than 1155",
+      "Division 2 - Code Flag E - no earlier than 1200"
+    ],
+    "sections": [
+      { "number": 1, "body": "This will be a Club Course boat start event, per SI Appendix A.1." },
+      { "number": 2, "body": "Courses 1-2 of the SYC Sailing Instructions Appendix A.1 are replaced by the courses in this notice. This amends SI 13.2.\n\nNote: The Gate will be laid up to 1.0 nm to windward from the start line.\n\nCourse 1: Start - Gate - 5 (Port) - MMYC #4 (Starboard) - 5 (Starboard) - 6 (Starboard) - 3 (Starboard) - 4 (Starboard) - 6 (Starboard) - 3 (Starboard) - 4 (Starboard) - 2 (Starboard) - 3 (Starboard) - Finish. Distance approx. 23.5 nm.\n\nCourse 2: Start - Gate - 5 (Port) - MMYC #4 (Starboard) - 5 (Starboard) - 6 (Starboard) - 3 (Starboard) - 4 (Starboard) - 2 (Starboard) - 3 (Starboard) - Finish. Distance approx. 19.5 nm." },
+      { "number": 3, "body": "The following mark is added to SI 14.3:\n\nMMYC - Yellow conical - 38° 00.777'S, 145° 03.604'E." }
+    ],
+    "issuerName": "Nick Disney",
+    "issuerRole": "SYC Club Captain - Sail",
+    "revision": 0,
+    "pdfFile": "NTC_2026_Sat_Winter_1_Alan_Shiels_Race_2_Rev_0.pdf"
+  }
+]

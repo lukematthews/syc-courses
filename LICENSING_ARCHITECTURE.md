@@ -6,10 +6,11 @@ member-facing activation instructions are in
 
 ## Scope and commercial boundary
 
-This repository implements the first complete iPhone licensing slice and a locally testable
-Railway Node service. Implemented: invitation activation, MongoDB indexes and atomic reservations, Ed25519 entitlements,
-credential-bound refresh, Keychain identity/credential storage, atomic envelope storage, local
-verification, explicit access policy, retry backoff, legacy migration, admin commands, and tests.
+This repository implements matching iPhone and Android licensing clients and a locally testable
+Railway Node service. Implemented: invitation activation, MongoDB indexes and atomic reservations,
+Ed25519 entitlements, credential-bound refresh, platform secure identity/credential storage, atomic
+envelope storage, local verification, explicit access policy, retry backoff, legacy migration,
+admin commands, and tests.
 
 Clubs hold licences; members have no account and supply no personal details. `term` and `perpetual`
 are distinct entitlement types. A perpetual entitlement has no expiry/grace timestamp. It can be
@@ -46,7 +47,7 @@ Safe club reporting is aggregate activation/refresh volume and active/disabled i
 ```mermaid
 sequenceDiagram
   participant A as App
-  participant L as Keychain/local files
+  participant L as Platform secure/local storage
   participant W as Railway API
   participant D as MongoDB
   A->>L: create/read random installation UUID
@@ -55,7 +56,7 @@ sequenceDiagram
   W->>D: unique installation and entitlement
   W-->>A: signed envelope + opaque refresh credential
   A->>A: verify bytes, identity, club, pack and dates
-  A->>L: atomic envelope + Keychain credential
+  A->>L: atomic envelope + encrypted credential
 ```
 
 Routes are `POST /v1/activations`, `POST /v1/entitlements/refresh`, and `GET /v1/health`.
@@ -65,7 +66,7 @@ a new entitlement. Invitation rotation prevents new activation but does not affe
 installation's independent refresh credential. Admin mutations have no public endpoint.
 
 Launch reads and verifies cached state locally, renders immediately, then starts a due refresh in a
-SwiftUI task. The server is never on the launch critical path. A failure schedules exponential
+platform coroutine/task. The server is never on the launch critical path. A failure schedules exponential
 retry from 15 minutes to 24 hours and preserves authenticated access. Explicit retry is available;
 foreground events do not create an unconditional request loop.
 

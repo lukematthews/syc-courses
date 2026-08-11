@@ -29,6 +29,9 @@ DEFAULT_EXPIRY_DAYS=30
 DEFAULT_GRACE_DAYS=60
 MINIMUM_APP_VERSION=1.0.0
 PORT=8787
+AUTH0_DOMAIN=<tenant>.au.auth0.com
+AUTH0_AUDIENCE=https://api.syc-courses.example
+ADMIN_WEB_ORIGINS=http://localhost:5173,https://courses.example
 ```
 
 Generate a development-only key pair:
@@ -62,6 +65,10 @@ node scripts/admin.mjs create-club \
 node scripts/admin.mjs create-invitation \
   --environment development --club dev-sailing-club \
   --valid-until 2099-01-01T00:00:00Z --limit 1000
+
+# Use the Auth0 user `sub` claim, not an email address.
+node scripts/admin.mjs grant-admin \
+  --subject 'auth0|USER_ID' --club dev-sailing-club --role owner
 ```
 
 ## Railway deployment
@@ -107,14 +114,16 @@ Other commands:
 node scripts/admin.mjs list-invitations
 node scripts/admin.mjs set-invitation-status --id INVITATION_ID --status inactive
 node scripts/admin.mjs set-club-status --id CLUB_ID --status inactive
+node scripts/admin.mjs grant-admin --subject 'auth0|USER_ID' --club CLUB_ID --role publisher
+node scripts/admin.mjs revoke-admin --subject 'auth0|USER_ID'
 node scripts/admin.mjs disable-installation --installation-id PUBLIC_RANDOM_ID
 node scripts/admin.mjs counts
 ```
 
 ## MongoDB operational notes
 
-- Collections: `clubs`, `invitations`, `installations`, `entitlements`, and
-  `activationRateLimits`.
+- Collections additionally include `clubAdminMemberships`, `coursePackDrafts`, and
+  immutable `publishedCoursePacks` for the administrator portal.
 - Activation thresholds use an atomic counter reservation on the invitation document. This works
   without replica-set transactions and cannot exceed the configured limit; a process failure at the
   wrong instant may conservatively consume one slot.

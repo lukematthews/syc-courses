@@ -1,18 +1,26 @@
 import { randomUUID } from 'node:crypto'
 import Fastify, { type FastifyInstance } from 'fastify'
+import cors from '@fastify/cors'
 import type { LicensingConfig } from './config.js'
 import { invitationDigest, randomToken, refreshDigest, signEntitlement } from './crypto.js'
 import type { Club, EntitlementPayload, EntitlementRecord, Installation } from './models.js'
 import type { LicensingRepository } from './repository.js'
+import type { AdminAuthenticator, AdminRepository, AdminRole } from './admin.js'
 
 type JsonObject = Record<string, unknown>
-export interface AppDependencies { repository: LicensingRepository; config: LicensingConfig; now?: () => Date }
+export interface AppDependencies {
+  repository: LicensingRepository
+  config: LicensingConfig
+  now?: () => Date
+  adminRepository?: AdminRepository
+  adminAuthenticator?: AdminAuthenticator
+}
 
 class PrivacyLogController extends Fastify.LogController {
   constructor() { super({ disableRequestLogging: true }) }
 }
 
-export function buildApp({ repository, config, now = () => new Date() }: AppDependencies): FastifyInstance {
+export function buildApp({ repository, config, now = () => new Date(), adminRepository, adminAuthenticator }: AppDependencies): FastifyInstance {
   const app = Fastify({
     trustProxy: config.trustProxy,
     bodyLimit: 16 * 1024,
@@ -22,6 +30,10 @@ export function buildApp({ repository, config, now = () => new Date() }: AppDepe
       redact: ['req.headers.authorization', 'req.body', 'res.body'],
     },
   })
+
+  if (adminRepository && adminAuthenticator) {
+    void app.register(cors, { origin: config.adminWebOrigins, methods: ['GET', 'PUT', 'POST', 'OPTIONS'] })
+  }
 
   app.addHook('onSend', async (_request, reply, payload) => {
     reply.header('cache-control', 'no-store')
@@ -34,10 +46,50 @@ export function buildApp({ repository, config, now = () => new Date() }: AppDepe
     catch { return reply.code(503).send(errorBody('TEMPORARY_SERVER_ERROR', 'The licensing service is temporarily unavailable.')) }
   })
 
+  if (adminRepository && adminAuthenticator) {
+    const access = async (request: Parameters<AdminAuthenticator>[0], roles: AdminRole[]) => {
+      const principal = await adminAuthenticator(request)
+      const membership = await adminRepository.findAdminMembership(principal.subject)
+      if (!membership || !roles.includes(membership.role)) throw new Error('forbidden')
+      return { principal, membership }
+    }
+
+    app.get('/v1/admin/course-pack', async (request, reply) => {
+      try {
+        const { membership } = await access(request, ['owner', 'publisher', 'editor'])
+        const draft = await adminRepository.getCoursePackDraft(membership.clubId)
+        if (!draft) return reply.code(404).send(errorBody('COURSE_PACK_NOT_INITIALISED', 'No editable course pack has been created for this club.'))
+        return { clubId: membership.clubId, role: membership.role, revision: draft.revision, pack: draft.payload }
+      } catch { return reply.code(403).send(errorBody('ADMIN_ACCESS_DENIED', 'Administrator access is unavailable.')) }
+    })
+
+    app.put('/v1/admin/course-pack', { bodyLimit: 12 * 1024 * 1024 }, async (request, reply) => {
+      try {
+        const { principal, membership } = await access(request, ['owner', 'publisher', 'editor'])
+        const body = objectBody(request.body); const pack = body && objectBody(body.pack)
+        if (!pack || (body.revision !== null && body.revision !== undefined && !Number.isInteger(body.revision))) return reply.code(400).send(errorBody('MALFORMED_REQUEST', 'The course pack draft is invalid.'))
+        const saved = await adminRepository.saveCoursePackDraft(membership.clubId, pack, principal.subject, typeof body.revision === 'number' ? body.revision : null, now())
+        if (saved === 'conflict') return reply.code(409).send(errorBody('EDIT_CONFLICT', 'The course pack was changed by another administrator. Reload before saving.'))
+        return { clubId: membership.clubId, role: membership.role, revision: saved.revision, pack: saved.payload }
+      } catch { return reply.code(403).send(errorBody('ADMIN_ACCESS_DENIED', 'Administrator access is unavailable.')) }
+    })
+
+    app.post('/v1/admin/course-pack/publish', async (request, reply) => {
+      try {
+        const { principal, membership } = await access(request, ['owner', 'publisher'])
+        const body = objectBody(request.body)
+        if (!body || typeof body.version !== 'string' || !/^\d{4}\.\d{2}\.\d{2}(?:\.\d+)?$/.test(body.version)) return reply.code(400).send(errorBody('MALFORMED_REQUEST', 'The published version is invalid.'))
+        const published = await adminRepository.publishCoursePack(membership.clubId, principal.subject, body.version, now())
+        if (!published) return reply.code(409).send(errorBody('COURSE_PACK_NOT_INITIALISED', 'Save the course pack before publishing.'))
+        return reply.code(201).send({ id: published.id, clubId: published.clubId, version: published.version, publishedAt: published.publishedAt })
+      } catch { return reply.code(403).send(errorBody('ADMIN_ACCESS_DENIED', 'Publishing access is unavailable.')) }
+    })
+  }
+
   app.post('/v1/activations', async (request, reply) => {
     const body = objectBody(request.body)
     if (!body || typeof body.invitationCode !== 'string' || !validInstallationId(body.installationId)
-      || !validVersion(body.appVersion) || !['ios', 'macos'].includes(String(body.platform))) {
+      || !validVersion(body.appVersion) || !['ios', 'macos', 'android'].includes(String(body.platform))) {
       return reply.code(400).send(errorBody('MALFORMED_REQUEST', 'The activation request is invalid.'))
     }
     if (versionBelow(body.appVersion, config.minimumAppVersion)) {

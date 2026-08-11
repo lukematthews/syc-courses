@@ -1,4 +1,4 @@
-import { mkdirSync, copyFileSync, readdirSync, writeFileSync, rmSync } from 'node:fs'
+import { existsSync, mkdirSync, copyFileSync, readdirSync, writeFileSync, rmSync } from 'node:fs'
 import { basename, join } from 'node:path'
 import { jsonFile, loadBundledCoursePack } from './course_pack.mjs'
 import { generateMissingCourseCharts } from './generate_missing_course_charts.mjs'
@@ -19,6 +19,13 @@ writeFileSync(join(resourceDir, 'course-pack.json'), jsonFile(pack.manifest))
 writeFileSync(join(resourceDir, 'fixed-courses.json'), jsonFile(pack.fixedCourses))
 writeFileSync(join(resourceDir, 'laid-courses.json'), jsonFile(pack.laidCourses))
 writeFileSync(join(resourceDir, 'marks.json'), jsonFile(pack.marks))
+
+const noticeDirectory = join(root, 'course-packs', pack.packDirectory, 'notices')
+if (existsSync(noticeDirectory)) {
+  for (const file of readdirSync(noticeDirectory)) {
+    if (file.endsWith('.json') || file.endsWith('.pdf')) copyFileSync(join(noticeDirectory, file), join(resourceDir, file))
+  }
+}
 
 for (const file of readdirSync(pack.chartDirectory)) {
   if (file.endsWith('.png')) {

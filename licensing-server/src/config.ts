@@ -12,6 +12,9 @@ export interface LicensingConfig {
   port: number
   host: string
   trustProxy: boolean
+  auth0Domain?: string
+  auth0Audience?: string
+  adminWebOrigins: string[]
 }
 
 function required(name: string): string {
@@ -41,5 +44,8 @@ export function loadConfig(): LicensingConfig {
     port: positiveInteger('PORT', 3000),
     host: process.env.HOST ?? '0.0.0.0',
     trustProxy: process.env.TRUST_PROXY !== 'false',
+    auth0Domain: process.env.AUTH0_DOMAIN,
+    auth0Audience: process.env.AUTH0_AUDIENCE,
+    adminWebOrigins: (process.env.ADMIN_WEB_ORIGINS ?? 'http://localhost:5173').split(',').map((value) => value.trim()).filter(Boolean),
   }
 }

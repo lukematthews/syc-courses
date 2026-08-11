@@ -42,6 +42,9 @@ struct HomeView: View {
                     NavigationLink(value: HomeRoute.flags) {
                         HomeCard(title: "Flags", subtitle: "Numeral pennants 0-9", systemImage: "flag")
                     }
+                    NavigationLink(value: HomeRoute.notices) {
+                        HomeCard(title: "Notices to Competitors", subtitle: "Race amendments and official notices", systemImage: "doc.text")
+                    }
                     ForEach(CourseDataLoader.courseGroups) { group in
                         let courses = CourseDataLoader.courses(groupId: group.id)
                         if !courses.isEmpty {
@@ -136,6 +139,7 @@ struct HomeView: View {
                 switch route {
                 case .quickBearing: QuickBearingView()
                 case .flags: PennantReferenceView()
+                case .notices: NoticesToCompetitorsView()
                 case let .courseGroup(groupId): CourseListView(groupId: groupId)
                 case let .lineAssist(mode): StartAssistView(initialMode: mode)
                 case .finishOptions: FinishOptionsView()
@@ -217,6 +221,7 @@ struct AppIconImage: View {
 enum HomeRoute: Hashable {
     case quickBearing
     case flags
+    case notices
     case courseGroup(String)
     case lineAssist(LineMode)
     case finishOptions

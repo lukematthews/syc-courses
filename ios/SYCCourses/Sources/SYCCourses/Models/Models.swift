@@ -39,6 +39,28 @@ struct Mark: Codable, Identifiable, Hashable {
     let coordinatesStatus: String
 }
 
+struct NoticeToCompetitors: Codable, Identifiable, Hashable {
+    let id: String
+    let noticeNumber: String
+    let title: String
+    let series: String
+    let appliesTo: String
+    let issueDate: String
+    let summary: String
+    let warningSignals: [String]
+    let sections: [NoticeSection]
+    let issuerName: String
+    let issuerRole: String
+    let revision: Int
+    let pdfFile: String?
+}
+
+struct NoticeSection: Codable, Hashable {
+    let number: Int
+    let heading: String?
+    let body: String
+}
+
 enum CourseKind: String, Codable, CaseIterable, Identifiable {
     case fixed
     case laid

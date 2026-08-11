@@ -23,6 +23,7 @@ export function loadBundledCoursePack(root, requestedPackDirectory = process.env
   validateData(definition, fixedCourses, laidCourses, marks)
 
   return {
+    packDirectory: selection.packDirectory,
     definition,
     manifest: runtimeManifest(definition),
     fixedCourses,

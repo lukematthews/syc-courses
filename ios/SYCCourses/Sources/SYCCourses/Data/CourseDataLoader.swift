@@ -29,6 +29,10 @@ enum CourseDataLoader {
         load(resourceName(bundledPack.resources.marks))
     }
 
+    static func noticesToCompetitors() -> [NoticeToCompetitors] {
+        load("notices-to-competitors")
+    }
+
     static func findMark(named name: String, in marks: [Mark] = marks()) -> Mark? {
         let normalized = normalizeMarkName(name)
         return marks.first { mark in

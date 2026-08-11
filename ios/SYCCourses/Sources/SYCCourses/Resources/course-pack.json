@@ -14,6 +14,18 @@
     "fixed",
     "laid"
   ],
+  "courseGroups": [
+    {
+      "id": "fixed",
+      "name": "Fixed Mark",
+      "kind": "fixed"
+    },
+    {
+      "id": "laid",
+      "name": "Laid Mark",
+      "kind": "laid"
+    }
+  ],
   "navigation": {
     "startLineMarkIds": [
       "syc-tower",

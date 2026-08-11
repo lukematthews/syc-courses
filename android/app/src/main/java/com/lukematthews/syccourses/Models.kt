@@ -56,7 +56,7 @@ data class CoursePackNavigation(
     val startLineMarkIds: List<String>,
     val finishLineMarkIds: List<String>,
     val startFinishMarkId: String,
-    val quickBearingMapViews: List<QuickBearingMapViewDefinition>,
+    val quickBearingMapViews: List<QuickBearingMapViewDefinition> = emptyList(),
 )
 
 @Serializable
@@ -72,7 +72,7 @@ data class CoursePackResources(
     val laidCourses: String,
     val marks: String,
     val courseCharts: String,
-    val quickBearingMaps: List<QuickBearingMapResource>,
+    val quickBearingMaps: List<QuickBearingMapResource> = emptyList(),
 )
 
 @Serializable
@@ -96,6 +96,26 @@ data class Mark(
     val description: String? = null,
     val coordinatesStatus: String = "",
 )
+
+@Serializable
+data class NoticeToCompetitors(
+    val id: String,
+    val noticeNumber: String,
+    val title: String,
+    val series: String,
+    val appliesTo: String,
+    val issueDate: String,
+    val summary: String,
+    val warningSignals: List<String> = emptyList(),
+    val sections: List<NoticeSection> = emptyList(),
+    val issuerName: String,
+    val issuerRole: String,
+    val revision: Int = 0,
+    val pdfFile: String? = null,
+)
+
+@Serializable
+data class NoticeSection(val number: Int, val heading: String? = null, val body: String)
 
 @Serializable
 data class CoastlineData(

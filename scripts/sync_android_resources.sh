@@ -13,6 +13,12 @@ cp "$ios_resources/course-pack.json" "$android_main/assets/course-pack.json"
 cp "$ios_resources/fixed-courses.json" "$android_main/assets/fixed-courses.json"
 cp "$ios_resources/laid-courses.json" "$android_main/assets/laid-courses.json"
 cp "$ios_resources/marks.json" "$android_main/assets/marks.json"
+if [[ -f "$ios_resources/notices-to-competitors.json" ]]; then
+    cp "$ios_resources/notices-to-competitors.json" "$android_main/assets/notices-to-competitors.json"
+    while IFS= read -r notice_pdf; do
+        cp "$notice_pdf" "$android_main/assets/$(basename "$notice_pdf")"
+    done < <(find "$ios_resources" -maxdepth 1 -name 'NTC_*.pdf' -type f)
+fi
 rm -f "$android_main/assets"/mark-locations*.png "$android_main/assets"/mark-location*-hotspots.json
 node -e "const p=require('$ios_resources/course-pack.json'); for (const m of p.resources.quickBearingMaps) console.log(m.image + '\\n' + m.hotspots)" |
 while IFS= read -r map_resource; do

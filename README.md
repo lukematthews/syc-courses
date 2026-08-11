@@ -17,6 +17,19 @@ npm run dev
 npm run build
 ```
 
+## Club administration
+
+Open `/admin` to edit marks, courses, charts, administrator roles, and Notices to Competitors. In
+local development it uses a browser-local preview workspace by default. For an authenticated shared
+workspace, configure the web app with `VITE_AUTH0_DOMAIN`, `VITE_AUTH0_CLIENT_ID`,
+`VITE_AUTH0_AUDIENCE`, and `VITE_ADMIN_API_URL`, and configure the matching Auth0 domain/audience
+and allowed web origins on the licensing service. Auth0 proves identity; club membership and the
+owner/publisher/editor role remain server-side.
+
+Notice content is stored in structured JSON for readable offline presentation on iPhone and Android,
+alongside the original PDF. Canonical notice files live in `course-packs/<pack>/notices`; the iOS
+resource build and Android synchronisation scripts preserve them.
+
 Preview the production PWA:
 
 ```bash
@@ -88,6 +101,8 @@ polars, start-line geometry, race tracking, or tactical recommendations.
   clubs, issuing or rotating invitations, suspending access, reviewing adoption, and support.
 - [Club member activation guide](CLUB_MEMBER_ACTIVATION_GUIDE.md): concise member-facing setup,
   offline-use, troubleshooting, safety, and privacy instructions.
+- [SYC member distribution flow](SYC_MEMBER_DISTRIBUTION_FLOW.md): launch-ready member email,
+  responsibilities, activation diagrams, support flow, and optional future link automation.
 - [Licensing architecture](LICENSING_ARCHITECTURE.md): trust boundaries, wire format, policy,
   provisioning, recovery, and future runtime course-pack design.
 
@@ -97,6 +112,11 @@ The native Android app lives in `android` and is implemented with Kotlin and Jet
 shares the same bundled course data, mark coordinates, course charts, and visual identity as the
 iPhone app. Its application ID is `com.lukematthews.syccourses`, with Android 8.0 (API 26) as the
 minimum supported version.
+
+Android uses the same Railway club invitations and signed entitlement contract as iPhone. It
+verifies Ed25519 signatures locally, encrypts the installation identity and refresh credential with
+Android Keystore, retains verified bundled access offline, and preserves upgraded installations as
+legacy bundled access. See [Android licensing](android/LICENSING.md).
 
 Open the `android` directory in Android Studio, allow Gradle sync to finish, then run the `app`
 configuration on an emulator or physical Android device. Location permission is required for

@@ -4,6 +4,8 @@ import { CourseDetailScreen } from './screens/CourseDetailScreen'
 import { CourseListScreen } from './screens/CourseListScreen'
 import { PennantReferenceScreen } from './screens/PennantReferenceScreen'
 import { QuickBearingScreen } from './screens/QuickBearingScreen'
+import AdminApp from './admin/AdminApp'
+import { AdminAuthGate, AdminAuthProvider } from './admin/AdminAuth'
 
 type Screen =
   | { name: 'courses' }
@@ -12,6 +14,13 @@ type Screen =
   | { name: 'quick-bearing' }
 
 function App() {
+  if (window.location.pathname === '/admin' || window.location.pathname.startsWith('/admin/')) {
+    return <AdminAuthProvider><AdminAuthGate><AdminApp /></AdminAuthGate></AdminAuthProvider>
+  }
+  return <CoursesApp />
+}
+
+function CoursesApp() {
   const [screen, setScreen] = useState<Screen>({ name: 'courses' })
 
   useEffect(() => {

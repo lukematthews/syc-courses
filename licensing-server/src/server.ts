@@ -1,11 +1,19 @@
 import { buildApp } from './app.js'
 import { loadConfig } from './config.js'
 import { MongoLicensingRepository } from './mongoRepository.js'
+import { createAuth0Authenticator } from './admin.js'
 
 const config = loadConfig()
 const repository = await MongoLicensingRepository.connect(config.mongoUrl, config.mongoDatabase)
 await repository.ensureIndexes()
-const app = buildApp({ repository, config })
+const adminAuthenticator = config.auth0Domain && config.auth0Audience
+  ? createAuth0Authenticator(config.auth0Domain, config.auth0Audience) : undefined
+const app = buildApp({
+  repository,
+  config,
+  adminRepository: adminAuthenticator ? repository : undefined,
+  adminAuthenticator,
+})
 
 async function shutdown(signal: string) {
   app.log.info({ signal }, 'licensing_server_shutdown')

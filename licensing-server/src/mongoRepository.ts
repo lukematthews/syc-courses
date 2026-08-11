@@ -1,10 +1,11 @@
 import { MongoClient, type Collection, type Db, type Document, type Filter } from 'mongodb'
 import type { Club, EntitlementRecord, Installation, Invitation } from './models.js'
 import type { CreateInstallationInput, InstallationResult, LicensingRepository } from './repository.js'
+import type { AdminRepository, ClubAdminMembership, CoursePackDraft, PublishedCoursePack } from './admin.js'
 
 interface RateLimitDocument { subjectDigest: string; windowStartedAt: Date; attemptCount: number; expiresAt: Date }
 
-export class MongoLicensingRepository implements LicensingRepository {
+export class MongoLicensingRepository implements LicensingRepository, AdminRepository {
   private constructor(private readonly client: MongoClient, private readonly database: Db) {}
 
   static async connect(url: string, databaseName: string): Promise<MongoLicensingRepository> {
@@ -19,6 +20,9 @@ export class MongoLicensingRepository implements LicensingRepository {
   private get installations() { return this.collection<Installation & Document>('installations') }
   private get entitlements() { return this.collection<EntitlementRecord & Document>('entitlements') }
   private get rateLimits() { return this.collection<RateLimitDocument & Document>('activationRateLimits') }
+  private get adminMemberships() { return this.collection<ClubAdminMembership & Document>('clubAdminMemberships') }
+  private get coursePackDrafts() { return this.collection<CoursePackDraft & Document>('coursePackDrafts') }
+  private get publishedCoursePacks() { return this.collection<PublishedCoursePack & Document>('publishedCoursePacks') }
 
   async ensureIndexes(): Promise<void> {
     await Promise.all([
@@ -34,6 +38,10 @@ export class MongoLicensingRepository implements LicensingRepository {
       this.entitlements.createIndex({ installationId: 1, status: 1 }, { name: 'entitlement_installation_status' }),
       this.rateLimits.createIndex({ subjectDigest: 1, windowStartedAt: 1 }, { unique: true, name: 'rate_subject_window_unique' }),
       this.rateLimits.createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0, name: 'rate_expiry_ttl' }),
+      this.adminMemberships.createIndex({ subject: 1 }, { unique: true, name: 'admin_subject_unique' }),
+      this.adminMemberships.createIndex({ clubId: 1, status: 1 }, { name: 'admin_club_status' }),
+      this.coursePackDrafts.createIndex({ clubId: 1 }, { unique: true, name: 'course_pack_draft_club_unique' }),
+      this.publishedCoursePacks.createIndex({ clubId: 1, version: 1 }, { unique: true, name: 'published_pack_club_version_unique' }),
     ])
   }
 
@@ -120,6 +128,37 @@ export class MongoLicensingRepository implements LicensingRepository {
       { installationId: record.installationId, status: 'active', id: { $ne: record.id } },
       { $set: { status: 'replaced', replacedById: record.id } },
     )
+  }
+
+  async findAdminMembership(subject: string): Promise<ClubAdminMembership | null> {
+    return this.adminMemberships.findOne({ subject, status: 'active' }, { projection: { _id: 0 } })
+  }
+
+  async getCoursePackDraft(clubId: string): Promise<CoursePackDraft | null> {
+    return this.coursePackDrafts.findOne({ clubId }, { projection: { _id: 0 } })
+  }
+
+  async saveCoursePackDraft(clubId: string, payload: Record<string, unknown>, subject: string, expectedRevision: number | null, now: Date): Promise<CoursePackDraft | 'conflict'> {
+    const existing = await this.coursePackDrafts.findOne({ clubId })
+    if (existing && existing.revision !== expectedRevision) return 'conflict'
+    const revision = (existing?.revision ?? 0) + 1
+    const draft: CoursePackDraft = { clubId, revision, payload, updatedBy: subject, updatedAt: now }
+    try {
+      const result = await this.coursePackDrafts.replaceOne({ clubId, ...(existing ? { revision: existing.revision } : {}) }, draft, { upsert: !existing })
+      if (existing && result.matchedCount === 0) return 'conflict'
+    } catch (error) {
+      if (isDuplicateKey(error)) return 'conflict'
+      throw error
+    }
+    return draft
+  }
+
+  async publishCoursePack(clubId: string, subject: string, version: string, now: Date): Promise<PublishedCoursePack | null> {
+    const draft = await this.getCoursePackDraft(clubId)
+    if (!draft) return null
+    const published: PublishedCoursePack = { id: `${clubId}:${version}`, clubId, version, payload: draft.payload, publishedBy: subject, publishedAt: now }
+    await this.publishedCoursePacks.insertOne(published)
+    return published
   }
 }
 

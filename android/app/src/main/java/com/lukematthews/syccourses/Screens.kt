@@ -3,7 +3,10 @@
 package com.lukematthews.syccourses
 
 import android.content.Intent
+import android.Manifest
 import android.graphics.BitmapFactory
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -71,14 +74,32 @@ private fun courseRoute(course: Course) = "course/${Uri.encode(course.id)}"
 
 @Composable
 fun SYCCoursesApp(app: AppViewModel) {
+    val accessState by app.clubAccessState.collectAsStateWithLifecycle()
+    val working by app.clubAccessWorking.collectAsStateWithLifecycle()
+    val message by app.clubAccessMessage.collectAsStateWithLifecycle()
+    when (accessState) {
+        ClubAccessState.Loading -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
+        ClubAccessState.NoAccess, ClubAccessState.Invalid -> ClubAccessScreen(working, message, app::activateClub)
+        else -> LicensedCoursesApp(app, accessState)
+    }
+}
+
+@Composable
+private fun LicensedCoursesApp(app: AppViewModel, accessState: ClubAccessState) {
+    val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { app.startLocation() }
+    LaunchedEffect(Unit) {
+        permission.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION))
+    }
     val nav = rememberNavController()
     NavHost(nav, "home") {
-        composable("home") { HomeScreen(app, nav) }
+        composable("home") { HomeScreen(app, nav, accessState) }
         composable("courses/{groupId}") { CourseListScreen(app, nav, it.arguments?.getString("groupId").orEmpty()) }
         composable("course/{id}") { app.repository.course(Uri.decode(it.arguments?.getString("id").orEmpty()))?.let { course -> CourseDetailScreen(app, nav, course) } }
         composable("quick") { QuickBearingScreen(app, nav) }
         composable("mark/{id}") { entry -> app.repository.markById(entry.arguments?.getString("id").orEmpty())?.let { MarkDetailScreen(app, nav, it) } }
         composable("flags") { FlagsScreen(app, nav) }
+        composable("notices") { NoticesToCompetitorsScreen(app, nav) }
+        composable("notice/{id}") { entry -> app.repository.notice(Uri.decode(entry.arguments?.getString("id").orEmpty()))?.let { NoticeToCompetitorsDetailScreen(app, nav, it) } }
         composable("line/{mode}") { LineAssistScreen(app, nav, if (it.arguments?.getString("mode") == "finish") LineMode.FINISH else LineMode.START) }
         composable("finish") { FinishOptionsScreen(app, nav) }
         composable("tracker") { RaceTrackerScreen(app, nav) }
@@ -87,7 +108,7 @@ fun SYCCoursesApp(app: AppViewModel) {
 }
 
 @Composable
-private fun HomeScreen(app: AppViewModel, nav: NavHostController) {
+private fun HomeScreen(app: AppViewModel, nav: NavHostController, accessState: ClubAccessState) {
     val recentCourseIDs by app.recents.collectAsStateWithLifecycle()
     val tracks by app.recentTracks.collectAsStateWithLifecycle()
     val activeNumber by app.activeCourse.collectAsStateWithLifecycle()
@@ -95,6 +116,16 @@ private fun HomeScreen(app: AppViewModel, nav: NavHostController) {
     var renameText by remember { mutableStateOf("") }
     ScreenScaffold(app.repository.coursePack.name) { padding ->
         LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            accessState.statusMessage?.let { status ->
+                item {
+                    OutlinedCard(Modifier.fillMaxWidth()) {
+                        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Text(status, color = Navy, fontWeight = FontWeight.SemiBold)
+                            if (accessState.needsRefresh) TextButton(app::retryClubRefresh) { Text("Retry") }
+                        }
+                    }
+                }
+            }
             item {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Image(painterResource(R.drawable.app_icon), app.repository.coursePack.name, modifier = Modifier.size(54.dp), contentScale = ContentScale.Fit)
@@ -104,6 +135,7 @@ private fun HomeScreen(app: AppViewModel, nav: NavHostController) {
             activeNumber?.let { item { ActiveRaceHomePanel(app, nav) } }
             item { HomeCard("Quick Bearing", "Bearing and distance to a mark", Icons.Default.NearMe) { nav.navigate("quick") } }
             item { HomeCard("Flags", "Numeral pennants 0–9", Icons.Default.Flag) { nav.navigate("flags") } }
+            item { HomeCard("Notices to Competitors", "Race amendments and official notices", Icons.Default.Description) { nav.navigate("notices") } }
             app.repository.courseGroups.forEach { group ->
                 val courses = app.repository.courses(group.id)
                 if (courses.isNotEmpty()) item {
@@ -211,6 +243,82 @@ private fun CoursePennantHoist(number: Int, flagWidth: Int = 76, flagHeight: Int
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun NoticesToCompetitorsScreen(app: AppViewModel, nav: NavHostController) {
+    ScreenScaffold("Notices to Competitors", { nav.popBackStack() }) { padding ->
+        LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            items(app.repository.noticesToCompetitors, key = NoticeToCompetitors::id) { notice ->
+                OutlinedCard(Modifier.fillMaxWidth().clickable { nav.navigate("notice/${Uri.encode(notice.id)}") }) {
+                    Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                        Text(notice.series, fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Navy)
+                        Text(notice.appliesTo)
+                        Row(Modifier.fillMaxWidth()) {
+                            Text("NTC ${notice.noticeNumber}", Modifier.weight(1f), color = Color.Gray, fontSize = 13.sp)
+                            Text(notice.issueDate, color = Color.Gray, fontSize = 13.sp)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun NoticeToCompetitorsDetailScreen(app: AppViewModel, nav: NavHostController, notice: NoticeToCompetitors) {
+    val context = LocalContext.current
+    ScreenScaffold("Notice to Competitors", { nav.popBackStack() }) { padding ->
+        LazyColumn(Modifier.padding(padding).padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            item {
+                Column(verticalArrangement = Arrangement.spacedBy(7.dp)) {
+                    Text("NTC ${notice.noticeNumber} · Rev ${notice.revision}", color = Color.Gray, fontWeight = FontWeight.SemiBold)
+                    Text(notice.series, fontSize = 26.sp, fontWeight = FontWeight.Bold, color = Navy)
+                    Text("Applicable to: ${notice.appliesTo}", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+                    Text("Issued ${notice.issueDate}", color = Color.Gray)
+                }
+            }
+            item { Text(notice.summary, fontSize = 17.sp) }
+            if (notice.warningSignals.isNotEmpty()) {
+                item { Text("Warning signals", fontSize = 19.sp, fontWeight = FontWeight.Bold, color = Navy) }
+                items(notice.warningSignals) { signal ->
+                    Surface(color = Teal.copy(alpha = .10f), shape = RoundedCornerShape(8.dp)) {
+                        Text(signal, Modifier.fillMaxWidth().padding(12.dp), fontWeight = FontWeight.SemiBold)
+                    }
+                }
+            }
+            items(notice.sections, key = NoticeSection::number) { section ->
+                Row(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.Top) {
+                    Text("${section.number}.", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                    Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(5.dp)) {
+                        section.heading?.takeIf(String::isNotBlank)?.let { Text(it, fontWeight = FontWeight.Bold) }
+                        Text(section.body, fontSize = 16.sp)
+                    }
+                }
+            }
+            item {
+                Column { Text(notice.issuerName, fontWeight = FontWeight.Bold); Text(notice.issuerRole) }
+            }
+            notice.pdfFile?.let { pdfFile ->
+                item {
+                    Button(
+                        onClick = { openNoticePdf(context, pdfFile) },
+                        modifier = Modifier.fillMaxWidth(),
+                    ) { Icon(Icons.Default.PictureAsPdf, null); Spacer(Modifier.width(8.dp)); Text("Open original PDF") }
+                }
+            }
+        }
+    }
+}
+
+private fun openNoticePdf(context: android.content.Context, assetName: String) {
+    runCatching {
+        val directory = File(context.cacheDir, "shared/notices").apply { mkdirs() }
+        val file = File(directory, assetName.substringAfterLast('/'))
+        context.assets.open(assetName).use { input -> file.outputStream().use(input::copyTo) }
+        val uri = FileProvider.getUriForFile(context, "${context.packageName}.files", file)
+        context.startActivity(Intent(Intent.ACTION_VIEW).setDataAndType(uri, "application/pdf").addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION))
     }
 }
 

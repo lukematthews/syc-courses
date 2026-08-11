@@ -11,6 +11,7 @@ class DataRepository(context: Context) {
     val fixedCourses: List<Course> by lazy { decode(coursePack.resources.fixedCourses) }
     val laidCourses: List<Course> by lazy { decode(coursePack.resources.laidCourses) }
     val marks: List<Mark> by lazy { decode(coursePack.resources.marks) }
+    val noticesToCompetitors: List<NoticeToCompetitors> by lazy { decode("notices-to-competitors.json") }
     val portPhillipCoastline: CoastlineData by lazy { decode("port-phillip-coastline.json") }
     val allCourses: List<Course> get() = fixedCourses + laidCourses
     val courseGroups: List<CourseGroup> get() = coursePack.courseGroups.ifEmpty {
@@ -27,6 +28,7 @@ class DataRepository(context: Context) {
     fun course(number: Int) = allCourses.firstOrNull { it.courseNumber == number }
     fun course(id: String) = allCourses.firstOrNull { it.id == id }
     fun markById(id: String) = marks.firstOrNull { it.id == id }
+    fun notice(id: String) = noticesToCompetitors.firstOrNull { it.id == id }
     fun startLineMarks() = coursePack.navigation.startLineMarkIds.mapNotNull(::markById)
     fun finishLineMarks() = coursePack.navigation.finishLineMarkIds.mapNotNull(::markById)
     fun startFinishMark() = markById(coursePack.navigation.startFinishMarkId)

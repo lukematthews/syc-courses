@@ -10,9 +10,13 @@
     "start": "node dist/src/server.js",
     "db:indexes": "tsx scripts/ensure-indexes.ts"
   },
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "dependencies": {
+    "@fastify/cors": "^11.3.0",
     "fastify": "^5.6.2",
+    "jose": "^6.2.8",
     "mongodb": "^6.20.0"
   },
   "devDependencies": {

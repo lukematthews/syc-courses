@@ -16,6 +16,7 @@ const config: LicensingConfig = {
   refreshLookupSecret: 'TEST-ONLY-refresh-secret', signingPrivateKeyPkcs8: privateKey,
   signingKeyId: 'development-2026-01', currentDays: 14, expiryDays: 30, graceDays: 60,
   minimumAppVersion: '1.0.0', port: 3000, host: '127.0.0.1', trustProxy: true,
+  adminWebOrigins: ['http://localhost:5173'],
 }
 type ActivationBody = { entitlement: { payload: string; signature: string }; refreshCredential: string }
 let repository: InMemoryRepository
@@ -57,6 +58,10 @@ describe('Railway licensing API', () => {
   it('rejects malformed and unsupported requests with stable codes', async () => {
     expect(errorCode(await activation({ installationId: 'bad' }))).toBe('MALFORMED_REQUEST')
     expect(errorCode(await activation({ appVersion: '0.9.0' }))).toBe('UNSUPPORTED_APP_VERSION')
+  })
+  it('accepts Android as a licensed client platform', async () => {
+    seed(); expect((await activation({ platform: 'android' })).statusCode).toBe(201)
+    expect(repository.installations).toHaveLength(1); expect(repository.installations[0].platform).toBe('android')
   })
   it.each([
     [{}, 'WRONG', 'INVALID_INVITATION'],

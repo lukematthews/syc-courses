@@ -42,7 +42,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 2",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-1",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 2,
@@ -87,7 +88,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 1",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-2",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 3,
@@ -132,7 +134,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 4",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-3",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 4,
@@ -177,7 +180,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 2",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-4",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 5,
@@ -222,7 +226,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 8",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-5",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 6,
@@ -267,7 +272,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 9",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-6",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 7,
@@ -312,7 +318,8 @@
     "comparableCourseNote": "Northerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-7",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 8,
@@ -357,7 +364,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 5",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-8",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 9,
@@ -402,7 +410,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 6",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-9",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 10,
@@ -477,7 +486,8 @@
     "comparableCourseNote": "Southerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-10",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 11,
@@ -546,7 +556,8 @@
     "comparableCourseNote": "Southerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-11",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 12,
@@ -621,7 +632,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 24",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-12",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 13,
@@ -696,7 +708,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 25",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-13",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 14,
@@ -771,7 +784,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 19",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-14",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 15,
@@ -864,7 +878,8 @@
     "comparableCourseNote": "Southerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-15",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 16,
@@ -939,7 +954,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 21",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-16",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 17,
@@ -1014,7 +1030,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 32 (shortened)",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-17",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 18,
@@ -1089,7 +1106,8 @@
     "comparableCourseNote": "Southerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-18",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 19,
@@ -1164,7 +1182,8 @@
     "comparableCourseNote": "Northerly start. Comparable Courses: 14",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-19",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 20,
@@ -1257,7 +1276,8 @@
     "comparableCourseNote": "Northerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-20",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 21,
@@ -1326,7 +1346,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 16",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-21",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 22,
@@ -1395,7 +1416,8 @@
     "comparableCourseNote": "Northerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-22",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 23,
@@ -1458,7 +1480,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 36",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-23",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 24,
@@ -1533,7 +1556,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 12",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-24",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 25,
@@ -1608,7 +1632,8 @@
     "comparableCourseNote": "Northerly start. Comparable course: 13",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-25",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 26,
@@ -1677,7 +1702,8 @@
     "comparableCourseNote": "Northerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-26",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 27,
@@ -1752,7 +1778,8 @@
     "comparableCourseNote": "Northerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-27",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 28,
@@ -1821,7 +1848,8 @@
     "comparableCourseNote": "Northerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-28",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 29,
@@ -1890,7 +1918,8 @@
     "comparableCourseNote": "Southerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-29",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 30,
@@ -1965,7 +1994,8 @@
     "comparableCourseNote": "Southerly start. Comparable Courses: 39",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-30",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 31,
@@ -2040,7 +2070,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 51",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-31",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 32,
@@ -2145,7 +2176,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 41",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-32",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 33,
@@ -2220,7 +2252,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 43",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-33",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 34,
@@ -2295,7 +2328,8 @@
     "comparableCourseNote": "Southerly start. Comparable Courses: 44",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-34",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 35,
@@ -2388,7 +2422,8 @@
     "comparableCourseNote": "Southerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-35",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 36,
@@ -2457,7 +2492,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 23",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-36",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 37,
@@ -2508,7 +2544,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 42",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-37",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 38,
@@ -2589,7 +2626,8 @@
     "comparableCourseNote": "Northerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-38",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 39,
@@ -2664,7 +2702,8 @@
     "comparableCourseNote": "Northerly start. Comparable Courses: 30",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-39",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 40,
@@ -2727,7 +2766,8 @@
     "comparableCourseNote": "Southerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-40",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 41,
@@ -2832,7 +2872,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 32",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-41",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 42,
@@ -2913,7 +2954,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 37",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-42",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 43,
@@ -2988,7 +3030,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 33",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-43",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 44,
@@ -3063,7 +3106,8 @@
     "comparableCourseNote": "Northerly start. Comparable Courses: 34",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-44",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 45,
@@ -3114,7 +3158,8 @@
     "comparableCourseNote": "Northerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-45",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 46,
@@ -3171,7 +3216,8 @@
     "comparableCourseNote": "Southerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-46",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 47,
@@ -3240,7 +3286,8 @@
     "comparableCourseNote": "Northerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-47",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 48,
@@ -3315,7 +3362,8 @@
     "comparableCourseNote": "Southerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-48",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 49,
@@ -3384,7 +3432,8 @@
     "comparableCourseNote": "Southerly start. Comparable Courses: 55",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-49",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 50,
@@ -3489,7 +3538,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 56",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-50",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 51,
@@ -3564,7 +3614,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 31",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-51",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 52,
@@ -3633,7 +3684,8 @@
     "comparableCourseNote": "Southerly start. Comparable Courses: 57",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-52",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 53,
@@ -3702,7 +3754,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 54",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-53",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 54,
@@ -3771,7 +3824,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 53",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-54",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 55,
@@ -3840,7 +3894,8 @@
     "comparableCourseNote": "Northerly start. Comparable Courses: 49",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-55",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 56,
@@ -3945,7 +4000,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 50",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-56",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 57,
@@ -4014,7 +4070,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 52",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-57",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 58,
@@ -4113,7 +4170,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 59",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-58",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 59,
@@ -4212,7 +4270,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 58",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-59",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 60,
@@ -4305,7 +4364,8 @@
     "comparableCourseNote": "Southerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-60",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 61,
@@ -4350,7 +4410,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 62",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-61",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 62,
@@ -4395,7 +4456,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 61",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-62",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 63,
@@ -4446,7 +4508,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 64",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-63",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 64,
@@ -4503,7 +4566,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 63",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-64",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 65,
@@ -4566,7 +4630,8 @@
     "comparableCourseNote": "Northerly start. Comparable Course: 66",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-65",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 66,
@@ -4629,7 +4694,8 @@
     "comparableCourseNote": "Southerly start. Comparable Course: 65",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-66",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 67,
@@ -4686,7 +4752,8 @@
     "comparableCourseNote": "Southerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-67",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   },
   {
     "courseNumber": 68,
@@ -4749,6 +4816,7 @@
     "comparableCourseNote": "Northerly start.",
     "id": "sandringham-yacht-club-2025-2028/fixed/course-68",
     "packId": "sandringham-yacht-club-2025-2028",
-    "kind": "fixed"
+    "kind": "fixed",
+    "groupId": "fixed"
   }
 ]

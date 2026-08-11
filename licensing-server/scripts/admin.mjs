@@ -72,6 +72,21 @@ try {
     const status = required('status'); if (!['active', 'inactive'].includes(status)) throw new Error('--status must be active or inactive')
     await database.collection('clubs').updateOne({ id: required('id') }, { $set: { status, updatedAt: now } })
     console.log('Club status updated.')
+  } else if (command === 'grant-admin') {
+    const role = value('role', 'editor')
+    if (!['owner', 'publisher', 'editor'].includes(role)) throw new Error('--role must be owner, publisher or editor')
+    const subject = required('subject'); const clubId = required('club')
+    await database.collection('clubAdminMemberships').updateOne(
+      { subject },
+      { $set: { clubId, role, status: 'active', updatedAt: now }, $setOnInsert: { createdAt: now } },
+      { upsert: true },
+    )
+    console.log(`Granted ${role} access to ${subject} for ${clubId}.`)
+  } else if (command === 'revoke-admin') {
+    await database.collection('clubAdminMemberships').updateOne(
+      { subject: required('subject') }, { $set: { status: 'inactive', updatedAt: now } },
+    )
+    console.log('Administrator access revoked.')
   } else if (command === 'disable-installation') {
     await database.collection('installations').updateOne({ publicInstallationId: required('installation-id') }, { $set: { status: 'disabled', updatedAt: now } })
     console.log('Installation disabled.')
@@ -86,7 +101,7 @@ try {
     const rows = await database.collection('invitations').find({}, { projection: { _id: 0, id: 1, clubId: 1, codeHint: 1, status: 1, validUntil: 1, activationCount: 1, activationLimit: 1 } }).sort({ clubId: 1, createdAt: -1 }).toArray()
     console.table(rows)
   } else {
-    throw new Error('Commands: generate-development-key, create-club, create-invitation, list-invitations, set-invitation-status, set-club-status, disable-installation, counts')
+    throw new Error('Commands: generate-development-key, create-club, create-invitation, list-invitations, set-invitation-status, set-club-status, grant-admin, revoke-admin, disable-installation, counts')
   }
 } finally { await client.close() }
 

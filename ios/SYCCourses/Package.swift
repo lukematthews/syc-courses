@@ -26,6 +26,8 @@ let package = Package(
                 .copy("Resources/fixed-courses.json"),
                 .copy("Resources/laid-courses.json"),
                 .copy("Resources/marks.json"),
+                .copy("Resources/notices-to-competitors.json"),
+                .copy("Resources/NTC_2026_Sat_Winter_1_Alan_Shiels_Race_2_Rev_0.pdf"),
             ]
         ),
         .testTarget(

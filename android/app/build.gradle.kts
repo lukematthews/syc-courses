@@ -14,10 +14,13 @@ android {
         minSdk = 26
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.1"
+        buildConfigField("String", "LICENSING_API_ENDPOINT", "\"https://syc-courses-production.up.railway.app\"")
+        buildConfigField("String", "LICENSING_KEY_ID", "\"development-live-2026-08\"")
+        buildConfigField("String", "LICENSING_PUBLIC_KEY_BASE64", "\"UydDqfMTRzbR5bjcs2EwuXFrtyxKMRZbQ6N5KFLFP5A=\"")
     }
 
-    buildFeatures { compose = true }
+    buildFeatures { compose = true; buildConfig = true }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -43,6 +46,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.0")
     implementation("androidx.navigation:navigation-compose:2.9.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
+    implementation("com.google.crypto.tink:tink-android:1.23.0")
     debugImplementation("androidx.compose.ui:ui-tooling")
 
     testImplementation("junit:junit:4.13.2")
