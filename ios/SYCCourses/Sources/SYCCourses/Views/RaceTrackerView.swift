@@ -216,10 +216,15 @@ private struct RaceTrackerActiveCoursePanel: View {
     @EnvironmentObject private var locationService: LocationService
     @EnvironmentObject private var navigationDataService: NavigationDataService
     @EnvironmentObject private var activeRaceStore: ActiveRaceStore
+    @AppStorage("navigationBearingDisplayReference") private var bearingReferenceRaw = NavigationBearingDisplayReference.trueNorth.rawValue
 
     private var snapshot: BearingSnapshot? {
         guard let activeMark = activeRaceStore.activeMark else { return nil }
         return navigationDataService.snapshot(to: activeMark, iPhoneFix: locationService.navigationFix)
+    }
+
+    private var bearingReference: NavigationBearingDisplayReference {
+        NavigationBearingDisplayReference(rawValue: bearingReferenceRaw) ?? .trueNorth
     }
 
     var body: some View {
@@ -240,7 +245,15 @@ private struct RaceTrackerActiveCoursePanel: View {
                     Spacer(minLength: 8)
 
                     HStack(spacing: 8) {
-                        RaceTrackerMetricPill(title: "BTW", value: snapshot.map { AppFormatters.bearing($0.bearingTrue) } ?? "--")
+                        RaceTrackerMetricPill(
+                            title: "BTW",
+                            value: snapshot.map {
+                                AppFormatters.bearing(
+                                    trueBearing: $0.bearingTrue,
+                                    reference: bearingReference
+                                )
+                            } ?? "--"
+                        )
                         RaceTrackerMetricPill(title: "DTW", value: snapshot.map { AppFormatters.distanceNm($0.distanceNm) } ?? "--")
                     }
                 }

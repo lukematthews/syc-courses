@@ -25,6 +25,7 @@ enum LineMode: String, CaseIterable, Identifiable, Hashable {
 }
 
 struct StartAssistView: View {
+    @Environment(\.scenePhase) private var scenePhase
     @EnvironmentObject private var locationService: LocationService
     @EnvironmentObject private var navigationDataService: NavigationDataService
     @AppStorage("lastStartOffsetMinutes") private var startOffsetMinutes = 10
@@ -114,13 +115,22 @@ struct StartAssistView: View {
             offsetEntry = "\(startOffsetMinutes)"
             gunTime = today(atTimeOf: Date(timeIntervalSinceReferenceDate: storedGunTime))
             storedGunTime = gunTime.timeIntervalSinceReferenceDate
-            locationService.startActiveUpdates(for: .startAssist)
+            if scenePhase == .active {
+                activateLineAssist()
+            }
         }
         .onDisappear {
             #if canImport(UIKit)
             UIApplication.shared.isIdleTimerDisabled = false
             #endif
-            locationService.stopActiveUpdates(for: .startAssist)
+            deactivateLineAssist()
+        }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active {
+                activateLineAssist()
+            } else {
+                deactivateLineAssist()
+            }
         }
         .onReceive(timer) { value in
             now = value
@@ -439,6 +449,17 @@ struct StartAssistView: View {
 
     private func refreshPosition() {
         locationService.requestLocation()
+        navigationDataService.startNavigationInput(for: .startAssist)
+    }
+
+    private func activateLineAssist() {
+        locationService.startActiveUpdates(for: .startAssist)
+        navigationDataService.startNavigationInput(for: .startAssist)
+    }
+
+    private func deactivateLineAssist() {
+        navigationDataService.stopNavigationInput(for: .startAssist)
+        locationService.stopActiveUpdates(for: .startAssist)
     }
 
     private func fireHapticIfNeeded() {

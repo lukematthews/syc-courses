@@ -4,6 +4,7 @@ public struct SYCCoursesRootView: View {
     @StateObject private var accessStore = ClubAccessStore.application()
     @StateObject private var locationService = LocationService()
     @StateObject private var navigationDataService = NavigationDataService()
+    @StateObject private var navigationOutputService = NavigationOutputService()
     @StateObject private var recentsStore = RecentCoursesStore()
     @StateObject private var raceTrackStore = RaceTrackStore()
     @StateObject private var activeRaceStore = ActiveRaceStore()
@@ -20,6 +21,7 @@ public struct SYCCoursesRootView: View {
                 }
                     .environmentObject(locationService)
                     .environmentObject(navigationDataService)
+                    .environmentObject(navigationOutputService)
                     .environmentObject(recentsStore)
                     .environmentObject(raceTrackStore)
                     .environmentObject(activeRaceStore)
@@ -27,7 +29,9 @@ public struct SYCCoursesRootView: View {
                         raceTrackStore.configure(locationService: locationService)
                         courseNavigationSurfaceCoordinator.configure(
                             activeRaceStore: activeRaceStore,
-                            locationService: locationService
+                            locationService: locationService,
+                            navigationDataService: navigationDataService,
+                            navigationOutputService: navigationOutputService
                         )
                     }
                     .task { await accessStore.refreshIfDue() }

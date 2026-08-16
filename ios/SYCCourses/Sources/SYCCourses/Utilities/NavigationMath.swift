@@ -20,7 +20,8 @@ enum LineCrossingCalculator {
 
 enum NavigationMath {
     static let earthRadiusNm = 3440.065
-    static let magneticVariationDegrees: Double? = nil
+    // SYC's published course bearings use an easterly variation of 12 degrees.
+    static let magneticVariationDegrees: Double? = 12
 
     static func normalizeDegrees(_ value: Double) -> Double {
         value.truncatingRemainder(dividingBy: 360).advanced(by: value < 0 ? 360 : 0)

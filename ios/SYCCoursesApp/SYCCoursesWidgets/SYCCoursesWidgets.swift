@@ -118,7 +118,7 @@ struct CourseNavigationAccessoryView: View {
                         Spacer(minLength: 4)
                     }
                     HStack(spacing: 4) {
-                        Text(snapshot.roundingText)
+                        Text(snapshot.sourceText)
                             .lineLimit(1)
                         Spacer(minLength: 2)
                         if snapshot.isPositionStale {
@@ -179,10 +179,14 @@ struct CourseNavigationLiveActivity: Widget {
                     }
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    HStack {
-                        Label("Leg \(context.state.legIndex + 1) of \(context.state.totalLegs)", systemImage: "point.topleft.down.to.point.bottomright.curvepath")
-                        Spacer()
-                        freshnessLabel(timestamp: context.state.positionTimestamp, isStale: context.isStale)
+                    VStack(spacing: 2) {
+                        HStack {
+                            Label("Leg \(context.state.legIndex + 1) of \(context.state.totalLegs)", systemImage: "point.topleft.down.to.point.bottomright.curvepath")
+                            Spacer()
+                            freshnessLabel(timestamp: context.state.positionTimestamp, isStale: context.isStale)
+                        }
+                        Text(context.state.sourceText)
+                            .foregroundStyle(context.state.isUsingFallbackPosition == true ? .orange : .secondary)
                     }
                     .font(.caption)
                 }
@@ -235,7 +239,11 @@ private struct CourseNavigationLockScreenView: View {
             }
 
             HStack {
-                freshnessLabel(timestamp: state.positionTimestamp, isStale: isStale)
+                VStack(alignment: .leading, spacing: 2) {
+                    freshnessLabel(timestamp: state.positionTimestamp, isStale: isStale)
+                    Text(state.sourceText)
+                        .foregroundStyle(state.isUsingFallbackPosition == true ? .orange : .secondary)
+                }
                 Spacer()
                 if let accuracy = state.horizontalAccuracyMeters, accuracy >= 0 {
                     Text("±\(Int(accuracy.rounded())) m")
@@ -288,6 +296,10 @@ private extension CourseNavigationWidgetSnapshot {
         legIndex: 2,
         totalLegs: 9,
         bearingTrue: 83,
+        bearingReference: "trueNorth",
+        magneticVariationDegrees: 12,
+        positionSource: "NMEA2000",
+        isUsingFallbackPosition: false,
         distanceNm: 1.24,
         horizontalAccuracyMeters: 8,
         positionTimestamp: .now,
@@ -298,34 +310,76 @@ private extension CourseNavigationWidgetSnapshot {
         guard let positionTimestamp else { return true }
         return Date().timeIntervalSince(positionTimestamp) > 30
     }
-    var bearingText: String { (isPositionStale ? nil : bearingTrue).navigationBearingText }
-    var bearingCompactText: String { (isPositionStale ? nil : bearingTrue).navigationBearingCompactText }
+    var bearingText: String {
+        (isPositionStale ? nil : bearingTrue).navigationBearingText(
+            reference: bearingReference,
+            variationDegrees: magneticVariationDegrees
+        )
+    }
+    var bearingCompactText: String {
+        (isPositionStale ? nil : bearingTrue).navigationBearingCompactText(
+            reference: bearingReference,
+            variationDegrees: magneticVariationDegrees
+        )
+    }
     var distanceText: String { (isPositionStale ? nil : distanceNm).navigationDistanceText }
     var distanceCompactText: String { (isPositionStale ? nil : distanceNm).navigationDistanceCompactText }
     var roundingText: String {
         roundingSide.isEmpty ? "ROUNDING NOT PUBLISHED" : "LEAVE TO \(roundingSide.uppercased())"
     }
+    var sourceText: String {
+        isUsingFallbackPosition == true ? "IPHONE GPS FALLBACK" : (positionSource?.uppercased() ?? "POSITION SOURCE UNKNOWN")
+    }
 }
 
 private extension CourseNavigationActivityAttributes.ContentState {
-    var bearingText: String { bearingTrue.navigationBearingText }
-    var bearingCompactText: String { bearingTrue.navigationBearingCompactText }
+    var bearingText: String {
+        bearingTrue.navigationBearingText(
+            reference: bearingReference,
+            variationDegrees: magneticVariationDegrees
+        )
+    }
+    var bearingCompactText: String {
+        bearingTrue.navigationBearingCompactText(
+            reference: bearingReference,
+            variationDegrees: magneticVariationDegrees
+        )
+    }
     var distanceText: String { distanceNm.navigationDistanceText }
     var distanceCompactText: String { distanceNm.navigationDistanceCompactText }
     var roundingText: String {
         roundingSide.isEmpty ? "ROUNDING NOT PUBLISHED" : "LEAVE TO \(roundingSide.uppercased())"
     }
+    var sourceText: String {
+        isUsingFallbackPosition == true ? "IPHONE GPS FALLBACK" : (positionSource?.uppercased() ?? "POSITION SOURCE UNKNOWN")
+    }
 }
 
 private extension Optional where Wrapped == Double {
-    var navigationBearingText: String {
-        guard let value = self else { return "---°T" }
-        return String(format: "%03.0f°T", value.rounded())
+    func navigationBearingText(reference: String?, variationDegrees: Double?) -> String {
+        let suffix = reference == "magnetic" && variationDegrees != nil ? "M" : "T"
+        guard let value = displayedBearing(reference: reference, variationDegrees: variationDegrees) else {
+            return "---°\(suffix)"
+        }
+        return String(format: "%03.0f°%@", value.rounded(), suffix)
     }
 
-    var navigationBearingCompactText: String {
-        guard let value = self else { return "---°" }
-        return String(format: "%03.0f°", value.rounded())
+    func navigationBearingCompactText(reference: String?, variationDegrees: Double?) -> String {
+        let suffix = reference == "magnetic" && variationDegrees != nil ? "M" : "T"
+        guard let value = displayedBearing(reference: reference, variationDegrees: variationDegrees) else {
+            return "---°\(suffix)"
+        }
+        return String(format: "%03.0f°%@", value.rounded(), suffix)
+    }
+
+    private func displayedBearing(reference: String?, variationDegrees: Double?) -> Double? {
+        guard let value = self else { return nil }
+        let displayed = reference == "magnetic"
+            ? value - (variationDegrees ?? 0)
+            : value
+        return displayed.truncatingRemainder(dividingBy: 360)
+            .advanced(by: displayed < 0 ? 360 : 0)
+            .truncatingRemainder(dividingBy: 360)
     }
 
     var navigationDistanceText: String {

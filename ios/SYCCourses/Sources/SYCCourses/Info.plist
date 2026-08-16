@@ -4,5 +4,7 @@
 <dict>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string>SYC Courses uses your current location to calculate bearing, distance, and race tracks on the water.</string>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>SYC Courses connects to an NMEA 2000 Wi-Fi gateway on your boat network to read navigation data and send course information.</string>
 </dict>
 </plist>

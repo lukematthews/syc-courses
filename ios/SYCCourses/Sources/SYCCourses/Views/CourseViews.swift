@@ -32,8 +32,6 @@ struct CourseListView: View {
 }
 
 struct CourseDetailView: View {
-    @EnvironmentObject private var locationService: LocationService
-    @EnvironmentObject private var navigationDataService: NavigationDataService
     @EnvironmentObject private var recentsStore: RecentCoursesStore
     @EnvironmentObject private var activeRaceStore: ActiveRaceStore
     @State private var isCourseActionsPresented = false
@@ -84,14 +82,6 @@ struct CourseDetailView: View {
         }
         .onAppear {
             recentsStore.record(course)
-            if !course.isLaidMarkCourse {
-                locationService.startActiveUpdates(for: .courseDetail)
-            }
-        }
-        .onDisappear {
-            if !course.isLaidMarkCourse {
-                locationService.stopActiveUpdates(for: .courseDetail)
-            }
         }
     }
 
@@ -397,7 +387,11 @@ struct CourseTableView: View {
     let course: Course
     let marks: [Mark]
     var activeMarkID: String?
-    private let courseBearingVariationDegrees = 12.0
+    @AppStorage("navigationBearingDisplayReference") private var bearingReferenceRaw = NavigationBearingDisplayReference.trueNorth.rawValue
+
+    private var bearingReference: NavigationBearingDisplayReference {
+        NavigationBearingDisplayReference(rawValue: bearingReferenceRaw) ?? .trueNorth
+    }
 
     private var calculatedRows: [CalculatedCourseRow] {
         var previousMark = CourseDataLoader.startFinishMark(in: marks)
@@ -413,15 +407,11 @@ struct CourseTableView: View {
                 bearing = nil
                 distanceNm = nil
             } else if let previousMark, let mark {
-                let trueBearing = NavigationMath.bearingTrue(
+                bearing = NavigationMath.bearingTrue(
                     fromLatitude: previousMark.latitude,
                     fromLongitude: previousMark.longitude,
                     toLatitude: mark.latitude,
                     toLongitude: mark.longitude
-                )
-                bearing = NavigationMath.magneticBearing(
-                    trueBearing: trueBearing,
-                    variationDegrees: courseBearingVariationDegrees
                 )
                 distanceNm = NavigationMath.distanceNm(
                     fromLatitude: previousMark.latitude,
@@ -447,7 +437,7 @@ struct CourseTableView: View {
             HStack {
                 TableHeader("Mark")
                 TableHeader("Side")
-                TableHeader("Bearing")
+                TableHeader("Bearing (\(bearingReference == .trueNorth ? "T" : "M"))")
                 TableHeader("Dist")
             }
             .padding(.vertical, 10)
@@ -458,11 +448,11 @@ struct CourseTableView: View {
                     NavigationLink {
                         MarkDetailView(mark: mark)
                     } label: {
-                        CourseRowView(calculatedRow: calculatedRow, tappable: true, isActive: mark.id == activeMarkID)
+                        CourseRowView(calculatedRow: calculatedRow, bearingReference: bearingReference, tappable: true, isActive: mark.id == activeMarkID)
                     }
                     .buttonStyle(.plain)
                 } else {
-                    CourseRowView(calculatedRow: calculatedRow, tappable: false, isActive: calculatedRow.mark?.id == activeMarkID)
+                    CourseRowView(calculatedRow: calculatedRow, bearingReference: bearingReference, tappable: false, isActive: calculatedRow.mark?.id == activeMarkID)
                 }
                 Divider()
             }
@@ -482,6 +472,7 @@ struct CourseTableView: View {
 
 private struct CourseRowView: View {
     let calculatedRow: CalculatedCourseRow
+    let bearingReference: NavigationBearingDisplayReference
     let tappable: Bool
     let isActive: Bool
 
@@ -496,7 +487,7 @@ private struct CourseRowView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             Text(row.side)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Text(calculatedRow.bearingText)
+            Text(calculatedRow.bearingText(reference: bearingReference))
                 .frame(maxWidth: .infinity, alignment: .leading)
             HStack {
                 Text(calculatedRow.distanceText)
@@ -525,11 +516,11 @@ private struct CalculatedCourseRow: Identifiable {
         row.id
     }
 
-    var bearingText: String {
+    func bearingText(reference: NavigationBearingDisplayReference) -> String {
         guard let bearing else {
             return row.isCourseTotalRow ? "" : row.bearing
         }
-        return String(format: "%03.0f", NavigationMath.normalizeDegrees(bearing).rounded())
+        return AppFormatters.bearing(trueBearing: bearing, reference: reference)
     }
 
     var distanceText: String {

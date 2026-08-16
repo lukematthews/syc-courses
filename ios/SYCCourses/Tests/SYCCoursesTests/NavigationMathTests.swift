@@ -9,6 +9,20 @@ final class NavigationMathTests: XCTestCase {
         XCTAssertEqual(NavigationMath.normalizeDegrees(720), 0, accuracy: 0.0001)
     }
 
+    func testBearingDisplayCanSwitchReferenceWithoutChangingTrueBearing() {
+        let trueBearing = 327.0
+
+        XCTAssertEqual(
+            AppFormatters.bearing(trueBearing: trueBearing, reference: .trueNorth, variationDegrees: 12),
+            "327°T"
+        )
+        XCTAssertEqual(
+            AppFormatters.bearing(trueBearing: trueBearing, reference: .magnetic, variationDegrees: 12),
+            "315°M"
+        )
+        XCTAssertEqual(trueBearing, 327.0)
+    }
+
     func testBearingBetweenSYCMarks() {
         let bearing = NavigationMath.bearingTrue(
             fromLatitude: -37.946833,

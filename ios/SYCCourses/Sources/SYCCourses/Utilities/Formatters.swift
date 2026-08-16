@@ -1,8 +1,34 @@
 import Foundation
 
+enum NavigationBearingDisplayReference: String, CaseIterable, Identifiable {
+    case trueNorth
+    case magnetic
+
+    var id: String { rawValue }
+    var label: String { self == .trueNorth ? "True" : "Magnetic" }
+}
+
 enum AppFormatters {
     static func bearing(_ value: Double) -> String {
         String(format: "%03.0f°T", NavigationMath.normalizeDegrees(value).rounded())
+    }
+
+    static func bearing(
+        trueBearing: Double,
+        reference: NavigationBearingDisplayReference,
+        variationDegrees: Double? = NavigationMath.magneticVariationDegrees
+    ) -> String {
+        switch reference {
+        case .trueNorth:
+            return bearing(trueBearing)
+        case .magnetic:
+            guard let variationDegrees else { return bearing(trueBearing) }
+            let magnetic = NavigationMath.magneticBearing(
+                trueBearing: trueBearing,
+                variationDegrees: variationDegrees
+            )
+            return String(format: "%03.0f°M", magnetic.rounded())
+        }
     }
 
     static func distanceNm(_ value: Double) -> String {

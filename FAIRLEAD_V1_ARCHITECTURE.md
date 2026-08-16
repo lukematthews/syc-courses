@@ -40,7 +40,9 @@ Entitlements/Credits = whether the organisation may publish it
 
 The central versioning decision is to keep editable content coarse and make an immutable `EventPublication` manifest the historical and offline-distribution boundary. V1 does not require separate `CourseRevision`, `MarkRevision`, or `DocumentRevision` collections.
 
-Legacy device and course-pack licensing remains alongside this model during migration. It is not Fairlead's Organisation entitlement model.
+The unlaunched device and course-pack licensing system is removed before Fairlead implementation begins. Although a native app may already be publicly distributed, no club licensing agreement has taken effect and no licensed Course Packs exist. There is therefore no contractual entitlement, licensed snapshot, activated installation, or legacy-access population to preserve.
+
+Existing SYC content remains product source data and may continue to ship in the public native app while Fairlead Event distribution is built. Its presence does not make it a licensed Course Pack. Fairlead's Organisation entitlements and Event Credits are new commercial concepts and must not inherit device activation, invitation codes, signed pack entitlements, installation limits, or `permittedPackIds` semantics.
 
 ## Resolved V1 decisions
 
@@ -204,7 +206,7 @@ type CourseLeg = {
 
 `markId` is authoritative when a leg uses a known fixed mark. `displayName` supports rendering, legacy imports, and instructions that do not resolve to coordinates. Advanced gates, lines, relative marks, metric provenance, and the complete future Course Designer step system are deferred.
 
-Existing pack and Course IDs are retained as migration aliases, but new server IDs should not encode publication periods.
+Existing content-pack and Course IDs may be retained as import aliases, but they carry no licensing meaning. New server IDs should not encode publication periods.
 
 ### SharedDocument
 
@@ -393,7 +395,7 @@ Quantities are positive; transaction type determines balance direction. Transact
 
 ## Persistence plan
 
-### Retain unchanged for legacy licensing
+### Remove obsolete licensing persistence
 
 ```text
 clubs
@@ -403,7 +405,7 @@ entitlements
 activationRateLimits
 ```
 
-Do not rename these in place. Their device-, pack-, and signature-bound semantics are materially different from Fairlead Organisation entitlements.
+These collections belong only to the unlaunched device/course-pack licensing design. They are not migrated into Fairlead and must not be queried by new code. Remove their application dependencies and indexes. Any production database cleanup must be an explicit, verified operational step after confirming that the collections contain no business records; the architecture does not preserve their semantics.
 
 ### Migrate existing admin collections
 
@@ -420,7 +422,7 @@ Retain the original collection until migration is verified.
 
 `coursePackDrafts` migrates to `organisationContent`. Import Marks, Courses, groups, and navigation defaults; remove embedded members, notices, audit, and publication state.
 
-Retain `publishedCoursePacks` as legacy publication/import history. Do not automatically treat a published pack as an Event.
+Treat `publishedCoursePacks` only as prototype publication/import history where useful for migration verification. It conveys no customer licence or competitor access right and must not automatically become an Event.
 
 ### Add domain collections
 
@@ -623,7 +625,7 @@ The publish operation:
 
 The request accepts an idempotency key, but correctness is also protected by unique database constraints. A retry after successful first publication returns the existing result and cannot consume another credit.
 
-MongoDB transaction support must be confirmed in the chosen deployment. The legacy activation flow deliberately supports standalone MongoDB, but Event publication has stronger multi-collection atomicity requirements.
+MongoDB transaction support must be confirmed in the chosen deployment because Event publication has multi-collection atomicity requirements.
 
 ## Editing a published Event
 
@@ -640,12 +642,12 @@ MongoDB transaction support must be confirmed in the chosen deployment. The lega
 
 Keep one deployable Fastify/MongoDB service. Do not introduce microservices.
 
-Retain the existing activation routes, entitlement signing, Auth0 verification, MongoDB lifecycle, privacy-aware logging, stable error format, and in-memory repository testing approach.
+Retain Auth0 administrator verification, the MongoDB lifecycle, privacy-aware logging, stable error format, and in-memory repository testing approach. Remove activation routes, invitation handling, installation identity, entitlement signing, pack-bound access policy, refresh credentials, and activation rate limiting.
 
 Grow toward these internal modules:
 
 ```text
-licensing-server/src/
+server/src/
   identity/
     authenticator.ts
     membershipRepository.ts
@@ -677,11 +679,9 @@ licensing-server/src/
     objectStorage.ts
     routes.ts
 
-  legacyLicensing/
-    ...existing licensing modules...
 ```
 
-Introduce modules incrementally. Do not begin with a large file move that obscures functional changes. New repositories may initially share the existing MongoDB connection.
+The current `licensing-server` directory may be renamed separately once the obsolete licensing code has been removed and the remaining admin service is stable. Do not combine that cosmetic rename with functional domain work. Introduce modules incrementally; new repositories may initially share the existing MongoDB connection.
 
 ### Web administration
 
@@ -705,10 +705,10 @@ src/admin/
 
 ### Build and import pipeline
 
-Retain `scripts/course_pack.mjs` as a legacy and import adapter. Later add import/export scripts that:
+Retain `scripts/course_pack.mjs` as a content import/build adapter. Later add import/export scripts that:
 
 - seed Organisation content from a course pack;
-- preserve old pack/Course IDs as migration aliases;
+- preserve old content-pack/Course IDs as import aliases;
 - upload referenced documents and charts;
 - validate navigation references;
 - export deterministic Event manifests for diagnostics.
@@ -717,11 +717,11 @@ Keep existing native resource generation until runtime Event downloads are prove
 
 ### Native applications
 
-Do not replace static native repositories immediately. Add an Event repository boundary alongside bundled loading:
+Do not replace static native repositories immediately. Bundled SYC content remains freely accessible while an Event repository boundary is added alongside bundled loading:
 
 ```text
 EventRepository
-  bundledLegacyEvents()
+  bundledEvents()
   downloadedEvents()
   install(publicId)
   latestInstalledPublication()
@@ -730,13 +730,13 @@ EventRepository
 Later native components are:
 
 ```text
-BundledLegacyContentRepository
+BundledContentRepository
 DownloadedEventRepository
 EventManifestVerifier
 EventDeepLinkHandler
 ```
 
-Map published manifest Courses and Marks into the existing presentation and navigation models. Retain iOS `ClubAccessStore` and Android `ClubAccessManager` until migrated competitor access has shipped and legacy obligations are confirmed.
+Map published manifest Courses and Marks into the existing presentation and navigation models. Remove iOS `ClubAccessStore`, Android `ClubAccessManager`, invitation entry, signed entitlement storage/verification, and all access gating before adding downloaded Event access. Public Fairlead Events open without competitor activation.
 
 ## Migration and implementation order
 
@@ -746,15 +746,28 @@ Map published manifest Courses and Marks into the existing presentation and navi
 - Classify generated resources and source assets intentionally.
 - Run existing web, server, iOS, and Android tests.
 - Record which current features are prototypes versus production commitments.
+- Record explicitly that device/course-pack licensing is an unlaunched prototype, not a production or contractual commitment.
+
+### Phase 0A: remove unlaunched device and Course Pack licensing
+
+- Remove native activation screens and access gates; bundled SYC content remains available to all app users.
+- Remove installation identity, invitation codes, refresh credentials, signed entitlement storage and verification, expiry/grace policy, and legacy-access migration from iOS and Android.
+- Remove activation and entitlement-refresh routes, signing code, licensing-only configuration, operational scripts, indexes, tests, and documentation from the backend.
+- Preserve Auth0 administrator authentication, administrator memberships, editable content, prototype publication data, privacy-aware logging, and server test infrastructure.
+- Confirm that no licensed Course Packs, executed club licences, valid invitations, activated installations, or contractual snapshots exist before any production collection cleanup.
+- Remove obsolete licensing collections only through an explicit, recoverable database operation after the preceding verification.
+- Re-run web, server, iOS, and Android tests and manually verify that clean installs and upgraded installs open bundled content without activation.
+
+Phase 0A is completed and testable before Phase 1 begins. It does not implement Organisations, Events, Event Publications, Fairlead entitlements, or Event Credits.
 
 ### Phase 1: Organisation and memberships
 
 - Add Organisations and multi-Organisation Memberships.
 - Seed SYC as an Organisation.
-- Link the existing SYC legacy Club through migration metadata.
+- Seed SYC directly from existing administrator/content identifiers; do not create a legacy licensing link.
 - Copy current administrator memberships.
 - Add Organisation selection to the admin web app.
-- Retain `/v1/admin/course-pack` compatibility.
+- Retain `/v1/admin/course-pack` temporarily as an administrator-content compatibility adapter, with no licensing semantics.
 
 No competitor behaviour changes.
 
@@ -787,7 +800,7 @@ No competitor behaviour changes.
 - Add `/e/:publicId` and public manifest endpoints.
 - Publish an initial SYC test Event.
 - Verify historical snapshots and asset retention.
-- Add native deep-link and offline repositories while retaining bundled content.
+- Add native deep-link and offline repositories while retaining freely accessible bundled content.
 
 ### Phase 6: internal entitlements and credits
 
@@ -798,13 +811,12 @@ No competitor behaviour changes.
 - Add transactional first-publication credit consumption.
 - Enable enforcement only after reconciliation and concurrency tests pass.
 
-### Phase 7: competitor licensing transition
+### Phase 7: competitor Event access
 
 - Allow public Fairlead Events to open without competitor activation.
-- Retain legacy activation for old bundled variants and contractual snapshots.
-- Stop using `permittedPackIds` for new public Event access.
-- Monitor legacy activation usage.
-- Retire legacy licensing only through a later explicit decision.
+- Install and update immutable Event publications through public IDs and manifests.
+- Keep bundled SYC content available while downloaded Event behaviour is proven.
+- Do not introduce device activation, `permittedPackIds`, installation limits, or competitor entitlement checks.
 
 ### Phase 8: billing adapter
 
@@ -826,7 +838,7 @@ No competitor behaviour changes.
 9. Internal grants and Event Credit ledger.
 10. Transactional monetised first publication.
 11. Native Event download and deep-link support.
-12. Legacy activation retirement work only after migration evidence supports it.
+12. Removal of obsolete bundled-content compatibility only after downloaded Event access is proven; this is content migration, not licence retirement.
 
 ## Explicitly deferred from V1
 

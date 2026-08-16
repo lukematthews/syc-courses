@@ -348,9 +348,13 @@ private struct MarkLocationButton: View {
 }
 
 struct MarkDetailView: View {
+    @Environment(\.scenePhase) private var scenePhase
     @EnvironmentObject private var locationService: LocationService
     @EnvironmentObject private var navigationDataService: NavigationDataService
     @EnvironmentObject private var activeRaceStore: ActiveRaceStore
+    @EnvironmentObject private var navigationOutputService: NavigationOutputService
+    @AppStorage("navigationBearingDisplayReference") private var bearingReferenceRaw = NavigationBearingDisplayReference.trueNorth.rawValue
+    @State private var lastQuickBearingOutputAt: Date?
     let mark: Mark
 
     private var snapshot: BearingSnapshot? {
@@ -369,6 +373,10 @@ struct MarkDetailView: View {
         activeRaceStore.activeMarkID == mark.id
     }
 
+    private var bearingReference: NavigationBearingDisplayReference {
+        NavigationBearingDisplayReference(rawValue: bearingReferenceRaw) ?? .trueNorth
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -383,7 +391,13 @@ struct MarkDetailView: View {
 
                 if let snapshot {
                     LocationSanityWarningView(snapshot: snapshot)
-                    MetricBlock(title: "Bearing", value: AppFormatters.bearing(snapshot.bearingTrue))
+                    MetricBlock(
+                        title: "Bearing",
+                        value: AppFormatters.bearing(
+                            trueBearing: snapshot.bearingTrue,
+                            reference: bearingReference
+                        )
+                    )
                     MetricBlock(title: "Distance", value: AppFormatters.distanceNm(snapshot.distanceNm))
                     HStack(spacing: 12) {
                         MetricBlock(title: "SOG", value: AppFormatters.speedKnots(snapshot.speedOverGroundKnots))
@@ -415,6 +429,7 @@ struct MarkDetailView: View {
 
                 Button {
                     locationService.requestLocation()
+                    navigationDataService.startNavigationInput(for: .quickBearing)
                 } label: {
                     Label("Refresh Position", systemImage: "arrow.clockwise")
                         .frame(maxWidth: .infinity)
@@ -426,10 +441,70 @@ struct MarkDetailView: View {
         }
         .navigationTitle(mark.name)
         .onAppear {
-            locationService.startActiveUpdates(for: .quickBearing)
+            if scenePhase == .active {
+                activateQuickBearing()
+            }
+        }
+        .onChange(of: snapshot) { _, value in
+            transmitQuickBearing(value)
         }
         .onDisappear {
-            locationService.stopActiveUpdates(for: .quickBearing)
+            deactivateQuickBearing()
+        }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active {
+                activateQuickBearing()
+            } else {
+                deactivateQuickBearing()
+            }
+        }
+    }
+
+    private func activateQuickBearing() {
+        locationService.startActiveUpdates(for: .quickBearing)
+        navigationDataService.startNavigationInput(for: .quickBearing)
+        navigationOutputService.beginQuickBearingOutput()
+        transmitQuickBearing(snapshot)
+    }
+
+    private func deactivateQuickBearing() {
+        navigationOutputService.endQuickBearingOutput()
+        navigationDataService.stopNavigationInput(for: .quickBearing)
+        locationService.stopActiveUpdates(for: .quickBearing)
+    }
+
+    private func transmitQuickBearing(_ snapshot: BearingSnapshot?) {
+        guard scenePhase == .active,
+              navigationOutputService.isQuickBearingOutputActive
+        else { return }
+        guard let snapshot else { return }
+        guard navigationOutputService.settings.target != .disabled,
+              navigationOutputService.settings.isConfigured
+        else { return }
+        if let lastQuickBearingOutputAt,
+           snapshot.timestamp.timeIntervalSince(lastQuickBearingOutputAt) < 1 {
+            return
+        }
+        lastQuickBearingOutputAt = snapshot.timestamp
+        let waypoint = NavigationWaypointState(
+            courseNumber: 0,
+            originName: "SYC",
+            waypointName: mark.name,
+            waypointID: mark.id,
+            latitude: mark.latitude,
+            longitude: mark.longitude,
+            bearingTrue: snapshot.bearingTrue,
+            magneticVariationDegrees: NavigationMath.magneticVariationDegrees,
+            distanceNm: snapshot.distanceNm,
+            speedOverGroundKnots: snapshot.speedOverGroundKnots,
+            timestamp: snapshot.timestamp
+        )
+        Task {
+            if !navigationOutputService.isConnected,
+               navigationOutputService.settings.autoConnect {
+                await navigationOutputService.connect()
+            }
+            await navigationOutputService.sendActiveWaypoint(waypoint)
         }
     }
 

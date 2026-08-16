@@ -4,7 +4,6 @@ import Foundation
 final class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate {
     enum UpdateOwner: Hashable {
         case activeCourse
-        case courseDetail
         case quickBearing
         case raceTracker
         case startAssist
@@ -38,7 +37,9 @@ final class LocationService: NSObject, ObservableObject, CLLocationManagerDelega
     }
 
     func startActiveUpdates(for owner: UpdateOwner) {
+        let wasInactive = updateOwners.isEmpty
         updateOwners.insert(owner)
+        guard wasInactive else { return }
         if authorizationStatus == .notDetermined {
             manager.requestWhenInUseAuthorization()
         }

@@ -11,6 +11,10 @@ public struct CourseNavigationActivityAttributes: ActivityAttributes {
         public let legIndex: Int
         public let totalLegs: Int
         public let bearingTrue: Double?
+        public let bearingReference: String?
+        public let magneticVariationDegrees: Double?
+        public let positionSource: String?
+        public let isUsingFallbackPosition: Bool?
         public let distanceNm: Double?
         public let horizontalAccuracyMeters: Double?
         public let positionTimestamp: Date?
@@ -22,6 +26,10 @@ public struct CourseNavigationActivityAttributes: ActivityAttributes {
             legIndex: Int,
             totalLegs: Int,
             bearingTrue: Double?,
+            bearingReference: String? = nil,
+            magneticVariationDegrees: Double? = nil,
+            positionSource: String? = nil,
+            isUsingFallbackPosition: Bool? = nil,
             distanceNm: Double?,
             horizontalAccuracyMeters: Double?,
             positionTimestamp: Date?
@@ -32,6 +40,10 @@ public struct CourseNavigationActivityAttributes: ActivityAttributes {
             self.legIndex = legIndex
             self.totalLegs = totalLegs
             self.bearingTrue = bearingTrue
+            self.bearingReference = bearingReference
+            self.magneticVariationDegrees = magneticVariationDegrees
+            self.positionSource = positionSource
+            self.isUsingFallbackPosition = isUsingFallbackPosition
             self.distanceNm = distanceNm
             self.horizontalAccuracyMeters = horizontalAccuracyMeters
             self.positionTimestamp = positionTimestamp
@@ -57,6 +69,10 @@ public struct CourseNavigationWidgetSnapshot: Codable, Hashable {
     public let legIndex: Int
     public let totalLegs: Int
     public let bearingTrue: Double?
+    public let bearingReference: String?
+    public let magneticVariationDegrees: Double?
+    public let positionSource: String?
+    public let isUsingFallbackPosition: Bool?
     public let distanceNm: Double?
     public let horizontalAccuracyMeters: Double?
     public let positionTimestamp: Date?
@@ -71,6 +87,10 @@ public struct CourseNavigationWidgetSnapshot: Codable, Hashable {
         legIndex: Int,
         totalLegs: Int,
         bearingTrue: Double?,
+        bearingReference: String? = nil,
+        magneticVariationDegrees: Double? = nil,
+        positionSource: String? = nil,
+        isUsingFallbackPosition: Bool? = nil,
         distanceNm: Double?,
         horizontalAccuracyMeters: Double?,
         positionTimestamp: Date?,
@@ -84,6 +104,10 @@ public struct CourseNavigationWidgetSnapshot: Codable, Hashable {
         self.legIndex = legIndex
         self.totalLegs = totalLegs
         self.bearingTrue = bearingTrue
+        self.bearingReference = bearingReference
+        self.magneticVariationDegrees = magneticVariationDegrees
+        self.positionSource = positionSource
+        self.isUsingFallbackPosition = isUsingFallbackPosition
         self.distanceNm = distanceNm
         self.horizontalAccuracyMeters = horizontalAccuracyMeters
         self.positionTimestamp = positionTimestamp

@@ -19,6 +19,21 @@ final class NavigationDataTests: XCTestCase {
         XCTAssertEqual(service.sourceSummary(iPhoneFix: invalidFix).statusMessage, "No valid position")
     }
 
+    func testNMEAInputRemainsOwnedUntilLastNavigationFeatureStops() {
+        let service = NavigationDataService()
+
+        service.startNavigationInput(for: .activeCourse)
+        service.startNavigationInput(for: .quickBearing)
+
+        service.stopNavigationInput(for: .quickBearing)
+        XCTAssertTrue(service.isNavigationInputActive(for: .activeCourse))
+        XCTAssertFalse(service.isNavigationInputActive(for: .quickBearing))
+
+        service.stopNavigationInput(for: .activeCourse)
+        XCTAssertFalse(service.isNavigationInputActive(for: .activeCourse))
+        XCTAssertEqual(service.actisenseStatus, .disconnected)
+    }
+
     private func makeFix(latitude: Double = -37.95) -> NavigationFix {
         NavigationFix(
             latitude: latitude,

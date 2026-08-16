@@ -63,6 +63,13 @@ struct HomeView: View {
                     NavigationLink(value: HomeRoute.raceTracker) {
                         HomeCard(title: "Race Tracker", subtitle: "Record and scrub your course on a map", systemImage: "map")
                     }
+                    NavigationLink(value: HomeRoute.navigationOutput) {
+                        HomeCard(
+                            title: "Instruments",
+                            subtitle: "Connect an NMEA 2000 Wi-Fi gateway",
+                            systemImage: "antenna.radiowaves.left.and.right"
+                        )
+                    }
 
                     if !recentCourses.isEmpty {
                         RecentCoursesHeader {
@@ -144,6 +151,7 @@ struct HomeView: View {
                 case let .lineAssist(mode): StartAssistView(initialMode: mode)
                 case .finishOptions: FinishOptionsView()
                 case .raceTracker: RaceTrackerView()
+                case .navigationOutput: NavigationOutputSettingsView()
                 }
             }
             .navigationDestination(for: Course.self) { course in
@@ -226,6 +234,7 @@ enum HomeRoute: Hashable {
     case lineAssist(LineMode)
     case finishOptions
     case raceTracker
+    case navigationOutput
 }
 
 private struct FinishOptionsView: View {

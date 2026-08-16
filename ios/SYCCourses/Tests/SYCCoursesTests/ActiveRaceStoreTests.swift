@@ -111,9 +111,16 @@ final class ActiveRaceStoreTests: XCTestCase {
         let course = try XCTUnwrap(CourseDataLoader.fixedCourses().first)
         let store = ActiveRaceStore(defaults: defaults)
         let locationService = LocationService()
+        let navigationDataService = NavigationDataService(defaults: defaults)
+        let navigationOutputService = NavigationOutputService(defaults: defaults)
         let coordinator = CourseNavigationSurfaceCoordinator()
 
-        coordinator.configure(activeRaceStore: store, locationService: locationService)
+        coordinator.configure(
+            activeRaceStore: store,
+            locationService: locationService,
+            navigationDataService: navigationDataService,
+            navigationOutputService: navigationOutputService
+        )
         store.setActiveCourse(course)
         try await waitUntil {
             locationService.isUpdating(for: .activeCourse)
