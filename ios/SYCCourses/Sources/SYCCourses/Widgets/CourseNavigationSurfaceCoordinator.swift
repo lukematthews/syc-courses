@@ -29,6 +29,7 @@ final class CourseNavigationSurfaceCoordinator: ObservableObject {
     private var lastOutputLegIndex: Int?
     private var outputTask: Task<Void, Never>?
     private var isConfigured = false
+    private var hasSynchronizedInactiveCourse = false
     private let logger = Logger(subsystem: "SYCCourses", category: "ActiveCourseOutput")
 
     #if canImport(ActivityKit) && os(iOS)
@@ -89,6 +90,9 @@ final class CourseNavigationSurfaceCoordinator: ObservableObject {
               let mark = activeRaceStore.activeMark,
               let legIndex = activeRaceStore.activeLegIndex
         else {
+            guard !hasSynchronizedInactiveCourse else { return }
+            hasSynchronizedInactiveCourse = true
+            let shouldClearOutput = lastOutputCourseID != nil
             locationService.stopActiveUpdates(for: .activeCourse)
             navigationDataService.stopNavigationInput(for: .activeCourse)
             CourseNavigationWidgetStore.save(nil)
@@ -99,9 +103,19 @@ final class CourseNavigationSurfaceCoordinator: ObservableObject {
             lastOutputCourseID = nil
             lastOutputLegIndex = nil
             outputTask?.cancel()
-            outputTask = nil
+            if shouldClearOutput,
+               let navigationOutputService,
+               !navigationOutputService.isQuickBearingOutputActive {
+                outputTask = Task { @MainActor [weak navigationOutputService] in
+                    await navigationOutputService?.clearActiveWaypoint()
+                }
+            } else {
+                outputTask = nil
+            }
             return
         }
+
+        hasSynchronizedInactiveCourse = false
 
         locationService.startActiveUpdates(for: .activeCourse)
         navigationDataService.startNavigationInput(for: .activeCourse)
@@ -190,6 +204,10 @@ final class CourseNavigationSurfaceCoordinator: ObservableObject {
         outputTask = Task { @MainActor [weak self, weak navigationOutputService] in
             guard let self, let navigationOutputService else { return }
             if !navigationOutputService.isConnected {
+                guard !navigationOutputService.isManuallyDisconnected else {
+                    self.logger.debug("Active Course output remains disconnected by user request")
+                    return
+                }
                 guard navigationOutputService.settings.autoConnect else {
                     self.logger.error("Active Course output skipped: gateway is disconnected and auto-connect is off")
                     return

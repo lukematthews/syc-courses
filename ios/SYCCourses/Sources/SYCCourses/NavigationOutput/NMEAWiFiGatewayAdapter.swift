@@ -26,7 +26,13 @@ final class NMEAWiFiGatewayAdapter: NavigationOutputAdapter {
     }
 
     func connect() async {
-        disconnect()
+        // Replacing an in-flight attempt is internal connection management, not a
+        // user-visible disconnect. Its callbacks must not change the new attempt.
+        let previousConnection = connection
+        connection = nil
+        previousConnection?.stateUpdateHandler = nil
+        previousConnection?.cancel()
+        diagnostics.isConnected = false
         guard settings.isConfigured else {
             status = .notConfigured
             diagnostics.isConnected = false

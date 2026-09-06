@@ -47,7 +47,7 @@ final class LocationService: NSObject, ObservableObject, CLLocationManagerDelega
     }
 
     func stopActiveUpdates(for owner: UpdateOwner) {
-        updateOwners.remove(owner)
+        guard updateOwners.remove(owner) != nil else { return }
         if updateOwners.isEmpty {
             manager.stopUpdatingLocation()
         }

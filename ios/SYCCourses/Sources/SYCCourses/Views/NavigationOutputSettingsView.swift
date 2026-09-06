@@ -2,6 +2,12 @@ import Foundation
 import Network
 import SwiftUI
 
+private struct InstrumentFeedback: Identifiable {
+    let id = UUID()
+    let title: String
+    let message: String
+}
+
 struct NavigationOutputSettingsView: View {
     @EnvironmentObject private var navigationDataService: NavigationDataService
     @EnvironmentObject private var outputService: NavigationOutputService
@@ -13,6 +19,8 @@ struct NavigationOutputSettingsView: View {
     @State private var isShowingDiagnostics = false
     @State private var isShowingBoatGeometryAdvanced = false
     @State private var discoveryStatus: GatewayDiscoveryStatus = .idle
+    @State private var connectionTask: Task<Void, Never>?
+    @State private var feedback: InstrumentFeedback?
 
     private var selectedGateway: NMEAWiFiGateway {
         navigationDataService.actisenseConfig.gateway
@@ -223,7 +231,8 @@ struct NavigationOutputSettingsView: View {
                 }
                 HStack {
                     Button("Test Connection") {
-                        Task { await connectActisense() }
+                        connectionTask?.cancel()
+                        connectionTask = Task { await connectActisense() }
                     }
                     .disabled(!canConnectActisense)
 
@@ -234,7 +243,19 @@ struct NavigationOutputSettingsView: View {
                 }
 
                 Button("Test Output") {
-                    Task { await outputService.testOutput() }
+                    Task {
+                        if let sentences = await outputService.testOutput() {
+                            feedback = InstrumentFeedback(
+                                title: "Test Output Sent",
+                                message: sentences.joined(separator: "\n\n")
+                            )
+                        } else {
+                            feedback = InstrumentFeedback(
+                                title: "Test Output Failed",
+                                message: outputService.lastError ?? "No NMEA messages were sent."
+                            )
+                        }
+                    }
                 }
                 .disabled(!outputService.isConnected)
             }
@@ -306,6 +327,13 @@ struct NavigationOutputSettingsView: View {
             }
         }
         .navigationTitle("Instruments")
+        .alert(item: $feedback) { feedback in
+            Alert(
+                title: Text(feedback.title),
+                message: Text(feedback.message),
+                dismissButton: .default(Text("OK"))
+            )
+        }
         .onChange(of: bowOffsetMeters) { _, value in
             bowOffsetMeters = min(max(value, 0), 30)
         }
@@ -316,7 +344,10 @@ struct NavigationOutputSettingsView: View {
             NotificationCenter.default.post(name: .navigationBearingDisplayReferenceDidChange, object: nil)
         }
         .onAppear {
-            if outputService.settings.autoConnect, outputService.canConnect, !outputService.isConnected {
+            if outputService.settings.autoConnect,
+               outputService.canConnect,
+               !outputService.isConnected,
+               !outputService.isManuallyDisconnected {
                 Task { await outputService.connect() }
             } else {
                 outputService.refreshAdapterState()
@@ -324,24 +355,64 @@ struct NavigationOutputSettingsView: View {
         }
         .onDisappear {
             if !navigationDataService.hasNavigationInputOwners {
-                navigationDataService.disconnectActisense()
+                navigationDataService.disconnectActisense(manually: false)
             }
         }
     }
 
     private func connectActisense() async {
         syncOutputDeviceConfig()
-        if navigationDataService.actisenseConfig.isConfigured {
+        let testsInput = navigationDataService.actisenseConfig.isConfigured
+        let testsOutput = outputService.canConnect
+        if testsInput {
             await navigationDataService.connectActisense()
         }
-        if outputService.canConnect {
+        if testsOutput {
             await outputService.connect()
+        }
+
+        for _ in 0..<60 where !connectionTestSucceeded(testsInput: testsInput, testsOutput: testsOutput) {
+            guard !Task.isCancelled else { return }
+            try? await Task.sleep(for: .milliseconds(100))
+        }
+        guard !Task.isCancelled else { return }
+
+        if connectionTestSucceeded(testsInput: testsInput, testsOutput: testsOutput) {
+            var connected: [String] = []
+            if testsInput { connected.append("input") }
+            if testsOutput { connected.append("output") }
+            feedback = InstrumentFeedback(
+                title: "Connection Successful",
+                message: "Connected to \(selectedGateway.label) for \(connected.joined(separator: " and "))."
+            )
+        } else {
+            let details = navigationDataService.actisenseStatus.detail
+                ?? outputService.status.detail
+                ?? "The configured gateway did not reach the connected state."
+            feedback = InstrumentFeedback(title: "Connection Failed", message: details)
         }
     }
 
     private func disconnectActisense() {
+        connectionTask?.cancel()
+        connectionTask = nil
         navigationDataService.disconnectActisense()
         outputService.disconnect()
+        feedback = InstrumentFeedback(
+            title: "Disconnected",
+            message: "NMEA input and output have been disconnected. Automatic reconnection is paused until Test Connection is used."
+        )
+    }
+
+    private func connectionTestSucceeded(testsInput: Bool, testsOutput: Bool) -> Bool {
+        let inputConnected: Bool
+        switch navigationDataService.actisenseStatus {
+        case .connected, .receiving, .stale, .invalidFix:
+            inputConnected = true
+        case .disconnected, .connecting, .error:
+            inputConnected = false
+        }
+        return (!testsInput || inputConnected) && (!testsOutput || outputService.isConnected)
     }
 
     private func syncOutputDeviceConfig() {
@@ -373,13 +444,38 @@ struct NavigationOutputSettingsView: View {
     }
 
     private func findActisense() async {
-        discoveryStatus = .scanning
+        let configured = GatewayDiscoveryResult(
+            host: sharedActisenseHost.trimmingCharacters(in: .whitespacesAndNewlines),
+            port: sharedActisensePort
+        )
+        if navigationDataService.actisenseStatus == .connected
+            || navigationDataService.actisenseStatus == .receiving
+            || outputService.isConnected {
+            discoveryStatus = .found(configured)
+            return
+        }
+
+        discoveryStatus = .testingConfigured(configured)
+        if await GatewayDiscovery.canConnect(
+            to: configured.host,
+            port: configured.port,
+            networkProtocol: sharedActisenseProtocol,
+            timeout: .seconds(6)
+        ) {
+            discoveryStatus = .found(configured)
+            return
+        }
+
+        discoveryStatus = .scanningFallbacks
         let candidates = GatewayDiscovery.candidates(
             gateway: selectedGateway,
             currentHost: sharedActisenseHost,
             currentPort: sharedActisensePort
-        )
-        if let result = await GatewayDiscovery.find(candidates: candidates) {
+        ).filter { $0 != configured }
+        if let result = await GatewayDiscovery.find(
+            candidates: candidates,
+            networkProtocol: sharedActisenseProtocol
+        ) {
             actisenseHost.wrappedValue = result.host
             actisensePort.wrappedValue = result.port
             discoveryStatus = .found(result)
@@ -391,12 +487,16 @@ struct NavigationOutputSettingsView: View {
 
 private enum GatewayDiscoveryStatus: Equatable {
     case idle
-    case scanning
+    case testingConfigured(GatewayDiscoveryResult)
+    case scanningFallbacks
     case found(GatewayDiscoveryResult)
     case notFound
 
     var isScanning: Bool {
-        self == .scanning
+        switch self {
+        case .testingConfigured, .scanningFallbacks: true
+        case .idle, .found, .notFound: false
+        }
     }
 
     var isError: Bool {
@@ -407,8 +507,10 @@ private enum GatewayDiscoveryStatus: Equatable {
         switch self {
         case .idle:
             nil
-        case .scanning:
-            "Scanning likely gateway addresses and NMEA data ports..."
+        case let .testingConfigured(result):
+            "Testing configured gateway at \(result.host):\(result.port)..."
+        case .scanningFallbacks:
+            "Configured gateway did not respond. Scanning fallback addresses and NMEA data ports..."
         case let .found(result):
             "Found a gateway at \(result.host):\(result.port)."
         case .notFound:
@@ -422,6 +524,7 @@ private struct GatewayDiscoveryResult: Equatable {
     let port: Int
 }
 
+@MainActor
 private enum GatewayDiscovery {
     static func candidates(
         gateway: NMEAWiFiGateway,
@@ -448,44 +551,58 @@ private enum GatewayDiscovery {
         }
     }
 
-    static func find(candidates: [GatewayDiscoveryResult]) async -> GatewayDiscoveryResult? {
+    static func find(
+        candidates: [GatewayDiscoveryResult],
+        networkProtocol: NavigationOutputProtocol
+    ) async -> GatewayDiscoveryResult? {
         for candidate in candidates {
-            if await canConnect(to: candidate.host, port: candidate.port) {
+            if await canConnect(
+                to: candidate.host,
+                port: candidate.port,
+                networkProtocol: networkProtocol,
+                timeout: .milliseconds(750)
+            ) {
                 return candidate
             }
         }
         return nil
     }
 
-    private static func canConnect(to host: String, port: Int) async -> Bool {
+    static func canConnect(
+        to host: String,
+        port: Int,
+        networkProtocol: NavigationOutputProtocol,
+        timeout: Duration
+    ) async -> Bool {
+        guard !host.isEmpty else { return false }
         guard let endpointPort = NWEndpoint.Port(rawValue: UInt16(port)) else { return false }
-        let connection = NWConnection(host: NWEndpoint.Host(host), port: endpointPort, using: .tcp)
+        let parameters: NWParameters = networkProtocol == .tcp ? .tcp : .udp
+        let connection = NWConnection(host: NWEndpoint.Host(host), port: endpointPort, using: parameters)
         return await withCheckedContinuation { continuation in
-            final class ProbeState: @unchecked Sendable {
-                var didResume = false
-            }
-            let state = ProbeState()
+            var didResume = false
 
-            @Sendable func finish(_ success: Bool) {
-                guard !state.didResume else { return }
-                state.didResume = true
+            func finish(_ success: Bool) {
+                guard !didResume else { return }
+                didResume = true
                 connection.cancel()
                 continuation.resume(returning: success)
             }
 
             connection.stateUpdateHandler = { nextState in
-                switch nextState {
-                case .ready:
-                    finish(true)
-                case .failed, .cancelled:
-                    finish(false)
-                default:
-                    break
+                Task { @MainActor in
+                    switch nextState {
+                    case .ready:
+                        finish(true)
+                    case .failed, .cancelled:
+                        finish(false)
+                    default:
+                        break
+                    }
                 }
             }
             connection.start(queue: .global(qos: .utility))
-            Task {
-                try? await Task.sleep(nanoseconds: 750_000_000)
+            Task { @MainActor in
+                try? await Task.sleep(for: timeout)
                 finish(false)
             }
         }

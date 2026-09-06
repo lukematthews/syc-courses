@@ -31,6 +31,7 @@ final class NavigationOutputService: ObservableObject {
     @Published private(set) var lastError: String?
     @Published private(set) var hasInstrumentAccess: Bool
     @Published private(set) var isQuickBearingOutputActive = false
+    private(set) var isManuallyDisconnected = false
 
     private let defaults: UserDefaults
     private var adapterFactory: @MainActor (NavigationOutputSettings) -> NavigationOutputAdapter
@@ -41,6 +42,7 @@ final class NavigationOutputService: ObservableObject {
     private var reconnectAttempt = 0
     private var reconnectCount = 0
     private var lastDisconnectReason: String?
+    private var isConnectInProgress = false
 
     init(
         defaults: UserDefaults = .standard,
@@ -63,6 +65,7 @@ final class NavigationOutputService: ObservableObject {
     }
 
     func connect() async {
+        isManuallyDisconnected = false
         guard hasInstrumentAccess else {
             logger.error("Navigation output connection blocked: instrument access is unavailable")
             updateStatus(.notConfigured)
@@ -85,6 +88,7 @@ final class NavigationOutputService: ObservableObject {
     }
 
     func disconnect() {
+        isManuallyDisconnected = true
         shouldMaintainConnection = false
         reconnectTask?.cancel()
         reconnectTask = nil
@@ -138,7 +142,23 @@ final class NavigationOutputService: ObservableObject {
         }
     }
 
-    func testOutput() async {
+    func clearActiveWaypoint() async {
+        do {
+            try await send(
+                messages: NMEA0183Encoder.clearedWaypointMessages(),
+                description: "cleared active waypoint"
+            )
+        } catch {
+            let message = error.localizedDescription
+            lastError = message
+            diagnostics.lastError = message
+            updateStatus(status == .connected ? .connected : .error(message))
+            logger.error("Navigation output clear failed: \(message, privacy: .public)")
+        }
+    }
+
+    @discardableResult
+    func testOutput() async -> [String]? {
         let waypoint = NavigationWaypointState(
             courseNumber: 0,
             originName: "SYC",
@@ -152,7 +172,10 @@ final class NavigationOutputService: ObservableObject {
             speedOverGroundKnots: nil,
             timestamp: Date()
         )
+        let messages = try? NMEA0183Encoder.messages(for: waypoint)
         await sendActiveWaypoint(waypoint)
+        guard lastError == nil else { return nil }
+        return messages?.map { $0.sentence.trimmingCharacters(in: .whitespacesAndNewlines) }
     }
 
     func refreshAdapterState() {
@@ -173,7 +196,7 @@ final class NavigationOutputService: ObservableObject {
             throw NavigationOutputError.notConfigured
         }
         ensureAdapter()
-        if adapter?.status != .connected, settings.autoConnect {
+        if adapter?.status != .connected, settings.autoConnect, !isManuallyDisconnected {
             await performConnect()
         }
         guard adapter?.status == .connected else {
@@ -258,6 +281,12 @@ final class NavigationOutputService: ObservableObject {
 
     private func performConnect(isReconnect: Bool = false) async {
         guard canConnect else { return }
+        guard !isConnectInProgress else {
+            logger.debug("Navigation output connection already in progress")
+            return
+        }
+        isConnectInProgress = true
+        defer { isConnectInProgress = false }
         ensureAdapter()
         if isReconnect {
             reconnectCount += 1

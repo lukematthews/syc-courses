@@ -17,6 +17,7 @@ final class NavigationDataService: ObservableObject {
     }
     @Published private(set) var actisenseProvider: ActisenseNMEAProvider
     @Published private(set) var hasInstrumentAccess: Bool
+    private(set) var isManuallyDisconnected = false
 
     private let defaults: UserDefaults
     private var cancellable: AnyCancellable?
@@ -52,13 +53,14 @@ final class NavigationDataService: ObservableObject {
 
     func connectActisense() async {
         guard hasInstrumentAccess, actisenseConfig.isConfigured else { return }
+        isManuallyDisconnected = false
         await actisenseProvider.connect()
     }
 
     func startNavigationInput(for owner: InputOwner) {
         let wasAdded = inputOwners.insert(owner).inserted
         guard wasAdded else { return }
-        guard canConnectActisense else { return }
+        guard canConnectActisense, !isManuallyDisconnected else { return }
         switch actisenseStatus {
         case .connected, .connecting, .receiving:
             return
@@ -68,7 +70,7 @@ final class NavigationDataService: ObservableObject {
     }
 
     func stopNavigationInput(for owner: InputOwner) {
-        inputOwners.remove(owner)
+        guard inputOwners.remove(owner) != nil else { return }
         if inputOwners.isEmpty {
             actisenseProvider.disconnect()
         }
@@ -87,9 +89,12 @@ final class NavigationDataService: ObservableObject {
         }
     }
 
-    func disconnectActisense() {
+    func disconnectActisense(manually: Bool = true) {
         inputOwners.removeAll()
         actisenseProvider.disconnect()
+        if manually {
+            isManuallyDisconnected = true
+        }
     }
 
     func activeFix(iPhoneFix: NavigationFix?, now: Date = Date()) -> NavigationFix? {

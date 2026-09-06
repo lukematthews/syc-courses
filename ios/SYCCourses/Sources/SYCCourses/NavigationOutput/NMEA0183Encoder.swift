@@ -1,6 +1,17 @@
 import Foundation
 
 enum NMEA0183Encoder {
+    static func clearedWaypointMessages() -> [NavigationOutputMessage] {
+        [
+            NavigationOutputMessage(sentence: sentence(fields: [
+                "GPBWC", "", "", "", "", "", "", "T", "", "M", "", "N", "", "V"
+            ])),
+            NavigationOutputMessage(sentence: sentence(fields: [
+                "GPRMB", "V", "", "", "", "", "", "", "", "", "", "", "", "V", "V"
+            ]))
+        ]
+    }
+
     static func messages(for waypoint: NavigationWaypointState) throws -> [NavigationOutputMessage] {
         guard waypoint.distanceNm.isFinite, waypoint.distanceNm >= 0 else {
             throw NavigationOutputError.encodingFailed("Waypoint distance is invalid.")

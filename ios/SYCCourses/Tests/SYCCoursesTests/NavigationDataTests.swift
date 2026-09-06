@@ -3,6 +3,23 @@ import XCTest
 
 @MainActor
 final class NavigationDataTests: XCTestCase {
+    @MainActor
+    func testStaleRefreshPublishesWithoutRecursiveReentry() async {
+        let provider = ActisenseNMEAProvider(config: ActisenseInputConfig(staleAfterSeconds: 1))
+        provider.ingest(
+            sentence: "$GPGGA,092751.000,3756.8100,S,14459.4000,E,1,08,0.9,0.0,M,0.0,M,,*00",
+            now: Date(timeIntervalSinceReferenceDate: 0)
+        )
+
+        let staleAt = provider.latestFix!.timestamp.addingTimeInterval(10)
+        provider.refreshFreshness(now: staleAt)
+        for _ in 0..<20 where provider.status != .stale {
+            try? await Task.sleep(for: .milliseconds(1))
+        }
+
+        XCTAssertEqual(provider.status, .stale)
+    }
+
     func testUsesUsableIPhoneGPSFix() {
         let service = NavigationDataService()
         let fix = makeFix()
@@ -31,6 +48,30 @@ final class NavigationDataTests: XCTestCase {
 
         service.stopNavigationInput(for: .activeCourse)
         XCTAssertFalse(service.isNavigationInputActive(for: .activeCourse))
+        XCTAssertEqual(service.actisenseStatus, .disconnected)
+    }
+
+    func testStoppingAbsentInputOwnerDoesNotRepublishProviderState() {
+        let provider = ActisenseNMEAProvider()
+        let service = NavigationDataService(actisenseProvider: provider)
+        var publicationCount = 0
+        let cancellable = provider.objectWillChange.sink { publicationCount += 1 }
+
+        service.stopNavigationInput(for: .activeCourse)
+
+        XCTAssertEqual(publicationCount, 0)
+        withExtendedLifetime(cancellable) {}
+    }
+
+    func testManualInputDisconnectBlocksOwnerDrivenReconnect() {
+        let service = NavigationDataService()
+
+        service.startNavigationInput(for: .activeCourse)
+        service.disconnectActisense()
+        service.startNavigationInput(for: .activeCourse)
+
+        XCTAssertTrue(service.isManuallyDisconnected)
+        XCTAssertTrue(service.isNavigationInputActive(for: .activeCourse))
         XCTAssertEqual(service.actisenseStatus, .disconnected)
     }
 

@@ -76,6 +76,22 @@ final class NavigationOutputTests: XCTestCase {
         XCTAssertTrue(adapter.sentMessages[1].sentence.hasPrefix("$GPRMB"))
     }
 
+    func testClearingActiveWaypointSendsInvalidMessagesWithoutBearingOrDistance() async {
+        let adapter = FakeNavigationOutputAdapter()
+        let service = makeService(adapter: adapter, target: .actisenseW2K2)
+
+        await service.connect()
+        await service.clearActiveWaypoint()
+
+        XCTAssertEqual(adapter.sentMessages.count, 2)
+        XCTAssertEqual(fields(in: adapter.sentMessages[0].sentence), [
+            "GPBWC", "", "", "", "", "", "", "T", "", "M", "", "N", "", "V"
+        ])
+        XCTAssertEqual(fields(in: adapter.sentMessages[1].sentence), [
+            "GPRMB", "V", "", "", "", "", "", "", "", "", "", "", "", "V", "V"
+        ])
+    }
+
     func testActiveCourseUsesProvenWaypointSendPath() async throws {
         let suiteName = "NavigationOutputTests-\(UUID().uuidString)"
         let defaults = UserDefaults(suiteName: suiteName)!
@@ -128,6 +144,16 @@ final class NavigationOutputTests: XCTestCase {
         XCTAssertEqual(adapter.sentMessages.count, 2)
         XCTAssertTrue(adapter.sentMessages[0].sentence.hasPrefix("$GPBWC"))
         XCTAssertTrue(adapter.sentMessages[1].sentence.hasPrefix("$GPRMB"))
+
+        activeRaceStore.clearActiveCourse()
+        for _ in 0..<50 where adapter.sentMessages.count < 4 {
+            try await Task.sleep(for: .milliseconds(10))
+        }
+
+        XCTAssertEqual(adapter.sentMessages.count, 4)
+        XCTAssertEqual(fields(in: adapter.sentMessages[2].sentence).last, "V")
+        XCTAssertEqual(fields(in: adapter.sentMessages[3].sentence).first, "GPRMB")
+        XCTAssertEqual(fields(in: adapter.sentMessages[3].sentence)[1], "V")
     }
 
     func testServiceSupportsYDWGOutput() async {
@@ -153,6 +179,25 @@ final class NavigationOutputTests: XCTestCase {
 
         service.disconnect()
         XCTAssertEqual(service.status, .disconnected)
+    }
+
+    func testManualDisconnectBlocksAutomaticReconnectUntilExplicitConnect() async {
+        let adapter = FakeNavigationOutputAdapter()
+        let service = makeService(adapter: adapter, target: .actisenseW2K2, autoConnect: true)
+
+        await service.connect()
+        service.disconnect()
+        await service.sendActiveWaypoint(sampleWaypoint())
+
+        XCTAssertTrue(service.isManuallyDisconnected)
+        XCTAssertEqual(adapter.connectCount, 1)
+        XCTAssertTrue(adapter.sentMessages.isEmpty)
+
+        await service.connect()
+
+        XCTAssertFalse(service.isManuallyDisconnected)
+        XCTAssertEqual(adapter.connectCount, 2)
+        XCTAssertEqual(service.status, .connected)
     }
 
     func testUnexpectedAdapterFailureSurfacesWithoutPolling() async {
@@ -192,6 +237,20 @@ final class NavigationOutputTests: XCTestCase {
         XCTAssertEqual(adapter.connectCount, 2)
         XCTAssertEqual(adapter.sentMessages.count, 2)
         XCTAssertEqual(service.diagnostics.reconnectCount, 1)
+    }
+
+    func testConcurrentConnectRequestsShareInFlightAttempt() async throws {
+        let adapter = FakeNavigationOutputAdapter()
+        adapter.connectDelay = .milliseconds(50)
+        let service = makeService(adapter: adapter, target: .actisenseW2K2)
+
+        async let first: Void = service.connect()
+        try await Task.sleep(for: .milliseconds(5))
+        async let second: Void = service.connect()
+        _ = await (first, second)
+
+        XCTAssertEqual(adapter.connectCount, 1)
+        XCTAssertEqual(service.status, .connected)
     }
 
     func testMessageGenerationRejectsInvalidDistance() {
@@ -262,6 +321,11 @@ final class NavigationOutputTests: XCTestCase {
             timestamp: Date(timeIntervalSinceReferenceDate: 0)
         )
     }
+
+    private func fields(in sentence: String) -> [String] {
+        let body = sentence.dropFirst().split(separator: "*", maxSplits: 1, omittingEmptySubsequences: false)[0]
+        return body.split(separator: ",", omittingEmptySubsequences: false).map(String.init)
+    }
 }
 
 @MainActor
@@ -272,6 +336,7 @@ private final class FakeNavigationOutputAdapter: NavigationOutputAdapter {
     var sentMessages: [NavigationOutputMessage] = []
     var connectCount = 0
     var failNextSend = false
+    var connectDelay: Duration?
 
     func configure(_ settings: NavigationOutputSettings) {
         diagnostics.deviceHost = "\(settings.host):\(settings.port) \(settings.networkProtocol.label)"
@@ -280,6 +345,9 @@ private final class FakeNavigationOutputAdapter: NavigationOutputAdapter {
 
     func connect() async {
         connectCount += 1
+        if let connectDelay {
+            try? await Task.sleep(for: connectDelay)
+        }
         status = .connected
         diagnostics.isConnected = true
         stateDidChange?(status, diagnostics)

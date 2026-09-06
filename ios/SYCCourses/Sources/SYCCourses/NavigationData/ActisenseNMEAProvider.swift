@@ -22,6 +22,7 @@ final class ActisenseNMEAProvider: ObservableObject {
     private var shouldMaintainConnection = false
     private var reconnectAttempt = 0
     private var lastDataReceivedAt: Date?
+    private var freshnessTransitionScheduled = false
     private let logger = Logger(subsystem: "SYCCourses", category: "NMEAGatewayInput")
 
     init(config: ActisenseInputConfig = ActisenseInputConfig()) {
@@ -84,6 +85,8 @@ final class ActisenseNMEAProvider: ObservableObject {
         shouldMaintainConnection = false
         reconnectTask?.cancel()
         reconnectTask = nil
+        lastError = nil
+        lastDisconnectReason = nil
         stopConnection()
     }
 
@@ -108,15 +111,26 @@ final class ActisenseNMEAProvider: ObservableObject {
 
     func refreshFreshness(now: Date = Date()) {
         guard latestFix != nil else { return }
-        if !isFresh(now: now), status == .receiving {
-            status = .stale
+        guard !isFresh(now: now), status == .receiving, !freshnessTransitionScheduled else { return }
+
+        // NavigationDataService forwards objectWillChange synchronously. Deferring
+        // this publication avoids recursively re-entering freshness evaluation
+        // before @Published has stored the new status.
+        freshnessTransitionScheduled = true
+        Task { @MainActor [weak self] in
+            await Task.yield()
+            guard let self else { return }
+            self.freshnessTransitionScheduled = false
+            if !self.isFresh(now: now), self.status == .receiving {
+                self.status = .stale
+            }
         }
     }
 
     private func receive(on connection: NWConnection) {
         connection.receive(minimumIncompleteLength: 1, maximumLength: 4096) { [weak self] data, _, isComplete, error in
             Task { @MainActor in
-                guard let self else { return }
+                guard let self, self.connection === connection else { return }
                 if let data, !data.isEmpty {
                     self.lastDataReceivedAt = Date()
                     self.handle(data)
